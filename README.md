@@ -8,12 +8,11 @@
 ## 📖 Overview
 **Abhay Hindu Sena** is a socio-spiritual movement dedicated to the protection and resurgence of Sanatana Dharma across Andhra Pradesh, Telangana, and Bharat. 
 
-Founded by **Shri Radha Manohar Das**, scholar of the Bhagavad Gita and Vedic scriptures, the organization focuses on:
-- 🛕 **Temple & Land Protection (ఆలయ పరిరక్షణ)**: Safeguarding temple properties, renovating dilapidated rural mandirs, and supporting archakas.
-- 🚩 **Youth Awakening & Martial Training (యువ చైతన్యం & ఆత్మరక్షణ శిక్షణ)**: Physical fitness, lathi training, moral discipline, and leadership development.
-- 🍲 **Nitya Annadanam & Seva (నిత్య అన్నదానం)**: Regular sanctified meal distribution for pilgrims, sadhus, and the needy.
-- 🐄 **Gau Samrakshana (గో సంరక్షణ)**: Protection of indigenous Desi cows, preventing illegal trafficking, and supporting goshalas.
-- 📚 **Dharmic Literature & Education (ధర్మ ప్రచారం)**: Distribution of Bhagavad Gita and sacred books to rural and student communities.
+The movement is anchored in four sacred pillars:
+1. 📚 **శిక్ష (Shiksha) — Dharmic Education**: Educating people and youth about our Sanatana Dharma, the Bhagavad Gita, and Vedic values.
+2. 🛡️ **రక్ష (Raksha) — Protection Against Conversions**: Stopping predatory and deceptive religious conversions from Hindus to other religions.
+3. 🕉️ **పునరుత్థాన్ (Punarutthan) — Homecoming (Ghar Wapsi)**: Reclaiming and welcoming back innocent Hindus who were converted through force, deception, or inducement.
+4. 🛕 **దేవాలయ స్వతంత్ర (Devalaya Swatantra) — Freeing Hindu Temples**: Freeing Hindu temples from government control and restoring temple governance and resources to devotees and archakas.
 
 ---
 
