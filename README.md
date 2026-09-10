@@ -22,7 +22,6 @@ Founded by **Shri Radha Manohar Das Snathani**, scholar of the Bhagavad Gita and
 - **YouTube Discourses:** [@RadhaManoharDas](https://www.youtube.com/@RadhaManoharDas)
 - **Instagram:** [@radhamanohardas](https://www.instagram.com/radhamanohardas/)
 - **National Headquarters:** Tirupati, Andhra Pradesh, Bharat
-- **Cultural Network:** [Sannivesham.com](https://sannivesham.com)
 
 ---
 
