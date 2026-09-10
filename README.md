@@ -1,14 +1,14 @@
 # 🚩 Abhay Hindu Sena (అభయ్ హిందూ సేన)
 
 > **“ధర్మం కోసం ఆలోచించండి... ధర్మంగా జీవించండి”**  
-> *Official Portal of Abhay Hindu Sena | Founded by Shri Radha Manohar Das Snathani*
+> *Official Portal of Abhay Hindu Sena | Founded by Shri Radha Manohar Das*
 
 ---
 
 ## 📖 Overview
 **Abhay Hindu Sena** is a socio-spiritual movement dedicated to the protection and resurgence of Sanatana Dharma across Andhra Pradesh, Telangana, and Bharat. 
 
-Founded by **Shri Radha Manohar Das Snathani**, scholar of the Bhagavad Gita and Vedic scriptures, the organization focuses on:
+Founded by **Shri Radha Manohar Das**, scholar of the Bhagavad Gita and Vedic scriptures, the organization focuses on:
 - 🛕 **Temple & Land Protection (ఆలయ పరిరక్షణ)**: Safeguarding temple properties, renovating dilapidated rural mandirs, and supporting archakas.
 - 🚩 **Youth Awakening & Martial Training (యువ చైతన్యం & ఆత్మరక్షణ శిక్షణ)**: Physical fitness, lathi training, moral discipline, and leadership development.
 - 🍲 **Nitya Annadanam & Seva (నిత్య అన్నదానం)**: Regular sanctified meal distribution for pilgrims, sadhus, and the needy.
