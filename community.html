@@ -697,6 +697,7 @@
     <a href="donate.html">💛 Donate</a>
     <a href="videos.html">🎬 Videos</a>
     <a href="index.html#events">📅 Events</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" style="background:rgba(37,211,102,0.18); border-color:rgba(37,211,102,0.5); color:#2ecc71;">📿 Appointment</a>
     <a href="index.html">🌐 Home</a>
   </div>
 </header>
@@ -1265,6 +1266,21 @@
     return (str || '').replace(/[&<>'"]/g, tag => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[tag] || tag));
+  }
+
+  // Open WhatsApp to book an appointment with Guruji
+  function openGurujiAppointment() {
+    const phone = "919866957796";
+    const msg = 
+      "🚩 *హరే కృష్ణ! పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ కావాలని కోరుతున్నాను.*\n" +
+      "(Hare Krishna! I would like to schedule an appointment to speak with Pujya Shri Radha Manohar Das Guruji.)\n\n" +
+      "👤 *పేరు (Name):* \n" +
+      "📍 *ఊరు / నగరం (Location):* \n" +
+      "📞 *మొబైల్ నంబర్ (Phone):* \n" +
+      "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
+      "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
   }
 
   document.addEventListener('DOMContentLoaded', () => {

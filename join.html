@@ -130,6 +130,18 @@
     box-shadow: 0 6px 20px rgba(212,175,55,0.55);
     transform: translateY(-1px);
   }
+  .btn-appointment-top {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.22), rgba(18, 140, 126, 0.28));
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    color: #2ecc71;
+  }
+  .btn-appointment-top:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 14px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
+  }
 
   /* FLOATING NAVBAR */
   .glass-navbar {
@@ -179,6 +191,18 @@
     color: #FFF;
     background: rgba(212,175,55,0.22);
     font-weight: 600;
+  }
+  .glass-nav-links a.nav-appointment-link {
+    background: rgba(37, 211, 102, 0.16);
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    color: #2ecc71;
+    font-weight: 700;
+  }
+  .glass-nav-links a.nav-appointment-link:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.45);
   }
   .glass-divider {
     width: 1px;
@@ -622,6 +646,7 @@
   <div class="header-actions">
     <a href="community.html" class="header-btn btn-community-top" data-en="Community 💬" data-te="కమ్యూనిటీ 💬">Community 💬</a>
     <a href="donate.html" class="header-btn btn-donate-top" data-en="Donate 💛" data-te="విరాళం 💛">Donate 💛</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="header-btn btn-appointment-top" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
   </div>
 </header>
 
@@ -637,6 +662,7 @@
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
     <a href="join.html" class="active" data-en="Join Us" data-te="చేరండి">Join Us</a>
     <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="nav-appointment-link" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
   </div>
   <span class="glass-divider"></span>
   <button class="glass-lang-btn" onclick="toggleLanguage()" id="glassLangBtn">
@@ -853,6 +879,7 @@
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
     <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
     <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
     <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
   </div>
   <div class="footer-copy">
@@ -883,6 +910,21 @@
     db = firebase.firestore();
   } catch (e) {
     console.warn("Firebase initialization note:", e);
+  }
+
+  // Open WhatsApp to book an appointment with Guruji
+  function openGurujiAppointment() {
+    const phone = "919866957796";
+    const msg = 
+      "🚩 *హరే కృష్ణ! పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ కావాలని కోరుతున్నాను.*\n" +
+      "(Hare Krishna! I would like to schedule an appointment to speak with Pujya Shri Radha Manohar Das Guruji.)\n\n" +
+      "👤 *పేరు (Name):* \n" +
+      "📍 *ఊరు / నగరం (Location):* \n" +
+      "📞 *మొబైల్ నంబర్ (Phone):* \n" +
+      "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
+      "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
   }
 
   // Language Toggle

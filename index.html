@@ -182,6 +182,18 @@
     color: #000;
     transform: translateY(-2px);
   }
+  .btn-appointment-top {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.22), rgba(18, 140, 126, 0.28));
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    color: #2ecc71;
+  }
+  .btn-appointment-top:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 14px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
+  }
 
   /* FLOATING GLASS NAVBAR PILL WITH INTEGRATED LANGUAGE TOGGLE */
   .glass-navbar {
@@ -228,6 +240,18 @@
   .glass-nav-links a:hover {
     color: #FFF;
     background: rgba(212,175,55,0.18);
+  }
+  .glass-nav-links a.nav-appointment-link {
+    background: rgba(37, 211, 102, 0.16);
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    color: #2ecc71;
+    font-weight: 700;
+  }
+  .glass-nav-links a.nav-appointment-link:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.45);
   }
   .glass-divider {
     width: 1px;
@@ -1255,7 +1279,7 @@
   }
   .chat-send-btn:hover { background: var(--gold-bright); }
 
-  /* 3 ACTION PORTALS: JOIN, DONATE, COMMUNITY */
+  /* 4 ACTION PORTALS: JOIN, DONATE, COMMUNITY, APPOINTMENT */
   .portals-section {
     background: radial-gradient(circle at 50% 20%, rgba(122, 12, 12, 0.35) 0%, rgba(13, 4, 4, 0.95) 75%);
     border-top: 1px solid rgba(212, 175, 55, 0.25);
@@ -1263,9 +1287,9 @@
   }
   .portals-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 1200px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1320px;
     margin: 0 auto;
   }
   .portal-card {
@@ -1405,6 +1429,36 @@
     color: #000;
     border-color: var(--gold);
     transform: translateY(-2px);
+  }
+  .portal-icon-green {
+    background: rgba(37, 211, 102, 0.15);
+    border-color: #25D366;
+    box-shadow: 0 0 16px rgba(37, 211, 102, 0.3);
+  }
+  .portal-tag-green {
+    background: rgba(37, 211, 102, 0.12);
+    border-color: rgba(37, 211, 102, 0.45);
+    color: #2ecc71;
+  }
+  .btn-portal-appointment {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  }
+  .btn-portal-appointment:hover {
+    background: linear-gradient(135deg, #2ecc71 0%, #25D366 100%);
+    color: #000;
+    box-shadow: 0 6px 22px rgba(37, 211, 102, 0.6);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1080px) {
+    .portals-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 18px !important;
+      max-width: 720px !important;
+    }
   }
 
   @media (max-width: 860px) {
@@ -2902,6 +2956,9 @@
     <a href="join.html" class="header-btn btn-join-top" data-en="Join Us 🚩" data-te="చేరండి 🚩">
       Join Us 🚩
     </a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="header-btn btn-appointment-top" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">
+      Appointment 📅
+    </a>
   </div>
 </header>
 
@@ -2917,6 +2974,7 @@
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
     <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
     <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="nav-appointment-link" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
   </div>
   <span class="glass-divider"></span>
   <!-- Language Toggle Inside Glass Navbar -->
@@ -3287,9 +3345,9 @@
   <div class="section-header">
     <span class="eyebrow" data-en="Get Involved • Sanatana Seva" data-te="ధర్మ రక్షణలో భాగస్వామ్యం">Get Involved • Sanatana Seva</span>
     <h2 class="section-title" data-en="Serve, Support & Connect" data-te="సేవ • విరాళం • కమ్యూనిటీ">Serve, Support & Connect</h2>
-    <p class="section-sub" data-en="Choose your pathway to serve Sanatana Dharma. Enlist as an official volunteer, offer sacred Dharma Daan, or unite with fellow sevaks in our live community forum."
-       data-te="సనాతన ధర్మ రక్షణలో మీ వంతు బాధ్యతను నిర్వర్తించండి. అధికారిక వాలంటీర్‌గా నమోదు చేసుకోండి, పవిత్ర ధర్మ దానం అందించండి లేదా ప్రత్యక్ష కమ్యూనిటీ చర్చా వేదికలో కలవండి.">
-      Choose your pathway to serve Sanatana Dharma. Enlist as an official volunteer, offer sacred Dharma Daan, or unite with fellow sevaks in our live community forum.
+    <p class="section-sub" data-en="Choose your pathway to serve Sanatana Dharma. Enlist as an official volunteer, offer sacred Dharma Daan, unite with fellow sevaks, or schedule a personal appointment with Guruji."
+       data-te="సనాతన ధర్మ రక్షణలో మీ వంతు బాధ్యతను నిర్వర్తించండి. అధికారిక వాలంటీర్‌గా నమోదు చేసుకోండి, పవిత్ర ధర్మ దానం అందించండి, చర్చా వేదికలో కలవండి లేదా పూజ్య గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ పొందండి.">
+      Choose your pathway to serve Sanatana Dharma. Enlist as an official volunteer, offer sacred Dharma Daan, unite with fellow sevaks, or schedule a personal appointment with Guruji.
     </p>
   </div>
 
@@ -3341,6 +3399,22 @@
         <a href="community.html" class="btn-portal btn-portal-community" data-en="Enter Community 💬" data-te="కమ్యూనిటీలోకి రండి 💬">Enter Community 💬</a>
       </div>
     </div>
+
+    <!-- Box 4: Guruji Appointment -->
+    <div class="portal-card" onclick="openGurujiAppointment()">
+      <div class="portal-card-top">
+        <div class="portal-icon-box portal-icon-green">📿</div>
+        <span class="portal-tag portal-tag-green" data-en="Darshan & Guidance" data-te="దర్శనం & మార్గదర్శనం">Darshan & Guidance</span>
+      </div>
+      <h3 class="portal-heading" data-en="Talk with Guruji" data-te="గురూజీతో మాట్లాడండి">Talk with Guruji</h3>
+      <p class="portal-desc" data-en="Seek spiritual counseling, personal guidance, or discuss dharmic seva initiatives directly with Shri Radha Manohar Das ji on official WhatsApp."
+         data-te="ఆధ్యాత్మిక మార్గదర్శనం, ధర్మ సందేహాలు మరియు వ్యక్తిగత సంభాషణ కొరకు పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో నేరుగా వాట్సాప్‌లో మాట్లాడేందుకు అపాయింట్‌మెంట్ పొందండి.">
+        Seek spiritual counseling, personal guidance, or discuss dharmic seva initiatives directly with Shri Radha Manohar Das ji on official WhatsApp.
+      </p>
+      <div class="portal-footer-btn">
+        <a href="javascript:void(0)" onclick="event.stopPropagation(); openGurujiAppointment();" class="btn-portal btn-portal-appointment" data-en="Talk with Guruji 💬" data-te="గురూజీతో మాట్లాడండి 💬">Talk with Guruji 💬</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -3361,6 +3435,7 @@
     <a href="community.html">Community</a>
     <a href="join.html">Join Us</a>
     <a href="donate.html">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
     <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
   </div>
   <div class="footer-copy">
@@ -3884,6 +3959,21 @@
     }).catch(() => {
       prompt("Official UPI ID:", upi);
     });
+  }
+
+  // Open WhatsApp to book an appointment with Guruji
+  function openGurujiAppointment() {
+    const phone = "919866957796";
+    const msg = 
+      "🚩 *హరే కృష్ణ! పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ కావాలని కోరుతున్నాను.*\n" +
+      "(Hare Krishna! I would like to schedule an appointment to speak with Pujya Shri Radha Manohar Das Guruji.)\n\n" +
+      "👤 *పేరు (Name):* \n" +
+      "📍 *ఊరు / నగరం (Location):* \n" +
+      "📞 *మొబైల్ నంబర్ (Phone):* \n" +
+      "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
+      "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
   }
 
   function escapeHtml(str) {
