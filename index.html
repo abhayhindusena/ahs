@@ -2316,13 +2316,14 @@
   }
   .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
-    max-width: 1360px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+    max-width: 1400px;
     margin: 0 auto;
   }
   @media (max-width: 960px) {
-    .events-grid { grid-template-columns: 1fr; gap: 20px; }
+    .events-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   }
   .event-card {
     background: linear-gradient(145deg, rgba(26, 7, 7, 0.95) 0%, rgba(15, 4, 4, 0.98) 100%);
@@ -2333,6 +2334,18 @@
     flex-direction: column;
     box-shadow: 0 10px 32px rgba(0,0,0,0.65);
     overflow: hidden;
+    position: relative;
+    transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
+  }
+  .event-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2);
+  }
+  .event-card.view-more-card {
+    min-height: 100%;
+    justify-content: center;
+    cursor: pointer;
   }
   .event-card::before {
     content: '';
@@ -3207,9 +3220,9 @@
     <a href="#home" class="active" data-en="Home" data-te="ప్రారంభం">Home</a>
     <a href="#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
     <a href="#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
-    <a href="#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
     <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
     <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
     <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
@@ -3359,104 +3372,6 @@
         Reclaiming autonomous control over Hindu temples by freeing them from government control and bureaucracy, returning sacred assets and management directly to Hindu devotees and archakas.
       </p>
     </div>
-  </div>
-</section>
-
-<!-- ========================================================================= -->
-<!-- UPCOMING EVENTS, CONVENTIONS & SEVA DRIVES -->
-<!-- ========================================================================= -->
-<section id="events" class="events-section">
-  <div class="section-header">
-    <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
-    <h2 class="section-title" data-en="Upcoming Events, Conventions & Seva Drives" data-te="రాబోయే కార్యక్రమాలు, సమ్మేళనాలు & సేవా యజ్ఞాలు">Upcoming Events, Conventions & Seva Drives</h2>
-    <p class="section-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
-       data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో భాగస్వామ్యం పొందండి.">
-      Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
-    </p>
-  </div>
-
-  <div class="events-grid" id="eventsGrid">
-    <!-- Event 1: State Youth Awakening Convention -->
-    <div class="event-card">
-      <div class="event-header-row">
-        <span class="event-badge convention" data-en="🚩 State Convention • Tirupati" data-te="🚩 రాష్ట్ర సమ్మేళనం • తిరుపతి">🚩 State Convention • Tirupati</span>
-      </div>
-      <h3 class="event-title" data-en="Maha Youth Awakening & Martial Defense Convention" data-te="మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం">Maha Youth Awakening & Martial Defense Convention</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Upcoming • 10:00 AM onwards</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Tirupati Central Grounds, Andhra Pradesh</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>🎙️</span> <div><span data-en="Presided By:" data-te="దివ్య మార్గదర్శనం:">Presided By:</span> <strong>Shri Radha Manohar Das</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage."
-         data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
-        Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
-      </p>
-      <div class="event-actions">
-        <a href="join.html" class="btn-event-primary" data-en="Enlist as Sevak 🚩" data-te="సేవక్ నమోదు 🚩">Enlist as Sevak 🚩</a>
-        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Maha Youth Awakening Convention - Tirupati')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
-      </div>
-    </div>
-
-    <!-- Event 2: Nitya Annadanam & Gau Seva Maha Yajna -->
-    <div class="event-card">
-      <div class="event-header-row">
-        <span class="event-badge seva" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదాన యజ్ఞం">🐄 Gau Seva & Annadanam</span>
-      </div>
-      <h3 class="event-title" data-en="Nitya Annadanam & Gau Samrakshana Maha Seva" data-te="నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ">Nitya Annadanam & Gau Samrakshana Maha Seva</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Every Ekadashi & Sacred Festivals</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Vijayawada & Sacred Kshetrams</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>🍲</span> <div><span data-en="Target:" data-te="లక్ష్యం:">Target:</span> <strong>5,000+ Devotee Meals & Gaushala Fodder</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows."
-         data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
-        Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
-      </p>
-      <div class="event-actions">
-        <a href="donate.html" class="btn-event-primary" data-en="Support with Donation 💛" data-te="విరాళం అందించండి 💛">Support with Donation 💛</a>
-        <a href="join.html" class="btn-event-secondary" data-en="Volunteer Seva 🚩" data-te="వాలంటీర్ సేవ 🚩">Volunteer Seva 🚩</a>
-      </div>
-    </div>
-
-    <!-- Event 3: Devalaya Swatantra & Legal Awareness Conclave -->
-    <div class="event-card">
-      <div class="event-header-row">
-        <span class="event-badge" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</span>
-      </div>
-      <h3 class="event-title" data-en="Devalaya Swatantra & Grama Dharma Jagruti" data-te="దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు">Devalaya Swatantra & Grama Dharma Jagruti</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Monthly Conclave • Twin Telugu States</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>District Centers across AP & Telangana</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>⚖️</span> <div><span data-en="Focus:" data-te="ముఖ్య లక్ష్యం:">Focus:</span> <strong>Anti-Encroachment & Temple Autonomy</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions."
-         data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
-        Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
-      </p>
-      <div class="event-actions">
-        <a href="community.html" class="btn-event-primary" data-en="Join Discussion 💬" data-te="చర్చలో చేరండి 💬">Join Discussion 💬</a>
-        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Devalaya Swatantra Conclave')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- Pravachans & Video Discourses Section -->
@@ -3579,6 +3494,119 @@
   </div>
 </section>
 
+<!-- ========================================================================= -->
+<!-- UPCOMING EVENTS, CONVENTIONS & SEVA DRIVES -->
+<!-- ========================================================================= -->
+<section id="events" class="events-section">
+  <div class="section-header">
+    <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
+    <h2 class="section-title" data-en="Upcoming Events, Conventions & Seva Drives" data-te="రాబోయే కార్యక్రమాలు, సమ్మేళనాలు & సేవా యజ్ఞాలు">Upcoming Events, Conventions & Seva Drives</h2>
+    <p class="section-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
+       data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో భాగస్వామ్యం పొందండి.">
+      Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
+    </p>
+  </div>
+
+  <div class="events-grid" id="eventsGrid">
+    <!-- Event 1: State Youth Awakening Convention -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge convention" data-en="🚩 State Convention • Tirupati" data-te="🚩 రాష్ట్ర సమ్మేళనం • తిరుపతి">🚩 State Convention • Tirupati</span>
+      </div>
+      <h3 class="event-title" data-en="Maha Youth Awakening & Martial Defense Convention" data-te="మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం">Maha Youth Awakening & Martial Defense Convention</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Upcoming • 10:00 AM onwards</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Tirupati Central Grounds, Andhra Pradesh</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>🎙️</span> <div><span data-en="Presided By:" data-te="దివ్య మార్గదర్శనం:">Presided By:</span> <strong>Shri Radha Manohar Das</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage."
+         data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
+        Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
+      </p>
+      <div class="event-actions">
+        <a href="join.html" class="btn-event-primary" data-en="Enlist as Sevak 🚩" data-te="సేవక్ నమోదు 🚩">Enlist as Sevak 🚩</a>
+        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Maha Youth Awakening Convention - Tirupati')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      </div>
+    </div>
+
+    <!-- Event 2: Nitya Annadanam & Gau Seva Maha Yajna -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge seva" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదాన యజ్ఞం">🐄 Gau Seva & Annadanam</span>
+      </div>
+      <h3 class="event-title" data-en="Nitya Annadanam & Gau Samrakshana Maha Seva" data-te="నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ">Nitya Annadanam & Gau Samrakshana Maha Seva</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Every Ekadashi & Sacred Festivals</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Vijayawada & Sacred Kshetrams</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>🍲</span> <div><span data-en="Target:" data-te="లక్ష్యం:">Target:</span> <strong>5,000+ Devotee Meals & Gaushala Fodder</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows."
+         data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
+        Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
+      </p>
+      <div class="event-actions">
+        <a href="donate.html" class="btn-event-primary" data-en="Support with Donation 💛" data-te="విరాళం అందించండి 💛">Support with Donation 💛</a>
+        <a href="join.html" class="btn-event-secondary" data-en="Volunteer Seva 🚩" data-te="వాలంటీర్ సేవ 🚩">Volunteer Seva 🚩</a>
+      </div>
+    </div>
+
+    <!-- Event 3: Devalaya Swatantra & Legal Awareness Conclave -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</span>
+      </div>
+      <h3 class="event-title" data-en="Devalaya Swatantra & Grama Dharma Jagruti" data-te="దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు">Devalaya Swatantra & Grama Dharma Jagruti</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Monthly Conclave • Twin Telugu States</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>District Centers across AP & Telangana</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>⚖️</span> <div><span data-en="Focus:" data-te="ముఖ్య లక్ష్యం:">Focus:</span> <strong>Anti-Encroachment & Temple Autonomy</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions."
+         data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
+        Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
+      </p>
+      <div class="event-actions">
+        <a href="community.html" class="btn-event-primary" data-en="Join Discussion 💬" data-te="చర్చలో చేరండి 💬">Join Discussion 💬</a>
+        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Devalaya Swatantra Conclave')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      </div>
+    </div>
+
+    <!-- Box 4: View More Card (Takes to separate events page) -->
+    <div class="event-card view-more-card" onclick="window.location.href='events.html'">
+      <div class="view-more-content">
+        <div class="view-more-icon-wrap">
+          <span class="view-more-icon">📅</span>
+        </div>
+        <span class="view-more-badge" data-en="Events Calendar" data-te="క్యాలెండర్">Events Calendar</span>
+        <h3 data-en="All Upcoming Events" data-te="సమగ్ర కార్యక్రమాలు">All Upcoming Events</h3>
+        <p data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
+           data-te="రాష్ట్ర సమ్మేళనాలు, ధార్మిక సభలు మరియు సేవా కార్యక్రమాల పూర్తి వివరాలను ఇక్కడ చూడండి.">
+          Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives.
+        </p>
+        <a href="events.html" class="btn-view-more" data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">View All Events ➔</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Action Portals Section: Join Us, Donate, Community -->
 <section id="portals" class="portals-section">
   <div class="section-header">
@@ -3668,9 +3696,9 @@
     <a href="#home">Home</a>
     <a href="#founder">Founder</a>
     <a href="#missions">Missions</a>
-    <a href="#events">Events</a>
     <a href="videos.html">Videos</a>
     <a href="gallery.html">Gallery</a>
+    <a href="#events">Events</a>
     <a href="community.html">Community</a>
     <a href="join.html">Join Us</a>
     <a href="donate.html">Donate</a>
@@ -4021,9 +4049,10 @@
     const grid = document.getElementById('eventsGrid');
     if (!grid) return;
     const list = (Array.isArray(events) && events.length > 0) ? events : DEFAULT_AHS_EVENTS;
+    const top3 = list.slice(0, 3);
 
     let html = '';
-    list.forEach(evt => {
+    top3.forEach(evt => {
       const catClass = evt.category_class || (evt.category && evt.category.includes('Convention') ? 'convention' : (evt.category && evt.category.includes('Seva') ? 'seva' : ''));
       const rsvpTitle = (evt.rsvpTitle || evt.title || 'Upcoming Event').replace(/'/g, "\\'");
       const primaryUrl = evt.primaryBtnUrl || 'join.html';
@@ -4072,6 +4101,24 @@
         </div>
       `;
     });
+
+    // Box 4: View More Card (Takes to separate events page)
+    html += `
+      <div class="event-card view-more-card" onclick="window.location.href='events.html'">
+        <div class="view-more-content">
+          <div class="view-more-icon-wrap">
+            <span class="view-more-icon">📅</span>
+          </div>
+          <span class="view-more-badge" data-en="Events Calendar" data-te="క్యాలెండర్">Events Calendar</span>
+          <h3 data-en="All Upcoming Events" data-te="సమగ్ర కార్యక్రమాలు">All Upcoming Events</h3>
+          <p data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
+             data-te="రాష్ట్ర సమ్మేళనాలు, ధార్మిక సభలు మరియు సేవా కార్యక్రమాల పూర్తి వివరాలను ఇక్కడ చూడండి.">
+            Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives.
+          </p>
+          <a href="events.html" class="btn-view-more" data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">View All Events ➔</a>
+        </div>
+      </div>
+    `;
 
     grid.innerHTML = html;
   }

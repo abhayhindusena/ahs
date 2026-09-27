@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upcoming Events & State Conventions | Abhay Hindu Sena</title>
+<meta name="description" content="Explore upcoming state conventions, youth defense camps, Bhagavad Gita discourses, and Nitya Annadanam seva drives by Abhay Hindu Sena under the guidance of Shri Radha Manohar Das.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Mandali&family=Noto+Sans+Telugu:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-bright: #F7D57F;
+    --saffron: #FF6B1A;
+    --saffron-deep: #E8540A;
+    --maroon: #7A0C0C;
+    --maroon-deep: #3D0505;
+    --bg-dark: #0D0404;
+    --bg-card: #160707;
+    --bg-card-alt: #1F0A0A;
+    --border-gold: rgba(212,175,55,0.3);
+    --border-gold-glow: rgba(212,175,55,0.6);
+    --text-main: #FFF8EF;
+    --text-muted: #C7B5A0;
+    --font-heading: 'Cinzel', 'Noto Sans Telugu', 'Mandali', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* TOP HEADER */
+  .site-header {
+    background: linear-gradient(180deg, rgba(30,5,5,0.98) 0%, rgba(13,4,4,0.99) 100%);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    min-width: 0;
+  }
+  .circle-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FFF;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 10px rgba(212,175,55,0.45);
+    flex-shrink: 0;
+  }
+  .header-brand-text h1 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+    font-weight: 800;
+    line-height: 1.35;
+    padding: 1px 0;
+  }
+  .header-brand-text span {
+    font-size: 0.72rem;
+    color: var(--saffron);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-btn {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.25s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn-donate-top {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+  }
+  .btn-donate-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(212,175,55,0.6);
+  }
+  .btn-community-top {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+  }
+  .btn-community-top:hover {
+    background: rgba(212,175,55,0.22);
+    border-color: var(--gold-bright);
+    color: #FFF;
+  }
+  .btn-join-top {
+    background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-deep) 100%);
+    color: #FFF;
+    box-shadow: 0 2px 12px rgba(255,107,26,0.4);
+  }
+  .btn-join-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(255,107,26,0.6);
+  }
+  .btn-appointment-top {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.22), rgba(18, 140, 126, 0.28));
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    color: #2ecc71;
+  }
+  .btn-appointment-top:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 14px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* GLASS NAVBAR */
+  .glass-navbar {
+    position: sticky;
+    top: 10px;
+    z-index: 999;
+    margin: 10px auto 0;
+    max-width: calc(100% - 20px);
+    width: fit-content;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(24, 7, 7, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.15);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    white-space: nowrap;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+  .glass-navbar::-webkit-scrollbar { display: none; }
+  .glass-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .glass-nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .glass-nav-links a:hover,
+  .glass-nav-links a.active {
+    color: #FFF;
+    background: rgba(212,175,55,0.22);
+    font-weight: 600;
+  }
+  .glass-nav-links a.nav-appointment-link {
+    background: rgba(37, 211, 102, 0.16);
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    color: #2ecc71;
+    font-weight: 700;
+  }
+  .glass-nav-links a.nav-appointment-link:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.45);
+  }
+  .glass-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(212,175,55,0.35);
+    flex-shrink: 0;
+  }
+  .glass-lang-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* HERO */
+  .events-hero {
+    padding: 50px 6% 35px;
+    text-align: center;
+    background: radial-gradient(circle at 50% 25%, rgba(122,12,12,0.45) 0%, rgba(13,4,4,0.98) 75%);
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .eyebrow {
+    color: var(--saffron);
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--gold-bright);
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .page-sub {
+    max-width: 820px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* SEARCH & FILTER CONTROLS */
+  .controls-wrap {
+    max-width: 900px;
+    margin: 30px auto 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .search-input-wrap {
+    position: relative;
+    width: 100%;
+  }
+  .search-input-wrap input {
+    width: 100%;
+    padding: 13px 20px 13px 46px;
+    background: rgba(22,7,7,0.85);
+    border: 1px solid var(--border-gold);
+    border-radius: 30px;
+    color: #FFF;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input-wrap input:focus {
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 15px rgba(212,175,55,0.3);
+  }
+  .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: var(--gold);
+    pointer-events: none;
+  }
+  .filter-pills-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .filter-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.25);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .filter-pill.active, .filter-pill:hover {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* EVENTS SECTION & GRID */
+  .events-container {
+    padding: 40px 6% 80px;
+    min-height: 520px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 26px;
+    align-items: stretch;
+  }
+  .event-card {
+    background: linear-gradient(145deg, rgba(26, 7, 7, 0.95) 0%, rgba(15, 4, 4, 0.98) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.65);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
+  }
+  .event-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.25);
+  }
+  .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold-bright), var(--saffron));
+  }
+  .event-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,107,26,0.15);
+    border: 1px solid rgba(255,107,26,0.45);
+    color: #FFA466;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .event-badge.convention {
+    background: rgba(212,175,55,0.15);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .event-badge.seva {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.45);
+    color: #2ecc71;
+  }
+  .event-badge.temple {
+    background: rgba(235, 77, 75, 0.15);
+    border-color: rgba(235, 77, 75, 0.45);
+    color: #ff7675;
+  }
+  .event-badge.satsang {
+    background: rgba(155, 89, 182, 0.15);
+    border-color: rgba(155, 89, 182, 0.45);
+    color: #d1a3ed;
+  }
+  .event-badge.youth {
+    background: rgba(243, 156, 18, 0.15);
+    border-color: rgba(243, 156, 18, 0.45);
+    color: #f39c12;
+  }
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    line-height: 1.35;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  .event-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.35);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.15);
+  }
+  .event-meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .event-meta-item strong {
+    color: #FFF;
+  }
+  .event-desc {
+    font-size: 0.88rem;
+    color: #d8c7b5;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+  .event-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .btn-event-primary {
+    flex: 1;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-event-primary:hover {
+    box-shadow: 0 4px 15px rgba(212,175,55,0.55);
+    transform: translateY(-2px);
+  }
+  .btn-event-secondary {
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    font-weight: 700;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .btn-event-secondary:hover {
+    background: rgba(212,175,55,0.22);
+    color: #FFF;
+    border-color: var(--gold-bright);
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 70px 20px;
+    background: rgba(22,7,7,0.4);
+    border: 1px dashed var(--border-gold);
+    border-radius: 16px;
+  }
+  .empty-state h3 {
+    font-family: var(--font-heading);
+    color: var(--gold-bright);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  .empty-state p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* RSVP MODAL */
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.active {
+    display: flex;
+  }
+  .modal-content {
+    background: linear-gradient(135deg, #1f0a0a 0%, #120404 100%);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 30px 24px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(212,175,55,0.25);
+    animation: modalPop 0.25s ease-out;
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-close-btn {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-top: 10px;
+  }
+  .modal-close-btn:hover {
+    transform: scale(1.05);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080202;
+    padding: 45px 5% 30px;
+    border-top: 1px solid var(--border-gold);
+    text-align: center;
+  }
+  .footer-logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FFF;
+    border: 2px solid var(--gold);
+    margin: 0 auto 10px;
+    display: block;
+  }
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--gold-bright);
+    margin-bottom: 6px;
+    font-weight: 800;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-bright); }
+  .footer-copy {
+    color: #887;
+    font-size: 0.78rem;
+    margin-top: 15px;
+  }
+
+  /* TELUGU MODE ADJUSTMENTS */
+  body.telugu-mode {
+    font-family: 'Noto Sans Telugu', 'Mandali', sans-serif;
+  }
+  body.telugu-mode .header-brand-text h1,
+  body.telugu-mode .page-title,
+  body.telugu-mode .event-title,
+  body.telugu-mode .footer-brand {
+    font-family: 'Mandali', 'Noto Sans Telugu', serif;
+    line-height: 1.45;
+  }
+
+  /* MOBILE RESPONSIVENESS */
+  @media (max-width: 768px) {
+    .site-header { padding: 8px 12px; }
+    .header-brand-text h1 { font-size: 0.95rem; }
+    .header-brand-text span { font-size: 0.65rem; }
+    .circle-logo { width: 36px; height: 36px; }
+    .header-actions { gap: 6px; }
+    .header-btn { padding: 6px 12px; font-size: 0.75rem; border-radius: 14px; }
+    .btn-community-top { display: none; }
+    .glass-nav-links a { font-size: 0.76rem !important; padding: 4px 8px !important; }
+    .glass-lang-btn { font-size: 0.72rem !important; padding: 3px 8px !important; }
+    .events-hero { padding: 35px 16px 25px; }
+    .events-container { padding: 25px 14px 60px; }
+    .events-grid { grid-template-columns: 1fr; gap: 16px; }
+    .event-card { padding: 18px 16px; border-radius: 14px; }
+    .event-title { font-size: 1.1rem; }
+    .event-desc { font-size: 0.84rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header class="site-header">
+  <a href="index.html" class="header-brand">
+    <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="circle-logo">
+    <div class="header-brand-text">
+      <h1>ABHAY HINDU SENA</h1>
+      <span data-en="Sanatana Dharma • Rashtra Seva" data-te="సనాతన ధర్మం • రాష్ట్ర సేవ">Sanatana Dharma • Rashtra Seva</span>
+    </div>
+  </a>
+
+  <div class="header-actions">
+    <a href="community.html" class="header-btn btn-community-top" data-en="Community 💬" data-te="కమ్యూనిటీ 💬">Community 💬</a>
+    <a href="donate.html" class="header-btn btn-donate-top" data-en="Donate 💛" data-te="విరాళం 💛">Donate 💛</a>
+    <a href="join.html" class="header-btn btn-join-top" data-en="Join Us 🚩" data-te="చేరండి 🚩">Join Us 🚩</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="header-btn btn-appointment-top" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
+  </div>
+</header>
+
+<!-- FLOATING GLASS NAVBAR -->
+<nav class="glass-navbar">
+  <div class="glass-nav-links">
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="events.html" class="active" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="nav-appointment-link" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
+  </div>
+  <span class="glass-divider"></span>
+  <button class="glass-lang-btn" onclick="toggleLanguage()" id="glassLangBtn">
+    🌐 <span id="langText">English / తెలుగు</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="events-hero">
+  <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
+  <h1 class="page-title" data-en="All Upcoming Events & Conventions" data-te="రాబోయే కార్యక్రమాలు & రాష్ట్ర సమ్మేళనాలు">All Upcoming Events & Conventions</h1>
+  <p class="page-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
+     data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో వేలాది మంది సేవకులతో కలిసి భాగస్వామ్యం పొందండి.">
+    Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
+  </p>
+
+  <!-- SEARCH & FILTER CONTROLS -->
+  <div class="controls-wrap">
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="eventSearchInput" placeholder="Search events by title, location, or topic..." oninput="handleSearch(this.value)">
+    </div>
+    <div class="filter-pills-row">
+      <button class="filter-pill active" onclick="filterCategory('all', this)" data-en="All Events" data-te="అన్నీ">All Events</button>
+      <button class="filter-pill" onclick="filterCategory('convention', this)" data-en="🚩 State Conventions" data-te="🚩 రాష్ట్ర సమ్మేళనాలు">🚩 State Conventions</button>
+      <button class="filter-pill" onclick="filterCategory('seva', this)" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదానం">🐄 Gau Seva & Annadanam</button>
+      <button class="filter-pill" onclick="filterCategory('temple', this)" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</button>
+      <button class="filter-pill" onclick="filterCategory('satsang', this)" data-en="📚 Gita Satsangs" data-te="📚 గీతా సత్సంగాలు">📚 Gita Satsangs</button>
+      <button class="filter-pill" onclick="filterCategory('youth', this)" data-en="🔥 Youth Camps" data-te="🔥 యువ శిక్షణ శిబిరాలు">🔥 Youth Camps</button>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS LIST SECTION -->
+<main class="events-container">
+  <div class="events-grid" id="allEventsGrid">
+    <!-- Populated dynamically via Firestore / LocalStorage -->
+  </div>
+</main>
+
+<!-- RSVP MODAL -->
+<div class="modal-backdrop" id="rsvpModal" onclick="closeRSVPModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div style="font-size:2.5rem; margin-bottom:10px;">📅</div>
+    <h3 id="rsvpEventTitle" style="color:var(--gold-bright); font-family:var(--font-heading); font-size:1.35rem; margin-bottom:12px;">RSVP Confirmation</h3>
+    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.6; margin-bottom:18px;" data-en="Thank you for your devotion! Your seat has been marked for this upcoming event. Full schedule and venue directions will be communicated via official WhatsApp announcements."
+       data-te="మీ ధార్మిక సంకల్పానికి ధన్యవాదాలు! ఈ పవిత్ర కార్యక్రమానికి మీ నమోదు ధృవీకరించబడింది. సమగ్ర వివరాలు మరియు మార్గదర్శకాలు మా అధికారిక వాట్సాప్ ద్వారా తెలియజేయబడతాయి.">
+      Thank you for your devotion! Your seat has been marked for this upcoming event. Full schedule and venue directions will be communicated via official WhatsApp announcements.
+    </p>
+    <div style="display:flex; justify-content:center; gap:10px;">
+      <button class="modal-close-btn" onclick="closeRSVPModal()" data-en="Confirm & Close" data-te="ధృవీకరించండి & ముగించండి">Confirm & Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="footer-logo">
+  <div class="footer-brand">🚩 ABHAY HINDU SENA</div>
+  <div class="footer-links">
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="events.html" class="active" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
+    <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Abhay Hindu Sena. Founded by Shri Radha Manohar Das. All Rights Reserved.
+  </div>
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyANW4b8MGvlLn8XT1auTwukxlu08dm-YJQ",
+    authDomain: "abhay-hindu-sena-org.firebaseapp.com",
+    projectId: "abhay-hindu-sena-org",
+    storageBucket: "abhay-hindu-sena-org.firebasestorage.app",
+    messagingSenderId: "694749073728",
+    appId: "1:694749073728:web:5786bfe0c0a832dbba6aa5",
+    measurementId: "G-T2C9DQN7E2"
+  };
+
+  let db = null;
+  try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  } catch (e) {
+    console.warn("Firebase Init:", e);
+  }
+
+  // Master fallback events list
+  const defaultEvents = [
+    {
+      id: 'evt-1',
+      title: 'Maha Youth Awakening & Martial Defense Convention',
+      title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
+      category: '🚩 State Convention • Tirupati',
+      category_key: 'convention',
+      category_class: 'convention',
+      schedule: 'Upcoming • 10:00 AM onwards',
+      location: 'Tirupati Central Grounds, Andhra Pradesh',
+      presided: 'Shri Radha Manohar Das',
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
+      primaryBtnText: 'Enlist as Sevak 🚩',
+      primaryBtnUrl: 'join.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+    },
+    {
+      id: 'evt-2',
+      title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
+      title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
+      category: '🐄 Gau Seva & Annadanam',
+      category_key: 'seva',
+      category_class: 'seva',
+      schedule: 'Every Ekadashi & Sacred Festivals',
+      location: 'Vijayawada & Sacred Kshetrams',
+      presided: '5,000+ Devotee Meals & Gaushala Fodder',
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
+      primaryBtnText: 'Support with Donation 💛',
+      primaryBtnUrl: 'donate.html',
+      secondaryBtnText: 'Volunteer Seva 🚩',
+      secondaryBtnUrl: 'join.html'
+    },
+    {
+      id: 'evt-3',
+      title: 'Devalaya Swatantra & Grama Dharma Jagruti',
+      title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
+      category: '🏛️ Temple Defense',
+      category_key: 'temple',
+      category_class: 'temple',
+      schedule: 'Monthly Conclave • Twin Telugu States',
+      location: 'District Centers across AP & Telangana',
+      presided: 'Anti-Encroachment & Temple Autonomy',
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
+      primaryBtnText: 'Join Discussion 💬',
+      primaryBtnUrl: 'community.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Devalaya Swatantra Conclave'
+    },
+    {
+      id: 'evt-4',
+      title: 'Bhagavad Gita Youth Chanting & Moral Leadership Camp',
+      title_te: 'భగవద్గీత యువ కంఠస్థ & నాయకత్వ శిక్షణ సదస్సు',
+      category: '📚 Gita Satsang',
+      category_key: 'satsang',
+      category_class: 'satsang',
+      schedule: 'Weekend Sessions • Every Saturday 5:00 PM',
+      location: 'Hyderabad & Regional Kendra Centers',
+      presided: 'Pujya Guruji Discourses',
+      desc: 'Teaching Slokas, Vedic character building, ethical leadership, and righteous decision-making from the Bhagavad Gita for school and college youth.',
+      desc_te: 'విద్యార్థులకు, యువతకు భగవద్గీత శ్లోకాలు, ధార్మిక జీవన విధానం, నాయకత్వ లక్షణాలు మరియు నైతిక విలువలపై ప్రత్యేక శిక్షణ.',
+      primaryBtnText: 'Register Free 🚩',
+      primaryBtnUrl: 'join.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Bhagavad Gita Youth Camp'
+    },
+    {
+      id: 'evt-5',
+      title: 'Sanatana Dharma Raksha Rally & Shobha Yatra',
+      title_te: 'సనాతన ధర్మ రక్షణ శోభాయాత్ర & మహా ర్యాలీ',
+      category: '🔥 Youth Camp',
+      category_key: 'youth',
+      category_class: 'youth',
+      schedule: 'Sri Rama Navami & Hanuman Jayanti Mahotsav',
+      location: 'Kurnool, Kadapa & Rayalaseema',
+      presided: '10,000+ Saffron Flag Bearers',
+      desc: 'Grand cultural procession, traditional martial arts displays, chanting of Sri Hanuman Chalisa, and uniting all communities under Dharma Dhwaja.',
+      desc_te: 'కాషాయ ధ్వజాలతో భారీ శోభాయాత్ర, సంప్రదాయ ఆత్మరక్షణ విన్యాసాలు మరియు శ్రీ హనుమాన్ చాలీసా సామూహిక పారాయణం.',
+      primaryBtnText: 'Join Rally 🚩',
+      primaryBtnUrl: 'join.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Sanatana Dharma Raksha Rally'
+    }
+  ];
+
+  let allLoadedEvents = [];
+  let currentCategory = 'all';
+  let currentSearchQuery = '';
+
+  function getLocalEvents() {
+    try {
+      const stored = localStorage.getItem('ahs_events_list');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    try {
+      localStorage.setItem('ahs_events_list', JSON.stringify(defaultEvents));
+    } catch(e) {}
+    return defaultEvents;
+  }
+
+  function loadAllEvents() {
+    allLoadedEvents = getLocalEvents();
+    renderEvents();
+
+    // BroadcastChannel cross-tab live updates from Admin Panel
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const ch = new BroadcastChannel('ahs_events_channel');
+        ch.onmessage = () => {
+          allLoadedEvents = getLocalEvents();
+          renderEvents();
+        };
+      } catch(e) {}
+    }
+
+    // Storage listener
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_events_list') {
+        allLoadedEvents = getLocalEvents();
+        renderEvents();
+      }
+    });
+
+    // Firestore live stream
+    if (db) {
+      try {
+        db.collection('events').orderBy('createdAt', 'desc').limit(50).onSnapshot(snapshot => {
+          if (!snapshot.empty) {
+            const list = [];
+            snapshot.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+            allLoadedEvents = list;
+            try { localStorage.setItem('ahs_events_list', JSON.stringify(list)); } catch(e) {}
+          } else {
+            allLoadedEvents = getLocalEvents();
+          }
+          renderEvents();
+        }, err => {
+          console.warn("Firestore events stream notice (resilient mode active):", err.message);
+          allLoadedEvents = getLocalEvents();
+          renderEvents();
+        });
+      } catch(e) {}
+    }
+  }
+
+  function matchCategory(evt, catKey) {
+    if (catKey === 'all') return true;
+    const cat = (evt.category || '').toLowerCase();
+    const key = (evt.category_key || evt.category_class || '').toLowerCase();
+    if (key.includes(catKey)) return true;
+    if (catKey === 'convention' && cat.includes('convention')) return true;
+    if (catKey === 'seva' && (cat.includes('seva') || cat.includes('annadanam') || cat.includes('gau'))) return true;
+    if (catKey === 'temple' && (cat.includes('temple') || cat.includes('devalaya'))) return true;
+    if (catKey === 'satsang' && (cat.includes('satsang') || cat.includes('gita'))) return true;
+    if (catKey === 'youth' && (cat.includes('youth') || cat.includes('camp') || cat.includes('rally'))) return true;
+    return false;
+  }
+
+  function renderEvents() {
+    const grid = document.getElementById('allEventsGrid');
+    if (!grid) return;
+
+    const filtered = allLoadedEvents.filter(evt => {
+      const matchCat = matchCategory(evt, currentCategory);
+      const q = currentSearchQuery.toLowerCase().trim();
+      const matchSearch = !q ||
+        (evt.title && evt.title.toLowerCase().includes(q)) ||
+        (evt.title_te && evt.title_te.toLowerCase().includes(q)) ||
+        (evt.desc && evt.desc.toLowerCase().includes(q)) ||
+        (evt.location && evt.location.toLowerCase().includes(q)) ||
+        (evt.category && evt.category.toLowerCase().includes(q)) ||
+        (evt.presided && evt.presided.toLowerCase().includes(q));
+      return matchCat && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div style="font-size:2.5rem; margin-bottom:12px;">📅</div>
+          <h3 data-en="No Events Found" data-te="కార్యక్రమాలు ఏవీ కనుగొనబడలేదు">No Events Found</h3>
+          <p data-en="No scheduled events match your current search query or filter. Try selecting 'All Events' or clearing your search keywords."
+             data-te="మీరు వెతికిన పదాలు లేదా ఎంచుకున్న విభాగానికి సరిపోలే కార్యక్రమాలు లేవు. దయచేసి 'అన్నీ' ఎంచుకోండి.">
+            No scheduled events match your current search query or filter. Try selecting 'All Events' or clearing your search keywords.
+          </p>
+        </div>
+      `;
+      applyLanguage();
+      return;
+    }
+
+    grid.innerHTML = filtered.map(evt => {
+      const catClass = evt.category_class || (evt.category && evt.category.includes('Convention') ? 'convention' : (evt.category && evt.category.includes('Seva') ? 'seva' : (evt.category && evt.category.includes('Temple') ? 'temple' : '')));
+      const rsvpTitle = (evt.rsvpTitle || evt.title || 'Upcoming Event').replace(/'/g, "\\'");
+      const primaryUrl = evt.primaryBtnUrl || 'join.html';
+      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
+      const secTxt = evt.secondaryBtnText || 'RSVP 📋';
+
+      const titleEn = evt.title || 'Upcoming Event';
+      const titleTe = evt.title_te || titleEn;
+      const descEn = evt.desc || '';
+      const descTe = evt.desc_te || descEn;
+
+      return `
+        <div class="event-card">
+          <div class="event-header-row">
+            <span class="event-badge ${catClass}">
+              ${escapeHtml(evt.category || '🚩 Event')}
+            </span>
+          </div>
+          <h3 class="event-title" data-en="${escapeHtml(titleEn)}" data-te="${escapeHtml(titleTe)}">
+            ${escapeHtml(isTelugu ? titleTe : titleEn)}
+          </h3>
+          <div class="event-meta-list">
+            <div class="event-meta-item">
+              <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">${isTelugu ? 'సమయం:' : 'Schedule:'}</span> <strong>${escapeHtml(evt.schedule || 'Upcoming')}</strong></div>
+            </div>
+            <div class="event-meta-item">
+              <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">${isTelugu ? 'ప్రాంతం:' : 'Location:'}</span> <strong>${escapeHtml(evt.location || 'AP / Telangana')}</strong></div>
+            </div>
+            ${evt.presided ? `
+            <div class="event-meta-item">
+              <span>🎙️</span> <div><span data-en="Presided By / Focus:" data-te="దివ్య మార్గదర్శనం:">${isTelugu ? 'దివ్య మార్గదర్శనం:' : 'Presided By / Focus:'}</span> <strong>${escapeHtml(evt.presided)}</strong></div>
+            </div>` : ''}
+          </div>
+          <p class="event-desc" data-en="${escapeHtml(descEn)}" data-te="${escapeHtml(descTe)}">
+            ${escapeHtml(isTelugu ? descTe : descEn)}
+          </p>
+          <div class="event-actions">
+            <a href="${escapeHtml(primaryUrl)}" class="btn-event-primary">
+              ${escapeHtml(primaryTxt)}
+            </a>
+            ${evt.secondaryBtnUrl === 'rsvp' || !evt.secondaryBtnUrl ? `
+              <button type="button" class="btn-event-secondary" onclick="openRSVPModal('${rsvpTitle}')">
+                ${escapeHtml(secTxt)}
+              </button>
+            ` : `
+              <a href="${escapeHtml(evt.secondaryBtnUrl)}" class="btn-event-secondary">
+                ${escapeHtml(secTxt)}
+              </a>
+            `}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    applyLanguage();
+  }
+
+  function filterCategory(catKey, btn) {
+    currentCategory = catKey;
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderEvents();
+  }
+
+  function handleSearch(val) {
+    currentSearchQuery = val;
+    renderEvents();
+  }
+
+  function openRSVPModal(title) {
+    const modal = document.getElementById('rsvpModal');
+    const titleEl = document.getElementById('rsvpEventTitle');
+    if (titleEl) titleEl.textContent = title || "Upcoming Event RSVP";
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeRSVPModal() {
+    const modal = document.getElementById('rsvpModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeRSVPModal();
+  });
+
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag] || tag));
+  }
+
+  // Open WhatsApp to book an appointment with Guruji
+  function openGurujiAppointment() {
+    const phone = "919866957796";
+    const msg = 
+      "🚩 *హరే కృష్ణ! పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ కావాలని కోరుతున్నాను.*\n" +
+      "(Hare Krishna! I would like to schedule an appointment to speak with Pujya Shri Radha Manohar Das Guruji.)\n\n" +
+      "👤 *పేరు (Name):* \n" +
+      "📍 *ఊరు / నగరం (Location):* \n" +
+      "📞 *మొబైల్ నంబర్ (Phone):* \n" +
+      "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
+      "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+  }
+
+  // Bilingual Language Toggle
+  let isTelugu = false;
+  function toggleLanguage() {
+    isTelugu = !isTelugu;
+    applyLanguage();
+  }
+
+  function applyLanguage() {
+    document.body.classList.toggle('telugu-mode', isTelugu);
+    const langLabel = document.getElementById('langText');
+    if (langLabel) {
+      langLabel.textContent = isTelugu ? 'తెలుగు (Active)' : 'English / తెలుగు';
+    }
+    const searchInput = document.getElementById('eventSearchInput');
+    if (searchInput) {
+      searchInput.placeholder = isTelugu ? 
+        "కార్యక్రమాలు, ప్రాంతం లేదా అంశం ద్వారా వెతకండి..." : 
+        "Search events by title, location, or topic...";
+    }
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
+      if (val) el.textContent = val;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadAllEvents);
+</script>
+</body>
+</html>
