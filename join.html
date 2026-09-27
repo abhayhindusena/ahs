@@ -824,7 +824,7 @@
         };
         const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 3000));
         Promise.race([
-          db.collection('volunteer_registrations').doc(payload.sevakId).set(firestorePayload, { merge: true }),
+          db.collection('sevak_registrations').doc(payload.sevakId).set(firestorePayload, { merge: true }),
           timeoutPromise
         ]).catch(err => {
           console.warn("Firestore background sync deferred:", err.message);
