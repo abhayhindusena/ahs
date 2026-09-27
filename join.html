@@ -322,6 +322,259 @@
     transform: none;
   }
 
+  /* STATE SELECTION & GOOGLE FORMS SYSTEM */
+  .state-select-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .state-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 900px) {
+    .state-cards-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+  .state-card {
+    background: linear-gradient(180deg, #1d0707 0%, #0d0303 100%);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 32px 22px 28px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .state-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 18px 45px rgba(212,175,55,0.25);
+    background: linear-gradient(180deg, #250a0a 0%, #120404 100%);
+  }
+  .state-card.featured {
+    border-color: rgba(255,107,26,0.6);
+  }
+  .state-card.featured:hover {
+    border-color: #FF6B1A;
+    box-shadow: 0 18px 45px rgba(255,107,26,0.3);
+  }
+  .state-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    border-radius: 12px;
+    background: rgba(212,175,55,0.18);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+  }
+  .state-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.1);
+    border: 2px solid var(--border-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+  }
+  .state-card:hover .state-icon {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--gold);
+    background: rgba(212,175,55,0.2);
+  }
+  .state-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--gold-bright);
+    margin-bottom: 2px;
+  }
+  .state-name-en {
+    font-size: 0.85rem;
+    color: var(--saffron);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .state-desc {
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+  .state-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+    transition: all 0.2s;
+  }
+  .state-card:hover .state-btn {
+    background: linear-gradient(135deg, #FF6B1A 0%, var(--gold) 100%);
+    color: #FFF;
+    box-shadow: 0 6px 20px rgba(255,107,26,0.5);
+  }
+
+  /* FORM EMBED AREA */
+  .form-embed-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    animation: fadeIn 0.35s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .form-embed-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .btn-back-state {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-back-state:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .state-indicator-badge {
+    background: rgba(212,175,55,0.15);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .btn-open-direct {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #FFF;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-open-direct:hover {
+    background: rgba(255,255,255,0.18);
+  }
+
+  /* WHATSAPP REMINDER CALLOUT */
+  .whatsapp-channel-reminder {
+    background: linear-gradient(135deg, rgba(37,211,102,0.14) 0%, rgba(18,140,126,0.14) 100%);
+    border: 1.5px solid rgba(37,211,102,0.45);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .wa-reminder-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .wa-reminder-icon {
+    font-size: 26px;
+  }
+  .wa-reminder-content h4 {
+    font-size: 0.95rem;
+    color: #2ecc71;
+    margin: 0 0 2px;
+  }
+  .wa-reminder-content p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .wa-reminder-btn {
+    background: #25D366;
+    color: #FFF;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .wa-reminder-btn:hover {
+    background: #1eb956;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+  }
+
+  /* IFRAME FRAME WRAPPER */
+  .google-form-frame-wrap {
+    background: #ffffff;
+    border: 2px solid var(--border-gold);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+    position: relative;
+    min-height: 500px;
+  }
+  .form-spinner {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #140707;
+    color: var(--gold-bright);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-gold);
+    font-size: 0.88rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .google-form-frame-wrap iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    min-height: 960px;
+  }
+
   /* MODAL BACKDROP */
   .modal-backdrop {
     display: none;
@@ -530,160 +783,121 @@
   <div class="section-header">
     <span class="eyebrow" data-en="Join Hands for Dharma" data-te="ధర్మ రక్షణలో మీ వంతు భాగస్వామ్యం">Join Hands for Dharma</span>
     <h1 class="section-title" data-en="Join Abhay Hindu Sena" data-te="అభయ్ హిందూ సేనలో చేరండి">Join Abhay Hindu Sena</h1>
-    <p class="section-sub" data-en="Join dedicated volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena and connect with our official WhatsApp Channel for seva updates."
-       data-te="దేశవ్యాప్తంగా వేలాది మంది ధర్మ కార్యకర్తలతో కలిసి నడవండి. కేంద్ర కమిటీకి నేరుగా నమోదు చేసుకొని సేవా సమాచారం కోసం మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి.">
-      Join dedicated volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena and connect with our official WhatsApp Channel for seva updates.
+    <p class="section-sub" data-en="Please select your state below to open your dedicated regional registration form and connect with our official WhatsApp Channel."
+       data-te="దయచేసి మీ రాష్ట్రాన్ని ఎంచుకొని అధికారిక సేవకుల నమోదు ఫారమ్ నింపండి. నమోదు అనంతరం తాజా సేవా కార్యక్రమాల కోసం మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి.">
+      దయచేసి మీ రాష్ట్రాన్ని ఎంచుకొని అధికారిక సేవకుల నమోదు ఫారమ్ నింపండి. నమోదు అనంతరం తాజా సేవా కార్యక్రమాల కోసం మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి.
     </p>
   </div>
 
-  <div class="form-container">
-    <form id="volunteerForm" onsubmit="handleVolunteerSubmit(event)">
-      
-      <!-- PRIMARY MANDATORY FIELDS (1 TO 5) -->
-      <div style="margin-bottom:20px;">
-        <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.3); padding-bottom:6px;">
-          <span style="font-size:1.1rem; color:var(--gold-bright);">🚩</span>
-          <h4 style="font-size:0.95rem; color:var(--gold-bright); font-family:var(--font-heading); margin:0;" data-en="Primary Information (Required)" data-te="ప్రాథమిక సమాచారం (తప్పనిసరి)">
-            Primary Information (Required / తప్పనిసరి వివరాలు)
-          </h4>
-        </div>
+  <!-- STEP 1: STATE SELECTION HUB -->
+  <div id="stateSelectSection" class="state-select-wrap">
+    <div style="text-align:center; margin-bottom:22px;">
+      <h3 style="font-family:var(--font-heading); color:var(--gold-bright); font-size:1.35rem; margin-bottom:4px;" data-en="Select Your State" data-te="మీ రాష్ట్రాన్ని ఎంచుకోండి">
+        మీ రాష్ట్రాన్ని ఎంచుకోండి (Select Your State)
+      </h3>
+      <p style="color:var(--text-muted); font-size:0.86rem;">
+        రాష్ట్రాల వారీగా సేవకుల సమన్వయం కోసం ప్రత్యేక నమోదు వ్యవస్థ (High-scale regional coordination system)
+      </p>
+    </div>
 
-        <div class="form-grid">
-          <!-- 1. Full Name -->
-          <div class="form-group form-full">
-            <label for="vName"><span data-en="1. Full Name *" data-te="1. పూర్తి పేరు *">1. Full Name (పూర్తి పేరు)</span> <span style="color:#FF6B1A;">*</span></label>
-            <input type="text" id="vName" class="form-control" placeholder="మీ పూర్తి పేరు" required autocomplete="name">
-          </div>
-
-          <!-- 2. WhatsApp Mobile -->
-          <div class="form-group">
-            <label for="vPhone"><span data-en="2. WhatsApp Mobile *" data-te="2. వాట్సాప్ మొబైల్ *">2. WhatsApp Mobile (వాట్సాప్ నంబర్)</span> <span style="color:#FF6B1A;">*</span></label>
-            <input type="tel" id="vPhone" class="form-control" placeholder="10-digit number" required pattern="[0-9]{10}" maxlength="10" autocomplete="tel">
-            <small style="color:var(--text-muted); font-size:0.75rem;">10 అంకెల మొబైల్ నంబర్ మాత్రమే నమోదు చేయండి</small>
-          </div>
-
-          <!-- 3. State -->
-          <div class="form-group">
-            <label for="vState"><span data-en="3. State *" data-te="3. రాష్ట్రం *">3. State (రాష్ట్రం)</span> <span style="color:#FF6B1A;">*</span></label>
-            <select id="vState" class="form-control" required style="background:#140707;">
-              <option value="" disabled selected>-- రాష్ట్రం ఎంచుకోండి --</option>
-              <option value="Andhra Pradesh">Andhra Pradesh (ఆంధ్రప్రదేశ్)</option>
-              <option value="Telangana">Telangana (తెలంగాణ)</option>
-              <option value="Karnataka">Karnataka (కర్ణాటక)</option>
-              <option value="Tamil Nadu">Tamil Nadu (తమిళనాడు)</option>
-              <option value="Other States of Bharat">Other Bharat (ఇతర భారత రాష్ట్రాలు)</option>
-            </select>
-          </div>
-
-          <!-- 4. District / City -->
-          <div class="form-group">
-            <label for="vDistrict"><span data-en="4. District / City *" data-te="4. జిల్లా / నగరం *">4. District / City (జిల్లా / నగరం)</span> <span style="color:#FF6B1A;">*</span></label>
-            <input type="text" id="vDistrict" class="form-control" placeholder="e.g. Tirupati, Chittoor, Hyderabad..." required>
-          </div>
-
-          <!-- 5. Mandal / Town / Area -->
-          <div class="form-group">
-            <label for="vMandal"><span data-en="5. Mandal / Town / Area *" data-te="5. మండలం / పట్టణం / ప్రాంతం *">5. Mandal / Area (మండలం / ప్రాంతం)</span> <span style="color:#FF6B1A;">*</span></label>
-            <input type="text" id="vMandal" class="form-control" placeholder="e.g. Chandragiri, Alipiri, Madhapur..." required>
-          </div>
-        </div>
-      </div>
-
-      <!-- OPTIONAL DETAILS (6 TO 10) -->
-      <div style="margin-top:24px; margin-bottom:18px;">
-        <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.2); padding-bottom:6px;">
-          <span style="font-size:1rem; color:var(--text-muted);">📝</span>
-          <h4 style="font-size:0.9rem; color:var(--text-muted); font-family:var(--font-heading); margin:0;" data-en="Optional Information" data-te="ఐచ్ఛిక వివరాలు (ఇవి లేకపోయినా నమోదు చేయవచ్చు)">
-            Optional Information (ఐచ్ఛిక వివరాలు - ఇవి లేకపోయినా నమోదు పూర్తి అవుతుంది)
-          </h4>
-        </div>
-
-        <div class="form-grid">
-          <!-- 6. Referred By / Reference (Optional) -->
-          <div class="form-group form-full">
-            <label for="vReferral" style="color:var(--text-muted);"><span data-en="6. Referred By (Name / Reference)" data-te="6. ఎవరి ద్వారా తెలిసింది? (రిఫరల్)">6. Referred By / Reference (ఎవరి ద్వారా తెలిసింది? - రిఫరల్)</span> <small style="color:#888;">(Optional)</small></label>
-            <input type="text" id="vReferral" class="form-control" placeholder="పేరు లేదా రిఫరెన్స్">
-          </div>
-
-          <!-- 7. Email (Optional) -->
-          <div class="form-group">
-            <label for="vEmail" style="color:var(--text-muted);"><span data-en="7. Email Address" data-te="7. ఈమెయిల్ అడ్రస్">7. Email Address (ఈమెయిల్)</span> <small style="color:#888;">(Optional)</small></label>
-            <input type="email" id="vEmail" class="form-control" placeholder="yourname@gmail.com" autocomplete="email">
-          </div>
-
-          <!-- 8. Instagram ID (Optional) -->
-          <div class="form-group">
-            <label for="vInstagram" style="color:var(--text-muted);"><span data-en="8. Instagram ID" data-te="8. ఇన్‌స్టాగ్రామ్ ఐడీ">8. Instagram Handle (ఇన్‌స్టాగ్రామ్)</span> <small style="color:#888;">(Optional)</small></label>
-            <input type="text" id="vInstagram" class="form-control" placeholder="e.g. @hindu_sevak">
-          </div>
-
-          <!-- 9. Any Question (Optional) -->
-          <div class="form-group form-full">
-            <label for="vQuestion" style="color:var(--text-muted);"><span data-en="9. Any Question for Abhay Hindu Sena?" data-te="9. ఏవైనా ప్రశ్నలు ఉంటే ఇక్కడ తెలపండి">9. Any Question? (ఏవైనా ప్రశ్నలు ఉంటే ఇక్కడ రాయండి)</span> <small style="color:#888;">(Optional)</small></label>
-            <textarea id="vQuestion" class="form-control" rows="2" placeholder="Ask your question here..."></textarea>
-          </div>
-
-          <!-- 10. Any Suggestion (Optional) -->
-          <div class="form-group form-full">
-            <label for="vSuggestion" style="color:var(--text-muted);"><span data-en="10. Any Suggestions or Seva Ideas?" data-te="10. మీ సలహాలు / సూచనలు">10. Any Suggestions? (మీ సలహాలు / సూచనలు)</span> <small style="color:#888;">(Optional)</small></label>
-            <textarea id="vSuggestion" class="form-control" rows="2" placeholder="Share your suggestions or how you wish to serve..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- SUBMIT BUTTON -->
-      <div class="form-group form-full" style="margin-top:12px;">
-        <button type="submit" id="vSubmitBtn" class="form-submit-btn">
-          🚩 Register & Join Abhay Hindu Sena (నమోదు చేసుకోండి) 🚩
+    <div class="state-cards-grid">
+      <!-- 1. ANDHRA PRADESH -->
+      <div class="state-card" onclick="selectState('ap')">
+        <div class="state-badge">🚩 AP SEVAKS</div>
+        <div class="state-icon">🏛️</div>
+        <h3 class="state-name">ఆంధ్రప్రదేశ్</h3>
+        <span class="state-name-en">Andhra Pradesh</span>
+        <p class="state-desc">
+          తిరుపతి, చిత్తూరు, కడప, కర్నూలు, నెల్లూరు, ప్రకాశం, గుంటూరు, కృష్ణా, ఏలూరు, ఉభయ గోదావరి, విశాఖపట్నం తదితర ఏపీ జిల్లాల సేవకులు.
+        </p>
+        <button type="button" class="state-btn">
+          నమోదు చేసుకోండి (Register AP) ➔
         </button>
-        <div style="text-align:center; font-size:0.85rem; color:var(--gold-bright); margin-top:10px;">
-          📲 Upon registration, you will be invited to join our Official WhatsApp Channel!
+      </div>
+
+      <!-- 2. TELANGANA -->
+      <div class="state-card featured" onclick="selectState('ts')">
+        <div class="state-badge" style="background:#FF6B1A;">🚩 TG SEVAKS</div>
+        <div class="state-icon">⚔️</div>
+        <h3 class="state-name">తెలంగాణ</h3>
+        <span class="state-name-en">Telangana</span>
+        <p class="state-desc">
+          హైదరాబాద్, సికింద్రాబాద్, రంగారెడ్డి, మేడ్చల్, వరంగల్, కరీంనగర్, ఖమ్మం, నిజామాబాద్, నల్గొండ మరియు తెలంగాణ జిల్లాల సేవకులు.
+        </p>
+        <button type="button" class="state-btn">
+          నమోదు చేసుకోండి (Register TG) ➔
+        </button>
+      </div>
+
+      <!-- 3. OTHER STATES / ALL BHARAT -->
+      <div class="state-card" onclick="selectState('other')">
+        <div class="state-badge">🇮🇳 ALL INDIA</div>
+        <div class="state-icon">🚩</div>
+        <h3 class="state-name">ఇతర రాష్ట్రాలు</h3>
+        <span class="state-name-en">All India / Other States</span>
+        <p class="state-desc">
+          కర్ణాటక, తమిళనాడు, మహారాష్ట్ర, ఒడిశా, ఢిల్లీ మరియు భారతదేశంలోని ఇతర అన్ని రాష్ట్రాల్లో నివసిస్తున్న హిందూ ధర్మ సేవకులు.
+        </p>
+        <button type="button" class="state-btn">
+          నమోదు చేసుకోండి (All India) ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: GOOGLE FORM EMBED VIEW -->
+  <div id="formEmbedSection" class="form-embed-wrap" style="display:none;">
+    <!-- Form Controls Bar -->
+    <div class="form-embed-topbar">
+      <button type="button" class="btn-back-state" onclick="showStateSelection()">
+        ⬅️ వేరే రాష్ట్రం ఎంచుకోండి (Change State)
+      </button>
+
+      <div class="active-state-indicator">
+        <span id="activeStateBadge" class="state-indicator-badge">📍 ఆంధ్రప్రదేశ్ (AP)</span>
+      </div>
+
+      <a id="btnOpenDirect" href="#" target="_blank" class="btn-open-direct" title="Open Google Form in full screen">
+        📱 Open in Full Screen ↗
+      </a>
+    </div>
+
+    <!-- Official WhatsApp Channel Callout Banner -->
+    <div class="whatsapp-channel-reminder">
+      <div class="wa-reminder-content">
+        <div class="wa-reminder-icon">💬</div>
+        <div>
+          <h4>ముఖ్య గమనిక: ఫారమ్ నింపిన వెంటనే అధికారిక వాట్సాప్ ఛానెల్‌లో చేరండి!</h4>
+          <p>తాజా సమావేశాలు, సమాచారం మరియు గురూజీ మార్గదర్శకాల కోసం మా అధికారిక వాట్సాప్ ఛానెల్‌లో సభ్యులుగా చేరండి.</p>
         </div>
       </div>
-    </form>
+      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" class="wa-reminder-btn">
+        వాట్సాప్ ఛానెల్ లో చేరండి ➔
+      </a>
+    </div>
+
+    <!-- Google Form Iframe -->
+    <div class="google-form-frame-wrap">
+      <div id="formLoadingSpinner" class="form-spinner">
+        ⏳ ఫారమ్ లోడ్ అవుతోంది... (Loading Official Form...)
+      </div>
+      <iframe id="googleFormIframe" src="" width="100%" height="960" frameborder="0" marginheight="0" marginwidth="0" onload="hideSpinner()">
+        Loading official registration form…
+      </iframe>
+    </div>
+
+    <!-- Bottom WhatsApp Channel Reminder -->
+    <div style="text-align:center; margin-top:24px;">
+      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" class="btn-whatsapp-channel-join" style="display:inline-flex; width:auto; padding:12px 28px; text-decoration:none;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.075-2.029-.475-1.706-.702-2.79-2.457-2.875-2.571-.085-.114-.689-.916-.689-1.747 0-.831.436-1.239.591-1.397.155-.158.339-.197.452-.197.113 0 .226 0 .324.005.105.006.246-.04.385.293.144.344.492 1.2.535 1.288.043.088.072.19.014.305-.058.115-.088.187-.174.288-.088.102-.185.228-.264.306-.089.088-.182.185-.078.363.104.178.462.763.992 1.235.682.608 1.258.796 1.436.885.178.089.282.075.387-.046.105-.121.452-.527.573-.708.121-.181.242-.151.405-.09.163.06 1.034.488 1.212.577.178.089.297.133.34.207.043.074.043.431-.101.836z"/></svg>
+        ఫారమ్ నింపారా? వెంటనే మా అధికారిక వాట్సాప్ ఛానెల్‌లో చేరండి ➔
+      </a>
+    </div>
   </div>
 </main>
 
 <!-- Volunteer Confirmation & WhatsApp Channel Modal -->
-<div class="modal-backdrop" id="confirmationModal">
-  <div class="modal-content" style="max-width: 500px; padding: 26px 20px; text-align: center; border: 2px solid var(--gold); border-radius: 16px; background: linear-gradient(180deg, #1f0a0a 0%, #0d0404 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.85);">
-    
-    <div class="modal-badge-icon">
-      ✅
-    </div>
 
-    <div style="color: var(--saffron); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px;">
-      🚩 ABHAY HINDU SENA (అభయ్ హిందూ సేన)
-    </div>
-    <h2 style="font-family: var(--font-heading); color: var(--gold-bright); font-size: 1.35rem; margin-bottom: 6px;">
-      నమోదు విజయవంతమైంది!
-      <span style="display:block; font-size:0.95rem; color:#FFF; font-weight:400; margin-top:2px;">(Registration Successful)</span>
-    </h2>
-
-    <p style="color: #E0D5C1; font-size: 0.92rem; line-height: 1.6; margin: 12px 0 18px;">
-      హరే కృష్ణ, <strong id="modalVolunteerName" style="color:var(--gold-bright);">భక్తులు / సేవకులు</strong>! అభయ్ హిందూ సేన లో భాగస్వామ్యులైనందుకు కృతజ్ఞతలు.
-    </p>
-
-    <!-- Official WhatsApp Channel Invite Box -->
-    <div style="background: rgba(37, 211, 102, 0.12); border: 1.5px solid rgba(37, 211, 102, 0.45); border-radius: 12px; padding: 18px 14px; margin-bottom: 20px;">
-      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:8px;">
-        <span style="font-size:1.4rem;">📢</span>
-        <strong style="color: #25D366; font-size: 1rem;">అధికారిక వాట్సాప్ ఛానల్ (Official Channel)</strong>
-      </div>
-      <p style="font-size: 0.86rem; color: #FFF; margin: 0 0 14px; line-height: 1.5;">
-        అన్ని సేవా కార్యక్రమాలు, సమావేశాలు, ధర్మ జాగరణ మరియు గురూజీ సందేశాల కోసం వెంటనే మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి:
-      </p>
-      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" rel="noopener" class="btn-whatsapp-channel-join">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.075-2.029-.475-1.706-.702-2.79-2.457-2.875-2.571-.085-.114-.689-.916-.689-1.747 0-.831.436-1.239.591-1.397.155-.158.339-.197.452-.197.113 0 .226 0 .324.005.105.006.246-.04.385.293.144.344.492 1.2.535 1.288.043.088.072.19.014.305-.058.115-.088.187-.174.288-.088.102-.185.228-.264.306-.089.088-.182.185-.078.363.104.178.462.763.992 1.235.682.608 1.258.796 1.436.885.178.089.282.075.387-.046.105-.121.452-.527.573-.708.121-.181.242-.151.405-.09.163.06 1.034.488 1.212.577.178.089.297.133.34.207.043.074.043.431-.101.836z"/></svg>
-        👉 Join Official WhatsApp Channel 👈
-      </a>
-    </div>
-
-    <button type="button" class="modal-close-btn" style="width:100%;" onclick="closeModal()">
-      Done / పూర్తి అయ్యింది
-    </button>
-  </div>
-</div>
 
 <!-- Footer -->
 <footer>
@@ -767,133 +981,92 @@
     });
   }
 
-  // Non-blocking background cloud sync
-  function syncRegistrationToCloud(payload) {
-    // 1. Try Firestore with short timeout (fails silently if suspended/offline)
-    if (db) {
-      try {
-        const firestorePayload = {
-          ...payload,
-          registeredAt: (window.firebase && firebase.firestore && firebase.firestore.FieldValue)
-            ? firebase.firestore.FieldValue.serverTimestamp()
-            : new Date()
-        };
-        const docId = payload.phone || ('reg_' + Date.now());
-        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 3000));
-        Promise.race([
-          db.collection('sevak_registrations').doc(docId).set(firestorePayload, { merge: true }),
-          timeoutPromise
-        ]).catch(err => {
-          console.warn("Firestore background sync deferred:", err.message);
-        });
-      } catch (e) {
-        console.warn("Firestore error:", e);
-      }
+  // Official State-Wise Google Forms Configuration
+  const GOOGLE_FORMS = {
+    ap: {
+      name: "ఆంధ్రప్రదేశ్ (Andhra Pradesh)",
+      short: "ఆంధ్రప్రదేశ్ (AP)",
+      embedUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeQOSnJpdEqFBF_ak_WyyWtmYsTB37iEf94O4F_nFddNuDIvw/viewform?embedded=true",
+      directUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeQOSnJpdEqFBF_ak_WyyWtmYsTB37iEf94O4F_nFddNuDIvw/viewform"
+    },
+    ts: {
+      name: "తెలంగాణ (Telangana)",
+      short: "తెలంగాణ (TG)",
+      embedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScUf9l_Jcw8m_vC99RhHt-p7n63p_oIozVdyTlwuFj0PCa9TA/viewform?embedded=true",
+      directUrl: "https://docs.google.com/forms/d/e/1FAIpQLScUf9l_Jcw8m_vC99RhHt-p7n63p_oIozVdyTlwuFj0PCa9TA/viewform"
+    },
+    other: {
+      name: "అఖిల భారత్ (All India / Other States)",
+      short: "ఇతర రాష్ట్రాలు (All India)",
+      embedUrl: "https://docs.google.com/forms/d/e/1FAIpQLScDN2eCwTKdjGQT4UPtdKMWNisBkZbFPRsqMENLWVO2yEZ4rQ/viewform?embedded=true",
+      directUrl: "https://docs.google.com/forms/d/e/1FAIpQLScDN2eCwTKdjGQT4UPtdKMWNisBkZbFPRsqMENLWVO2yEZ4rQ/viewform"
+    }
+  };
+
+  function selectState(stateKey) {
+    const config = GOOGLE_FORMS[stateKey] || GOOGLE_FORMS.ap;
+    
+    const selectSec = document.getElementById('stateSelectSection');
+    const embedSec = document.getElementById('formEmbedSection');
+    if (selectSec) selectSec.style.display = 'none';
+    if (embedSec) embedSec.style.display = 'block';
+
+    const badge = document.getElementById('activeStateBadge');
+    if (badge) badge.textContent = `📍 ${config.short}`;
+
+    const openDirect = document.getElementById('btnOpenDirect');
+    if (openDirect) openDirect.href = config.directUrl;
+
+    const iframe = document.getElementById('googleFormIframe');
+    const spinner = document.getElementById('formLoadingSpinner');
+    if (spinner) spinner.style.display = 'block';
+    if (iframe) {
+      iframe.src = config.embedUrl;
     }
 
-    // 2. Google Apps Script / Webhook (mode: 'no-cors')
-    const defaultGasUrl = "https://script.google.com/macros/s/AKfycbyFy8TkBpOHXIYo06Z4vyRcRxR0aDPfKouOgcSFUMGfR09QC-fbKjcBy67AyRxUr9L19A/exec";
-    const gasUrl = localStorage.getItem('ahs_gas_url') || window.AHS_GAS_URL || defaultGasUrl;
-    if (gasUrl) {
-      try {
-        fetch(gasUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(() => {});
-      } catch (e) {}
-    }
+    // Scroll smoothly to form
+    if (embedSec) embedSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update URL query parameter without page reload
+    const url = new URL(window.location);
+    url.searchParams.set('state', stateKey);
+    window.history.replaceState({}, '', url);
   }
 
-  // Volunteer Submission Handler
-  async function handleVolunteerSubmit(e) {
-    e.preventDefault();
+  function showStateSelection() {
+    const selectSec = document.getElementById('stateSelectSection');
+    const embedSec = document.getElementById('formEmbedSection');
+    if (selectSec) selectSec.style.display = 'block';
+    if (embedSec) embedSec.style.display = 'none';
+    const iframe = document.getElementById('googleFormIframe');
+    if (iframe) iframe.src = '';
 
-    const name = document.getElementById('vName').value.trim();
-    const phone = document.getElementById('vPhone').value.trim();
-    const state = document.getElementById('vState').value;
-    const district = document.getElementById('vDistrict').value.trim();
-    const mandal = document.getElementById('vMandal').value.trim();
+    const url = new URL(window.location);
+    url.searchParams.delete('state');
+    window.history.replaceState({}, '', url);
 
-    // Optional fields
-    const referral = document.getElementById('vReferral') ? document.getElementById('vReferral').value.trim() : '';
-    const email = document.getElementById('vEmail') ? document.getElementById('vEmail').value.trim() : '';
-    const instagram = document.getElementById('vInstagram') ? document.getElementById('vInstagram').value.trim() : '';
-    const question = document.getElementById('vQuestion') ? document.getElementById('vQuestion').value.trim() : '';
-    const suggestion = document.getElementById('vSuggestion') ? document.getElementById('vSuggestion').value.trim() : '';
-
-    // Validate 10-digit mobile number
-    const cleanPhone = phone.replace(/[^0-9]/g, '');
-    if (cleanPhone.length < 10) {
-      alert("దయచేసి సరైన 10 అంకెల మొబైల్ నంబర్ నమోదు చేయండి.\n(Please enter a valid 10-digit WhatsApp mobile number.)");
-      document.getElementById('vPhone').focus();
-      return;
-    }
-
-    const submitBtn = document.getElementById('vSubmitBtn');
-    submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Submitting registration...';
-
-    try {
-      const now = new Date();
-      const timestampFormatted = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-      const displayDateStr = now.toLocaleDateString('en-IN', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      });
-
-      const regPayload = {
-        name: name,
-        phone: cleanPhone,
-        state: state,
-        district: district,
-        mandal: mandal,
-        referral: referral || 'Direct',
-        email: email || 'N/A',
-        instagram: instagram || 'N/A',
-        question: question || 'N/A',
-        suggestion: suggestion || 'N/A',
-        timestamp: timestampFormatted,
-        displayDate: displayDateStr,
-        source: 'Official Website'
-      };
-
-      // Store in persistent local registry for offline backup
-      let localRegistry = [];
-      try {
-        localRegistry = JSON.parse(localStorage.getItem('ahs_volunteer_registry') || '[]');
-      } catch (err) {
-        localRegistry = [];
-      }
-      localRegistry.push(regPayload);
-      localStorage.setItem('ahs_volunteer_registry', JSON.stringify(localRegistry));
-      localStorage.setItem('ahs_last_registered_sevak', JSON.stringify(regPayload));
-
-      // Asynchronous background cloud sync to Google Sheets & Firestore
-      syncRegistrationToCloud(regPayload);
-
-      // Open Success WhatsApp Channel Modal
-      const modalNameEl = document.getElementById('modalVolunteerName');
-      if (modalNameEl) modalNameEl.textContent = name;
-      document.getElementById('confirmationModal').classList.add('active');
-
-      // Reset form fields
-      document.getElementById('volunteerForm').reset();
-
-    } catch (err) {
-      console.error("Volunteer registration error:", err);
-      alert("Registration error: " + err.message + "\nPlease try again.");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = '🚩 Register & Join Abhay Hindu Sena (నమోదు చేసుకోండి) 🚩';
-    }
+    if (selectSec) selectSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function closeModal() {
-    document.getElementById('confirmationModal').classList.remove('active');
+  function hideSpinner() {
+    const spinner = document.getElementById('formLoadingSpinner');
+    if (spinner) spinner.style.display = 'none';
   }
+
+  // Auto-detect ?state= in URL on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const st = params.get('state');
+    if (st && GOOGLE_FORMS[st.toLowerCase()]) {
+      selectState(st.toLowerCase());
+    } else if (st && (st.toLowerCase() === 'tg' || st.toLowerCase() === 'telangana')) {
+      selectState('ts');
+    } else if (st && (st.toLowerCase() === 'ap' || st.toLowerCase() === 'andhra' || st.toLowerCase() === 'andhrapradesh')) {
+      selectState('ap');
+    }
+  });
+
+
 </script>
 </body>
 </html>
