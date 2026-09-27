@@ -2002,15 +2002,166 @@
     100% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.6)); }
   }
 
-  /* MISSION & VIDEO & GALLERY CARDS: SMOOTH 3D LIFT & GOLD ILLUMINATION */
-  .mission-card, .video-card, .gallery-card, .donate-box, .volunteer-box {
+  /* MISSION & VIDEO & GALLERY & EVENT CARDS: SMOOTH 3D LIFT & GOLD ILLUMINATION */
+  .mission-card, .video-card, .gallery-card, .donate-box, .volunteer-box, .event-card {
     position: relative;
     transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   }
-  .mission-card:hover, .video-card:hover {
+  .mission-card:hover, .video-card:hover, .event-card:hover {
     transform: translateY(-6px);
     border-color: var(--gold-bright) !important;
     box-shadow: 0 16px 40px rgba(0,0,0,0.85), 0 0 25px rgba(212,175,55,0.3) !important;
+  }
+
+  /* UPCOMING EVENTS & CONVENTIONS SECTION */
+  .events-section {
+    padding: 70px 6% 85px;
+    background: radial-gradient(circle at 50% 12%, rgba(122,12,12,0.38) 0%, rgba(13,4,4,0.98) 75%);
+    border-top: 1px solid rgba(212,175,55,0.25);
+    border-bottom: 1px solid rgba(212,175,55,0.25);
+    position: relative;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+  @media (max-width: 960px) {
+    .events-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+  .event-card {
+    background: linear-gradient(145deg, rgba(26, 7, 7, 0.95) 0%, rgba(15, 4, 4, 0.98) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.65);
+    overflow: hidden;
+  }
+  .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold-bright), var(--saffron));
+  }
+  .event-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,107,26,0.15);
+    border: 1px solid rgba(255,107,26,0.45);
+    color: #FFA466;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .event-badge.convention {
+    background: rgba(212,175,55,0.15);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+  .event-badge.seva {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.45);
+    color: #2ecc71;
+  }
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    line-height: 1.35;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+  .event-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.35);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.15);
+  }
+  .event-meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .event-meta-item strong {
+    color: #FFF;
+  }
+  .event-desc {
+    font-size: 0.88rem;
+    color: #d8c7b5;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+  .event-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .btn-event-primary {
+    flex: 1;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-event-primary:hover {
+    box-shadow: 0 4px 15px rgba(212,175,55,0.55);
+    transform: translateY(-2px);
+  }
+  .btn-event-secondary {
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    font-weight: 700;
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .btn-event-secondary:hover {
+    background: rgba(212,175,55,0.22);
+    color: #FFF;
+    border-color: var(--gold-bright);
   }
   .mission-card::before, .video-card::before {
     content: '';
@@ -2760,6 +2911,7 @@
     <a href="#home" class="active" data-en="Home" data-te="ప్రారంభం">Home</a>
     <a href="#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
     <a href="#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
     <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
@@ -2913,9 +3065,105 @@
   </div>
 </section>
 
+<!-- ========================================================================= -->
+<!-- UPCOMING EVENTS, CONVENTIONS & SEVA DRIVES -->
+<!-- ========================================================================= -->
+<section id="events" class="events-section">
+  <div class="section-header">
+    <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
+    <h2 class="section-title" data-en="Upcoming Events, Conventions & Seva Drives" data-te="రాబోయే కార్యక్రమాలు, సమ్మేళనాలు & సేవా యజ్ఞాలు">Upcoming Events, Conventions & Seva Drives</h2>
+    <p class="section-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
+       data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో భాగస్వామ్యం పొందండి.">
+      Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
+    </p>
+  </div>
+
+  <div class="events-grid">
+    <!-- Event 1: State Youth Awakening Convention -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge convention" data-en="🚩 State Convention • Tirupati" data-te="🚩 రాష్ట్ర సమ్మేళనం • తిరుపతి">🚩 State Convention • Tirupati</span>
+      </div>
+      <h3 class="event-title" data-en="Maha Youth Awakening & Martial Defense Convention" data-te="మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం">Maha Youth Awakening & Martial Defense Convention</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Upcoming • 10:00 AM onwards</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Tirupati Central Grounds, Andhra Pradesh</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>🎙️</span> <div><span data-en="Presided By:" data-te="దివ్య మార్గదర్శనం:">Presided By:</span> <strong>Shri Radha Manohar Das</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage."
+         data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
+        Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
+      </p>
+      <div class="event-actions">
+        <a href="join.html" class="btn-event-primary" data-en="Enlist as Sevak 🚩" data-te="సేవక్ నమోదు 🚩">Enlist as Sevak 🚩</a>
+        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Maha Youth Awakening Convention - Tirupati')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      </div>
+    </div>
+
+    <!-- Event 2: Nitya Annadanam & Gau Seva Maha Yajna -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge seva" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదాన యజ్ఞం">🐄 Gau Seva & Annadanam</span>
+      </div>
+      <h3 class="event-title" data-en="Nitya Annadanam & Gau Samrakshana Maha Seva" data-te="నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ">Nitya Annadanam & Gau Samrakshana Maha Seva</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Every Ekadashi & Sacred Festivals</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Vijayawada & Sacred Kshetrams</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>🍲</span> <div><span data-en="Target:" data-te="లక్ష్యం:">Target:</span> <strong>5,000+ Devotee Meals & Gaushala Fodder</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows."
+         data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
+        Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
+      </p>
+      <div class="event-actions">
+        <a href="donate.html" class="btn-event-primary" data-en="Support with Donation 💛" data-te="విరాళం అందించండి 💛">Support with Donation 💛</a>
+        <a href="join.html" class="btn-event-secondary" data-en="Volunteer Seva 🚩" data-te="వాలంటీర్ సేవ 🚩">Volunteer Seva 🚩</a>
+      </div>
+    </div>
+
+    <!-- Event 3: Devalaya Swatantra & Legal Awareness Conclave -->
+    <div class="event-card">
+      <div class="event-header-row">
+        <span class="event-badge" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</span>
+      </div>
+      <h3 class="event-title" data-en="Devalaya Swatantra & Grama Dharma Jagruti" data-te="దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు">Devalaya Swatantra & Grama Dharma Jagruti</h3>
+      <div class="event-meta-list">
+        <div class="event-meta-item">
+          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Monthly Conclave • Twin Telugu States</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>District Centers across AP & Telangana</strong></div>
+        </div>
+        <div class="event-meta-item">
+          <span>⚖️</span> <div><span data-en="Focus:" data-te="ముఖ్య లక్ష్యం:">Focus:</span> <strong>Anti-Encroachment & Temple Autonomy</strong></div>
+        </div>
+      </div>
+      <p class="event-desc" data-en="Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions."
+         data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
+        Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
+      </p>
+      <div class="event-actions">
+        <a href="community.html" class="btn-event-primary" data-en="Join Discussion 💬" data-te="చర్చలో చేరండి 💬">Join Discussion 💬</a>
+        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Devalaya Swatantra Conclave')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Pravachans & Video Discourses Section -->
 <section id="videos" class="videos-section">
-  <span id="events" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
   <div class="section-header">
     <span class="eyebrow" data-en="Dharmic Discourses" data-te="ధార్మిక ప్రవచనాలు">Dharmic Discourses</span>
     <h2 class="section-title" data-en="Pravachans & Video Discourses" data-te="శ్రీ రాధా మనోహర్ దాస్ ప్రవచనాలు & వీడియోలు">Pravachans & Video Discourses</h2>
@@ -2926,50 +3174,50 @@
   </div>
 
   <div class="videos-grid" id="homeVideosGrid">
-    <!-- Box 1: Recent Video 1 -->
-    <div class="video-card" onclick="openCinemaVideo('wH1w9M4mMnM', 'భగవద్గీత విశిష్టత మరియు నిత్య జీవితంలో ఆచరణ | Shri Radha Manohar Das')">
+    <!-- Box 1: Verified Video 1 -->
+    <div class="video-card" onclick="openCinemaVideo('wH1w9M4mMnM', 'కర్ణాటక రాష్ట్రంలో బళ్ళారి ఇస్కాన్ రామాపురం లో | Shri Radha Manohar Das')">
       <div class="video-thumb-wrap">
-        <img src="https://img.youtube.com/vi/wH1w9M4mMnM/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb">
+        <img src="https://img.youtube.com/vi/wH1w9M4mMnM/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb" loading="lazy">
         <div class="video-play-overlay">
           <div class="video-play-btn">▶</div>
         </div>
         <span class="video-cat-badge">Recent Pravachan</span>
       </div>
       <div class="video-info">
-        <h4>భగవద్గీత విశిష్టత మరియు నిత్య జీవితంలో ఆచరణ</h4>
+        <h4>కర్ణాటక రాష్ట్రంలో బళ్ళారి ఇస్కాన్ రామాపురం లో</h4>
         <p>శ్రీ రాధా మనోహర్ దాస్ గారిచే భగవద్గీత మార్గదర్శక సందేశం మరియు ధర్మ ఆచరణ.</p>
         <button class="btn-watch-now">Watch Video ▶️</button>
       </div>
     </div>
 
-    <!-- Box 2: Recent Video 2 -->
-    <div class="video-card" onclick="openCinemaVideo('1j51I3-HCOQ', 'ధర్మ రక్షణ కోసం యువత పాత్ర మరియు ఆలయ పరిరక్షణ | Shri Radha Manohar Das')">
+    <!-- Box 2: Verified Video 2 -->
+    <div class="video-card" onclick="openCinemaVideo('9gQdFrP_Ulc', 'తిరుపతి తల్లుల సత్సంగం | Abhaya Hindu Sena - Shri Radha Manohar Das')">
       <div class="video-thumb-wrap">
-        <img src="https://img.youtube.com/vi/1j51I3-HCOQ/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb">
+        <img src="https://img.youtube.com/vi/9gQdFrP_Ulc/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb" loading="lazy">
         <div class="video-play-overlay">
           <div class="video-play-btn">▶</div>
         </div>
-        <span class="video-cat-badge">Dharma Discourse</span>
+        <span class="video-cat-badge">Dharma Satsang</span>
       </div>
       <div class="video-info">
-        <h4>ధర్మ రక్షణ కోసం యువత పాత్ర మరియు ఆలయ పరిరక్షణ</h4>
-        <p>ఆలయాల విముక్తి మరియు హిందూ సమాజ ఐక్యతపై ఉత్తేజకరమైన ధార్మిక సందేశం.</p>
+        <h4>తిరుపతి తల్లుల సత్సంగం | Abhaya Hindu Sena</h4>
+        <p>తిరుపతి క్షేత్రంలో తల్లులు మరియు భక్తులతో దివ్య ధర్మ సత్సంగం మరియు మార్గదర్శనం.</p>
         <button class="btn-watch-now">Watch Video ▶️</button>
       </div>
     </div>
 
-    <!-- Box 3: Recent Video 3 -->
-    <div class="video-card" onclick="openCinemaVideo('2L7j-3v8X6M', 'సనాతన ధర్మం మరియు గో సంరక్షణ ప్రాముఖ్యత | Shri Radha Manohar Das')">
+    <!-- Box 3: Verified Video 3 -->
+    <div class="video-card" onclick="openCinemaVideo('OpLuFO3Hep0', 'సనాతన ధర్మం మరియు గో సంరక్షణ ప్రాముఖ్యత | Shri Radha Manohar Das')">
       <div class="video-thumb-wrap">
-        <img src="https://img.youtube.com/vi/2L7j-3v8X6M/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb" onerror="this.src='https://img.youtube.com/vi/wH1w9M4mMnM/hqdefault.jpg'">
+        <img src="https://img.youtube.com/vi/OpLuFO3Hep0/hqdefault.jpg" alt="Pravachan Thumbnail" class="video-thumb" loading="lazy">
         <div class="video-play-overlay">
           <div class="video-play-btn">▶</div>
         </div>
-        <span class="video-cat-badge">Youth & Dharma</span>
+        <span class="video-cat-badge">Gau Samrakshana</span>
       </div>
       <div class="video-info">
         <h4>సనాతన ధర్మం మరియు గో సంరక్షణ ప్రాముఖ్యత</h4>
-        <p>సనాతన ధర్మం, గో సంరక్షణ మరియు ఆలయ సంస్కృతిని కాపాడుకోవడంలో యువత కర్తవ్యం.</p>
+        <p>గోమాత పరిరక్షణ, సనాతన ధర్మ సంస్కృతి మరియు సమాజ జాగృతిపై విశేష సందేశం.</p>
         <button class="btn-watch-now">Watch Video ▶️</button>
       </div>
     </div>
@@ -3069,9 +3317,9 @@
         <span class="portal-tag portal-tag-gold" data-en="Dharma Daan" data-te="ధర్మ దానం">Dharma Daan</span>
       </div>
       <h3 class="portal-heading" data-en="Support with Donation" data-te="ధర్మ దానం చేయండి">Support with Donation</h3>
-      <p class="portal-desc" data-en="Your sacred contribution fuels Nitya Annadanam, Gau Samrakshana, ancient temple restoration, and youth defense camps. Official payment gateway coming soon."
-         data-te="నిత్య అన్నదానం, గో సంరక్షణ, పురాతన ఆలయాల పరిరక్షణ మరియు ధార్మిక శిక్షణకు మీ వంతు పవిత్ర విరాళాన్ని అందించండి. అధికారిక గేట్‌వే త్వరలో ప్రారంభం.">
-        Your sacred contribution fuels Nitya Annadanam, Gau Samrakshana, ancient temple restoration, and youth defense camps. Official payment gateway coming soon.
+      <p class="portal-desc" data-en="Your sacred contribution fuels Nitya Annadanam, Gau Samrakshana, ancient temple restoration, and youth defense. Official SBI Bank Account & UPI QR portal active."
+         data-te="నిత్య అన్నదానం, గో సంరక్షణ, పురాతన ఆలయాల పరిరక్షణ మరియు ధార్మిక శిక్షణకు మీ వంతు పవిత్ర విరాళాన్ని అందించండి. అధికారిక SBI బ్యాంక్ & యూపీఐ QR పోర్టల్ అందుబాటులో ఉంది.">
+        Your sacred contribution fuels Nitya Annadanam, Gau Samrakshana, ancient temple restoration, and youth defense. Official SBI Bank Account & UPI QR portal active.
       </p>
       <div class="portal-footer-btn">
         <a href="donate.html" class="btn-portal btn-portal-donate" data-en="Support & Donate 💛" data-te="ధర్మ దానం 💛">Support & Donate 💛</a>
@@ -3107,6 +3355,7 @@
     <a href="#home">Home</a>
     <a href="#founder">Founder</a>
     <a href="#missions">Missions</a>
+    <a href="#events">Events</a>
     <a href="videos.html">Videos</a>
     <a href="gallery.html">Gallery</a>
     <a href="community.html">Community</a>
@@ -3623,7 +3872,7 @@
 
   // Copy UPI ID Helper
   function copyUpiId() {
-    const upi = "ahsrmdas@gmail.com";
+    const upi = "44174507242@sbi";
     navigator.clipboard.writeText(upi).then(() => {
       const btn = document.getElementById('copyUpiBtnText');
       if (btn) {

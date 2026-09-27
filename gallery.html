@@ -526,14 +526,15 @@
 <!-- Floating Glass Navbar -->
 <nav class="glass-navbar">
   <div class="glass-nav-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#founder">Founder</a>
-    <a href="index.html#missions">Missions</a>
-    <a href="videos.html">Videos</a>
-    <a href="gallery.html" class="active">Gallery</a>
-    <a href="community.html">Community</a>
-    <a href="join.html">Join Us</a>
-    <a href="donate.html">Donate</a>
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="index.html#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="gallery.html" class="active" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
   </div>
   <span class="glass-divider"></span>
   <button class="glass-lang-btn" onclick="toggleLanguage()" id="glassLangBtn">
@@ -590,14 +591,15 @@
   <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="footer-logo">
   <div class="footer-brand">🚩 ABHAY HINDU SENA</div>
   <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="index.html#founder">Founder</a>
-    <a href="index.html#missions">Missions</a>
-    <a href="videos.html">Videos</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="community.html">Community</a>
-    <a href="join.html">Join Us</a>
-    <a href="donate.html">Donate</a>
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="index.html#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
     <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
   </div>
   <div class="footer-copy">
@@ -629,7 +631,30 @@
     console.warn("Firebase Init:", e);
   }
 
-  let allLoadedPhotos = [];
+  const defaultArchivePhotos = [
+    {
+      id: "archive-1",
+      title: "శ్రీ రాధా మనోహర్ దాస్ - వ్యవస్థాపకులు (Founder Portrait)",
+      imageUrl: "assets/founder.jpg"
+    },
+    {
+      id: "archive-2",
+      title: "అభయ హిందూ సేన ధర్మ రక్షణ ర్యాలీ (Grand Convention & Seva)",
+      imageUrl: "assets/hero-desktop.png"
+    },
+    {
+      id: "archive-3",
+      title: "గో సంరక్షణ & ధార్మిక సదస్సు (Dharma Rakshana & Gau Seva)",
+      imageUrl: "assets/hero-mobile.png"
+    },
+    {
+      id: "archive-4",
+      title: "శ్రీ రాధా మనోహర్ దాస్ ఫౌండేషన్ అధికారిక పత్రం (Official Foundation Document)",
+      imageUrl: "assets/sbi-account-doc.png"
+    }
+  ];
+
+  let allLoadedPhotos = [...defaultArchivePhotos];
   let currentSearchQuery = '';
 
   function loadAllPhotos() {
@@ -640,9 +665,6 @@
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed)) {
           localPhotos = parsed.filter(p => p && p.source !== 'Official Archive' && !String(p.id || '').startsWith('def-'));
-          if (localPhotos.length !== parsed.length) {
-            localStorage.setItem('ahs_gallery_photos', JSON.stringify(localPhotos));
-          }
         }
       }
     } catch (e) {
@@ -650,7 +672,8 @@
     }
 
     const seen = new Set();
-    allLoadedPhotos = localPhotos.filter(p => {
+    const combined = [...localPhotos, ...defaultArchivePhotos];
+    allLoadedPhotos = combined.filter(p => {
       const key = p.id || p.imageUrl || p.url;
       if (!key || seen.has(key)) return false;
       seen.add(key);
@@ -679,7 +702,7 @@
             return timeB - timeA;
           });
           
-          const merged = [...list, ...localPhotos];
+          const merged = [...list, ...localPhotos, ...defaultArchivePhotos];
           const mSeen = new Set();
           allLoadedPhotos = merged.filter(p => {
             const key = p.id || p.imageUrl || p.url;
