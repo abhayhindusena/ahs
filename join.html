@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Us • Enlist as Dharma Sevak | Abhay Hindu Sena</title>
-<meta name="description" content="Enlist as a Dharma Sevak with Abhay Hindu Sena. Join hands for Sanatana Dharma defense, temple protection, Gau Samrakshana, and youth empowerment. Get your official Digital Sevak ID.">
+<title>Join Us • Abhay Hindu Sena</title>
+<meta name="description" content="Join Abhay Hindu Sena. Join hands for Sanatana Dharma defense, temple protection, Gau Samrakshana, and youth empowerment. Connect with our official WhatsApp Channel.">
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -349,199 +349,54 @@
     overflow-y: auto;
   }
 
-  /* DIGITAL SEVAK ID CARD STYLING */
-  .sevak-card-wrapper {
-    background: linear-gradient(145deg, #1f0707 0%, #0d0303 50%, #290b0b 100%);
-    border: 2px solid var(--gold);
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 0 30px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.12);
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-  }
-  .sevak-card-wrapper::after {
-    content: '🚩';
-    position: absolute;
-    right: -12px;
-    bottom: -15px;
-    font-size: 7.5rem;
-    opacity: 0.05;
-    pointer-events: none;
-  }
-  .sevak-card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid rgba(212,175,55,0.35);
-    padding-bottom: 12px;
-    margin-bottom: 14px;
-  }
-  .sevak-card-logo {
-    width: 52px;
-    height: 52px;
+  /* CONFIRMATION & WHATSAPP CHANNEL MODAL STYLING */
+  .modal-badge-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 14px;
     border-radius: 50%;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 12px rgba(212,175,55,0.5);
-    background: #FFF;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-  .sevak-card-org {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--gold-bright);
-    letter-spacing: 1px;
-    line-height: 1.2;
-  }
-  .sevak-card-org-te {
-    font-size: 0.8rem;
-    color: var(--saffron);
-    font-weight: 600;
-  }
-  .sevak-card-sub {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-  .sevak-id-highlight {
-    background: rgba(255,107,26,0.12);
-    border: 1px solid var(--saffron);
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 14px;
-    text-align: center;
-  }
-  .sevak-id-label {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--gold-bright);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .sevak-id-num {
-    font-family: 'Cinzel', monospace;
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: #FFD700;
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px rgba(255,215,0,0.6);
-  }
-  .sevak-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 14px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-bottom: 14px;
-  }
-  @media (max-width: 480px) {
-    .sevak-info-grid { grid-template-columns: 1fr; }
-  }
-  .sevak-info-row {
-    display: flex;
-    flex-direction: column;
-  }
-  .info-lbl {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .info-val {
-    font-size: 0.88rem;
-    color: #FFF;
-    font-weight: 600;
-    word-break: break-word;
-  }
-  .sevak-card-footer {
-    border-top: 1px solid rgba(212,175,55,0.25);
-    padding-top: 10px;
-    text-align: center;
-  }
-  .sevak-motto {
-    font-size: 0.8rem;
-    color: var(--gold-bright);
-    font-weight: 600;
-  }
-  .sevak-auth {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    margin-top: 3px;
-  }
-  .btn-whatsapp-share {
+    background: rgba(37,211,102,0.15);
+    border: 2px solid #25D366;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    background: #25D366;
-    color: #FFF;
+    font-size: 32px;
+  }
+  .btn-whatsapp-channel-join {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #FFF !important;
     font-weight: 700;
-    font-size: 0.95rem;
-    padding: 12px 16px;
-    border-radius: 8px;
+    font-size: 1.05rem;
+    padding: 14px 20px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(37,211,102,0.35);
-    transition: all 0.25s;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+    transition: all 0.25s ease;
     width: 100%;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
   }
-  .btn-whatsapp-share:hover {
-    background: #1EBE5D;
+  .btn-whatsapp-channel-join:hover {
+    background: linear-gradient(135deg, #1EBE5D 0%, #075E54 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-  }
-  .btn-download-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
-    color: #000;
-    font-weight: 800;
-    font-size: 0.95rem;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(212,175,55,0.35);
-    transition: all 0.25s;
-    width: 100%;
-  }
-  .btn-download-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212,175,55,0.6);
-  }
-  .btn-copy-id {
-    background: rgba(212,175,55,0.15);
-    border: 1px solid var(--gold);
-    color: var(--gold-bright);
-    font-weight: 600;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    transition: all 0.2s;
-  }
-  .btn-copy-id:hover {
-    background: var(--gold);
-    color: #000;
+    box-shadow: 0 8px 25px rgba(37,211,102,0.65);
+    color: #FFF !important;
   }
   .modal-close-btn {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
     color: #FFF;
     font-weight: 600;
-    padding: 10px 16px;
+    padding: 11px 18px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     transition: all 0.2s;
   }
   .modal-close-btn:hover {
@@ -674,10 +529,10 @@
 <main class="volunteer-page-wrap">
   <div class="section-header">
     <span class="eyebrow" data-en="Join Hands for Dharma" data-te="ధర్మ రక్షణలో మీ వంతు భాగస్వామ్యం">Join Hands for Dharma</span>
-    <h1 class="section-title" data-en="Enlist as a Sevak" data-te="వాలంటీర్ గా నమోదు చేసుకోండి">Enlist as a Sevak</h1>
-    <p class="section-sub" data-en="Join thousands of active volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena headquarters and receive your official Digital Sevak ID."
-       data-te="దేశవ్యాప్తంగా వేలాది మంది క్రియాశీల వాలంటీర్లతో కలిసి నడవండి. కేంద్ర కమిటీకి నేరుగా నమోదు చేసుకోవడానికి ఈ ఫారమ్‌ను పూరించి మీ అధికారిక డిజిటల్ సేవక్ ఐడీని పొందండి.">
-      Join thousands of active volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena headquarters and receive your official Digital Sevak ID.
+    <h1 class="section-title" data-en="Join Abhay Hindu Sena" data-te="అభయ్ హిందూ సేనలో చేరండి">Join Abhay Hindu Sena</h1>
+    <p class="section-sub" data-en="Join dedicated volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena and connect with our official WhatsApp Channel for seva updates."
+       data-te="దేశవ్యాప్తంగా వేలాది మంది ధర్మ కార్యకర్తలతో కలిసి నడవండి. కేంద్ర కమిటీకి నేరుగా నమోదు చేసుకొని సేవా సమాచారం కోసం మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి.">
+      Join dedicated volunteers across Bharat. Fill this form to register directly with Abhay Hindu Sena and connect with our official WhatsApp Channel for seva updates.
     </p>
   </div>
 
@@ -746,8 +601,8 @@
         <div class="form-grid">
           <!-- 6. Referred By / Reference (Optional) -->
           <div class="form-group form-full">
-            <label for="vReferral" style="color:var(--text-muted);"><span data-en="6. Referred By (Name or Sevak ID)" data-te="6. ఎవరి ద్వారా తెలిసింది? (రిఫరల్)">6. Referred By / Reference (ఎవరి ద్వారా తెలిసింది? - రిఫరల్)</span> <small style="color:#888;">(Optional)</small></label>
-            <input type="text" id="vReferral" class="form-control" placeholder="పేరు లేదా సేవక్ ఐడీ">
+            <label for="vReferral" style="color:var(--text-muted);"><span data-en="6. Referred By (Name / Reference)" data-te="6. ఎవరి ద్వారా తెలిసింది? (రిఫరల్)">6. Referred By / Reference (ఎవరి ద్వారా తెలిసింది? - రిఫరల్)</span> <small style="color:#888;">(Optional)</small></label>
+            <input type="text" id="vReferral" class="form-control" placeholder="పేరు లేదా రిఫరెన్స్">
           </div>
 
           <!-- 7. Email (Optional) -->
@@ -779,89 +634,54 @@
       <!-- SUBMIT BUTTON -->
       <div class="form-group form-full" style="margin-top:12px;">
         <button type="submit" id="vSubmitBtn" class="form-submit-btn">
-          🚩 Enlist as Dharma Sevak & Get Official ID 🚩
+          🚩 Register & Join Abhay Hindu Sena (నమోదు చేసుకోండి) 🚩
         </button>
-        <div style="text-align:center; font-size:0.82rem; color:var(--gold-bright); margin-top:10px;">
-          ⚡ Instant Official Digital Sevak ID will be generated upon registration
+        <div style="text-align:center; font-size:0.85rem; color:var(--gold-bright); margin-top:10px;">
+          📲 Upon registration, you will be invited to join our Official WhatsApp Channel!
         </div>
       </div>
     </form>
   </div>
 </main>
 
-<!-- Volunteer Confirmation & Digital Sevak ID Modal -->
+<!-- Volunteer Confirmation & WhatsApp Channel Modal -->
 <div class="modal-backdrop" id="confirmationModal">
-  <div class="modal-content" style="max-width: 520px; padding: 22px 18px;">
+  <div class="modal-content" style="max-width: 500px; padding: 26px 20px; text-align: center; border: 2px solid var(--gold); border-radius: 16px; background: linear-gradient(180deg, #1f0a0a 0%, #0d0404 100%); box-shadow: 0 10px 40px rgba(0,0,0,0.85);">
     
-    <!-- DIGITAL SEVAK ID BADGE CARD -->
-    <div class="sevak-card-wrapper" id="sevakCardArea">
-      <div class="sevak-card-header">
-        <img src="assets/logo.png" alt="AHS Logo" class="sevak-card-logo">
-        <div style="flex:1;">
-          <div class="sevak-card-org">🚩 ABHAY HINDU SENA</div>
-          <div class="sevak-card-org-te">అభయ్ హిందూ సేన • అధికారిక ధర్మ సేవక్ కార్డ్</div>
-          <div class="sevak-card-sub">OFFICIAL DHARMA SEVAK IDENTITY CARD</div>
-        </div>
-      </div>
-
-      <div class="sevak-id-highlight">
-        <span class="sevak-id-label">SEVAK REGISTRATION ID / సేవక్ ఐడీ:</span>
-        <span class="sevak-id-num" id="cardSevakId">5127-ahs-1000</span>
-      </div>
-
-      <div class="sevak-info-grid">
-        <div class="sevak-info-row">
-          <span class="info-lbl">Sevak Name (పేరు):</span>
-          <strong class="info-val" id="cardSevakName">--</strong>
-        </div>
-        <div class="sevak-info-row">
-          <span class="info-lbl">WhatsApp (మొబైల్):</span>
-          <strong class="info-val" id="cardSevakPhone">--</strong>
-        </div>
-        <div class="sevak-info-row">
-          <span class="info-lbl">District & State:</span>
-          <strong class="info-val" id="cardSevakLocation">--</strong>
-        </div>
-        <div class="sevak-info-row">
-          <span class="info-lbl">Mandal / Town:</span>
-          <strong class="info-val" id="cardSevakMandal">--</strong>
-        </div>
-        <div class="sevak-info-row">
-          <span class="info-lbl">Kali Yugam Year:</span>
-          <strong class="info-val"><span id="cardSevakKaliYear">5127</span> కలి యుగం</strong>
-        </div>
-        <div class="sevak-info-row">
-          <span class="info-lbl">Date of Enlistment:</span>
-          <strong class="info-val" id="cardSevakDate">--</strong>
-        </div>
-      </div>
-
-      <div class="sevak-card-footer">
-        <div class="sevak-motto">“ధర్మో రక్షతి రక్షితః — Protect Dharma, Dharma Protects You”</div>
-        <div class="sevak-auth">Sanctified under the guidance of Shri Radha Manohar Das</div>
-      </div>
+    <div class="modal-badge-icon">
+      ✅
     </div>
 
-    <!-- ACTION BUTTONS -->
-    <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
-      <button type="button" id="cardWhatsappBtn" class="btn-whatsapp-share" onclick="shareOnWhatsAppWithImage()">
-        📲 Share ID + Card on WhatsApp (వాట్సాప్‌లో షేర్ చేయండి)
-      </button>
+    <div style="color: var(--saffron); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px;">
+      🚩 ABHAY HINDU SENA (అభయ్ హిందూ సేన)
+    </div>
+    <h2 style="font-family: var(--font-heading); color: var(--gold-bright); font-size: 1.35rem; margin-bottom: 6px;">
+      నమోదు విజయవంతమైంది!
+      <span style="display:block; font-size:0.95rem; color:#FFF; font-weight:400; margin-top:2px;">(Registration Successful)</span>
+    </h2>
 
-      <button type="button" id="downloadIdBtn" class="btn-download-card" onclick="downloadSevakIdCard()">
-        📥 Download ID Card Photo (కార్డ్ డౌన్‌లోడ్ చేసుకోండి)
-      </button>
+    <p style="color: #E0D5C1; font-size: 0.92rem; line-height: 1.6; margin: 12px 0 18px;">
+      హరే కృష్ణ, <strong id="modalVolunteerName" style="color:var(--gold-bright);">భక్తులు / సేవకులు</strong>! అభయ్ హిందూ సేన లో భాగస్వామ్యులైనందుకు కృతజ్ఞతలు.
+    </p>
 
-      <div style="display:flex; gap:10px;">
-        <button type="button" class="btn-copy-id" style="flex:1;" onclick="copySevakId()">
-          📋 Copy ID
-        </button>
-        <button type="button" class="modal-close-btn" style="flex:1;" onclick="closeModal()">
-          Done / మూసివేయండి
-        </button>
+    <!-- Official WhatsApp Channel Invite Box -->
+    <div style="background: rgba(37, 211, 102, 0.12); border: 1.5px solid rgba(37, 211, 102, 0.45); border-radius: 12px; padding: 18px 14px; margin-bottom: 20px;">
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:8px;">
+        <span style="font-size:1.4rem;">📢</span>
+        <strong style="color: #25D366; font-size: 1rem;">అధికారిక వాట్సాప్ ఛానల్ (Official Channel)</strong>
       </div>
+      <p style="font-size: 0.86rem; color: #FFF; margin: 0 0 14px; line-height: 1.5;">
+        అన్ని సేవా కార్యక్రమాలు, సమావేశాలు, ధర్మ జాగరణ మరియు గురూజీ సందేశాల కోసం వెంటనే మా అధికారిక వాట్సాప్ ఛానల్‌లో జాయిన్ అవ్వండి:
+      </p>
+      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" rel="noopener" class="btn-whatsapp-channel-join">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.075-2.029-.475-1.706-.702-2.79-2.457-2.875-2.571-.085-.114-.689-.916-.689-1.747 0-.831.436-1.239.591-1.397.155-.158.339-.197.452-.197.113 0 .226 0 .324.005.105.006.246-.04.385.293.144.344.492 1.2.535 1.288.043.088.072.19.014.305-.058.115-.088.187-.174.288-.088.102-.185.228-.264.306-.089.088-.182.185-.078.363.104.178.462.763.992 1.235.682.608 1.258.796 1.436.885.178.089.282.075.387-.046.105-.121.452-.527.573-.708.121-.181.242-.151.405-.09.163.06 1.034.488 1.212.577.178.089.297.133.34.207.043.074.043.431-.101.836z"/></svg>
+        👉 Join Official WhatsApp Channel 👈
+      </a>
     </div>
 
+    <button type="button" class="modal-close-btn" style="width:100%;" onclick="closeModal()">
+      Done / పూర్తి అయ్యింది
+    </button>
   </div>
 </div>
 
@@ -887,8 +707,6 @@
   </div>
 </footer>
 
-<!-- html2canvas for ID Card Generation & Sharing -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -1058,47 +876,9 @@
 
     const submitBtn = document.getElementById('vSubmitBtn');
     submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Generating Official Digital Sevak ID...';
+    submitBtn.textContent = '⏳ Submitting registration...';
 
     try {
-      // 1. LOCAL DUPLICATE CHECK: Verify if mobile number was already registered on this device
-      let localRegistry = [];
-      try {
-        localRegistry = JSON.parse(localStorage.getItem('ahs_volunteer_registry') || '[]');
-      } catch (err) {
-        localRegistry = [];
-      }
-
-      const existingRec = localRegistry.find(r => r.phone === cleanPhone);
-      if (existingRec) {
-        const existingId = existingRec.sevakId;
-        currentIssuedSevakId = existingId;
-
-        // Populate existing card
-        document.getElementById('cardSevakId').textContent = existingId;
-        document.getElementById('cardSevakName').textContent = existingRec.name || name;
-        document.getElementById('cardSevakPhone').textContent = "+91 " + (existingRec.phone || cleanPhone);
-        document.getElementById('cardSevakLocation').textContent = `${existingRec.district || district}, ${existingRec.state || state}`;
-        document.getElementById('cardSevakMandal').textContent = existingRec.mandal || mandal;
-        document.getElementById('cardSevakKaliYear').textContent = existingRec.kaliYear || getKaliYugamYear();
-        document.getElementById('cardSevakDate').textContent = existingRec.displayDate || existingRec.timestamp || 'Registered';
-
-        // Open Digital ID Modal
-        document.getElementById('confirmationModal').classList.add('active');
-
-        alert(`⚠️ ఈ మొబైల్ నంబర్ (+91 ${cleanPhone}) ఇప్పటికే నమోదు చేయబడింది!\n\nమీ అధికారిక సేవక్ ఐడీ: ${existingId}\n\n(This mobile number is already registered! Here is your issued Digital Sevak ID card.)`);
-
-        submitBtn.disabled = false;
-        submitBtn.textContent = '🚩 Enlist as Dharma Sevak & Get Official ID 🚩';
-        return;
-      }
-
-      // 2. GENERATE KALI YUGA SEVAK ID INSTANTLY
-      const kaliYear = getKaliYugamYear(new Date());
-      const nextSeq = getNextSevakSequence();
-      const sevakId = `${kaliYear}-ahs-${nextSeq}`;
-      currentIssuedSevakId = sevakId;
-
       const now = new Date();
       const timestampFormatted = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
       const displayDateStr = now.toLocaleDateString('en-IN', {
@@ -1106,9 +886,13 @@
         month: 'short',
         year: 'numeric'
       });
+      const kaliYear = getKaliYugamYear(now);
+      const nextSeq = getNextSevakSequence();
+      const refId = `${kaliYear}-ahs-${nextSeq}`;
+      currentIssuedSevakId = refId;
 
       const regPayload = {
-        sevakId: sevakId,
+        sevakId: refId,
         seqNumber: nextSeq,
         kaliYear: kaliYear,
         name: name,
@@ -1126,161 +910,35 @@
         source: 'Official Website'
       };
 
-      // Store in persistent local registry
+      // Store in persistent local registry for offline backup
+      let localRegistry = [];
+      try {
+        localRegistry = JSON.parse(localStorage.getItem('ahs_volunteer_registry') || '[]');
+      } catch (err) {
+        localRegistry = [];
+      }
       localRegistry.push(regPayload);
       localStorage.setItem('ahs_volunteer_registry', JSON.stringify(localRegistry));
       localStorage.setItem('ahs_last_registered_sevak', JSON.stringify(regPayload));
 
-      // 3. IMMEDIATELY POPULATE DIGITAL SEVAK ID CARD (ZERO LAG)
-      document.getElementById('cardSevakId').textContent = sevakId;
-      document.getElementById('cardSevakName').textContent = name;
-      document.getElementById('cardSevakPhone').textContent = "+91 " + cleanPhone;
-      document.getElementById('cardSevakLocation').textContent = `${district}, ${state}`;
-      document.getElementById('cardSevakMandal').textContent = mandal;
-      document.getElementById('cardSevakKaliYear').textContent = kaliYear;
-      document.getElementById('cardSevakDate').textContent = displayDateStr;
+      // Asynchronous background cloud sync to Google Sheets & Firestore
+      syncRegistrationToCloud(regPayload);
 
-      // 4. OPEN DIGITAL ID MODAL INSTANTLY
+      // Open Success WhatsApp Channel Modal
+      const modalNameEl = document.getElementById('modalVolunteerName');
+      if (modalNameEl) modalNameEl.textContent = name;
       document.getElementById('confirmationModal').classList.add('active');
 
       // Reset form fields
       document.getElementById('volunteerForm').reset();
-
-      // 5. ASYNCHRONOUS NON-BLOCKING BACKGROUND CLOUD SYNC
-      syncRegistrationToCloud(regPayload);
 
     } catch (err) {
       console.error("Volunteer registration error:", err);
       alert("Registration error: " + err.message + "\nPlease try again.");
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = '🚩 Enlist as Dharma Sevak & Get Official ID 🚩';
+      submitBtn.textContent = '🚩 Register & Join Abhay Hindu Sena (నమోదు చేసుకోండి) 🚩';
     }
-  }
-
-  // DOWNLOAD ID CARD AS HIGH-RESOLUTION PNG IMAGE
-  async function downloadSevakIdCard() {
-    const card = document.getElementById('sevakCardArea');
-    const btn = document.getElementById('downloadIdBtn');
-    const origText = btn ? btn.innerHTML : '';
-    if (btn) {
-      btn.innerHTML = '⏳ Generating Photo...';
-      btn.disabled = true;
-    }
-
-    try {
-      if (!window.html2canvas) {
-        throw new Error("Image generator is loading. Please wait a moment.");
-      }
-      const canvas = await html2canvas(card, {
-        scale: 3,
-        backgroundColor: '#0d0303',
-        useCORS: true,
-        allowTaint: true
-      });
-      const dataUrl = canvas.toDataURL('image/png');
-      const a = document.createElement('a');
-      a.href = dataUrl;
-      a.download = `AHS_Dharma_Sevak_${currentIssuedSevakId || 'Card'}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } catch (err) {
-      console.error("Card download error:", err);
-      alert("Could not download card image: " + err.message);
-    } finally {
-      if (btn) {
-        btn.innerHTML = origText;
-        btn.disabled = false;
-      }
-    }
-  }
-
-  // SHARE ON WHATSAPP WITH IMAGE FILE ATTACHED
-  async function shareOnWhatsAppWithImage() {
-    const card = document.getElementById('sevakCardArea');
-    const shareBtn = document.getElementById('cardWhatsappBtn');
-    const name = document.getElementById('cardSevakName').textContent || '';
-    const mandal = document.getElementById('cardSevakMandal').textContent || '';
-    const loc = document.getElementById('cardSevakLocation').textContent || '';
-    const kaliYear = document.getElementById('cardSevakKaliYear').textContent || '5127';
-
-    const shareMsg = 
-      `🚩 జై శ్రీ రామ్! నేను అభయ్ హిందూ సేన (Abhay Hindu Sena) లో ధర్మ సేవకుడిగా చేరాను.\n\n` +
-      `🆔 నా అధికారిక సేవక్ ఐడీ: *${currentIssuedSevakId}*\n` +
-      `👤 పేరు: ${name}\n` +
-      `📍 ప్రాంతం: ${mandal}, ${loc}\n` +
-      `📅 యుగం: ${kaliYear} కలియుగం\n\n` +
-      `సనాతన ధర్మ రక్షణ, దేవాలయాల స్వతంత్రం, నిత్య అన్నదానంలో మీరూ భాగస్వామ్యం అవ్వండి!\n` +
-      `👉 మీ డిజిటల్ సేవక్ ఐడీ ఇక్కడ పొందండి:\nhttps://abhayhindusena.org.in/join.html\n\n` +
-      `#AbhayHinduSena #DharmaSevak #RadhaManoharDas`;
-
-    // Attempt native Web Share with file attachment
-    if (navigator.share && window.html2canvas) {
-      try {
-        if (shareBtn) {
-          shareBtn.disabled = true;
-          shareBtn.textContent = '⏳ Preparing Card Image...';
-        }
-
-        const canvas = await html2canvas(card, {
-          scale: 2.5,
-          backgroundColor: '#0d0303',
-          useCORS: true,
-          allowTaint: true
-        });
-
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        if (blob) {
-          const file = new File([blob], `AHS_Sevak_${currentIssuedSevakId}.png`, { type: 'image/png' });
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            try {
-              await navigator.share({
-                title: 'Abhay Hindu Sena - Dharma Sevak ID',
-                text: shareMsg,
-                files: [file]
-              });
-              if (shareBtn) {
-                shareBtn.disabled = false;
-                shareBtn.innerHTML = '📲 Share ID + Card on WhatsApp (వాట్సాప్‌లో షేర్ చేయండి)';
-              }
-              return;
-            } catch (shErr) {
-              if (shErr.name === 'AbortError') {
-                if (shareBtn) {
-                  shareBtn.disabled = false;
-                  shareBtn.innerHTML = '📲 Share ID + Card on WhatsApp (వాట్సాప్‌లో షేర్ చేయండి)';
-                }
-                return;
-              }
-            }
-          }
-        }
-      } catch (err) {
-        console.warn("Native file share attempt:", err);
-      } finally {
-        if (shareBtn) {
-          shareBtn.disabled = false;
-          shareBtn.innerHTML = '📲 Share ID + Card on WhatsApp (వాట్సాప్‌లో షేర్ చేయండి)';
-        }
-      }
-    }
-
-    // Fallback for Desktop
-    downloadSevakIdCard();
-    setTimeout(() => {
-      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMsg)}`;
-      window.open(waUrl, '_blank');
-    }, 600);
-  }
-
-  function copySevakId() {
-    if (!currentIssuedSevakId) return;
-    navigator.clipboard.writeText(currentIssuedSevakId).then(() => {
-      alert(`Sevak ID copied: ${currentIssuedSevakId} 🚩\n(సేవక్ ఐడీ కాపీ చేయబడింది)`);
-    }).catch(() => {
-      prompt("Your Sevak ID:", currentIssuedSevakId);
-    });
   }
 
   function closeModal() {

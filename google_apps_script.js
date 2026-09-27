@@ -160,6 +160,60 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : "";
+  
+  // Return all registrations from Google Sheet as JSON
+  if (action === "getSevaks" || action === "list" || action === "getAll" || action === "read") {
+    try {
+      var doc = getSpreadsheet();
+      var sheet = doc.getSheetByName("Sevaks") || doc.getActiveSheet();
+      var lastRow = sheet.getLastRow();
+      var result = [];
+
+      if (lastRow > 1) {
+        var data = sheet.getRange(2, 1, lastRow - 1, 13).getValues();
+        for (var i = 0; i < data.length; i++) {
+          var r = data[i];
+          // Ensure row has at least an ID, name, or phone
+          if (r[0] || r[1] || r[2]) {
+            result.push({
+              sevakId: String(r[0] || ""),
+              name: String(r[1] || ""),
+              phone: String(r[2] || "").replace(/[^0-9]/g, ''),
+              state: String(r[3] || ""),
+              district: String(r[4] || ""),
+              mandal: String(r[5] || ""),
+              referral: String(r[6] || ""),
+              email: String(r[7] || ""),
+              instagram: String(r[8] || ""),
+              question: String(r[9] || ""),
+              suggestion: String(r[10] || ""),
+              timestamp: String(r[11] || ""),
+              source: String(r[12] || "")
+            });
+          }
+        }
+      }
+
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          status: "success",
+          total: result.length,
+          sevaks: result
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+
+    } catch (err) {
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          status: "error",
+          message: err.toString()
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
+  // Default status ping
   return ContentService
     .createTextOutput(JSON.stringify({
       status: "online",

@@ -1346,22 +1346,43 @@
       </div>
     </div>
 
+    <!-- Sync & Storage Status Banner -->
+    <div id="syncStatusBanner" style="display:flex; margin-bottom:16px; padding:12px 18px; border-radius:10px; font-size:0.86rem; border:1px solid rgba(212,175,55,0.35); background:rgba(20,7,7,0.7); align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <div id="syncStatusText" style="color:var(--gold-bright);">
+        ℹ️ <strong>Database Status:</strong> Loaded from Google Sheets & Local Backup.
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <span id="sheetsBadge" style="font-size:0.75rem; padding:4px 10px; border-radius:12px; background:rgba(46,204,113,0.18); border:1px solid rgba(46,204,113,0.4); color:#2ecc71; font-weight:600;">📊 Google Sheets: Active</span>
+        <span id="backupBadge" style="font-size:0.75rem; padding:4px 10px; border-radius:12px; background:rgba(52,152,219,0.18); border:1px solid rgba(52,152,219,0.4); color:#5dade2; font-weight:600;">💾 Local Storage: Active</span>
+        <span id="firestoreBadge" style="font-size:0.75rem; padding:4px 10px; border-radius:12px; background:rgba(241,196,15,0.18); border:1px solid rgba(241,196,15,0.4); color:#f1c40f; font-weight:600; cursor:pointer;" onclick="openGasModal()" title="Click to configure Firestore security rules">☁️ Firestore: Check Rules ⚙️</span>
+      </div>
+    </div>
+
     <!-- Registration Table Card -->
     <div class="dash-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
         <div>
           <h2 style="margin:0;">📋 Official Dharma Sevaks Directory & Backup</h2>
           <p class="card-desc" style="margin-top:4px;">
-            Real-time dual backup (Google Sheets + Firestore) with authentic Kali Yugam Sevak IDs.
+            Dual backup system (Google Sheets + Cloud Firestore + Local Cache) with instant search and 1-click WhatsApp connect.
           </p>
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" class="btn-submit" style="width:auto; padding:10px 18px; font-size:0.88rem; background:linear-gradient(135deg, #27ae60, #1e8449); box-shadow:0 4px 15px rgba(39,174,96,0.3);" onclick="exportRegistrationsToCSV()">
-            📥 Export All to CSV / Excel
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-submit" id="btnSyncGas" style="width:auto; padding:9px 15px; font-size:0.86rem; background:linear-gradient(135deg, #FF6B1A, #D4AF37); box-shadow:0 4px 15px rgba(255,107,26,0.3);" onclick="syncFromGoogleSheets()">
+            🔄 Sync from Google Sheets
           </button>
-          <button type="button" class="btn-action" style="padding:10px 14px; font-size:0.85rem;" onclick="openGasModal()">
-            ⚙️ Google Sheets Settings
+          <button type="button" class="btn-action" style="padding:9px 13px; font-size:0.85rem;" onclick="openImportModal()">
+            📥 Import Sheet CSV
+          </button>
+          <button type="button" class="btn-action" style="padding:9px 13px; font-size:0.85rem;" onclick="downloadLocalBackup()">
+            💾 Backup DB (JSON)
+          </button>
+          <button type="button" class="btn-submit" style="width:auto; padding:9px 15px; font-size:0.86rem; background:linear-gradient(135deg, #27ae60, #1e8449); box-shadow:0 4px 15px rgba(39,174,96,0.3);" onclick="exportRegistrationsToCSV()">
+            📥 Export to CSV / Excel
+          </button>
+          <button type="button" class="btn-action" style="padding:9px 13px; font-size:0.85rem;" onclick="openGasModal()">
+            ⚙️ Backup & Rules Guide
           </button>
         </div>
       </div>
@@ -1598,26 +1619,95 @@
   </div>
 </div>
 
-<!-- GOOGLE SHEETS SETTINGS MODAL -->
+<!-- GOOGLE SHEETS & BACKUP SETTINGS MODAL -->
 <div class="modal-overlay" id="gasModal" onclick="closeGasModal()">
-  <div class="modal-card" onclick="event.stopPropagation()" style="max-width:560px;">
+  <div class="modal-card" onclick="event.stopPropagation()" style="max-width:600px; max-height:90vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-gold); padding-bottom:12px; margin-bottom:16px;">
-      <h3 style="font-family:'Cinzel',serif; color:var(--gold-bright); font-size:1.2rem;">⚙️ Google Sheets Integration Settings</h3>
+      <h3 style="font-family:'Cinzel',serif; color:var(--gold-bright); font-size:1.15rem;">⚙️ Dual Backup System Settings</h3>
       <button onclick="closeGasModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;" aria-label="Close">&times;</button>
     </div>
-    <p class="card-desc" style="margin-bottom:14px;">
-      Paste your deployed Google Apps Script Web App URL below. When volunteers register on the portal, rows are instantly added to your Google Sheet in real-time.
+    
+    <!-- 1. Google Sheets Web App -->
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:14px; margin-bottom:16px;">
+      <h4 style="color:var(--gold-bright); font-size:0.92rem; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+        <span>📊 1. Google Sheets Web App Webhook (Primary Storage)</span>
+      </h4>
+      <p class="card-desc" style="margin-bottom:10px; font-size:0.8rem;">
+        When volunteers register on the portal, rows are instantly added to your Google Sheet in real-time.
+      </p>
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="gasUrlInput" style="font-size:0.78rem;">Google Apps Script Web App URL (/exec) *</label>
+        <input type="url" id="gasUrlInput" class="form-input" placeholder="https://script.google.com/macros/s/.../exec" style="margin-top:4px;">
+        <small style="color:var(--text-muted); font-size:0.72rem; margin-top:4px; display:block;">
+          Must end with <code>/exec</code> and be deployed with access: <strong>Anyone</strong>.
+        </small>
+      </div>
+      <button type="button" class="btn-submit" onclick="saveGasUrl()" style="width:100%; padding:8px; font-size:0.82rem; margin-top:10px;">💾 Save Webhook URL</button>
+    </div>
+
+    <!-- 2. Firestore Cloud Backup Activation Guide -->
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(241,196,15,0.3); border-radius:8px; padding:14px;">
+      <h4 style="color:var(--gold-bright); font-size:0.92rem; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+        <span>☁️ 2. Cloud Firestore (Live Automatic 2nd Backup)</span>
+      </h4>
+      <p class="card-desc" style="margin-bottom:10px; font-size:0.8rem; color:#DDD;">
+        If Firestore reports <em>Permission Denied</em>, you can enable read/write backup in 20 seconds:
+      </p>
+      <ol style="margin-left:18px; font-size:0.8rem; color:var(--text-muted); line-height:1.6;">
+        <li>Open <a href="https://console.firebase.google.com/project/abhay-hindu-sena-org/firestore/rules" target="_blank" style="color:var(--gold-bright);">Firebase Firestore Rules ↗</a></li>
+        <li>Paste this security rule:
+          <pre style="background:#000; color:#2ecc71; padding:8px; border-radius:6px; margin:6px 0; font-size:0.75rem; overflow-x:auto;">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}</pre>
+        </li>
+        <li>Click <strong>Publish</strong>. Firestore will immediately begin syncing all registrations live!</li>
+      </ol>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+      <button type="button" class="btn-action" onclick="closeGasModal()">Done / మూసివేయండి</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT CSV / BACKUP MODAL -->
+<div class="modal-overlay" id="importModal" onclick="closeImportModal()">
+  <div class="modal-card" onclick="event.stopPropagation()" style="max-width:620px; max-height:90vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-gold); padding-bottom:12px; margin-bottom:16px;">
+      <h3 style="font-family:'Cinzel',serif; color:var(--gold-bright); font-size:1.15rem;">📥 Import Volunteers from Google Sheets CSV</h3>
+      <button onclick="closeImportModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;" aria-label="Close">&times;</button>
+    </div>
+    <p class="card-desc" style="margin-bottom:14px; font-size:0.85rem;">
+      Import all your existing Google Sheet registrations into this dashboard with one click:
     </p>
-    <div class="form-group">
-      <label for="gasUrlInput">Google Apps Script Web App URL *</label>
-      <input type="url" id="gasUrlInput" class="form-input" placeholder="https://script.google.com/macros/s/.../exec" style="margin-top:4px;">
-      <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px; display:block;">
-        Must end with <code>/exec</code> and be deployed with access: <strong>Anyone</strong>.
+    
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:14px; margin-bottom:14px;">
+      <label style="color:var(--gold-bright); font-size:0.82rem; font-weight:600; display:block; margin-bottom:6px;">
+        Option A: Upload Downloaded Google Sheet (.CSV file)
+      </label>
+      <input type="file" id="csvFileInput" accept=".csv,text/csv" class="form-input" onchange="handleCsvFileUpload(event)">
+      <small style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:6px;">
+        💡 In your Google Sheet, click: <strong>File ➔ Download ➔ Comma Separated Values (.csv)</strong> and upload it here.
       </small>
     </div>
-    <div style="display:flex; gap:10px; margin-top:20px;">
-      <button type="button" class="btn-submit" onclick="saveGasUrl()" style="flex:1;">💾 Save Settings</button>
-      <button type="button" class="btn-action" onclick="closeGasModal()">Cancel</button>
+
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:14px;">
+      <label style="color:var(--gold-bright); font-size:0.82rem; font-weight:600; display:block; margin-bottom:6px;">
+        Option B: Or Paste CSV Text Directly
+      </label>
+      <textarea id="csvTextInput" class="form-input" rows="4" placeholder="Paste CSV rows here..." style="font-family:monospace; font-size:0.78rem;"></textarea>
+      <button type="button" class="btn-submit" onclick="processCsvTextInput()" style="width:100%; padding:9px; font-size:0.84rem; margin-top:10px;">
+        ⚡ Process Pasted CSV Data
+      </button>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+      <button type="button" class="btn-action" onclick="closeImportModal()">Cancel</button>
     </div>
   </div>
 </div>
@@ -2838,64 +2928,192 @@
     const input = document.getElementById('gasUrlInput');
     if (input && storedGasUrl) input.value = storedGasUrl;
 
-    db.collection('volunteer_registrations')
-      .orderBy('registeredAt', 'desc')
-      .onSnapshot(snapshot => {
-        allRegistrations = [];
-        let apCount = 0;
-        let tgCount = 0;
-        let otherCount = 0;
+    // 1. Immediately load any existing local backups (offline resilience)
+    loadLocalRegistrationsCache();
 
-        snapshot.forEach(doc => {
-          const item = doc.data();
-          item.id = doc.id;
-          allRegistrations.push(item);
+    // 2. Automatically sync from Google Sheets on page load
+    setTimeout(() => {
+      syncFromGoogleSheets(true); // silent background check
+    }, 800);
 
-          const st = (item.state || '').toLowerCase();
-          if (st.includes('andhra')) apCount++;
-          else if (st.includes('telangana')) tgCount++;
-          else otherCount++;
-        });
+    // 3. Connect Firestore listener with non-blocking error handling
+    initFirestoreRegistrationsListener();
+  }
 
-        const total = allRegistrations.length;
-        const tabEl = document.getElementById('tabRegCount');
-        const totEl = document.getElementById('regTotalCount');
-        const apEl = document.getElementById('regApCount');
-        const tgEl = document.getElementById('regTgCount');
-        const othEl = document.getElementById('regOtherCount');
-
-        if (tabEl) tabEl.textContent = total;
-        if (totEl) totEl.textContent = total;
-        if (apEl) apEl.textContent = apCount;
-        if (tgEl) tgEl.textContent = tgCount;
-        if (othEl) othEl.textContent = otherCount;
-
-        renderRegistrationsTable(allRegistrations);
-      }, err => {
-        console.warn("Firestore registrations notice:", err);
-        // Fallback to local storage registry
-        try {
-          const localData = JSON.parse(localStorage.getItem('ahs_volunteer_registry') || '[]');
-          if (localData && localData.length > 0) {
-            allRegistrations = localData;
-            renderRegistrationsTable(allRegistrations);
-            const totEl = document.getElementById('regTotalCount');
-            if (totEl) totEl.textContent = localData.length;
-            return;
-          }
-        } catch (e) {}
-
-        const tbody = document.getElementById('regTableBody');
-        if (tbody) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="9" style="text-align:center; padding:30px; color:#c7b5a0;">
-                No registrations recorded yet.
-              </td>
-            </tr>
-          `;
+  function loadLocalRegistrationsCache() {
+    try {
+      const backupData = JSON.parse(localStorage.getItem('ahs_volunteer_backup') || '[]');
+      const regData = JSON.parse(localStorage.getItem('ahs_volunteer_registry') || '[]');
+      
+      const combined = [...backupData];
+      regData.forEach(r => {
+        const p = (r.phone || '').replace(/[^0-9]/g, '');
+        if (!combined.some(c => (c.phone || '').replace(/[^0-9]/g, '') === p && p.length >= 10)) {
+          combined.push(r);
         }
       });
+
+      if (combined.length > 0) {
+        allRegistrations = combined;
+        updateRegistrationMetrics(allRegistrations);
+        renderRegistrationsTable(allRegistrations);
+        updateStatusBanner();
+      }
+    } catch (e) {
+      console.warn("Local storage cache load note:", e);
+    }
+  }
+
+  function updateStatusBanner() {
+    const banner = document.getElementById('syncStatusText');
+    if (banner) {
+      banner.innerHTML = `ℹ️ <strong>Database Status:</strong> ${allRegistrations.length} volunteers loaded & safely backed up.`;
+    }
+  }
+
+  function updateRegistrationMetrics(list) {
+    let apCount = 0;
+    let tgCount = 0;
+    let otherCount = 0;
+
+    (list || []).forEach(item => {
+      const st = (item.state || '').toLowerCase();
+      if (st.includes('andhra')) apCount++;
+      else if (st.includes('telangana')) tgCount++;
+      else otherCount++;
+    });
+
+    const total = (list || []).length;
+    const tabEl = document.getElementById('tabRegCount');
+    const totEl = document.getElementById('regTotalCount');
+    const apEl = document.getElementById('regApCount');
+    const tgEl = document.getElementById('regTgCount');
+    const othEl = document.getElementById('regOtherCount');
+
+    if (tabEl) tabEl.textContent = total;
+    if (totEl) totEl.textContent = total;
+    if (apEl) apEl.textContent = apCount;
+    if (tgEl) tgEl.textContent = tgCount;
+    if (othEl) othEl.textContent = otherCount;
+  }
+
+  // Live Sync from Google Sheets via Apps Script API
+  async function syncFromGoogleSheets(isSilent = false) {
+    const btn = document.getElementById('btnSyncGas');
+    const origText = btn ? btn.innerHTML : '';
+    if (btn && !isSilent) {
+      btn.innerHTML = '⏳ Syncing Sheets...';
+      btn.disabled = true;
+    }
+
+    const defaultGasUrl = "https://script.google.com/macros/s/AKfycbyFy8TkBpOHXIYo06Z4vyRcRxR0aDPfKouOgcSFUMGfR09QC-fbKjcBy67AyRxUr9L19A/exec";
+    const gasUrl = localStorage.getItem('ahs_gas_url') || defaultGasUrl;
+
+    try {
+      const fetchUrl = gasUrl + (gasUrl.includes('?') ? '&' : '?') + 'action=getSevaks&t=' + Date.now();
+      const res = await fetch(fetchUrl);
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+      const data = await res.json();
+
+      if (data && data.status === 'success' && Array.isArray(data.sevaks)) {
+        let addedCount = 0;
+        data.sevaks.forEach(sheetItem => {
+          const cleanP = (sheetItem.phone || '').replace(/[^0-9]/g, '');
+          const existingIdx = allRegistrations.findIndex(r => {
+            const p = (r.phone || '').replace(/[^0-9]/g, '');
+            return (cleanP && p === cleanP) || (r.sevakId && r.sevakId === sheetItem.sevakId);
+          });
+          if (existingIdx === -1) {
+            allRegistrations.unshift(sheetItem);
+            addedCount++;
+          } else {
+            // Merge/update
+            allRegistrations[existingIdx] = { ...allRegistrations[existingIdx], ...sheetItem };
+          }
+        });
+
+        // Save persistent backup
+        localStorage.setItem('ahs_volunteer_backup', JSON.stringify(allRegistrations));
+        updateRegistrationMetrics(allRegistrations);
+        renderRegistrationsTable(allRegistrations);
+        updateStatusBanner();
+
+        const badge = document.getElementById('sheetsBadge');
+        if (badge) {
+          badge.textContent = `📊 Sheets: ${data.sevaks.length} Synced 🟢`;
+          badge.style.color = '#2ecc71';
+        }
+
+        if (!isSilent) {
+          showToast(`✅ Synced ${data.sevaks.length} registrations from Google Sheets! 🚩`);
+        }
+      } else {
+        if (!isSilent) {
+          showToast("Google Sheets response received. Use 'Import Sheet CSV' if needed.");
+        }
+      }
+    } catch (err) {
+      console.warn("Google Sheets fetch notice:", err.message);
+      if (!isSilent) {
+        alert("Notice: Could not automatically read from Apps Script Webhook directly.\n\nTip: You can use '📥 Import Sheet CSV' button to upload or paste your downloaded Google Sheet CSV in 2 seconds!");
+      }
+    } finally {
+      if (btn && !isSilent) {
+        btn.innerHTML = origText;
+        btn.disabled = false;
+      }
+    }
+  }
+
+  // Firestore background real-time sync with graceful fallback
+  function initFirestoreRegistrationsListener() {
+    if (!db) return;
+    try {
+      db.collection('volunteer_registrations')
+        .onSnapshot(snapshot => {
+          let fsAdded = 0;
+          snapshot.forEach(doc => {
+            const item = doc.data();
+            item.id = doc.id;
+            const cleanP = (item.phone || '').replace(/[^0-9]/g, '');
+            const existingIdx = allRegistrations.findIndex(r => {
+              const p = (r.phone || '').replace(/[^0-9]/g, '');
+              return (cleanP && p === cleanP) || (r.sevakId && r.sevakId === item.sevakId);
+            });
+            if (existingIdx === -1) {
+              allRegistrations.unshift(item);
+              fsAdded++;
+            } else {
+              allRegistrations[existingIdx] = { ...allRegistrations[existingIdx], ...item };
+            }
+          });
+
+          // Save backup
+          localStorage.setItem('ahs_volunteer_backup', JSON.stringify(allRegistrations));
+          updateRegistrationMetrics(allRegistrations);
+          renderRegistrationsTable(allRegistrations);
+          updateStatusBanner();
+
+          const fsBadge = document.getElementById('firestoreBadge');
+          if (fsBadge) {
+            fsBadge.textContent = '☁️ Firestore: Live Synced 🟢';
+            fsBadge.style.color = '#2ecc71';
+            fsBadge.style.borderColor = 'rgba(46,204,113,0.4)';
+          }
+        }, err => {
+          console.warn("Firestore volunteer listener notice:", err.message);
+          const fsBadge = document.getElementById('firestoreBadge');
+          if (fsBadge) {
+            if (err.message && err.message.toLowerCase().includes('permission')) {
+              fsBadge.textContent = '☁️ Firestore: Fix Rules ⚙️';
+              fsBadge.style.color = '#e74c3c';
+              fsBadge.style.borderColor = 'rgba(231,76,60,0.4)';
+            }
+          }
+        });
+    } catch (e) {
+      console.warn("Firestore registrations init note:", e);
+    }
   }
 
   function renderRegistrationsTable(list) {
@@ -2905,8 +3123,8 @@
     if (!list || list.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="9" style="text-align:center; padding:40px; color:var(--text-muted);">
-            No Sevak registrations found matching current filters.
+          <td colspan="10" style="text-align:center; padding:40px; color:var(--text-muted);">
+            No Sevak registrations found. Click <strong>🔄 Sync from Google Sheets</strong> or <strong>📥 Import Sheet CSV</strong> to populate!
           </td>
         </tr>
       `;
@@ -2914,25 +3132,25 @@
     }
 
     tbody.innerHTML = list.map(item => {
-      const sevakId = item.sevakId || item.id || 'N/A';
+      const sevakId = item.sevakId || item.id || 'AHS-SEVAK';
       const name = item.name || 'Sevak';
-      const phone = item.phone || '';
+      const phone = (item.phone || '').replace(/[^0-9]/g, '');
       const state = item.state || '';
       const district = item.district || '';
       const mandal = item.mandal || '';
       const referral = (item.referral && item.referral !== 'Direct') ? item.referral : '-';
       const insta = (item.instagram && item.instagram !== 'N/A') ? item.instagram : '-';
       const hasNote = (item.question && item.question !== 'N/A') || (item.suggestion && item.suggestion !== 'N/A');
-      const timeDisplay = item.timestamp || (item.registeredAt && item.registeredAt.toDate ? item.registeredAt.toDate().toLocaleString('en-IN') : '-');
+      const timeDisplay = item.timestamp || item.displayDate || (item.registeredAt && item.registeredAt.toDate ? item.registeredAt.toDate().toLocaleString('en-IN') : '-');
 
-      const waLink = phone ? `https://wa.me/91${phone.replace(/[^0-9]/g, '')}` : '#';
+      const waLink = phone ? `https://wa.me/91${phone}` : '#';
 
       return `
         <tr>
           <td><span class="sevak-id-tag">${escapeHtml(sevakId)}</span></td>
           <td><strong>${escapeHtml(name)}</strong></td>
           <td>
-            <a href="${waLink}" target="_blank" style="color:#2ecc71; text-decoration:none; font-weight:600;" title="Click to chat on WhatsApp">
+            <a href="${waLink}" target="_blank" style="color:#2ecc71; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:4px;" title="Chat directly on WhatsApp">
               💬 +91 ${escapeHtml(phone)}
             </a>
           </td>
@@ -2989,6 +3207,7 @@
     renderRegistrationsTable(allRegistrations);
   }
 
+  // Export current list to CSV
   function exportRegistrationsToCSV() {
     if (!allRegistrations || allRegistrations.length === 0) {
       alert("No registrations available to export.");
@@ -3023,7 +3242,7 @@
       `"${(r.instagram || '').replace(/"/g, '""')}"`,
       `"${(r.question || '').replace(/"/g, '""')}"`,
       `"${(r.suggestion || '').replace(/"/g, '""')}"`,
-      `"${(r.timestamp || '').replace(/"/g, '""')}"`,
+      `"${(r.timestamp || r.displayDate || '').replace(/"/g, '""')}"`,
       `"${(r.source || 'Website').replace(/"/g, '""')}"`
     ]);
 
@@ -3036,7 +3255,174 @@
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showToast("Downloaded official Sevaks CSV backup! 🚩");
+    showToast("Downloaded official Sevaks CSV export! 🚩");
+  }
+
+  // Backup entire database as JSON file to computer
+  function downloadLocalBackup() {
+    if (!allRegistrations || allRegistrations.length === 0) {
+      alert("No registration records to backup yet. Click 'Sync from Google Sheets' or 'Import Sheet CSV' first.");
+      return;
+    }
+
+    const backupPayload = {
+      organization: "Abhay Hindu Sena",
+      founder: "Shri Radha Manohar Das",
+      backupDate: new Date().toISOString(),
+      totalRecords: allRegistrations.length,
+      sevaks: allRegistrations
+    };
+
+    const jsonStr = JSON.stringify(backupPayload, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `AHS_Volunteer_Database_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast("💾 Database backup safely saved to your computer! 🚩");
+  }
+
+  // Modal Controls for Import
+  function openImportModal() {
+    document.getElementById('importModal').classList.add('active');
+  }
+
+  function closeImportModal() {
+    document.getElementById('importModal').classList.remove('active');
+  }
+
+  // Handle CSV file upload
+  function handleCsvFileUpload(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      parseAndImportCsv(text);
+    };
+    reader.readAsText(file);
+  }
+
+  // Handle CSV pasted text
+  function processCsvTextInput() {
+    const text = (document.getElementById('csvTextInput').value || '').trim();
+    if (!text) {
+      alert("Please paste CSV data first.");
+      return;
+    }
+    parseAndImportCsv(text);
+  }
+
+  // Parse CSV text and merge into allRegistrations
+  function parseAndImportCsv(csvText) {
+    try {
+      const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
+      if (lines.length < 2) {
+        alert("The CSV content seems to be empty or missing data rows.");
+        return;
+      }
+
+      // Simple CSV parser supporting quotes
+      function parseCsvLine(line) {
+        const result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"' || char === "'") {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            result.push(cur.trim().replace(/^["']|["']$/g, ''));
+            cur = '';
+          } else {
+            cur += char;
+          }
+        }
+        result.push(cur.trim().replace(/^["']|["']$/g, ''));
+        return result;
+      }
+
+      const headerCols = parseCsvLine(lines[0]).map(h => h.toLowerCase());
+      
+      // Determine column indices
+      let idIdx = headerCols.findIndex(h => h.includes('id'));
+      let nameIdx = headerCols.findIndex(h => h.includes('name') || h.includes('పేరు'));
+      let phoneIdx = headerCols.findIndex(h => h.includes('mobile') || h.includes('phone') || h.includes('వాట్సాప్') || h.includes('మొబైల్'));
+      let stateIdx = headerCols.findIndex(h => h.includes('state') || h.includes('రాష్ట్రం'));
+      let distIdx = headerCols.findIndex(h => h.includes('district') || h.includes('city') || h.includes('జిల్లా'));
+      let mandalIdx = headerCols.findIndex(h => h.includes('mandal') || h.includes('area') || h.includes('మండలం'));
+      let refIdx = headerCols.findIndex(h => h.includes('refer') || h.includes('రిఫరల్'));
+      let emailIdx = headerCols.findIndex(h => h.includes('email') || h.includes('ఈమెయిల్'));
+      let instaIdx = headerCols.findIndex(h => h.includes('insta') || h.includes('ఇన్‌స్టా'));
+      let qIdx = headerCols.findIndex(h => h.includes('question') || h.includes('ప్రశ్న'));
+      let sugIdx = headerCols.findIndex(h => h.includes('suggest') || h.includes('సలహా'));
+      let timeIdx = headerCols.findIndex(h => h.includes('date') || h.includes('time') || h.includes('registered'));
+
+      // Defaults if headers not named standard
+      if (idIdx === -1) idIdx = 0;
+      if (nameIdx === -1) nameIdx = 1;
+      if (phoneIdx === -1) phoneIdx = 2;
+      if (stateIdx === -1) stateIdx = 3;
+      if (distIdx === -1) distIdx = 4;
+      if (mandalIdx === -1) mandalIdx = 5;
+
+      let importedCount = 0;
+      for (let i = 1; i < lines.length; i++) {
+        const cols = parseCsvLine(lines[i]);
+        if (cols.length < 2) continue;
+
+        const rowPhone = (cols[phoneIdx] || '').replace(/[^0-9]/g, '');
+        const rowName = cols[nameIdx] || '';
+        const rowId = cols[idIdx] || `5127-ahs-${1000 + i}`;
+
+        if (!rowName && !rowPhone) continue;
+
+        const record = {
+          sevakId: rowId,
+          name: rowName,
+          phone: rowPhone,
+          state: cols[stateIdx] || 'Andhra Pradesh',
+          district: cols[distIdx] || '',
+          mandal: (mandalIdx !== -1 && cols[mandalIdx]) ? cols[mandalIdx] : '',
+          referral: (refIdx !== -1 && cols[refIdx]) ? cols[refIdx] : 'Direct',
+          email: (emailIdx !== -1 && cols[emailIdx]) ? cols[emailIdx] : 'N/A',
+          instagram: (instaIdx !== -1 && cols[instaIdx]) ? cols[instaIdx] : 'N/A',
+          question: (qIdx !== -1 && cols[qIdx]) ? cols[qIdx] : 'N/A',
+          suggestion: (sugIdx !== -1 && cols[sugIdx]) ? cols[sugIdx] : 'N/A',
+          timestamp: (timeIdx !== -1 && cols[timeIdx]) ? cols[timeIdx] : new Date().toLocaleDateString('en-IN'),
+          source: 'Google Sheets Import'
+        };
+
+        const existingIdx = allRegistrations.findIndex(r => {
+          const p = (r.phone || '').replace(/[^0-9]/g, '');
+          return (rowPhone && p === rowPhone) || (r.sevakId && r.sevakId === rowId);
+        });
+
+        if (existingIdx === -1) {
+          allRegistrations.push(record);
+          importedCount++;
+        } else {
+          allRegistrations[existingIdx] = { ...allRegistrations[existingIdx], ...record };
+        }
+      }
+
+      // Save persistent backup
+      localStorage.setItem('ahs_volunteer_backup', JSON.stringify(allRegistrations));
+      updateRegistrationMetrics(allRegistrations);
+      renderRegistrationsTable(allRegistrations);
+      updateStatusBanner();
+      closeImportModal();
+
+      showToast(`✅ Successfully imported ${importedCount} volunteer records! 🚩`);
+
+    } catch (err) {
+      console.error("CSV import error:", err);
+      alert("Error parsing CSV: " + err.message);
+    }
   }
 
   function viewSevakDetails(sevakId) {
