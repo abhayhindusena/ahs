@@ -854,24 +854,63 @@
       gap: 8px;
       width: 100%;
       box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
     }
     .circle-logo {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+    .header-brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
     }
     .header-brand-text h1 {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
     }
     .header-brand-text span {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
     }
     .header-actions {
+      display: flex;
+      align-items: center;
       gap: 6px;
+      flex-shrink: 0;
+    }
+    .header-actions .btn-community-top,
+    .header-actions .btn-appointment-top {
+      display: none !important;
     }
     .header-btn {
-      padding: 6px 12px;
-      font-size: 0.75rem;
+      padding: 6px 11px;
+      font-size: 0.74rem;
       border-radius: 16px;
+      gap: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .glass-navbar {
       width: calc(100% - 20px);

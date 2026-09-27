@@ -1662,11 +1662,73 @@
 
   /* RESPONSIVE QUERIES - MOBILE ONLY ENHANCEMENTS */
   @media (max-width: 768px) {
-    /* Header Bar */
-    .site-header { padding: 10px 4%; }
-    .header-brand-text h1 { font-size: 0.96rem; }
-    .header-actions { gap: 6px; }
-    .header-btn { padding: 5px 8px; font-size: 0.72rem; gap: 3px; }
+    /* Header Bar - CRISP ALIGNMENT & ZERO OVERLAP */
+    .site-header {
+      padding: 8px 12px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      gap: 10px !important;
+    }
+    .header-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+    }
+    .circle-logo {
+      width: 38px !important;
+      height: 38px !important;
+      flex-shrink: 0 !important;
+      margin: 0 !important;
+    }
+    .header-brand-text {
+      min-width: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+    .header-brand-text h1 {
+      font-size: 0.92rem !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .header-brand-text span {
+      font-size: 0.62rem !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      display: block !important;
+    }
+    .header-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      flex-shrink: 0 !important;
+    }
+    /* Hide Community & Appointment buttons from mobile top header to avoid cramped overlap (both are readily accessible in sticky navbar below) */
+    .header-actions .btn-community-top,
+    .header-actions .btn-appointment-top {
+      display: none !important;
+    }
+    .header-btn {
+      padding: 6px 11px !important;
+      font-size: 0.74rem !important;
+      border-radius: 16px !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
 
     /* Floating Glass Navbar (Optimized for Mobile Touch & Zero Lag) */
     .glass-navbar {
@@ -1801,14 +1863,144 @@
       gap: 4px !important;
     }
 
-    /* Missions Grid */
-    .missions-grid { grid-template-columns: 1fr; gap: 16px; }
-    .mission-card { padding: 20px 16px; }
-    .mission-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-    .mission-card p { font-size: 0.86rem; line-height: 1.6; }
+    /* Core Missions - 2x2 Grid on Mobile */
+    .missions-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+    .mission-card {
+      padding: 16px 10px !important;
+      border-radius: 12px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      text-align: center !important;
+      align-items: center !important;
+    }
+    .mission-icon {
+      font-size: 1.6rem !important;
+      margin-bottom: 6px !important;
+    }
+    .mission-card h3 {
+      font-size: 0.86rem !important;
+      line-height: 1.25 !important;
+      margin-bottom: 6px !important;
+    }
+    .mission-card p {
+      font-size: 0.74rem !important;
+      line-height: 1.4 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 4 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
 
-    /* Videos & Gallery */
-    .videos-grid { grid-template-columns: 1fr; gap: 16px; }
+    /* Upcoming Events - 2x2 Grid on Mobile */
+    .events-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+    .event-card {
+      padding: 12px 10px !important;
+      border-radius: 12px !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .event-header-row {
+      margin-bottom: 8px !important;
+    }
+    .event-badge {
+      font-size: 0.62rem !important;
+      padding: 2px 7px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      border-radius: 12px !important;
+    }
+    .event-title {
+      font-size: 0.88rem !important;
+      line-height: 1.25 !important;
+      margin-bottom: 8px !important;
+      font-weight: 700 !important;
+    }
+    .event-meta-list {
+      padding: 8px 6px !important;
+      font-size: 0.70rem !important;
+      gap: 4px !important;
+      margin-bottom: 10px !important;
+      border-radius: 8px !important;
+    }
+    .event-meta-item {
+      gap: 4px !important;
+      line-height: 1.3 !important;
+    }
+    .event-meta-item span {
+      font-size: 0.85rem !important;
+    }
+    .event-desc {
+      font-size: 0.72rem !important;
+      line-height: 1.35 !important;
+      margin-bottom: 12px !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    .event-actions {
+      flex-direction: column !important;
+      gap: 5px !important;
+      margin-top: auto !important;
+    }
+    .btn-event-primary, .btn-event-secondary {
+      padding: 6px 8px !important;
+      font-size: 0.72rem !important;
+      border-radius: 6px !important;
+      justify-content: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 4 Action Portals (Image 2 Fix - Make it look stunning, balanced & clean) */
+    .portals-section {
+      padding: 44px 4% 54px !important;
+    }
+    .portals-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      max-width: 480px !important;
+      margin: 0 auto !important;
+    }
+    .portal-card {
+      padding: 22px 18px !important;
+      border-radius: 16px !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+    }
+    .portal-card-top {
+      margin-bottom: 12px !important;
+    }
+    .portal-icon-box {
+      width: 46px !important;
+      height: 46px !important;
+      font-size: 1.4rem !important;
+    }
+    .portal-heading {
+      font-size: 1.18rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 8px !important;
+    }
+    .portal-desc {
+      font-size: 0.85rem !important;
+      line-height: 1.55 !important;
+      margin-bottom: 18px !important;
+    }
+    .btn-portal {
+      padding: 10px 18px !important;
+      font-size: 0.85rem !important;
+      border-radius: 20px !important;
+    }
+
+    /* Videos & Gallery - 2x2 Grid */
+    .videos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
     .gallery-grid { 
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
       gap: 16px; 
@@ -3136,7 +3328,7 @@
     </p>
   </div>
 
-  <div class="events-grid">
+  <div class="events-grid" id="eventsGrid">
     <!-- Event 1: State Youth Awakening Convention -->
     <div class="event-card">
       <div class="event-header-row">
@@ -3709,6 +3901,172 @@
   }
 
   // =========================================================================
+  // DYNAMIC UPCOMING EVENTS SYSTEM (2x2 GRID & REAL-TIME DASHBOARD SYNC)
+  // =========================================================================
+  const DEFAULT_AHS_EVENTS = [
+    {
+      id: 'evt-1',
+      title: 'Maha Youth Awakening & Martial Defense Convention',
+      title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
+      category: '🚩 State Convention • Tirupati',
+      category_class: 'convention',
+      schedule: 'Upcoming • 10:00 AM onwards',
+      location: 'Tirupati Central Grounds, Andhra Pradesh',
+      presided: 'Shri Radha Manohar Das',
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
+      primaryBtnText: 'Enlist as Sevak 🚩',
+      primaryBtnUrl: 'join.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+    },
+    {
+      id: 'evt-2',
+      title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
+      title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
+      category: '🐄 Gau Seva & Annadanam',
+      category_class: 'seva',
+      schedule: 'Every Ekadashi & Sacred Festivals',
+      location: 'Vijayawada & Sacred Kshetrams',
+      presided: '5,000+ Devotee Meals & Gaushala Fodder',
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
+      primaryBtnText: 'Support with Donation 💛',
+      primaryBtnUrl: 'donate.html',
+      secondaryBtnText: 'Volunteer Seva 🚩',
+      secondaryBtnUrl: 'join.html'
+    },
+    {
+      id: 'evt-3',
+      title: 'Devalaya Swatantra & Grama Dharma Jagruti',
+      title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
+      category: '🏛️ Temple Defense',
+      category_class: 'temple',
+      schedule: 'Monthly Conclave • Twin Telugu States',
+      location: 'District Centers across AP & Telangana',
+      presided: 'Anti-Encroachment & Temple Autonomy',
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
+      primaryBtnText: 'Join Discussion 💬',
+      primaryBtnUrl: 'community.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Devalaya Swatantra Conclave'
+    }
+  ];
+
+  function getLocalEvents() {
+    try {
+      const stored = localStorage.getItem('ahs_events_list');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    try {
+      localStorage.setItem('ahs_events_list', JSON.stringify(DEFAULT_AHS_EVENTS));
+    } catch(e) {}
+    return DEFAULT_AHS_EVENTS;
+  }
+
+  function renderEventsGrid(events) {
+    const grid = document.getElementById('eventsGrid');
+    if (!grid) return;
+    const list = (Array.isArray(events) && events.length > 0) ? events : DEFAULT_AHS_EVENTS;
+
+    let html = '';
+    list.forEach(evt => {
+      const catClass = evt.category_class || (evt.category && evt.category.includes('Convention') ? 'convention' : (evt.category && evt.category.includes('Seva') ? 'seva' : ''));
+      const rsvpTitle = (evt.rsvpTitle || evt.title || 'Upcoming Event').replace(/'/g, "\\'");
+      const primaryUrl = evt.primaryBtnUrl || 'join.html';
+      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
+      const secTxt = evt.secondaryBtnText || 'RSVP 📋';
+
+      html += `
+        <div class="event-card">
+          <div class="event-header-row">
+            <span class="event-badge ${catClass}">
+              ${escapeHtml(evt.category || '🚩 Event')}
+            </span>
+          </div>
+          <h3 class="event-title">
+            ${escapeHtml(evt.title || 'Upcoming Event')}
+          </h3>
+          <div class="event-meta-list">
+            <div class="event-meta-item">
+              <span>📅</span> <div><span>Schedule:</span> <strong>${escapeHtml(evt.schedule || 'Upcoming')}</strong></div>
+            </div>
+            <div class="event-meta-item">
+              <span>📍</span> <div><span>Location:</span> <strong>${escapeHtml(evt.location || 'AP / Telangana')}</strong></div>
+            </div>
+            ${evt.presided ? `
+            <div class="event-meta-item">
+              <span>🎙️</span> <div><span>Presided By:</span> <strong>${escapeHtml(evt.presided)}</strong></div>
+            </div>` : ''}
+          </div>
+          <p class="event-desc">
+            ${escapeHtml(evt.desc || '')}
+          </p>
+          <div class="event-actions">
+            <a href="${escapeHtml(primaryUrl)}" class="btn-event-primary">
+              ${escapeHtml(primaryTxt)}
+            </a>
+            ${evt.secondaryBtnUrl === 'rsvp' || !evt.secondaryBtnUrl ? `
+              <button type="button" class="btn-event-secondary" onclick="openRSVPModal('${rsvpTitle}')">
+                ${escapeHtml(secTxt)}
+              </button>
+            ` : `
+              <a href="${escapeHtml(evt.secondaryBtnUrl)}" class="btn-event-secondary">
+                ${escapeHtml(secTxt)}
+              </a>
+            `}
+          </div>
+        </div>
+      `;
+    });
+
+    grid.innerHTML = html;
+  }
+
+  function initLiveEvents() {
+    renderEventsGrid(getLocalEvents());
+
+    // BroadcastChannel cross-tab live updates
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const ch = new BroadcastChannel('ahs_events_channel');
+        ch.onmessage = (e) => {
+          renderEventsGrid(getLocalEvents());
+        };
+      } catch(e) {}
+    }
+
+    // Storage listener
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_events_list') {
+        renderEventsGrid(getLocalEvents());
+      }
+    });
+
+    // Firestore live stream
+    if (db) {
+      try {
+        db.collection('events').limit(30).onSnapshot(snapshot => {
+          if (!snapshot.empty) {
+            const remoteEvents = [];
+            snapshot.forEach(doc => remoteEvents.push({ id: doc.id, ...doc.data() }));
+            localStorage.setItem('ahs_events_list', JSON.stringify(remoteEvents));
+            renderEventsGrid(remoteEvents);
+          }
+        }, err => {
+          console.warn("Firestore events stream notice (resilient mode active):", err.message);
+        });
+      } catch(e) {}
+    }
+  }
+
+  // =========================================================================
   // REAL-TIME DIGITAL INAUGURATION & LAUNCH SYSTEM
   // =========================================================================
   let visitorSiteStatus = null;
@@ -3894,6 +4252,7 @@
     initLaunchGatekeeper();
     loadRecentVideos();
     initLiveGallery();
+    initLiveEvents();
   });
   // Language toggle logic
   let isTelugu = false;

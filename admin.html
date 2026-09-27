@@ -445,6 +445,93 @@
     color: #FFF;
   }
 
+  /* EVENT ADMIN CARDS & CONTROLS */
+  .event-admin-card {
+    background: rgba(22, 6, 6, 0.95);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .event-admin-card:hover {
+    border-color: var(--gold-bright);
+    box-shadow: 0 4px 18px rgba(212,175,55,0.2);
+  }
+  .event-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .event-admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,107,26,0.15);
+    border: 1px solid rgba(255,107,26,0.45);
+    color: #FFA466;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+  }
+  .event-admin-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--gold-bright);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .event-admin-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(0,0,0,0.35);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(212,175,55,0.12);
+  }
+  .event-admin-meta span strong {
+    color: #FFF;
+  }
+  .event-admin-desc {
+    font-size: 0.82rem;
+    color: #d8c7b5;
+    line-height: 1.5;
+  }
+  .event-admin-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    border-top: 1px solid rgba(212,175,55,0.15);
+    padding-top: 10px;
+  }
+  .btn-event-del {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(231,76,60,0.5);
+    background: rgba(231,76,60,0.1);
+    color: #ff6b6b;
+    transition: all 0.2s;
+  }
+  .btn-event-del:hover {
+    background: #e74c3c;
+    color: #FFF;
+  }
+
   /* TABS */
   .admin-tabs {
     display: flex;
@@ -1215,6 +1302,9 @@
     <button class="admin-tab" id="tabGalleryBtn" onclick="switchAdminTab('gallery')">
       📸 Photo Gallery (<span id="tabPhotoCount">0</span>)
     </button>
+    <button class="admin-tab" id="tabEventsBtn" onclick="switchAdminTab('events')">
+      📅 Upcoming Events (<span id="tabEventCount">0</span>)
+    </button>
   </div>
 
   <!-- VIEW 1: VIDEOS VIEW -->
@@ -1547,6 +1637,101 @@
         <div class="gallery-admin-grid" id="galleryAdminGrid">
           <div style="text-align:center; padding:40px; color:var(--text-muted); grid-column: 1 / -1;">
             Loading gallery photos...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 5: UPCOMING EVENTS MANAGEMENT -->
+  <div id="eventsView" style="display:none;">
+    <div class="dashboard-grid">
+      <!-- LEFT: PUBLISH EVENT FORM -->
+      <div class="dash-card">
+        <h2>📅 Publish Upcoming Event</h2>
+        <p class="card-desc">Add rallies, conventions, satsangs, or seva drives to the live homepage. Synced instantly to the website in a 2x2 grid.</p>
+
+        <form id="addEventForm" onsubmit="handlePublishEvent(event)">
+          <div class="form-group">
+            <label for="eventTitle">Event Name / Title *</label>
+            <input type="text" id="eventTitle" class="form-input" placeholder="e.g. Maha Youth Awakening & Martial Defense Convention" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventCategory">Category / Badge *</label>
+            <select id="eventCategory" class="form-input" required>
+              <option value="🚩 State Convention">🚩 State Convention</option>
+              <option value="🐄 Gau Seva & Annadanam">🐄 Gau Seva & Annadanam</option>
+              <option value="🏛️ Temple Defense">🏛️ Temple Defense</option>
+              <option value="📚 Gita Satsang & Pravachan">📚 Gita Satsang & Pravachan</option>
+              <option value="🔥 Youth Camp & Martial Arts">🔥 Youth Camp & Martial Arts</option>
+              <option value="🙏 Dharma Yatra & Rally">🙏 Dharma Yatra & Rally</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="eventSchedule">Schedule / Date & Time *</label>
+            <input type="text" id="eventSchedule" class="form-input" placeholder="e.g. Sunday, 15 Oct • 10:00 AM onwards" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventLocation">Location / Venue *</label>
+            <input type="text" id="eventLocation" class="form-input" placeholder="e.g. Tirupati Central Grounds, Andhra Pradesh" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventPresided">Presided By / Target</label>
+            <input type="text" id="eventPresided" class="form-input" placeholder="e.g. Shri Radha Manohar Das">
+          </div>
+
+          <div class="form-group">
+            <label for="eventDesc">Event Description *</label>
+            <textarea id="eventDesc" class="form-input" rows="3" placeholder="Brief description of the event, significance, and youth mobilization..." required style="resize:vertical;"></textarea>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label for="eventPrimaryText">Button 1 Label</label>
+              <input type="text" id="eventPrimaryText" class="form-input" value="Enlist as Sevak 🚩">
+            </div>
+            <div class="form-group">
+              <label for="eventPrimaryUrl">Button 1 Link</label>
+              <input type="text" id="eventPrimaryUrl" class="form-input" value="join.html">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label for="eventSecondaryText">Button 2 Label</label>
+              <input type="text" id="eventSecondaryText" class="form-input" value="RSVP 📋">
+            </div>
+            <div class="form-group">
+              <label for="eventSecondaryUrl">Button 2 Link / Action</label>
+              <input type="text" id="eventSecondaryUrl" class="form-input" value="rsvp" placeholder="'rsvp' or link">
+            </div>
+          </div>
+
+          <div id="eventStatusMsg" style="display:none; margin-bottom: 14px; padding: 10px; border-radius: 8px; font-size: 0.84rem; text-align: center;"></div>
+
+          <button type="submit" class="btn-submit" id="btnPublishEvent">
+            📅 Publish Event to Website
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT: PUBLISHED EVENTS LIST -->
+      <div class="dash-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin-bottom: 0;">📅 Live Upcoming Events (<span id="eventsListCount">0</span>)</h2>
+          <span style="font-size: 0.78rem; color: var(--gold-bright); background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 12px; border: 1px solid var(--border-gold);">
+            Live Sync Active
+          </span>
+        </div>
+        <p class="card-desc">Events currently appearing on the public website. Add new events or delete past ones anytime.</p>
+
+        <div id="eventsAdminList">
+          <div style="text-align:center; padding:40px; color:var(--text-muted);">
+            Loading events...
           </div>
         </div>
       </div>
@@ -1989,20 +2174,24 @@ service cloud.firestore {
     const cTabBtn = document.getElementById('tabCommunityBtn');
     const rTabBtn = document.getElementById('tabRegistrationsBtn');
     const gTabBtn = document.getElementById('tabGalleryBtn');
+    const eTabBtn = document.getElementById('tabEventsBtn');
     const vView = document.getElementById('videosView');
     const cView = document.getElementById('communityView');
     const rView = document.getElementById('registrationsView');
     const gView = document.getElementById('galleryView');
+    const eView = document.getElementById('eventsView');
 
     vTabBtn.classList.remove('active');
     cTabBtn.classList.remove('active');
     if (rTabBtn) rTabBtn.classList.remove('active');
     if (gTabBtn) gTabBtn.classList.remove('active');
+    if (eTabBtn) eTabBtn.classList.remove('active');
 
     vView.style.display = 'none';
     cView.style.display = 'none';
     if (rView) rView.style.display = 'none';
     if (gView) gView.style.display = 'none';
+    if (eView) eView.style.display = 'none';
 
     if (tab === 'videos') {
       vTabBtn.classList.add('active');
@@ -2016,6 +2205,10 @@ service cloud.firestore {
     } else if (tab === 'gallery') {
       if (gTabBtn) gTabBtn.classList.add('active');
       if (gView) gView.style.display = 'block';
+    } else if (tab === 'events') {
+      if (eTabBtn) eTabBtn.classList.add('active');
+      if (eView) eView.style.display = 'block';
+      if (typeof renderAdminEvents === 'function') renderAdminEvents();
     }
   }
 
@@ -2295,11 +2488,13 @@ service cloud.firestore {
     initSevaksDirectoryAdmin();
     initVolunteerRegistrationsAdmin();
     initGalleryAdmin();
+    initEventsAdmin();
   }
 
   // Initial load check even before login
   document.addEventListener('DOMContentLoaded', () => {
     initLaunchControlAdmin();
+    initEventsAdmin();
   });
 
   // ==========================================
@@ -4121,6 +4316,288 @@ service cloud.firestore {
 
     renderAdminGalleryCards();
     showToast("Photo removed from gallery! 🗑️");
+  }
+
+  // ==========================================
+  // UPCOMING EVENTS MANAGEMENT SYSTEM
+  // ==========================================
+  let adminEventsChannel = null;
+  const DEFAULT_AHS_EVENTS = [
+    {
+      id: 'evt-1',
+      title: 'Maha Youth Awakening & Martial Defense Convention',
+      title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
+      category: '🚩 State Convention • Tirupati',
+      category_class: 'convention',
+      schedule: 'Upcoming • 10:00 AM onwards',
+      location: 'Tirupati Central Grounds, Andhra Pradesh',
+      presided: 'Shri Radha Manohar Das',
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
+      primaryBtnText: 'Enlist as Sevak 🚩',
+      primaryBtnUrl: 'join.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+    },
+    {
+      id: 'evt-2',
+      title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
+      title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
+      category: '🐄 Gau Seva & Annadanam',
+      category_class: 'seva',
+      schedule: 'Every Ekadashi & Sacred Festivals',
+      location: 'Vijayawada & Sacred Kshetrams',
+      presided: '5,000+ Devotee Meals & Gaushala Fodder',
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
+      primaryBtnText: 'Support with Donation 💛',
+      primaryBtnUrl: 'donate.html',
+      secondaryBtnText: 'Volunteer Seva 🚩',
+      secondaryBtnUrl: 'join.html'
+    },
+    {
+      id: 'evt-3',
+      title: 'Devalaya Swatantra & Grama Dharma Jagruti',
+      title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
+      category: '🏛️ Temple Defense',
+      category_class: 'temple',
+      schedule: 'Monthly Conclave • Twin Telugu States',
+      location: 'District Centers across AP & Telangana',
+      presided: 'Anti-Encroachment & Temple Autonomy',
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
+      primaryBtnText: 'Join Discussion 💬',
+      primaryBtnUrl: 'community.html',
+      secondaryBtnText: 'RSVP 📋',
+      secondaryBtnUrl: 'rsvp',
+      rsvpTitle: 'Devalaya Swatantra Conclave'
+    }
+  ];
+
+  function getLocalAdminEvents() {
+    try {
+      const stored = localStorage.getItem('ahs_events_list');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    try {
+      localStorage.setItem('ahs_events_list', JSON.stringify(DEFAULT_AHS_EVENTS));
+    } catch(e) {}
+    return DEFAULT_AHS_EVENTS;
+  }
+
+  function renderAdminEvents() {
+    const listEl = document.getElementById('eventsAdminList');
+    const tabCountEl = document.getElementById('tabEventCount');
+    const listCountEl = document.getElementById('eventsListCount');
+    if (!listEl) return;
+
+    const events = getLocalAdminEvents();
+    const count = events.length;
+    if (tabCountEl) tabCountEl.textContent = count;
+    if (listCountEl) listCountEl.textContent = count;
+
+    if (count === 0) {
+      listEl.innerHTML = `
+        <div style="text-align:center; padding:40px; color:var(--text-muted);">
+          No upcoming events listed yet. Use the form on the left to publish an event!
+        </div>
+      `;
+      return;
+    }
+
+    let html = '';
+    events.forEach(evt => {
+      const id = evt.id;
+      const title = evt.title || 'Untitled Event';
+      const escapedTitle = title.replace(/'/g, "\\'");
+      const category = evt.category || '🚩 Event';
+      const schedule = evt.schedule || 'Upcoming';
+      const location = evt.location || 'AP / Telangana';
+      const presided = evt.presided || '';
+      const desc = evt.desc || '';
+      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
+      const primaryUrl = evt.primaryBtnUrl || 'join.html';
+      const secondaryTxt = evt.secondaryBtnText || 'RSVP 📋';
+
+      html += `
+        <div class="event-admin-card" id="adminEvent_${escapeHtml(id)}">
+          <div class="event-admin-header">
+            <span class="event-admin-badge">${escapeHtml(category)}</span>
+            <span style="font-size:0.75rem; color:var(--gold);">ID: <code>${escapeHtml(id)}</code></span>
+          </div>
+          <div class="event-admin-title">${escapeHtml(title)}</div>
+          <div class="event-admin-meta">
+            <span>📅 <strong>Schedule:</strong> ${escapeHtml(schedule)}</span>
+            <span>📍 <strong>Location:</strong> ${escapeHtml(location)}</span>
+            ${presided ? `<span>🎙️ <strong>Presided:</strong> ${escapeHtml(presided)}</span>` : ''}
+          </div>
+          <div class="event-admin-desc">${escapeHtml(desc)}</div>
+          <div class="event-admin-actions">
+            <div style="font-size:0.75rem; color:var(--text-muted);">
+              Action: <strong style="color:var(--gold-bright);">${escapeHtml(primaryTxt)}</strong> (${escapeHtml(primaryUrl)}) | <strong style="color:#2ecc71;">${escapeHtml(secondaryTxt)}</strong>
+            </div>
+            <button type="button" class="btn-event-del" onclick="deleteAdminEvent('${escapeHtml(id)}', '${escapedTitle}')">
+              🗑️ Delete Event
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    listEl.innerHTML = html;
+  }
+
+  async function handlePublishEvent(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnPublishEvent');
+    const statusMsg = document.getElementById('eventStatusMsg');
+
+    const title = document.getElementById('eventTitle').value.trim();
+    const category = document.getElementById('eventCategory').value.trim();
+    const schedule = document.getElementById('eventSchedule').value.trim();
+    const location = document.getElementById('eventLocation').value.trim();
+    const presided = document.getElementById('eventPresided').value.trim();
+    const desc = document.getElementById('eventDesc').value.trim();
+    const primaryBtnText = document.getElementById('eventPrimaryText').value.trim() || 'Enlist as Sevak 🚩';
+    const primaryBtnUrl = document.getElementById('eventPrimaryUrl').value.trim() || 'join.html';
+    const secondaryBtnText = document.getElementById('eventSecondaryText').value.trim() || 'RSVP 📋';
+    const secondaryBtnUrl = document.getElementById('eventSecondaryUrl').value.trim() || 'rsvp';
+
+    if (!title || !schedule || !location) {
+      alert("Please fill in Title, Schedule, and Location.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Publishing Event...";
+
+    const newEvent = {
+      id: 'evt_' + Date.now(),
+      title: title,
+      category: category,
+      category_class: category.includes('Convention') ? 'convention' : (category.includes('Seva') ? 'seva' : 'temple'),
+      schedule: schedule,
+      location: location,
+      presided: presided,
+      desc: desc,
+      primaryBtnText: primaryBtnText,
+      primaryBtnUrl: primaryBtnUrl,
+      secondaryBtnText: secondaryBtnText,
+      secondaryBtnUrl: secondaryBtnUrl,
+      rsvpTitle: secondaryBtnUrl === 'rsvp' ? title : '',
+      createdAt: new Date().toISOString()
+    };
+
+    // 1. Save locally
+    let events = getLocalAdminEvents();
+    events.unshift(newEvent);
+    localStorage.setItem('ahs_events_list', JSON.stringify(events));
+
+    // 2. Broadcast cross-tab
+    try {
+      if (adminEventsChannel) {
+        adminEventsChannel.postMessage({ type: 'new_event', event: newEvent });
+      }
+    } catch(e) {}
+    window.dispatchEvent(new Event('storage'));
+
+    // 3. Firestore sync non-blocking
+    if (db) {
+      try {
+        db.collection('events').doc(newEvent.id).set({
+          ...newEvent,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch(err => {
+          console.warn("Firestore event save deferred:", err.message);
+        });
+      } catch(e) {}
+    }
+
+    renderAdminEvents();
+    document.getElementById('addEventForm').reset();
+    btn.disabled = false;
+    btn.textContent = "📅 Publish Event to Website";
+
+    if (statusMsg) {
+      statusMsg.style.display = 'block';
+      statusMsg.style.background = 'rgba(46,204,113,0.15)';
+      statusMsg.style.border = '1px solid #2ecc71';
+      statusMsg.style.color = '#2ecc71';
+      statusMsg.textContent = `✅ Event "${title}" published live successfully!`;
+      setTimeout(() => { statusMsg.style.display = 'none'; }, 4000);
+    }
+    showToast("Event published live to homepage! 📅");
+  }
+
+  async function deleteAdminEvent(id, title) {
+    if (!confirm(`Are you sure you want to delete this event?\n"${title}"`)) {
+      return;
+    }
+
+    let events = getLocalAdminEvents();
+    events = events.filter(evt => evt.id !== id);
+    localStorage.setItem('ahs_events_list', JSON.stringify(events));
+
+    try {
+      if (adminEventsChannel) {
+        adminEventsChannel.postMessage({ type: 'delete_event', id: id });
+      }
+    } catch(e) {}
+    window.dispatchEvent(new Event('storage'));
+
+    if (db) {
+      try {
+        db.collection('events').doc(id).delete().catch(err => {
+          console.warn("Firestore event delete deferred:", err.message);
+        });
+      } catch(e) {}
+    }
+
+    renderAdminEvents();
+    showToast("Event deleted successfully! 🗑️");
+  }
+
+  function initEventsAdmin() {
+    renderAdminEvents();
+
+    try {
+      adminEventsChannel = new BroadcastChannel('ahs_events_channel');
+      adminEventsChannel.onmessage = () => {
+        renderAdminEvents();
+      };
+    } catch(e) {}
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_events_list') {
+        renderAdminEvents();
+      }
+    });
+
+    if (db) {
+      try {
+        db.collection('events').limit(30).onSnapshot(snapshot => {
+          if (!snapshot.empty) {
+            const remote = [];
+            snapshot.forEach(doc => remote.push({ id: doc.id, ...doc.data() }));
+            const local = getLocalAdminEvents();
+            const merged = [...local];
+            remote.forEach(r => {
+              if (!merged.some(l => l.id === r.id)) {
+                merged.push(r);
+              }
+            });
+            localStorage.setItem('ahs_events_list', JSON.stringify(merged));
+            renderAdminEvents();
+          }
+        }, err => {
+          console.warn("Firestore events stream notice (resilient mode active):", err.message);
+        });
+      } catch(e) {}
+    }
   }
 
   // ==========================================
