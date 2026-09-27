@@ -767,50 +767,6 @@
     });
   }
 
-  // Ugadi Calendar & Kali Yugam Year calculation
-  const ugadiDates = {
-    2025: new Date(2025, 2, 30),
-    2026: new Date(2026, 2, 19),
-    2027: new Date(2027, 3, 7),
-    2028: new Date(2028, 2, 27),
-    2029: new Date(2029, 3, 14),
-    2030: new Date(2030, 3, 4)
-  };
-
-  function getKaliYugamYear(date = new Date()) {
-    if (date < ugadiDates[2026]) {
-      return 5126;
-    }
-    if (date < ugadiDates[2027]) {
-      return 5127;
-    }
-    if (date < ugadiDates[2028]) {
-      return 5128;
-    }
-    if (date < ugadiDates[2029]) {
-      return 5129;
-    }
-    if (date < ugadiDates[2030]) {
-      return 5130;
-    }
-    const year = date.getFullYear();
-    return 5128 + (year - 2027);
-  }
-
-  let currentIssuedSevakId = "";
-
-  // Get or initialize persistent Sevak sequence number
-  function getNextSevakSequence() {
-    let lastSeq = parseInt(localStorage.getItem('ahs_last_seq'), 10);
-    if (!lastSeq || isNaN(lastSeq) || lastSeq < 1000) {
-      const now = new Date();
-      lastSeq = 1000 + (now.getDate() * 7) + (now.getMonth() * 3);
-    }
-    const nextSeq = lastSeq + 1;
-    localStorage.setItem('ahs_last_seq', nextSeq);
-    return nextSeq;
-  }
-
   // Non-blocking background cloud sync
   function syncRegistrationToCloud(payload) {
     // 1. Try Firestore with short timeout (fails silently if suspended/offline)
@@ -822,9 +778,10 @@
             ? firebase.firestore.FieldValue.serverTimestamp()
             : new Date()
         };
+        const docId = payload.phone || ('reg_' + Date.now());
         const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 3000));
         Promise.race([
-          db.collection('sevak_registrations').doc(payload.sevakId).set(firestorePayload, { merge: true }),
+          db.collection('sevak_registrations').doc(docId).set(firestorePayload, { merge: true }),
           timeoutPromise
         ]).catch(err => {
           console.warn("Firestore background sync deferred:", err.message);
@@ -886,15 +843,8 @@
         month: 'short',
         year: 'numeric'
       });
-      const kaliYear = getKaliYugamYear(now);
-      const nextSeq = getNextSevakSequence();
-      const refId = `${kaliYear}-ahs-${nextSeq}`;
-      currentIssuedSevakId = refId;
 
       const regPayload = {
-        sevakId: refId,
-        seqNumber: nextSeq,
-        kaliYear: kaliYear,
         name: name,
         phone: cleanPhone,
         state: state,

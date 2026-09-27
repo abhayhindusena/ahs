@@ -1146,6 +1146,7 @@
   </div>
   <div class="admin-nav">
     <span id="userEmailBadge" style="font-size:0.8rem; color:var(--gold); background:rgba(212,175,55,0.12); border:1px solid var(--border-gold); padding:5px 12px; border-radius:15px; display:none;"></span>
+    <a href="members.html" target="_blank" style="background:rgba(46,204,113,0.18); border-color:#2ecc71; color:#2ecc71; font-weight:700;">📊 Members Sheet ↗</a>
     <a href="index.html" target="_blank">🌐 View Live Website</a>
     <a href="videos.html" target="_blank">🎬 View Video Library</a>
     <button onclick="handleLogout()">🔒 Logout</button>
@@ -1206,8 +1207,11 @@
       💬 Live Community Chat & Sevaks (<span id="tabMsgCount">0</span>)
     </button>
     <button class="admin-tab" id="tabRegistrationsBtn" onclick="switchAdminTab('registrations')">
-      📋 Sevak Registrations & Backup (<span id="tabRegCount">0</span>)
+      📋 Members Directory (<span id="tabRegCount">0</span>)
     </button>
+    <a href="members.html" target="_blank" class="admin-tab" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; color:#2ecc71; border-color:rgba(46,204,113,0.4); background:rgba(46,204,113,0.1); font-weight:700;">
+      📊 Spreadsheet (Google Sheets) ↗
+    </a>
     <button class="admin-tab" id="tabGalleryBtn" onclick="switchAdminTab('gallery')">
       📸 Photo Gallery (<span id="tabPhotoCount">0</span>)
     </button>
@@ -1362,13 +1366,16 @@
     <div class="dash-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
         <div>
-          <h2 style="margin:0;">📋 Official Dharma Sevaks Directory & Backup</h2>
+          <h2 style="margin:0;">📋 Official Members Directory & Backup</h2>
           <p class="card-desc" style="margin-top:4px;">
             Dual backup system (Google Sheets + Cloud Firestore + Local Cache) with instant search and 1-click WhatsApp connect.
           </p>
         </div>
 
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="members.html" target="_blank" class="btn-submit" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; width:auto; padding:9px 15px; font-size:0.86rem; background:linear-gradient(135deg, #0F9D58, #1b5e20); box-shadow:0 4px 15px rgba(15,157,88,0.3); border:1px solid #2ecc71; color:#fff;">
+            📊 Open Google Sheets View ↗
+          </a>
           <button type="button" class="btn-submit" id="btnSyncGas" style="width:auto; padding:9px 15px; font-size:0.86rem; background:linear-gradient(135deg, #FF6B1A, #D4AF37); box-shadow:0 4px 15px rgba(255,107,26,0.3);" onclick="syncFromGoogleSheets()">
             🔄 Sync from Google Sheets
           </button>
@@ -1389,7 +1396,7 @@
 
       <!-- Search & Filters Toolbar -->
       <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:12px; margin-bottom:16px;">
-        <input type="text" id="regSearchInput" class="form-input" placeholder="🔍 Search by Sevak ID, Name, Phone, Mandal..." oninput="handleRegFilter()">
+        <input type="text" id="regSearchInput" class="form-input" placeholder="🔍 Search by Name, WhatsApp Mobile, District, Mandal..." oninput="handleRegFilter()">
         
         <select id="regStateFilter" class="form-select" onchange="handleRegFilter()">
           <option value="ALL">All States (అన్ని రాష్ట్రాలు)</option>
@@ -1410,7 +1417,7 @@
         <table class="admin-data-table" id="regTable">
           <thead>
             <tr>
-              <th>Sevak ID</th>
+              <th style="width:45px; text-align:center;">#</th>
               <th>Full Name</th>
               <th>WhatsApp Mobile</th>
               <th>State & District</th>
@@ -1425,7 +1432,7 @@
           <tbody id="regTableBody">
             <tr>
               <td colspan="10" style="text-align:center; padding:40px; color:var(--text-muted);">
-                Loading registered sevaks...
+                Loading registered members...
               </td>
             </tr>
           </tbody>
@@ -3015,21 +3022,15 @@ service cloud.firestore {
       const data = await res.json();
 
       if (data && data.status === 'success' && Array.isArray(data.sevaks)) {
-        let addedCount = 0;
-        data.sevaks.forEach(sheetItem => {
-          const cleanP = (sheetItem.phone || '').replace(/[^0-9]/g, '');
-          const existingIdx = allRegistrations.findIndex(r => {
-            const p = (r.phone || '').replace(/[^0-9]/g, '');
-            return (cleanP && p === cleanP) || (r.sevakId && r.sevakId === sheetItem.sevakId);
-          });
-          if (existingIdx === -1) {
-            allRegistrations.unshift(sheetItem);
-            addedCount++;
-          } else {
-            // Merge/update
-            allRegistrations[existingIdx] = { ...allRegistrations[existingIdx], ...sheetItem };
-          }
+        // Filter out completely blank rows if any, but preserve all members
+        const sheetRows = data.sevaks.filter(item => {
+          return (item.name && item.name.trim()) || 
+                 (item.phone && item.phone.trim()) || 
+                 (item.district && item.district.trim());
         });
+
+        // Set allRegistrations directly from Google Sheets so NO members are lost!
+        allRegistrations = sheetRows;
 
         // Save persistent backup
         localStorage.setItem('ahs_volunteer_backup', JSON.stringify(allRegistrations));
@@ -3039,12 +3040,12 @@ service cloud.firestore {
 
         const badge = document.getElementById('sheetsBadge');
         if (badge) {
-          badge.textContent = `📊 Sheets: ${data.sevaks.length} Synced 🟢`;
+          badge.textContent = `📊 Sheets: ${allRegistrations.length} Synced 🟢`;
           badge.style.color = '#2ecc71';
         }
 
         if (!isSilent) {
-          showToast(`✅ Synced ${data.sevaks.length} registrations from Google Sheets! 🚩`);
+          showToast(`✅ Synced all ${allRegistrations.length} members from Google Sheets! 🚩`);
         }
       } else {
         if (!isSilent) {
@@ -3077,11 +3078,13 @@ service cloud.firestore {
             const cleanP = (item.phone || '').replace(/[^0-9]/g, '');
             const existingIdx = allRegistrations.findIndex(r => {
               const p = (r.phone || '').replace(/[^0-9]/g, '');
-              return (cleanP && p === cleanP) || (r.sevakId && r.sevakId === item.sevakId);
+              return (cleanP && p && cleanP.length >= 10 && p === cleanP);
             });
             if (existingIdx === -1) {
-              allRegistrations.unshift(item);
-              fsAdded++;
+              if (item.name || cleanP) {
+                allRegistrations.unshift(item);
+                fsAdded++;
+              }
             } else {
               allRegistrations[existingIdx] = { ...allRegistrations[existingIdx], ...item };
             }
@@ -3123,16 +3126,15 @@ service cloud.firestore {
       tbody.innerHTML = `
         <tr>
           <td colspan="10" style="text-align:center; padding:40px; color:var(--text-muted);">
-            No Sevak registrations found. Click <strong>🔄 Sync from Google Sheets</strong> or <strong>📥 Import Sheet CSV</strong> to populate!
+            No member registrations found. Click <strong>🔄 Sync from Google Sheets</strong> or <strong>📥 Import Sheet CSV</strong> to populate!
           </td>
         </tr>
       `;
       return;
     }
 
-    tbody.innerHTML = list.map(item => {
-      const sevakId = item.sevakId || item.id || 'AHS-SEVAK';
-      const name = item.name || 'Sevak';
+    tbody.innerHTML = list.map((item, index) => {
+      const name = item.name || 'Member';
       const phone = (item.phone || '').replace(/[^0-9]/g, '');
       const state = item.state || '';
       const district = item.district || '';
@@ -3146,7 +3148,7 @@ service cloud.firestore {
 
       return `
         <tr>
-          <td><span class="sevak-id-tag">${escapeHtml(sevakId)}</span></td>
+          <td style="text-align:center; font-weight:700; color:var(--gold-bright); font-family:monospace; font-size:0.95rem;">${index + 1}</td>
           <td><strong>${escapeHtml(name)}</strong></td>
           <td>
             <a href="${waLink}" target="_blank" style="color:#2ecc71; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:4px;" title="Chat directly on WhatsApp">
@@ -3162,7 +3164,7 @@ service cloud.firestore {
           </td>
           <td style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(timeDisplay)}</td>
           <td>
-            <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="viewSevakDetails('${escapeHtml(sevakId)}')">
+            <button class="btn-action" style="padding:4px 10px; font-size:0.75rem;" onclick="viewMemberDetails(${index})">
               🔍 Details
             </button>
           </td>
@@ -3184,12 +3186,12 @@ service cloud.firestore {
         return false;
       }
       if (q) {
-        const matchId = (item.sevakId || '').toLowerCase().includes(q);
         const matchName = (item.name || '').toLowerCase().includes(q);
         const matchPhone = (item.phone || '').includes(q);
         const matchMandal = (item.mandal || '').toLowerCase().includes(q);
+        const matchDistrict = (item.district || '').toLowerCase().includes(q);
         const matchReferral = (item.referral || '').toLowerCase().includes(q);
-        if (!matchId && !matchName && !matchPhone && !matchMandal && !matchReferral) {
+        if (!matchName && !matchPhone && !matchMandal && !matchDistrict && !matchReferral) {
           return false;
         }
       }
@@ -3214,7 +3216,7 @@ service cloud.firestore {
     }
 
     const headers = [
-      "Sevak ID",
+      "#",
       "Full Name",
       "WhatsApp Mobile",
       "State",
@@ -3229,8 +3231,8 @@ service cloud.firestore {
       "Source"
     ];
 
-    const rows = allRegistrations.map(r => [
-      `"${(r.sevakId || '').replace(/"/g, '""')}"`,
+    const rows = allRegistrations.map((r, i) => [
+      `"${i + 1}"`,
       `"${(r.name || '').replace(/"/g, '""')}"`,
       `"${(r.phone || '').replace(/"/g, '""')}"`,
       `"${(r.state || '').replace(/"/g, '""')}"`,
@@ -3250,7 +3252,7 @@ service cloud.firestore {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `Abhay_Hindu_Sena_Sevaks_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `Abhay_Hindu_Sena_Members_${new Date().toISOString().slice(0, 10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -3381,7 +3383,6 @@ service cloud.firestore {
         if (!rowName && !rowPhone) continue;
 
         const record = {
-          sevakId: rowId,
           name: rowName,
           phone: rowPhone,
           state: cols[stateIdx] || 'Andhra Pradesh',
@@ -3398,7 +3399,7 @@ service cloud.firestore {
 
         const existingIdx = allRegistrations.findIndex(r => {
           const p = (r.phone || '').replace(/[^0-9]/g, '');
-          return (rowPhone && p === rowPhone) || (r.sevakId && r.sevakId === rowId);
+          return rowPhone && p && rowPhone.length >= 10 && p === rowPhone;
         });
 
         if (existingIdx === -1) {
@@ -3416,7 +3417,7 @@ service cloud.firestore {
       updateStatusBanner();
       closeImportModal();
 
-      showToast(`✅ Successfully imported ${importedCount} volunteer records! 🚩`);
+      showToast(`✅ Successfully imported ${importedCount} member records! 🚩`);
 
     } catch (err) {
       console.error("CSV import error:", err);
@@ -3424,19 +3425,22 @@ service cloud.firestore {
     }
   }
 
-  function viewSevakDetails(sevakId) {
-    const item = allRegistrations.find(r => (r.sevakId === sevakId || r.id === sevakId));
+  function viewMemberDetails(index) {
+    const item = allRegistrations[index];
     if (!item) return;
+
+    const phone = (item.phone || '').replace(/[^0-9]/g, '');
+    const waLink = phone ? `https://wa.me/91${phone}` : '#';
 
     const body = document.getElementById('sevakDetailBody');
     body.innerHTML = `
       <div style="background:rgba(212,175,55,0.08); border:1px solid var(--border-gold); border-radius:10px; padding:16px; margin-bottom:16px;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Official Sevak ID:</span>
-            <div style="font-family:'Cinzel',monospace; font-size:1.4rem; color:#FFD700; font-weight:800;">${escapeHtml(item.sevakId || item.id)}</div>
+            <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Member #${index + 1}:</span>
+            <div style="font-family:'Cinzel',serif; font-size:1.35rem; color:#FFD700; font-weight:800;">${escapeHtml(item.name || 'Member')}</div>
           </div>
-          <a href="https://wa.me/91${(item.phone || '').replace(/[^0-9]/g, '')}" target="_blank" style="background:#25D366; color:#FFF; padding:8px 14px; border-radius:6px; text-decoration:none; font-size:0.85rem; font-weight:700;">
+          <a href="${waLink}" target="_blank" style="background:#25D366; color:#FFF; padding:8px 14px; border-radius:6px; text-decoration:none; font-size:0.85rem; font-weight:700; display:inline-flex; align-items:center; gap:6px;">
             💬 Open WhatsApp
           </a>
         </div>
@@ -3444,7 +3448,7 @@ service cloud.firestore {
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.88rem; margin-bottom:16px;">
         <div><span style="color:var(--text-muted);">Name:</span> <strong>${escapeHtml(item.name || '--')}</strong></div>
-        <div><span style="color:var(--text-muted);">Mobile:</span> <strong>+91 ${escapeHtml(item.phone || '--')}</strong></div>
+        <div><span style="color:var(--text-muted);">Mobile:</span> <strong>+91 ${escapeHtml(phone || '--')}</strong></div>
         <div><span style="color:var(--text-muted);">State:</span> <strong>${escapeHtml(item.state || '--')}</strong></div>
         <div><span style="color:var(--text-muted);">District:</span> <strong>${escapeHtml(item.district || '--')}</strong></div>
         <div><span style="color:var(--text-muted);">Mandal / Area:</span> <strong>${escapeHtml(item.mandal || '--')}</strong></div>
@@ -3457,19 +3461,28 @@ service cloud.firestore {
       ${item.question && item.question !== 'N/A' ? `
         <div style="margin-bottom:12px; background:rgba(0,0,0,0.3); border-radius:6px; padding:10px;">
           <strong style="color:var(--gold-bright); font-size:0.82rem; display:block;">Question for Organization:</strong>
-          <p style="margin:4px 0 0; font-size:0.88rem; color:#EEE;">${escapeHtml(item.question)}</p>
+          <p style="margin:4px 0 0; font-size:0.88rem; color:#EEE; white-space:pre-wrap;">${escapeHtml(item.question)}</p>
         </div>
       ` : ''}
 
       ${item.suggestion && item.suggestion !== 'N/A' ? `
         <div style="margin-bottom:12px; background:rgba(0,0,0,0.3); border-radius:6px; padding:10px;">
           <strong style="color:var(--gold-bright); font-size:0.82rem; display:block;">Seva Suggestion / Idea:</strong>
-          <p style="margin:4px 0 0; font-size:0.88rem; color:#EEE;">${escapeHtml(item.suggestion)}</p>
+          <p style="margin:4px 0 0; font-size:0.88rem; color:#EEE; white-space:pre-wrap;">${escapeHtml(item.suggestion)}</p>
         </div>
       ` : ''}
     `;
 
     document.getElementById('sevakDetailModal').classList.add('active');
+  }
+
+  function viewSevakDetails(idx) {
+    if (typeof idx === 'number') {
+      viewMemberDetails(idx);
+    } else {
+      const foundIdx = allRegistrations.findIndex(r => r.phone === idx || r.name === idx);
+      viewMemberDetails(foundIdx >= 0 ? foundIdx : 0);
+    }
   }
 
   function closeSevakDetailModal() {

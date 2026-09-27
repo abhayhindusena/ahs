@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhay Hindu Sena — Official Members Directory (Google Sheets View)</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sheets-green: #0F9D58;
+    --sheets-green-dark: #0b8043;
+    --sheets-green-light: #e6f4ea;
+    --border-color: #e0e0e0;
+    --header-bg: #f8f9fa;
+    --row-hover: #f1f8f3;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --cell-select-border: #1a73e8;
+    --saffron: #FF6B1A;
+    --gold: #D4AF37;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f8f9fa;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* TOP APPLICATION BAR (GOOGLE SHEETS STYLE) */
+  .sheets-topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #dadce0;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 12px;
+  }
+
+  .sheets-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sheets-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    background: var(--sheets-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+
+  .sheets-title-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doc-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .doc-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #202124;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .doc-badge {
+    background: #f1f3f4;
+    color: #5f6368;
+    font-size: 0.72rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .sheets-menu-bar {
+    display: flex;
+    gap: 14px;
+    margin-top: 2px;
+    font-size: 0.8rem;
+    color: #3c4043;
+  }
+
+  .sheets-menu-item {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    user-select: none;
+  }
+  .sheets-menu-item:hover {
+    background: #f1f3f4;
+  }
+
+  .sheets-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-sheets-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-green-primary {
+    background: var(--sheets-green);
+    color: #ffffff;
+  }
+  .btn-green-primary:hover {
+    background: var(--sheets-green-dark);
+  }
+
+  .btn-white-secondary {
+    background: #ffffff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+  }
+  .btn-white-secondary:hover {
+    background: #f8f9fa;
+    border-color: #c0c4c9;
+  }
+
+  .btn-whatsapp-channel {
+    background: #25D366;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .btn-whatsapp-channel:hover {
+    background: #1eb956;
+  }
+
+  /* TOOLBAR / SEARCH / QUICK STATS */
+  .sheets-toolbar {
+    background: #edf2fc;
+    border-bottom: 1px solid #dadce0;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .sheets-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 280px;
+    max-width: 400px;
+    flex: 1;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 6px 10px 6px 32px;
+    font-size: 0.85rem;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #202124;
+    outline: none;
+  }
+  .search-box input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 9px;
+    color: #5f6368;
+    font-size: 0.85rem;
+    pointer-events: none;
+  }
+
+  .filter-select {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #3c4043;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .sheets-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stats-pill {
+    font-size: 0.8rem;
+    color: #3c4043;
+    background: #ffffff;
+    border: 1px solid #dadce0;
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-weight: 500;
+  }
+
+  .stats-pill strong {
+    color: var(--sheets-green);
+  }
+
+  /* FORMULA BAR */
+  .formula-bar {
+    background: #ffffff;
+    border-bottom: 1px solid #dadce0;
+    padding: 4px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: #5f6368;
+    flex-shrink: 0;
+  }
+
+  .formula-name-box {
+    font-family: monospace;
+    font-weight: 600;
+    background: #f1f3f4;
+    padding: 2px 8px;
+    border-radius: 3px;
+    color: #202124;
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .formula-fx {
+    font-style: italic;
+    font-weight: 700;
+    color: #5f6368;
+    user-select: none;
+  }
+
+  .formula-text {
+    flex: 1;
+    font-family: monospace;
+    font-size: 0.82rem;
+    color: #202124;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* MAIN SPREADSHEET TABLE CONTAINER */
+  .spreadsheet-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    background: #ffffff;
+  }
+
+  .sheets-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.84rem;
+    color: #202124;
+    table-layout: auto;
+  }
+
+  /* Sticky Row 1: Column Letters (A, B, C, D...) */
+  .sheets-grid thead tr.letter-row th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #f8f9fa;
+    border-right: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    color: #5f6368;
+    font-weight: 500;
+    font-size: 0.72rem;
+    text-align: center;
+    padding: 4px 6px;
+    user-select: none;
+  }
+
+  /* Sticky Row 2: Field Headers (Name, Phone, District...) */
+  .sheets-grid thead tr.header-row th {
+    position: sticky;
+    top: 24px;
+    z-index: 10;
+    background: #f1f3f4;
+    border-right: 1px solid #dadce0;
+    border-bottom: 2px solid #bdc1c6;
+    color: #202124;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-align: left;
+    padding: 8px 12px;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* Sticky Column 1: Row Numbers (1, 2, 3...) */
+  .sheets-grid tbody tr td.row-num-cell {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background: #f8f9fa;
+    border-right: 1px solid #bdc1c6;
+    border-bottom: 1px solid #dadce0;
+    color: #5f6368;
+    font-weight: 500;
+    text-align: center;
+    padding: 7px 8px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    user-select: none;
+    width: 44px;
+    min-width: 44px;
+  }
+
+  .sheets-grid thead tr.letter-row th.corner-cell,
+  .sheets-grid thead tr.header-row th.corner-cell-2 {
+    position: sticky;
+    left: 0;
+    z-index: 15;
+    background: #e8eaed;
+    border-right: 1px solid #bdc1c6;
+    width: 44px;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  /* Normal Data Cells */
+  .sheets-grid tbody tr td {
+    border-right: 1px solid #e8eaed;
+    border-bottom: 1px solid #e8eaed;
+    padding: 8px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+    background: #ffffff;
+    transition: background 0.1s ease;
+  }
+
+  .sheets-grid tbody tr:hover td {
+    background: #f8fbf9;
+  }
+
+  .sheets-grid tbody tr:hover td.row-num-cell {
+    background: #eceff1;
+  }
+
+  .sheets-grid tbody tr.selected-row td {
+    background: rgba(26,115,232,0.08) !important;
+  }
+
+  .sheets-grid tbody tr.selected-row td.row-num-cell {
+    background: #1a73e8 !important;
+    color: #ffffff !important;
+    font-weight: 700;
+  }
+
+  /* Cell typography */
+  .cell-name {
+    font-weight: 600;
+    color: #1a73e8;
+    cursor: pointer;
+  }
+  .cell-name:hover {
+    text-decoration: underline;
+  }
+
+  .cell-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #e6f4ea;
+    color: #0f9d58;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-decoration: none;
+    border: 1px solid rgba(15,157,88,0.3);
+  }
+  .cell-wa-btn:hover {
+    background: #0f9d58;
+    color: #ffffff;
+  }
+
+  .cell-pill {
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #f1f3f4;
+    color: #3c4043;
+  }
+
+  .cell-has-note {
+    background: #fef7e0;
+    color: #b06000;
+    border: 1px solid #f9ab00;
+    cursor: pointer;
+  }
+
+  /* FOOTER STATUS BAR (GOOGLE SHEETS SHEET TABS) */
+  .sheets-footer {
+    background: #ffffff;
+    border-top: 1px solid #dadce0;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    color: #5f6368;
+  }
+
+  .sheet-tabs {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+  }
+
+  .sheet-tab {
+    padding: 6px 16px;
+    background: #ffffff;
+    border: 1px solid #dadce0;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    font-weight: 500;
+    color: var(--sheets-green);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 -1px 2px rgba(0,0,0,0.05);
+  }
+
+  .sheet-tab::before {
+    content: "🟢";
+    font-size: 0.6rem;
+  }
+
+  /* DETAIL MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-sheet-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #dadce0;
+  }
+
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e8eaed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f9fa;
+  }
+
+  .modal-header h3 {
+    font-size: 1.1rem;
+    color: #202124;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #5f6368;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 0.88rem;
+  }
+
+  .detail-item span {
+    display: block;
+    font-size: 0.74rem;
+    color: #5f6368;
+    text-transform: uppercase;
+  }
+
+  .detail-item strong {
+    color: #202124;
+    font-size: 0.92rem;
+  }
+
+  .detail-full-text {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #dadce0;
+    font-size: 0.85rem;
+    color: #3c4043;
+    white-space: pre-wrap;
+    line-height: 1.5;
+  }
+
+  .detail-full-text h4 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    color: var(--sheets-green);
+    margin-bottom: 6px;
+  }
+
+  /* TOAST NOTIFICATION */
+  .sheets-toast {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #323232;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP APPLICATION BAR -->
+<header class="sheets-topbar">
+  <div class="sheets-title-group">
+    <div class="sheets-icon-wrap" title="Google Sheets Format">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H5v-2h7v2zm0-4H5v-2h7v2zm0-4H5V7h7v2zm7 8h-5v-2h5v2zm0-4h-5v-2h5v2zm0-4h-5V7h5v2z"/>
+      </svg>
+    </div>
+    <div class="sheets-title-details">
+      <div class="doc-title-row">
+        <span class="doc-title">Abhay Hindu Sena — Official Members Directory</span>
+        <span class="doc-badge">Spreadsheet View</span>
+        <span id="syncIndicator" style="font-size:0.75rem; color:#0f9d58; display:inline-flex; align-items:center; gap:4px;">
+          🟢 All changes saved in Sheets
+        </span>
+      </div>
+      <div class="sheets-menu-bar">
+        <span class="sheets-menu-item" onclick="syncFromGoogleSheets()">File &gt; Refresh</span>
+        <span class="sheets-menu-item" onclick="exportToCSV()">File &gt; Download CSV</span>
+        <span class="sheets-menu-item" onclick="window.print()">File &gt; Print</span>
+        <span class="sheets-menu-item" onclick="copyCurrentUrl()">Edit &gt; Copy Link</span>
+        <span class="sheets-menu-item" onclick="window.open('admin.html', '_blank')">Tools &gt; Admin Dashboard</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheets-top-actions">
+    <button type="button" class="btn-sheets-action btn-green-primary" id="btnSync" onclick="syncFromGoogleSheets()">
+      🔄 Sync Sheets Now
+    </button>
+    <button type="button" class="btn-sheets-action btn-white-secondary" onclick="exportToCSV()">
+      📥 Export Excel / CSV
+    </button>
+    <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" class="btn-sheets-action btn-whatsapp-channel" title="Join WhatsApp Channel">
+      💬 WhatsApp Channel
+    </a>
+    <a href="admin.html" class="btn-sheets-action btn-white-secondary" title="Return to Admin Panel">
+      ⚙️ Admin Dashboard
+    </a>
+  </div>
+</header>
+
+<!-- TOOLBAR & FILTERS -->
+<div class="sheets-toolbar">
+  <div class="sheets-toolbar-left">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search by name, phone, district, mandal, referral..." oninput="handleFilter()">
+    </div>
+
+    <select id="stateFilter" class="filter-select" onchange="handleFilter()">
+      <option value="ALL">All States (అన్ని రాష్ట్రాలు)</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Other">Other States of Bharat</option>
+    </select>
+
+    <input type="text" id="districtFilter" class="filter-select" placeholder="Filter by District..." oninput="handleFilter()" style="min-width:140px;">
+
+    <button type="button" class="btn-sheets-action btn-white-secondary" style="padding:5px 10px; font-size:0.78rem;" onclick="resetFilters()">
+      Clear Filters
+    </button>
+  </div>
+
+  <div class="sheets-toolbar-right">
+    <span class="stats-pill">Total Members: <strong id="totalMemberCount">0</strong></span>
+    <span class="stats-pill">Andhra: <strong id="apMemberCount">0</strong></span>
+    <span class="stats-pill">Telangana: <strong id="tgMemberCount">0</strong></span>
+    <span class="stats-pill" id="lastSyncTime">Synced: Just now</span>
+  </div>
+</div>
+
+<!-- FORMULA BAR -->
+<div class="formula-bar">
+  <div class="formula-name-box" id="formulaCellRef">A1</div>
+  <div class="formula-fx">fx</div>
+  <div class="formula-text" id="formulaValue">=FILTER(AbhayHinduSena_Sevaks, State, District, Mobile)</div>
+</div>
+
+<!-- SPREADSHEET TABLE GRID -->
+<div class="spreadsheet-container" id="gridContainer">
+  <table class="sheets-grid" id="membersGrid">
+    <thead>
+      <!-- ROW 1: SPREADSHEET COLUMN LETTERS -->
+      <tr class="letter-row">
+        <th class="corner-cell"></th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+        <th>K</th>
+        <th>L</th>
+      </tr>
+      <!-- ROW 2: SPREADSHEET COLUMN HEADERS -->
+      <tr class="header-row">
+        <th class="corner-cell-2">#</th>
+        <th>Full Name (పేరు)</th>
+        <th>WhatsApp Mobile (మొబైల్)</th>
+        <th>State (రాష్ట్రం)</th>
+        <th>District / City (జిల్లా)</th>
+        <th>Mandal / Area (మండలం)</th>
+        <th>Referred By (రిఫరల్)</th>
+        <th>Email (ఈమెయిల్)</th>
+        <th>Instagram (ఇన్‌స్టా)</th>
+        <th>Questions for AHS (ప్రశ్నలు)</th>
+        <th>Suggestions / Seva (సలహాలు)</th>
+        <th>Registered Date & Time</th>
+        <th>WhatsApp Action</th>
+      </tr>
+    </thead>
+    <tbody id="membersGridBody">
+      <!-- Data rows injected by JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- FOOTER STATUS BAR -->
+<footer class="sheets-footer">
+  <div class="sheet-tabs">
+    <div class="sheet-tab">
+      <span>Sevaks</span>
+    </div>
+  </div>
+  <div id="footerStatusText">
+    Displaying all active members loaded from Google Sheets (Dual backup active)
+  </div>
+</footer>
+
+<!-- MEMBER DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-sheet-card">
+    <div class="modal-header">
+      <h3 id="modalTitle">📋 Member Details</h3>
+      <button type="button" class="modal-close-btn" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="sheets-toast" id="toastBox">
+  <span id="toastMsg">Notification message</span>
+</div>
+
+<script>
+  // Initial fallback dataset containing existing real Google Sheets registrations
+  const INITIAL_SEED_MEMBERS = [
+    {
+      name: "Radha Krishna Sevak",
+      phone: "9876543210",
+      state: "Andhra Pradesh",
+      district: "Tirupati",
+      mandal: "Alipiri",
+      referral: "ahsrmdas@gmail.com",
+      email: "@abhayhindusena",
+      instagram: "Seva inquiries",
+      question: "Jai Shri Ram",
+      suggestion: "Fri Oct 09 2026 16:32:29 GMT+0530 (India Standard Time)",
+      timestamp: "Portal Verification",
+      source: "Google Sheets"
+    },
+    {
+      name: "reshwanth",
+      phone: "8008226037",
+      state: "Telangana",
+      district: "Hyderabad",
+      mandal: "Hyderabad",
+      referral: "Direct",
+      email: "web.sannivesham@gmail.com",
+      instagram: "reshwanth",
+      question: "yes",
+      suggestion: "yes",
+      timestamp: "Fri Oct 09 2026 16:43:09 GMT+0530",
+      source: "Official Website"
+    },
+    {
+      name: "reshwanth",
+      phone: "9502202122",
+      state: "Andhra Pradesh",
+      district: "Kadapa",
+      mandal: "Allagadda",
+      referral: "Direct",
+      email: "N/A",
+      instagram: "N/A",
+      question: "N/A",
+      suggestion: "N/A",
+      timestamp: "13/9/2026, 10:22:42 pm",
+      source: "Official Website"
+    },
+    {
+      name: "reshwanth",
+      phone: "7013626882",
+      state: "Andhra Pradesh",
+      district: "Kurnool",
+      mandal: "Allagadda",
+      referral: "Direct",
+      email: "N/A",
+      instagram: "N/A",
+      question: "N/A",
+      suggestion: "N/A",
+      timestamp: "13/9/2026, 10:24:10 pm",
+      source: "Official Website"
+    },
+    {
+      name: "Dheeraj Machina",
+      phone: "9492341557",
+      state: "Andhra Pradesh",
+      district: "Eluru district/Eluru",
+      mandal: "Denduluru mandal/kovvali",
+      referral: "Direct",
+      email: "dheerajmachina@gmail.com",
+      instagram: "@dheeraj_chowdary._",
+      question: "• If any fight or issue happens involving Hindus, will the enrolled members come forward and stand with them?\n\n• Are there any monthly meetings or gatherings like other communities, to bring members together and make the organization stronger?\n\n• If a Hindu family needs help, how does the organization support them?",
+      suggestion: "• Make Abhay Hindu Sena a larger organization like other well-known social organizations (RSS, Bajrang Dal).\n\n• Bring more young people into the organization and make them active and strongly devoted to Hinduism and the country.\n\n• Choose young leaders with fire and dedication.\n\n• Have leaders for each district and mandal.\n\n• Conduct regular meetings in different areas like Eluru, Vijayawada, Dwaraka, Chittoor.\n\n• Help Hindu families and people in need through seva and social service.",
+      timestamp: "18/9/2026, 12:12:47 pm",
+      source: "Official Website"
+    },
+    {
+      name: "Jeswanth sai Ramineni",
+      phone: "8847427369",
+      state: "Andhra Pradesh",
+      district: "Guntur/punnuru",
+      mandal: "Punnuru/Mulukutru",
+      referral: "Friend Referral",
+      email: "raminenijeswanthsai@gmail.com",
+      instagram: "itme.sai24",
+      question: "N/A",
+      suggestion: "N/A",
+      timestamp: "18/9/2026, 12:45:34 pm",
+      source: "Official Website"
+    },
+    {
+      name: "M Bhargav",
+      phone: "8125436367",
+      state: "Andhra Pradesh",
+      district: "Ntr district/krishna",
+      mandal: "Ibrahimpatnam",
+      referral: "Direct",
+      email: "mbhargavchowdary222@gmail.com",
+      instagram: "N/A",
+      question: "N/A",
+      suggestion: "N/A",
+      timestamp: "18/9/2026, 12:51:07 pm",
+      source: "Official Website"
+    }
+  ];
+
+  let allMembers = [];
+  const defaultGasUrl = "https://script.google.com/macros/s/AKfycbyFy8TkBpOHXIYo06Z4vyRcRxR0aDPfKouOgcSFUMGfR09QC-fbKjcBy67AyRxUr9L19A/exec";
+
+  // Escape HTML utility
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toastBox');
+    const msgEl = document.getElementById('toastMsg');
+    if (!toast || !msgEl) return;
+    msgEl.textContent = msg;
+    toast.style.display = 'flex';
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 3200);
+  }
+
+  // Initialize
+  window.addEventListener('DOMContentLoaded', () => {
+    // 1. Load initial cache or fallback seed
+    loadInitialData();
+
+    // 2. Fetch live from Google Sheets
+    syncFromGoogleSheets(true);
+  });
+
+  function loadInitialData() {
+    try {
+      const cached = JSON.parse(localStorage.getItem('ahs_volunteer_backup') || '[]');
+      if (Array.isArray(cached) && cached.length > 0) {
+        allMembers = cached.filter(m => (m.name && m.name.trim()) || (m.phone && m.phone.trim()));
+      }
+    } catch(e) {}
+
+    if (!allMembers || allMembers.length === 0) {
+      allMembers = [...INITIAL_SEED_MEMBERS];
+    }
+
+    renderGrid(allMembers);
+    updateStats(allMembers);
+  }
+
+  async function syncFromGoogleSheets(isSilent = false) {
+    const btn = document.getElementById('btnSync');
+    if (btn && !isSilent) {
+      btn.innerHTML = '⏳ Syncing Sheets...';
+      btn.disabled = true;
+    }
+
+    const gasUrl = localStorage.getItem('ahs_gas_url') || defaultGasUrl;
+
+    try {
+      const fetchUrl = gasUrl + (gasUrl.includes('?') ? '&' : '?') + 'action=getSevaks&t=' + Date.now();
+      const res = await fetch(fetchUrl);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      if (data && data.status === 'success' && Array.isArray(data.sevaks)) {
+        // Filter out completely blank rows if any, but keep ALL actual members
+        const validRows = data.sevaks.filter(item => {
+          return (item.name && item.name.trim()) || 
+                 (item.phone && item.phone.trim()) || 
+                 (item.district && item.district.trim());
+        });
+
+        if (validRows.length > 0) {
+          allMembers = validRows;
+          localStorage.setItem('ahs_volunteer_backup', JSON.stringify(allMembers));
+          renderGrid(allMembers);
+          updateStats(allMembers);
+
+          const timeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          const syncEl = document.getElementById('lastSyncTime');
+          if (syncEl) syncEl.textContent = `Synced: ${timeStr}`;
+
+          const ind = document.getElementById('syncIndicator');
+          if (ind) ind.innerHTML = `🟢 Live Synced (${allMembers.length} members)`;
+
+          if (!isSilent) {
+            showToast(`✅ Synced all ${allMembers.length} members from Google Sheets!`);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn("Live fetch note:", err.message);
+      if (!isSilent) {
+        showToast("⚠️ Note: Using cached spreadsheet data.");
+      }
+    } finally {
+      if (btn && !isSilent) {
+        btn.innerHTML = '🔄 Sync Sheets Now';
+        btn.disabled = false;
+      }
+    }
+  }
+
+  function renderGrid(list) {
+    const tbody = document.getElementById('membersGridBody');
+    if (!tbody) return;
+
+    if (!list || list.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td class="row-num-cell">1</td>
+          <td colspan="12" style="text-align:center; padding:35px; color:#70757a;">
+            No member rows match your current search/filter.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = list.map((item, idx) => {
+      const rowNum = idx + 1;
+      const name = item.name || '--';
+      const phone = (item.phone || '').replace(/[^0-9]/g, '');
+      const state = item.state || '--';
+      const district = item.district || '--';
+      const mandal = item.mandal || '--';
+      const referral = (item.referral && item.referral !== 'Direct') ? item.referral : 'Direct';
+      const email = (item.email && item.email !== 'N/A') ? item.email : '--';
+      const instagram = (item.instagram && item.instagram !== 'N/A') ? item.instagram : '--';
+      
+      const q = (item.question && item.question !== 'N/A') ? item.question : '';
+      const s = (item.suggestion && item.suggestion !== 'N/A') ? item.suggestion : '';
+      
+      const dateDisplay = item.timestamp || item.displayDate || '--';
+      const waLink = phone ? `https://wa.me/91${phone}?text=Jai%20Shri%20Ram%20Hare%20Krishna%2C%20Abhay%20Hindu%20Sena` : '#';
+
+      return `
+        <tr onclick="selectRow(this, ${idx})">
+          <td class="row-num-cell">${rowNum}</td>
+          <td>
+            <span class="cell-name" onclick="event.stopPropagation(); openDetailModal(${idx})">${escapeHtml(name)}</span>
+          </td>
+          <td>
+            <a href="${waLink}" target="_blank" class="cell-wa-btn" onclick="event.stopPropagation()">
+              💬 +91 ${escapeHtml(phone)}
+            </a>
+          </td>
+          <td>${escapeHtml(state)}</td>
+          <td>${escapeHtml(district)}</td>
+          <td>${escapeHtml(mandal)}</td>
+          <td><span class="cell-pill">${escapeHtml(referral)}</span></td>
+          <td>${escapeHtml(email)}</td>
+          <td>${escapeHtml(instagram)}</td>
+          <td>
+            ${q ? `<span class="cell-pill cell-has-note" onclick="event.stopPropagation(); openDetailModal(${idx})">📝 ${escapeHtml(q.slice(0, 24))}...</span>` : '<span style="color:#aaa;">-</span>'}
+          </td>
+          <td>
+            ${s ? `<span class="cell-pill cell-has-note" onclick="event.stopPropagation(); openDetailModal(${idx})">💡 ${escapeHtml(s.slice(0, 24))}...</span>` : '<span style="color:#aaa;">-</span>'}
+          </td>
+          <td style="font-size:0.78rem; color:#5f6368;">${escapeHtml(dateDisplay)}</td>
+          <td>
+            <a href="${waLink}" target="_blank" class="cell-wa-btn" onclick="event.stopPropagation()">
+              💬 Message
+            </a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function selectRow(tr, idx) {
+    document.querySelectorAll('.sheets-grid tbody tr').forEach(r => r.classList.remove('selected-row'));
+    tr.classList.add('selected-row');
+
+    const item = allMembers[idx];
+    const refEl = document.getElementById('formulaCellRef');
+    const valEl = document.getElementById('formulaValue');
+    if (refEl && valEl && item) {
+      refEl.textContent = `A${idx + 2}`;
+      valEl.textContent = `="${item.name || ''}" | +91 ${item.phone || ''} | ${item.district || ''}, ${item.state || ''}`;
+    }
+  }
+
+  function updateStats(list) {
+    const totalEl = document.getElementById('totalMemberCount');
+    const apEl = document.getElementById('apMemberCount');
+    const tgEl = document.getElementById('tgMemberCount');
+
+    let ap = 0;
+    let tg = 0;
+    (list || []).forEach(m => {
+      const st = (m.state || '').toLowerCase();
+      if (st.includes('andhra')) ap++;
+      else if (st.includes('telangana')) tg++;
+    });
+
+    if (totalEl) totalEl.textContent = (list || []).length;
+    if (apEl) apEl.textContent = ap;
+    if (tgEl) tgEl.textContent = tg;
+  }
+
+  function handleFilter() {
+    const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+    const stFilter = document.getElementById('stateFilter').value;
+    const distFilter = (document.getElementById('districtFilter').value || '').toLowerCase().trim();
+
+    const filtered = allMembers.filter(item => {
+      if (stFilter !== 'ALL') {
+        const itemState = (item.state || '').toLowerCase();
+        if (stFilter === 'Andhra Pradesh' && !itemState.includes('andhra')) return false;
+        if (stFilter === 'Telangana' && !itemState.includes('telangana')) return false;
+        if (stFilter === 'Other' && (itemState.includes('andhra') || itemState.includes('telangana'))) return false;
+      }
+
+      if (distFilter && !(item.district || '').toLowerCase().includes(distFilter)) {
+        return false;
+      }
+
+      if (q) {
+        const name = (item.name || '').toLowerCase();
+        const phone = (item.phone || '').toLowerCase();
+        const mandal = (item.mandal || '').toLowerCase();
+        const dist = (item.district || '').toLowerCase();
+        const ref = (item.referral || '').toLowerCase();
+        if (!name.includes(q) && !phone.includes(q) && !mandal.includes(q) && !dist.includes(q) && !ref.includes(q)) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    renderGrid(filtered);
+    updateStats(filtered);
+  }
+
+  function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('stateFilter').value = 'ALL';
+    document.getElementById('districtFilter').value = '';
+    renderGrid(allMembers);
+    updateStats(allMembers);
+  }
+
+  function openDetailModal(idx) {
+    const item = allMembers[idx];
+    if (!item) return;
+
+    const phone = (item.phone || '').replace(/[^0-9]/g, '');
+    const waLink = phone ? `https://wa.me/91${phone}` : '#';
+
+    const modalTitle = document.getElementById('modalTitle');
+    if (modalTitle) modalTitle.textContent = `📋 Row #${idx + 1} — ${item.name || 'Member'}`;
+
+    const modalBody = document.getElementById('modalBody');
+    if (modalBody) {
+      modalBody.innerHTML = `
+        <div style="background:#e6f4ea; border:1px solid #ceead6; border-radius:8px; padding:12px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:1.15rem; font-weight:700; color:#137333;">${escapeHtml(item.name || 'Member')}</div>
+            <div style="font-size:0.84rem; color:#1e8e3e;">📱 +91 ${escapeHtml(phone)}</div>
+          </div>
+          <a href="${waLink}" target="_blank" class="cell-wa-btn" style="padding:6px 14px; font-size:0.86rem; background:#0f9d58; color:#fff;">
+            💬 Open WhatsApp
+          </a>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span>State (రాష్ట్రం)</span>
+            <strong>${escapeHtml(item.state || '--')}</strong>
+          </div>
+          <div class="detail-item">
+            <span>District / City (జిల్లా)</span>
+            <strong>${escapeHtml(item.district || '--')}</strong>
+          </div>
+          <div class="detail-item">
+            <span>Mandal / Area (మండలం)</span>
+            <strong>${escapeHtml(item.mandal || '--')}</strong>
+          </div>
+          <div class="detail-item">
+            <span>Referred By (రిఫరల్)</span>
+            <strong>${escapeHtml(item.referral || 'Direct')}</strong>
+          </div>
+          <div class="detail-item">
+            <span>Email</span>
+            <strong>${escapeHtml(item.email || '--')}</strong>
+          </div>
+          <div class="detail-item">
+            <span>Instagram Handle</span>
+            <strong>${escapeHtml(item.instagram || '--')}</strong>
+          </div>
+          <div class="detail-item" style="grid-column: 1 / -1;">
+            <span>Registered Date & Source</span>
+            <strong>${escapeHtml(item.timestamp || '--')} (${escapeHtml(item.source || 'Website')})</strong>
+          </div>
+        </div>
+
+        ${item.question && item.question !== 'N/A' ? `
+          <div class="detail-full-text">
+            <h4>Question for Organization:</h4>
+            ${escapeHtml(item.question)}
+          </div>
+        ` : ''}
+
+        ${item.suggestion && item.suggestion !== 'N/A' ? `
+          <div class="detail-full-text">
+            <h4>Seva Suggestion / Ideas:</h4>
+            ${escapeHtml(item.suggestion)}
+          </div>
+        ` : ''}
+      `;
+    }
+
+    document.getElementById('detailModal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('detailModal').classList.remove('active');
+  }
+
+  // Export to CSV matching Google Sheets format
+  function exportToCSV() {
+    if (!allMembers || allMembers.length === 0) {
+      alert("No data available to export.");
+      return;
+    }
+
+    const headers = [
+      "#",
+      "Full Name (పేరు)",
+      "WhatsApp Mobile (మొబైల్)",
+      "State (రాష్ట్రం)",
+      "District / City (జిల్లా)",
+      "Mandal / Area (మండలం)",
+      "Referred By (రిఫరల్)",
+      "Email",
+      "Instagram ID",
+      "Questions for AHS",
+      "Suggestions",
+      "Registered Timestamp",
+      "Source"
+    ];
+
+    const rows = allMembers.map((m, idx) => [
+      `"${idx + 1}"`,
+      `"${(m.name || '').replace(/"/g, '""')}"`,
+      `"${(m.phone || '').replace(/"/g, '""')}"`,
+      `"${(m.state || '').replace(/"/g, '""')}"`,
+      `"${(m.district || '').replace(/"/g, '""')}"`,
+      `"${(m.mandal || '').replace(/"/g, '""')}"`,
+      `"${(m.referral || 'Direct').replace(/"/g, '""')}"`,
+      `"${(m.email || '').replace(/"/g, '""')}"`,
+      `"${(m.instagram || '').replace(/"/g, '""')}"`,
+      `"${(m.question || '').replace(/"/g, '""')}"`,
+      `"${(m.suggestion || '').replace(/"/g, '""')}"`,
+      `"${(m.timestamp || m.displayDate || '').replace(/"/g, '""')}"`,
+      `"${(m.source || 'Website').replace(/"/g, '""')}"`
+    ]);
+
+    const csvContent = "\uFEFF" + [headers.join(','), ...rows.map(e => e.join(','))].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Abhay_Hindu_Sena_Members_Sheet_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast("📥 Exported official Members Sheet CSV!");
+  }
+
+  function copyCurrentUrl() {
+    navigator.clipboard.writeText(window.location.href);
+    showToast("📋 Spreadsheet link copied to clipboard!");
+  }
+
+  // Close modal with Escape key or clicking overlay
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+  document.getElementById('detailModal').addEventListener('click', (e) => {
+    if (e.target.id === 'detailModal') closeModal();
+  });
+</script>
+</body>
+</html>
