@@ -448,17 +448,15 @@
     box-shadow: 0 6px 25px rgba(255,107,26,0.65);
   }
   .btn-community-hero {
-    background: linear-gradient(135deg, rgba(61, 5, 5, 0.95) 0%, rgba(26, 7, 7, 0.98) 100%);
-    border: 1.5px solid var(--border-gold);
-    color: var(--gold-bright);
-    font-weight: 700;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), inset 0 0 10px rgba(212, 175, 55, 0.1);
+    background: linear-gradient(135deg, #00A6FF 0%, #0066FF 100%);
+    color: #FFF;
+    font-weight: 800;
+    box-shadow: 0 4px 18px rgba(0, 166, 255, 0.4);
   }
   .btn-community-hero:hover {
-    background: var(--gold);
-    color: #000;
-    border-color: var(--gold-bright);
-    box-shadow: 0 6px 22px rgba(212, 175, 55, 0.5);
+    background: linear-gradient(135deg, #38BDF8 0%, #0080FF 100%);
+    color: #FFF;
+    box-shadow: 0 6px 25px rgba(0, 166, 255, 0.65);
     transform: translateY(-2px);
   }
   .btn-appointment-hero {
@@ -1403,6 +1401,11 @@
     border-color: var(--saffron-deep);
     box-shadow: 0 0 16px rgba(232, 84, 10, 0.3);
   }
+  .portal-icon-blue {
+    background: rgba(0, 166, 255, 0.16);
+    border-color: #00A6FF;
+    box-shadow: 0 0 16px rgba(0, 166, 255, 0.35);
+  }
   .portal-tag {
     font-size: 0.72rem;
     font-weight: 700;
@@ -1423,6 +1426,11 @@
     background: rgba(255, 107, 26, 0.12);
     border-color: rgba(255, 107, 26, 0.4);
     color: #FFA066;
+  }
+  .portal-tag-blue {
+    background: rgba(0, 166, 255, 0.14);
+    border-color: rgba(0, 166, 255, 0.5);
+    color: #38BDF8;
   }
   .portal-heading {
     font-family: var(--font-heading);
@@ -1473,14 +1481,15 @@
     transform: translateY(-2px);
   }
   .btn-portal-community {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid var(--border-gold);
-    color: var(--text-main);
+    background: linear-gradient(135deg, #00A6FF 0%, #0066FF 100%);
+    color: #FFF;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 166, 255, 0.4);
   }
   .btn-portal-community:hover {
-    background: var(--gold);
-    color: #000;
-    border-color: var(--gold);
+    background: linear-gradient(135deg, #38BDF8 0%, #0080FF 100%);
+    color: #FFF;
+    box-shadow: 0 6px 22px rgba(0, 166, 255, 0.65);
     transform: translateY(-2px);
   }
   .portal-icon-green {
@@ -2360,6 +2369,13 @@
   @keyframes buttonPulseGlow {
     0% { filter: drop-shadow(0 0 4px rgba(255,107,26,0.3)); }
     100% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.6)); }
+  }
+  .btn-community-hero {
+    animation: communityPulseGlow 3s ease-in-out infinite alternate;
+  }
+  @keyframes communityPulseGlow {
+    0% { filter: drop-shadow(0 0 3px rgba(0,166,255,0.25)); }
+    100% { filter: drop-shadow(0 0 10px rgba(0,166,255,0.55)); }
   }
   .btn-appointment-hero {
     animation: appointmentPulseGlow 3s ease-in-out infinite alternate;
@@ -3782,8 +3798,8 @@
     <!-- Box 3: Community -->
     <a href="community.html" class="portal-card">
       <div class="portal-card-top">
-        <div class="portal-icon-box portal-icon-saffron">💬</div>
-        <span class="portal-tag portal-tag-saffron" data-en="Live Discussion" data-te="ప్రత్యక్ష చర్చ">Live Discussion</span>
+        <div class="portal-icon-box portal-icon-blue">💬</div>
+        <span class="portal-tag portal-tag-blue" data-en="Live Discussion" data-te="ప్రత్యక్ష చర్చ">Live Discussion</span>
       </div>
       <h3 class="portal-heading" data-en="Dharma Charcha Community" data-te="ధర్మ చర్చా కమ్యూనిటీ">Dharma Charcha Community</h3>
       <p class="portal-desc" data-en="Step into our dedicated full-screen live community forum. Connect directly with sevaks, share local seva reports, coordinate drives, and receive spiritual updates."
