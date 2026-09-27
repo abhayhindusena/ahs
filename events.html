@@ -335,6 +335,25 @@
     overflow: hidden;
     position: relative;
     transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .event-header-row, .event-header-row *,
+  .event-badge,
+  .event-title,
+  .event-meta-list, .event-meta-list *,
+  .event-desc {
+    pointer-events: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+  .event-actions, .event-actions a, .event-actions button {
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
   }
   .event-card:hover {
     transform: translateY(-5px);

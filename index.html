@@ -1301,6 +1301,12 @@
     flex-direction: column;
     position: relative;
     cursor: pointer;
+    text-decoration: none !important;
+    color: inherit !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.05);
     overflow: hidden;
@@ -1979,6 +1985,13 @@
       align-items: center !important;
       justify-content: space-between !important;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      color: inherit !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-tap-highlight-color: transparent !important;
     }
     .portal-card-top {
       display: flex !important;
@@ -2295,15 +2308,62 @@
     100% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.6)); }
   }
 
-  /* MISSION & VIDEO & GALLERY & EVENT CARDS: SMOOTH 3D LIFT & GOLD ILLUMINATION */
-  .mission-card, .video-card, .gallery-card, .donate-box, .volunteer-box, .event-card {
+  /* ALL INTERACTIVE CARDS: ENTIRE BOX CLICKABLE & COMPLETE TEXT-SELECTION PREVENTION */
+  .portal-card,
+  .mission-card,
+  .video-card,
+  .gallery-card,
+  .event-card,
+  .view-more-card {
     position: relative;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
     transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   }
-  .mission-card:hover, .video-card:hover, .event-card:hover {
+  .portal-card:hover,
+  .mission-card:hover,
+  .video-card:hover,
+  .gallery-card:hover,
+  .event-card:hover,
+  .view-more-card:hover {
     transform: translateY(-6px);
     border-color: var(--gold-bright) !important;
     box-shadow: 0 16px 40px rgba(0,0,0,0.85), 0 0 25px rgba(212,175,55,0.3) !important;
+  }
+
+  /* Internal elements ignore pointer events so the entire card is the touch hit target, eliminating accidental word selection */
+  .portal-card *,
+  .mission-card *,
+  .video-card *,
+  .gallery-card *,
+  .view-more-card *,
+  .event-header-row,
+  .event-header-row *,
+  .event-badge,
+  .event-title,
+  .event-meta-list,
+  .event-meta-list *,
+  .event-desc {
+    pointer-events: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  /* Interactive action buttons inside event cards remain independently clickable */
+  .event-actions,
+  .event-actions a,
+  .event-actions button {
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
 
   /* UPCOMING EVENTS & CONVENTIONS SECTION */
@@ -3334,44 +3394,45 @@
 
   <div class="missions-grid">
     <!-- 1. Shiksha -->
-    <div class="mission-card">
+    <a href="videos.html" class="mission-card">
       <div class="mission-icon">📚</div>
       <h3 data-en="1. Shiksha (Dharmic Education)" data-te="1. శిక్ష (ధార్మిక విద్య & చైతన్యం)">1. Shiksha (Dharmic Education)</h3>
       <p data-en="Educating people about our eternal Sanatana Dharma, the teachings of the Bhagavad Gita, and sacred heritage to build moral courage and cultural pride among youth and families."
          data-te="మన సనాతన ధర్మ విశిష్టత, భగవద్గీత సందేశం మరియు ప్రాచీన సంస్కృతిపై ప్రజలకు, విద్యార్థులకు అవగాహన కల్పించి ధార్మిక నిష్ఠను పెంపొందించడం.">
         Educating people about our eternal Sanatana Dharma, the teachings of the Bhagavad Gita, and sacred heritage to build moral courage and cultural pride among youth and families.
       </p>
-    </div>
+    </a>
 
     <!-- 2. Raksha -->
-    <div class="mission-card">
+    <a href="join.html" class="mission-card">
       <div class="mission-icon">🛡️</div>
       <h3 data-en="2. Raksha (Stopping Conversions)" data-te="2. రక్ష (మతమార్పిడుల నిరోధం)">2. Raksha (Stopping Conversions)</h3>
       <p data-en="Resolute ground defense to stop predatory and deceptive religious conversions targeting innocent Hindus through active community vigilance, legal protection, and awareness."
          data-te="అమాయక హిందువులను లక్ష్యంగా చేసుకుని జరుగుతున్న మోసపూరిత, బలవంతపు మతమార్పిడులను అడ్డుకోవడం మరియు హిందూ కుటుంబాలకు పటిష్ట రక్షణ కల్పించడం.">
         Resolute ground defense to stop predatory and deceptive religious conversions targeting innocent Hindus through active community vigilance, legal protection, and awareness.
       </p>
-    </div>
+    </a>
 
     <!-- 3. Punarutthan -->
-    <div class="mission-card">
+    <a href="join.html" class="mission-card">
       <div class="mission-icon">🕉️</div>
       <h3 data-en="3. Punarutthan (Homecoming)" data-te="3. పునరుత్థాన్ (స్వధర్మ పునరాగమనం)">3. Punarutthan (Homecoming)</h3>
       <p data-en="Welcoming back innocent Hindus who were converted through force, deception, or economic coercion, reintegrating them into Sanatana Dharma with full honor and community support."
          data-te="బలవంతంగా లేదా ప్రలోభాలతో ఇతర మతాల్లోకి మారిన అమాయక హిందువులను తిరిగి సగౌరవంగా స్వధర్మంలోకి (ఘర్ వాపసీ) ఆహ్వానించి సంపూర్ణ అండగా నిలవడం.">
         Welcoming back innocent Hindus who were converted through force, deception, or economic coercion, reintegrating them into Sanatana Dharma with full honor and community support.
       </p>
-    </div>
+    </a>
 
     <!-- 4. Devalaya Swatantra -->
-    <div class="mission-card">
+    <a href="community.html" class="mission-card">
       <div class="mission-icon">🛕</div>
       <h3 data-en="4. Devalaya Swatantra (Free Temples)" data-te="4. దేవాలయ స్వతంత్ర (ఆలయాల విముక్తి)">4. Devalaya Swatantra (Free Temples)</h3>
       <p data-en="Reclaiming autonomous control over Hindu temples by freeing them from government control and bureaucracy, returning sacred assets and management directly to Hindu devotees and archakas."
          data-te="హిందూ దేవాలయాలపై ప్రభుత్వ నియంత్రణను మరియు జోక్యాన్ని తొలగించి, ఆలయాల నిర్వహణ మరియు ఆదాయాన్ని భక్తులు, సాంప్రదాయ అర్చకుల ఆధీనంలోకి తీసుకురావడం.">
         Reclaiming autonomous control over Hindu temples by freeing them from government control and bureaucracy, returning sacred assets and management directly to Hindu devotees and archakas.
       </p>
-    </div>
+    </a>
+  </div>
 </section>
 
 <!-- Pravachans & Video Discourses Section -->
@@ -3509,7 +3570,7 @@
 
   <div class="events-grid" id="eventsGrid">
     <!-- Event 1: State Youth Awakening Convention -->
-    <div class="event-card">
+    <div class="event-card" onclick="window.location.href='events.html'">
       <div class="event-header-row">
         <span class="event-badge convention" data-en="🚩 State Convention • Tirupati" data-te="🚩 రాష్ట్ర సమ్మేళనం • తిరుపతి">🚩 State Convention • Tirupati</span>
       </div>
@@ -3529,14 +3590,14 @@
          data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
         Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
       </p>
-      <div class="event-actions">
+      <div class="event-actions" onclick="event.stopPropagation()">
         <a href="join.html" class="btn-event-primary" data-en="Enlist as Sevak 🚩" data-te="సేవక్ నమోదు 🚩">Enlist as Sevak 🚩</a>
         <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Maha Youth Awakening Convention - Tirupati')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
       </div>
     </div>
 
     <!-- Event 2: Nitya Annadanam & Gau Seva Maha Yajna -->
-    <div class="event-card">
+    <div class="event-card" onclick="window.location.href='events.html'">
       <div class="event-header-row">
         <span class="event-badge seva" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదాన యజ్ఞం">🐄 Gau Seva & Annadanam</span>
       </div>
@@ -3556,14 +3617,14 @@
          data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
         Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
       </p>
-      <div class="event-actions">
+      <div class="event-actions" onclick="event.stopPropagation()">
         <a href="donate.html" class="btn-event-primary" data-en="Support with Donation 💛" data-te="విరాళం అందించండి 💛">Support with Donation 💛</a>
         <a href="join.html" class="btn-event-secondary" data-en="Volunteer Seva 🚩" data-te="వాలంటీర్ సేవ 🚩">Volunteer Seva 🚩</a>
       </div>
     </div>
 
     <!-- Event 3: Devalaya Swatantra & Legal Awareness Conclave -->
-    <div class="event-card">
+    <div class="event-card" onclick="window.location.href='events.html'">
       <div class="event-header-row">
         <span class="event-badge" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</span>
       </div>
@@ -3583,7 +3644,7 @@
          data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
         Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
       </p>
-      <div class="event-actions">
+      <div class="event-actions" onclick="event.stopPropagation()">
         <a href="community.html" class="btn-event-primary" data-en="Join Discussion 💬" data-te="చర్చలో చేరండి 💬">Join Discussion 💬</a>
         <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Devalaya Swatantra Conclave')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
       </div>
@@ -3620,7 +3681,7 @@
 
   <div class="portals-grid">
     <!-- Box 1: Join Us -->
-    <div class="portal-card" onclick="window.location.href='join.html'">
+    <a href="join.html" class="portal-card">
       <div class="portal-card-top">
         <div class="portal-icon-box">🚩</div>
         <span class="portal-tag" data-en="Volunteers" data-te="వాలంటీర్లు">Volunteers</span>
@@ -3631,12 +3692,12 @@
         Join hands with thousands of dedicated volunteers across Bharat. Fill out our simple form to register directly and join our official WhatsApp Channel for all seva updates.
       </p>
       <div class="portal-footer-btn">
-        <a href="join.html" class="btn-portal btn-portal-join" data-en="Join Us 🚩" data-te="చేరండి 🚩">Join Us 🚩</a>
+        <span class="btn-portal btn-portal-join" data-en="Join Us 🚩" data-te="చేరండి 🚩">Join Us 🚩</span>
       </div>
-    </div>
+    </a>
 
     <!-- Box 2: Donate -->
-    <div class="portal-card" onclick="window.location.href='donate.html'">
+    <a href="donate.html" class="portal-card">
       <div class="portal-card-top">
         <div class="portal-icon-box portal-icon-gold">🙏</div>
         <span class="portal-tag portal-tag-gold" data-en="Dharma Daan" data-te="ధర్మ దానం">Dharma Daan</span>
@@ -3647,12 +3708,12 @@
         Your sacred contribution fuels Nitya Annadanam, Gau Samrakshana, ancient temple restoration, and youth defense. Official SBI Bank Account & UPI QR portal active.
       </p>
       <div class="portal-footer-btn">
-        <a href="donate.html" class="btn-portal btn-portal-donate" data-en="Support & Donate 💛" data-te="ధర్మ దానం 💛">Support & Donate 💛</a>
+        <span class="btn-portal btn-portal-donate" data-en="Support & Donate 💛" data-te="ధర్మ దానం 💛">Support & Donate 💛</span>
       </div>
-    </div>
+    </a>
 
     <!-- Box 3: Community -->
-    <div class="portal-card" onclick="window.location.href='community.html'">
+    <a href="community.html" class="portal-card">
       <div class="portal-card-top">
         <div class="portal-icon-box portal-icon-saffron">💬</div>
         <span class="portal-tag portal-tag-saffron" data-en="Live Discussion" data-te="ప్రత్యక్ష చర్చ">Live Discussion</span>
@@ -3663,12 +3724,12 @@
         Step into our dedicated full-screen live community forum. Connect directly with sevaks, share local seva reports, coordinate drives, and receive spiritual updates.
       </p>
       <div class="portal-footer-btn">
-        <a href="community.html" class="btn-portal btn-portal-community" data-en="Enter Community 💬" data-te="కమ్యూనిటీలోకి రండి 💬">Enter Community 💬</a>
+        <span class="btn-portal btn-portal-community" data-en="Enter Community 💬" data-te="కమ్యూనిటీలోకి రండి 💬">Enter Community 💬</span>
       </div>
-    </div>
+    </a>
 
     <!-- Box 4: Guruji Appointment -->
-    <div class="portal-card" onclick="openGurujiAppointment()">
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="portal-card">
       <div class="portal-card-top">
         <div class="portal-icon-box portal-icon-green">📿</div>
         <span class="portal-tag portal-tag-green" data-en="Darshan & Guidance" data-te="దర్శనం & మార్గదర్శనం">Darshan & Guidance</span>
@@ -3679,9 +3740,9 @@
         Seek spiritual counseling, personal guidance, or discuss dharmic seva initiatives directly with Shri Radha Manohar Das ji on official WhatsApp.
       </p>
       <div class="portal-footer-btn">
-        <a href="javascript:void(0)" onclick="event.stopPropagation(); openGurujiAppointment();" class="btn-portal btn-portal-appointment" data-en="Talk with Guruji 💬" data-te="గురూజీతో మాట్లాడండి 💬">Talk with Guruji 💬</a>
+        <span class="btn-portal btn-portal-appointment" data-en="Talk with Guruji 💬" data-te="గురూజీతో మాట్లాడండి 💬">Talk with Guruji 💬</span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -4060,7 +4121,7 @@
       const secTxt = evt.secondaryBtnText || 'RSVP 📋';
 
       html += `
-        <div class="event-card">
+        <div class="event-card" onclick="window.location.href='events.html'">
           <div class="event-header-row">
             <span class="event-badge ${catClass}">
               ${escapeHtml(evt.category || '🚩 Event')}
@@ -4084,7 +4145,7 @@
           <p class="event-desc">
             ${escapeHtml(evt.desc || '')}
           </p>
-          <div class="event-actions">
+          <div class="event-actions" onclick="event.stopPropagation()">
             <a href="${escapeHtml(primaryUrl)}" class="btn-event-primary">
               ${escapeHtml(primaryTxt)}
             </a>
@@ -4426,7 +4487,10 @@
       "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
       "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
     const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(waUrl, '_blank');
+    const win = window.open(waUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = waUrl;
+    }
   }
 
   function escapeHtml(str) {

@@ -338,6 +338,16 @@
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .gallery-card * {
+    pointer-events: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
   }
   .gallery-card:hover {
     transform: translateY(-5px);

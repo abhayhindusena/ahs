@@ -323,6 +323,16 @@
     transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
     cursor: pointer;
     position: relative;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .video-card * {
+    pointer-events: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
   }
   .video-card:hover {
     transform: translateY(-6px);
