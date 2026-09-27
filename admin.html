@@ -1305,7 +1305,7 @@
       📸 Photo Gallery (<span id="tabPhotoCount">0</span>)
     </button>
     <button class="admin-tab" id="tabEventsBtn" onclick="switchAdminTab('events')">
-      📅 Upcoming Events (<span id="tabEventCount">0</span>)
+      📅 Events (<span id="tabEventCount">0</span>)
     </button>
   </div>
 
@@ -1645,78 +1645,43 @@
     </div>
   </div>
 
-  <!-- VIEW 5: UPCOMING EVENTS MANAGEMENT -->
+  <!-- VIEW 5: EVENTS MANAGEMENT -->
   <div id="eventsView" style="display:none;">
     <div class="dashboard-grid">
       <!-- LEFT: PUBLISH EVENT FORM -->
       <div class="dash-card">
-        <h2>📅 Publish Upcoming Event</h2>
-        <p class="card-desc">Add rallies, conventions, satsangs, or seva drives to the live homepage. Synced instantly to the website in a 2x2 grid.</p>
+        <h2>📅 Publish Event</h2>
+        <p class="card-desc">Publish events to the live website. Visitors can tap the event box on the homepage or events page to read the complete matter.</p>
 
         <form id="addEventForm" onsubmit="handlePublishEvent(event)">
+          <!-- Event Heading -->
           <div class="form-group">
-            <label for="eventTitle">Event Name / Title *</label>
+            <label for="eventTitle">Event Heading *</label>
             <input type="text" id="eventTitle" class="form-input" placeholder="e.g. Maha Youth Awakening & Martial Defense Convention" required>
           </div>
 
+          <!-- Schedule / Date & Time (Optional) -->
           <div class="form-group">
-            <label for="eventCategory">Category / Badge *</label>
-            <select id="eventCategory" class="form-input" required>
-              <option value="🚩 State Convention">🚩 State Convention</option>
-              <option value="🐄 Gau Seva & Annadanam">🐄 Gau Seva & Annadanam</option>
-              <option value="🏛️ Temple Defense">🏛️ Temple Defense</option>
-              <option value="📚 Gita Satsang & Pravachan">📚 Gita Satsang & Pravachan</option>
-              <option value="🔥 Youth Camp & Martial Arts">🔥 Youth Camp & Martial Arts</option>
-              <option value="🙏 Dharma Yatra & Rally">🙏 Dharma Yatra & Rally</option>
-            </select>
+            <label for="eventSchedule">Schedule / Date & Time (Optional)</label>
+            <input type="text" id="eventSchedule" class="form-input" placeholder="e.g. Sunday, 15 Oct • 10:00 AM onwards">
           </div>
 
+          <!-- Location (Optional) -->
           <div class="form-group">
-            <label for="eventSchedule">Schedule / Date & Time *</label>
-            <input type="text" id="eventSchedule" class="form-input" placeholder="e.g. Sunday, 15 Oct • 10:00 AM onwards" required>
+            <label for="eventLocation">Location / Venue (Optional)</label>
+            <input type="text" id="eventLocation" class="form-input" placeholder="e.g. Tirupati Central Grounds, Andhra Pradesh">
           </div>
 
+          <!-- Event Matter / Full Details -->
           <div class="form-group">
-            <label for="eventLocation">Location / Venue *</label>
-            <input type="text" id="eventLocation" class="form-input" placeholder="e.g. Tirupati Central Grounds, Andhra Pradesh" required>
-          </div>
-
-          <div class="form-group">
-            <label for="eventPresided">Presided By / Target</label>
-            <input type="text" id="eventPresided" class="form-input" placeholder="e.g. Shri Radha Manohar Das">
-          </div>
-
-          <div class="form-group">
-            <label for="eventDesc">Event Description *</label>
-            <textarea id="eventDesc" class="form-input" rows="3" placeholder="Brief description of the event, significance, and youth mobilization..." required style="resize:vertical;"></textarea>
-          </div>
-
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-            <div class="form-group">
-              <label for="eventPrimaryText">Button 1 Label</label>
-              <input type="text" id="eventPrimaryText" class="form-input" value="Enlist as Sevak 🚩">
-            </div>
-            <div class="form-group">
-              <label for="eventPrimaryUrl">Button 1 Link</label>
-              <input type="text" id="eventPrimaryUrl" class="form-input" value="join.html">
-            </div>
-          </div>
-
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-            <div class="form-group">
-              <label for="eventSecondaryText">Button 2 Label</label>
-              <input type="text" id="eventSecondaryText" class="form-input" value="RSVP 📋">
-            </div>
-            <div class="form-group">
-              <label for="eventSecondaryUrl">Button 2 Link / Action</label>
-              <input type="text" id="eventSecondaryUrl" class="form-input" value="rsvp" placeholder="'rsvp' or link">
-            </div>
+            <label for="eventDesc">Event Matter / Full Details *</label>
+            <textarea id="eventDesc" class="form-input" rows="6" placeholder="Enter complete event matter, message, address, schedule, and guidelines here..." required style="resize:vertical;"></textarea>
           </div>
 
           <div id="eventStatusMsg" style="display:none; margin-bottom: 14px; padding: 10px; border-radius: 8px; font-size: 0.84rem; text-align: center;"></div>
 
           <button type="submit" class="btn-submit" id="btnPublishEvent">
-            📅 Publish Event to Website
+            🚀 Publish Event to Website
           </button>
         </form>
       </div>
@@ -1724,12 +1689,12 @@
       <!-- RIGHT: PUBLISHED EVENTS LIST -->
       <div class="dash-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <h2 style="margin-bottom: 0;">📅 Live Upcoming Events (<span id="eventsListCount">0</span>)</h2>
+          <h2 style="margin-bottom: 0;">📅 Live Events (<span id="eventsListCount">0</span>)</h2>
           <span style="font-size: 0.78rem; color: var(--gold-bright); background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 12px; border: 1px solid var(--border-gold);">
             Live Sync Active
           </span>
         </div>
-        <p class="card-desc">Events currently appearing on the public website. Add new events or delete past ones anytime.</p>
+        <p class="card-desc">All events currently live on the public website. Delete past events anytime.</p>
 
         <div id="eventsAdminList">
           <div style="text-align:center; padding:40px; color:var(--text-muted);">
@@ -4323,57 +4288,36 @@ service cloud.firestore {
   // ==========================================
   // UPCOMING EVENTS MANAGEMENT SYSTEM
   // ==========================================
+  // REAL-TIME EVENTS SYSTEM (HEADING + MATTER SCHEMA)
+  // ==========================================
   let adminEventsChannel = null;
   const DEFAULT_AHS_EVENTS = [
     {
       id: 'evt-1',
       title: 'Maha Youth Awakening & Martial Defense Convention',
       title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
-      category: '🚩 State Convention • Tirupati',
-      category_class: 'convention',
-      schedule: 'Upcoming • 10:00 AM onwards',
+      schedule: 'Sunday • 10:00 AM',
       location: 'Tirupati Central Grounds, Andhra Pradesh',
-      presided: 'Shri Radha Manohar Das',
-      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
-      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
-      primaryBtnText: 'Enlist as Sevak 🚩',
-      primaryBtnUrl: 'join.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage across Andhra Pradesh and Bharat.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి మహా సమ్మేళనం.'
     },
     {
       id: 'evt-2',
       title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
       title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
-      category: '🐄 Gau Seva & Annadanam',
-      category_class: 'seva',
-      schedule: 'Every Ekadashi & Sacred Festivals',
+      schedule: 'Every Ekadashi',
       location: 'Vijayawada & Sacred Kshetrams',
-      presided: '5,000+ Devotee Meals & Gaushala Fodder',
-      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
-      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
-      primaryBtnText: 'Support with Donation 💛',
-      primaryBtnUrl: 'donate.html',
-      secondaryBtnText: 'Volunteer Seva 🚩',
-      secondaryBtnUrl: 'join.html'
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows at local gaushalas.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, నిరంతర వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.'
     },
     {
       id: 'evt-3',
       title: 'Devalaya Swatantra & Grama Dharma Jagruti',
       title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
-      category: '🏛️ Temple Defense',
-      category_class: 'temple',
-      schedule: 'Monthly Conclave • Twin Telugu States',
+      schedule: 'Monthly Conclave',
       location: 'District Centers across AP & Telangana',
-      presided: 'Anti-Encroachment & Temple Autonomy',
-      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
-      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
-      primaryBtnText: 'Join Discussion 💬',
-      primaryBtnUrl: 'community.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Devalaya Swatantra Conclave'
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation, preserve ancient rituals, and safeguard temple autonomy.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.'
     }
   ];
 
@@ -4405,7 +4349,7 @@ service cloud.firestore {
     if (count === 0) {
       listEl.innerHTML = `
         <div style="text-align:center; padding:40px; color:var(--text-muted);">
-          No upcoming events listed yet. Use the form on the left to publish an event!
+          No events listed yet. Use the form on the left to publish an event!
         </div>
       `;
       return;
@@ -4416,32 +4360,24 @@ service cloud.firestore {
       const id = evt.id;
       const title = evt.title || 'Untitled Event';
       const escapedTitle = title.replace(/'/g, "\\'");
-      const category = evt.category || '🚩 Event';
-      const schedule = evt.schedule || 'Upcoming';
-      const location = evt.location || 'AP / Telangana';
-      const presided = evt.presided || '';
+      const schedule = evt.schedule || '';
+      const location = evt.location || '';
       const desc = evt.desc || '';
-      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
-      const primaryUrl = evt.primaryBtnUrl || 'join.html';
-      const secondaryTxt = evt.secondaryBtnText || 'RSVP 📋';
 
       html += `
         <div class="event-admin-card" id="adminEvent_${escapeHtml(id)}">
           <div class="event-admin-header">
-            <span class="event-admin-badge">${escapeHtml(category)}</span>
-            <span style="font-size:0.75rem; color:var(--gold);">ID: <code>${escapeHtml(id)}</code></span>
+            <span style="font-size:0.80rem; font-weight:700; color:var(--gold-bright);">🚩 Event</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">ID: <code style="color:var(--gold);">${escapeHtml(id)}</code></span>
           </div>
           <div class="event-admin-title">${escapeHtml(title)}</div>
+          ${(schedule || location) ? `
           <div class="event-admin-meta">
-            <span>📅 <strong>Schedule:</strong> ${escapeHtml(schedule)}</span>
-            <span>📍 <strong>Location:</strong> ${escapeHtml(location)}</span>
-            ${presided ? `<span>🎙️ <strong>Presided:</strong> ${escapeHtml(presided)}</span>` : ''}
-          </div>
+            ${schedule ? `<span>📅 <strong>Schedule:</strong> ${escapeHtml(schedule)}</span>` : ''}
+            ${location ? `<span>📍 <strong>Location:</strong> ${escapeHtml(location)}</span>` : ''}
+          </div>` : ''}
           <div class="event-admin-desc">${escapeHtml(desc)}</div>
-          <div class="event-admin-actions">
-            <div style="font-size:0.75rem; color:var(--text-muted);">
-              Action: <strong style="color:var(--gold-bright);">${escapeHtml(primaryTxt)}</strong> (${escapeHtml(primaryUrl)}) | <strong style="color:#2ecc71;">${escapeHtml(secondaryTxt)}</strong>
-            </div>
+          <div class="event-admin-actions" style="justify-content: flex-end;">
             <button type="button" class="btn-event-del" onclick="deleteAdminEvent('${escapeHtml(id)}', '${escapedTitle}')">
               🗑️ Delete Event
             </button>
@@ -4459,18 +4395,12 @@ service cloud.firestore {
     const statusMsg = document.getElementById('eventStatusMsg');
 
     const title = document.getElementById('eventTitle').value.trim();
-    const category = document.getElementById('eventCategory').value.trim();
-    const schedule = document.getElementById('eventSchedule').value.trim();
-    const location = document.getElementById('eventLocation').value.trim();
-    const presided = document.getElementById('eventPresided').value.trim();
+    const schedule = (document.getElementById('eventSchedule')?.value || '').trim();
+    const location = (document.getElementById('eventLocation')?.value || '').trim();
     const desc = document.getElementById('eventDesc').value.trim();
-    const primaryBtnText = document.getElementById('eventPrimaryText').value.trim() || 'Enlist as Sevak 🚩';
-    const primaryBtnUrl = document.getElementById('eventPrimaryUrl').value.trim() || 'join.html';
-    const secondaryBtnText = document.getElementById('eventSecondaryText').value.trim() || 'RSVP 📋';
-    const secondaryBtnUrl = document.getElementById('eventSecondaryUrl').value.trim() || 'rsvp';
 
-    if (!title || !schedule || !location) {
-      alert("Please fill in Title, Schedule, and Location.");
+    if (!title || !desc) {
+      alert("Please fill in both the Event Heading and the Event Matter.");
       return;
     }
 
@@ -4480,17 +4410,9 @@ service cloud.firestore {
     const newEvent = {
       id: 'evt_' + Date.now(),
       title: title,
-      category: category,
-      category_class: category.includes('Convention') ? 'convention' : (category.includes('Seva') ? 'seva' : 'temple'),
       schedule: schedule,
       location: location,
-      presided: presided,
       desc: desc,
-      primaryBtnText: primaryBtnText,
-      primaryBtnUrl: primaryBtnUrl,
-      secondaryBtnText: secondaryBtnText,
-      secondaryBtnUrl: secondaryBtnUrl,
-      rsvpTitle: secondaryBtnUrl === 'rsvp' ? title : '',
       createdAt: new Date().toISOString()
     };
 
@@ -4522,7 +4444,7 @@ service cloud.firestore {
     renderAdminEvents();
     document.getElementById('addEventForm').reset();
     btn.disabled = false;
-    btn.textContent = "📅 Publish Event to Website";
+    btn.textContent = "🚀 Publish Event to Website";
 
     if (statusMsg) {
       statusMsg.style.display = 'block';
@@ -4532,7 +4454,7 @@ service cloud.firestore {
       statusMsg.textContent = `✅ Event "${title}" published live successfully!`;
       setTimeout(() => { statusMsg.style.display = 'none'; }, 4000);
     }
-    showToast("Event published live to homepage! 📅");
+    showToast("Event published live to website! 📅");
   }
 
   async function deleteAdminEvent(id, title) {

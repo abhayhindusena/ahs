@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upcoming Events & State Conventions | Abhay Hindu Sena</title>
-<meta name="description" content="Explore upcoming state conventions, youth defense camps, Bhagavad Gita discourses, and Nitya Annadanam seva drives by Abhay Hindu Sena under the guidance of Shri Radha Manohar Das.">
+<title>Events | Abhay Hindu Sena</title>
+<meta name="description" content="Explore state gatherings, youth defense camps, Bhagavad Gita discourses, and Nitya Annadanam seva drives by Abhay Hindu Sena under the guidance of Shri Radha Manohar Das.">
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -340,25 +340,28 @@
     -webkit-touch-callout: none !important;
     -webkit-tap-highlight-color: transparent !important;
   }
-  .event-header-row, .event-header-row *,
-  .event-badge,
-  .event-title,
-  .event-meta-list, .event-meta-list *,
-  .event-desc {
-    pointer-events: none !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
-    -webkit-touch-callout: none !important;
-  }
-  .event-actions, .event-actions a, .event-actions button {
-    pointer-events: auto !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
+  .event-card {
+    background: linear-gradient(145deg, rgba(28, 8, 8, 0.95) 0%, rgba(16, 4, 4, 0.98) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 14px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.65);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.28s ease, border-color 0.28s, box-shadow 0.28s;
   }
   .event-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     border-color: var(--gold-bright);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.25);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.25);
   }
   .event-card::before {
     content: '';
@@ -367,135 +370,202 @@
     height: 3px;
     background: linear-gradient(90deg, var(--saffron), var(--gold-bright), var(--saffron));
   }
-  .event-header-row {
+  .event-card-top {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
   }
-  .event-badge {
-    display: inline-flex;
+  .event-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 107, 26, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255,107,26,0.15);
-    border: 1px solid rgba(255,107,26,0.45);
-    color: #FFA466;
-    font-size: 0.74rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .event-badge.convention {
-    background: rgba(212,175,55,0.15);
-    border-color: var(--gold);
+    justify-content: center;
+    font-size: 1.25rem;
     color: var(--gold-bright);
+    flex-shrink: 0;
   }
-  .event-badge.seva {
-    background: rgba(46, 204, 113, 0.15);
-    border-color: rgba(46, 204, 113, 0.45);
-    color: #2ecc71;
-  }
-  .event-badge.temple {
-    background: rgba(235, 77, 75, 0.15);
-    border-color: rgba(235, 77, 75, 0.45);
-    color: #ff7675;
-  }
-  .event-badge.satsang {
-    background: rgba(155, 89, 182, 0.15);
-    border-color: rgba(155, 89, 182, 0.45);
-    color: #d1a3ed;
-  }
-  .event-badge.youth {
-    background: rgba(243, 156, 18, 0.15);
-    border-color: rgba(243, 156, 18, 0.45);
-    color: #f39c12;
+  .event-date-chip {
+    font-size: 0.74rem;
+    color: #FFA466;
+    background: rgba(255, 107, 26, 0.12);
+    border: 1px solid rgba(255, 107, 26, 0.35);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 68%;
   }
   .event-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--gold-bright);
     line-height: 1.35;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     font-weight: 800;
   }
-  .event-meta-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    background: rgba(0,0,0,0.35);
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(212,175,55,0.15);
-  }
-  .event-meta-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.4;
-  }
-  .event-meta-item strong {
-    color: #FFF;
-  }
   .event-desc {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     color: #d8c7b5;
-    line-height: 1.65;
-    margin-bottom: 22px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     flex: 1;
   }
-  .event-actions {
+  .event-card-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-top: auto;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .event-card:hover .event-card-cue {
+    color: var(--gold-bright);
+    transform: translateX(3px);
+  }
+
+  /* EVENT DETAILS MODAL */
+  .event-detail-modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .event-detail-modal-backdrop.active {
     display: flex;
+  }
+  .event-detail-modal-box {
+    background: linear-gradient(145deg, #1f0808 0%, #110303 100%);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 580px;
+    width: 100%;
+    box-shadow: 0 16px 45px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.25);
+    position: relative;
+    animation: modalPop 0.25s ease-out;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .event-modal-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--text-muted);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .event-modal-close:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .event-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .event-modal-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,107,26,0.18);
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .event-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0;
+    padding-right: 30px;
+  }
+  .event-modal-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .event-modal-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: #FFA466;
+    background: rgba(255,107,26,0.12);
+    border: 1px solid rgba(255,107,26,0.35);
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-weight: 600;
+  }
+  .event-modal-chip.location {
+    color: var(--gold-bright);
+    background: rgba(212,175,55,0.12);
+    border-color: rgba(212,175,55,0.35);
+  }
+  .event-modal-matter {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: #FFF8EF;
+    white-space: pre-line;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-bottom: 20px;
+  }
+  .event-modal-matter::-webkit-scrollbar { width: 4px; }
+  .event-modal-matter::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+  .event-modal-actions {
+    display: flex;
+    justify-content: flex-end;
     gap: 10px;
     margin-top: auto;
   }
-  .btn-event-primary {
-    flex: 1;
-    text-decoration: none;
+  .btn-modal-close {
     background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
     color: #000;
-    font-weight: 800;
-    font-size: 0.84rem;
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .btn-event-primary:hover {
-    box-shadow: 0 4px 15px rgba(212,175,55,0.55);
-    transform: translateY(-2px);
-  }
-  .btn-event-secondary {
-    text-decoration: none;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border-gold);
-    color: var(--gold-bright);
+    border: none;
+    padding: 9px 24px;
+    border-radius: 20px;
     font-weight: 700;
-    font-size: 0.84rem;
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    font-size: 0.88rem;
     cursor: pointer;
+    transition: transform 0.2s;
   }
-  .btn-event-secondary:hover {
-    background: rgba(212,175,55,0.22);
-    color: #FFF;
-    border-color: var(--gold-bright);
+  .btn-modal-close:hover {
+    transform: scale(1.04);
   }
 
   /* EMPTY STATE */
@@ -634,10 +704,21 @@
     .glass-lang-btn { font-size: 0.72rem !important; padding: 3px 8px !important; }
     .events-hero { padding: 35px 16px 25px; }
     .events-container { padding: 25px 14px 60px; }
-    .events-grid { grid-template-columns: 1fr; gap: 16px; }
-    .event-card { padding: 18px 16px; border-radius: 14px; }
-    .event-title { font-size: 1.1rem; }
-    .event-desc { font-size: 0.84rem; }
+    .events-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .event-card {
+      padding: 14px 10px !important;
+      border-radius: 12px !important;
+      min-height: 150px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+    .event-card-top { gap: 6px !important; margin-bottom: 6px !important; }
+    .event-icon-circle { width: 32px !important; height: 32px !important; font-size: 1.05rem !important; }
+    .event-date-chip { font-size: 0.62rem !important; padding: 2px 7px !important; border-radius: 10px !important; }
+    .event-title { font-size: 0.86rem !important; line-height: 1.25 !important; margin-bottom: 5px !important; font-weight: 700 !important; }
+    .event-desc { font-size: 0.70rem !important; line-height: 1.35 !important; margin-bottom: 8px !important; display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important; }
+    .event-card-cue { font-size: 0.68rem !important; }
   }
 </style>
 </head>
@@ -683,26 +764,18 @@
 
 <!-- HERO -->
 <section class="events-hero">
-  <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
-  <h1 class="page-title" data-en="All Upcoming Events & Conventions" data-te="రాబోయే కార్యక్రమాలు & రాష్ట్ర సమ్మేళనాలు">All Upcoming Events & Conventions</h1>
-  <p class="page-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
-     data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో వేలాది మంది సేవకులతో కలిసి భాగస్వామ్యం పొందండి.">
-    Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
+  <span class="eyebrow" data-en="Dharmic Gatherings & Seva" data-te="ధార్మిక సమావేశాలు & సేవా కార్యక్రమాలు">Dharmic Gatherings & Seva</span>
+  <h1 class="page-title" data-en="Events" data-te="కార్యక్రమాలు">Events</h1>
+  <p class="page-sub" data-en="Join hands with thousands of Dharma Sevaks in our state gatherings, meetings, satsangs, and Nitya Annadanam drives."
+     data-te="సనాతన ధర్మ పరిరక్షణ, సమావేశాలు, సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో వేలాది మంది సేవకులతో కలిసి భాగస్వామ్యం పొందండి.">
+    Join hands with thousands of Dharma Sevaks in our state gatherings, meetings, satsangs, and Nitya Annadanam drives.
   </p>
 
-  <!-- SEARCH & FILTER CONTROLS -->
+  <!-- SEARCH CONTROL (NO CATEGORIES) -->
   <div class="controls-wrap">
     <div class="search-input-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="eventSearchInput" placeholder="Search events by title, location, or topic..." oninput="handleSearch(this.value)">
-    </div>
-    <div class="filter-pills-row">
-      <button class="filter-pill active" onclick="filterCategory('all', this)" data-en="All Events" data-te="అన్నీ">All Events</button>
-      <button class="filter-pill" onclick="filterCategory('convention', this)" data-en="🚩 State Conventions" data-te="🚩 రాష్ట్ర సమ్మేళనాలు">🚩 State Conventions</button>
-      <button class="filter-pill" onclick="filterCategory('seva', this)" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదానం">🐄 Gau Seva & Annadanam</button>
-      <button class="filter-pill" onclick="filterCategory('temple', this)" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</button>
-      <button class="filter-pill" onclick="filterCategory('satsang', this)" data-en="📚 Gita Satsangs" data-te="📚 గీతా సత్సంగాలు">📚 Gita Satsangs</button>
-      <button class="filter-pill" onclick="filterCategory('youth', this)" data-en="🔥 Youth Camps" data-te="🔥 యువ శిక్షణ శిబిరాలు">🔥 Youth Camps</button>
+      <input type="text" id="eventSearchInput" placeholder="Search events..." oninput="handleSearch(this.value)">
     </div>
   </div>
 </section>
@@ -714,14 +787,34 @@
   </div>
 </main>
 
+<!-- EVENT DETAIL MODAL (Shows Complete Event on Click) -->
+<div class="event-detail-modal-backdrop" id="eventDetailModal" onclick="closeEventDetailModal()">
+  <div class="event-detail-modal-box" onclick="event.stopPropagation()">
+    <button type="button" class="event-modal-close" onclick="closeEventDetailModal()" aria-label="Close">&times;</button>
+    <div class="event-modal-header">
+      <div class="event-modal-icon">🚩</div>
+      <h3 class="event-modal-title" id="detailModalTitle">Event Details</h3>
+    </div>
+    <div class="event-modal-meta-row" id="detailModalMeta">
+      <!-- Injected dynamically: Date / Time & Location chips -->
+    </div>
+    <div class="event-modal-matter" id="detailModalDesc">
+      <!-- Injected dynamically: Complete Event Matter -->
+    </div>
+    <div class="event-modal-actions">
+      <button type="button" class="btn-modal-close" onclick="closeEventDetailModal()" data-en="Close ✕" data-te="ముగించండి ✕">Close ✕</button>
+    </div>
+  </div>
+</div>
+
 <!-- RSVP MODAL -->
 <div class="modal-backdrop" id="rsvpModal" onclick="closeRSVPModal()">
   <div class="modal-content" onclick="event.stopPropagation()">
     <div style="font-size:2.5rem; margin-bottom:10px;">📅</div>
     <h3 id="rsvpEventTitle" style="color:var(--gold-bright); font-family:var(--font-heading); font-size:1.35rem; margin-bottom:12px;">RSVP Confirmation</h3>
-    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.6; margin-bottom:18px;" data-en="Thank you for your devotion! Your seat has been marked for this upcoming event. Full schedule and venue directions will be communicated via official WhatsApp announcements."
+    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.6; margin-bottom:18px;" data-en="Thank you for your devotion! Your seat has been marked for this event. Full schedule and venue directions will be communicated via official WhatsApp announcements."
        data-te="మీ ధార్మిక సంకల్పానికి ధన్యవాదాలు! ఈ పవిత్ర కార్యక్రమానికి మీ నమోదు ధృవీకరించబడింది. సమగ్ర వివరాలు మరియు మార్గదర్శకాలు మా అధికారిక వాట్సాప్ ద్వారా తెలియజేయబడతాయి.">
-      Thank you for your devotion! Your seat has been marked for this upcoming event. Full schedule and venue directions will be communicated via official WhatsApp announcements.
+      Thank you for your devotion! Your seat has been marked for this event. Full schedule and venue directions will be communicated via official WhatsApp announcements.
     </p>
     <div style="display:flex; justify-content:center; gap:10px;">
       <button class="modal-close-btn" onclick="closeRSVPModal()" data-en="Confirm & Close" data-te="ధృవీకరించండి & ముగించండి">Confirm & Close</button>
@@ -776,100 +869,56 @@
   }
 
   // Master fallback events list
+  // Master fallback events list (Simplified Heading & Matter schema)
   const defaultEvents = [
     {
       id: 'evt-1',
       title: 'Maha Youth Awakening & Martial Defense Convention',
       title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
-      category: '🚩 State Convention • Tirupati',
-      category_key: 'convention',
-      category_class: 'convention',
-      schedule: 'Upcoming • 10:00 AM onwards',
+      schedule: 'Sunday • 10:00 AM',
       location: 'Tirupati Central Grounds, Andhra Pradesh',
-      presided: 'Shri Radha Manohar Das',
-      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
-      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
-      primaryBtnText: 'Enlist as Sevak 🚩',
-      primaryBtnUrl: 'join.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage across Andhra Pradesh and Bharat.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి మహా సమ్మేళనం.'
     },
     {
       id: 'evt-2',
       title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
       title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
-      category: '🐄 Gau Seva & Annadanam',
-      category_key: 'seva',
-      category_class: 'seva',
-      schedule: 'Every Ekadashi & Sacred Festivals',
+      schedule: 'Every Ekadashi',
       location: 'Vijayawada & Sacred Kshetrams',
-      presided: '5,000+ Devotee Meals & Gaushala Fodder',
-      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
-      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
-      primaryBtnText: 'Support with Donation 💛',
-      primaryBtnUrl: 'donate.html',
-      secondaryBtnText: 'Volunteer Seva 🚩',
-      secondaryBtnUrl: 'join.html'
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows at local gaushalas.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, నిరంతర వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.'
     },
     {
       id: 'evt-3',
       title: 'Devalaya Swatantra & Grama Dharma Jagruti',
       title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
-      category: '🏛️ Temple Defense',
-      category_key: 'temple',
-      category_class: 'temple',
-      schedule: 'Monthly Conclave • Twin Telugu States',
+      schedule: 'Monthly Conclave',
       location: 'District Centers across AP & Telangana',
-      presided: 'Anti-Encroachment & Temple Autonomy',
-      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
-      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
-      primaryBtnText: 'Join Discussion 💬',
-      primaryBtnUrl: 'community.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Devalaya Swatantra Conclave'
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation, preserve ancient rituals, and safeguard temple autonomy.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.'
     },
     {
       id: 'evt-4',
       title: 'Bhagavad Gita Youth Chanting & Moral Leadership Camp',
       title_te: 'భగవద్గీత యువ కంఠస్థ & నాయకత్వ శిక్షణ సదస్సు',
-      category: '📚 Gita Satsang',
-      category_key: 'satsang',
-      category_class: 'satsang',
       schedule: 'Weekend Sessions • Every Saturday 5:00 PM',
       location: 'Hyderabad & Regional Kendra Centers',
-      presided: 'Pujya Guruji Discourses',
       desc: 'Teaching Slokas, Vedic character building, ethical leadership, and righteous decision-making from the Bhagavad Gita for school and college youth.',
-      desc_te: 'విద్యార్థులకు, యువతకు భగవద్గీత శ్లోకాలు, ధార్మిక జీవన విధానం, నాయకత్వ లక్షణాలు మరియు నైతిక విలువలపై ప్రత్యేక శిక్షణ.',
-      primaryBtnText: 'Register Free 🚩',
-      primaryBtnUrl: 'join.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Bhagavad Gita Youth Camp'
+      desc_te: 'విద్యార్థులకు, యువతకు భగవద్గీత శ్లోకాలు, ధార్మిక జీవన విధానం, నాయకత్వ లక్షణాలు మరియు నైతిక విలువలపై ప్రత్యేక శిక్షణ.'
     },
     {
       id: 'evt-5',
       title: 'Sanatana Dharma Raksha Rally & Shobha Yatra',
       title_te: 'సనాతన ధర్మ రక్షణ శోభాయాత్ర & మహా ర్యాలీ',
-      category: '🔥 Youth Camp',
-      category_key: 'youth',
-      category_class: 'youth',
       schedule: 'Sri Rama Navami & Hanuman Jayanti Mahotsav',
       location: 'Kurnool, Kadapa & Rayalaseema',
-      presided: '10,000+ Saffron Flag Bearers',
       desc: 'Grand cultural procession, traditional martial arts displays, chanting of Sri Hanuman Chalisa, and uniting all communities under Dharma Dhwaja.',
-      desc_te: 'కాషాయ ధ్వజాలతో భారీ శోభాయాత్ర, సంప్రదాయ ఆత్మరక్షణ విన్యాసాలు మరియు శ్రీ హనుమాన్ చాలీసా సామూహిక పారాయణం.',
-      primaryBtnText: 'Join Rally 🚩',
-      primaryBtnUrl: 'join.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Sanatana Dharma Raksha Rally'
+      desc_te: 'కాషాయ ధ్వజాలతో భారీ శోభాయాత్ర, సంప్రదాయ ఆత్మరక్షణ విన్యాసాలు మరియు శ్రీ హనుమాన్ చాలీసా సామూహిక పారాయణం.'
     }
   ];
 
   let allLoadedEvents = [];
-  let currentCategory = 'all';
   let currentSearchQuery = '';
 
   function getLocalEvents() {
@@ -931,34 +980,63 @@
     }
   }
 
-  function matchCategory(evt, catKey) {
-    if (catKey === 'all') return true;
-    const cat = (evt.category || '').toLowerCase();
-    const key = (evt.category_key || evt.category_class || '').toLowerCase();
-    if (key.includes(catKey)) return true;
-    if (catKey === 'convention' && cat.includes('convention')) return true;
-    if (catKey === 'seva' && (cat.includes('seva') || cat.includes('annadanam') || cat.includes('gau'))) return true;
-    if (catKey === 'temple' && (cat.includes('temple') || cat.includes('devalaya'))) return true;
-    if (catKey === 'satsang' && (cat.includes('satsang') || cat.includes('gita'))) return true;
-    if (catKey === 'youth' && (cat.includes('youth') || cat.includes('camp') || cat.includes('rally'))) return true;
-    return false;
+  function openEventDetailModal(eventId) {
+    const events = allLoadedEvents.length > 0 ? allLoadedEvents : defaultEvents;
+    const evt = events.find(e => e.id === eventId) || defaultEvents.find(e => e.id === eventId) || events[0];
+    if (!evt) return;
+
+    const titleEl = document.getElementById('detailModalTitle');
+    const metaEl = document.getElementById('detailModalMeta');
+    const descEl = document.getElementById('detailModalDesc');
+    const modal = document.getElementById('eventDetailModal');
+
+    const title = (isTelugu && evt.title_te) ? evt.title_te : (evt.title || 'Event Details');
+    const desc = (isTelugu && evt.desc_te) ? evt.desc_te : (evt.desc || 'No further details available.');
+
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = desc;
+
+    if (metaEl) {
+      let metaHtml = '';
+      if (evt.schedule) {
+        metaHtml += `<span class="event-modal-chip">📅 ${escapeHtml(evt.schedule)}</span>`;
+      }
+      if (evt.location) {
+        metaHtml += `<span class="event-modal-chip location">📍 ${escapeHtml(evt.location)}</span>`;
+      }
+      metaEl.innerHTML = metaHtml;
+    }
+
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeEventDetailModal() {
+    const modal = document.getElementById('eventDetailModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeEventDetailModal();
+      closeRSVPModal();
+    }
+  });
 
   function renderEvents() {
     const grid = document.getElementById('allEventsGrid');
     if (!grid) return;
 
+    const q = currentSearchQuery.toLowerCase().trim();
     const filtered = allLoadedEvents.filter(evt => {
-      const matchCat = matchCategory(evt, currentCategory);
-      const q = currentSearchQuery.toLowerCase().trim();
-      const matchSearch = !q ||
-        (evt.title && evt.title.toLowerCase().includes(q)) ||
-        (evt.title_te && evt.title_te.toLowerCase().includes(q)) ||
-        (evt.desc && evt.desc.toLowerCase().includes(q)) ||
-        (evt.location && evt.location.toLowerCase().includes(q)) ||
-        (evt.category && evt.category.toLowerCase().includes(q)) ||
-        (evt.presided && evt.presided.toLowerCase().includes(q));
-      return matchCat && matchSearch;
+      if (!q) return true;
+      return (evt.title && evt.title.toLowerCase().includes(q)) ||
+             (evt.title_te && evt.title_te.toLowerCase().includes(q)) ||
+             (evt.desc && evt.desc.toLowerCase().includes(q)) ||
+             (evt.desc_te && evt.desc_te.toLowerCase().includes(q)) ||
+             (evt.location && evt.location.toLowerCase().includes(q)) ||
+             (evt.schedule && evt.schedule.toLowerCase().includes(q));
     });
 
     if (filtered.length === 0) {
@@ -966,9 +1044,9 @@
         <div class="empty-state">
           <div style="font-size:2.5rem; margin-bottom:12px;">📅</div>
           <h3 data-en="No Events Found" data-te="కార్యక్రమాలు ఏవీ కనుగొనబడలేదు">No Events Found</h3>
-          <p data-en="No scheduled events match your current search query or filter. Try selecting 'All Events' or clearing your search keywords."
-             data-te="మీరు వెతికిన పదాలు లేదా ఎంచుకున్న విభాగానికి సరిపోలే కార్యక్రమాలు లేవు. దయచేసి 'అన్నీ' ఎంచుకోండి.">
-            No scheduled events match your current search query or filter. Try selecting 'All Events' or clearing your search keywords.
+          <p data-en="No scheduled events match your current search query. Try clearing your search keywords."
+             data-te="మీరు వెతికిన పదాలకు సరిపోలే కార్యక్రమాలు లేవు. దయచేసి శోధన పదాలను తొలగించి ప్రయత్నించండి.">
+            No scheduled events match your current search query. Try clearing your search keywords.
           </p>
         </div>
       `;
@@ -976,69 +1054,38 @@
       return;
     }
 
-    grid.innerHTML = filtered.map(evt => {
-      const catClass = evt.category_class || (evt.category && evt.category.includes('Convention') ? 'convention' : (evt.category && evt.category.includes('Seva') ? 'seva' : (evt.category && evt.category.includes('Temple') ? 'temple' : '')));
-      const rsvpTitle = (evt.rsvpTitle || evt.title || 'Upcoming Event').replace(/'/g, "\\'");
-      const primaryUrl = evt.primaryBtnUrl || 'join.html';
-      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
-      const secTxt = evt.secondaryBtnText || 'RSVP 📋';
+    const icons = ['🚩', '🐄', '🏛️', '📚', '🔥'];
 
-      const titleEn = evt.title || 'Upcoming Event';
+    grid.innerHTML = filtered.map((evt, idx) => {
+      const titleEn = evt.title || 'Event';
       const titleTe = evt.title_te || titleEn;
       const descEn = evt.desc || '';
       const descTe = evt.desc_te || descEn;
+      const icon = icons[idx % icons.length];
+      const dateChip = evt.schedule ? `<span class="event-date-chip">${escapeHtml(evt.schedule)}</span>` : '';
 
       return `
-        <div class="event-card">
-          <div class="event-header-row">
-            <span class="event-badge ${catClass}">
-              ${escapeHtml(evt.category || '🚩 Event')}
-            </span>
-          </div>
-          <h3 class="event-title" data-en="${escapeHtml(titleEn)}" data-te="${escapeHtml(titleTe)}">
-            ${escapeHtml(isTelugu ? titleTe : titleEn)}
-          </h3>
-          <div class="event-meta-list">
-            <div class="event-meta-item">
-              <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">${isTelugu ? 'సమయం:' : 'Schedule:'}</span> <strong>${escapeHtml(evt.schedule || 'Upcoming')}</strong></div>
+        <div class="event-card" onclick="openEventDetailModal('${escapeHtml(evt.id)}')">
+          <div>
+            <div class="event-card-top">
+              <div class="event-icon-circle">${icon}</div>
+              ${dateChip}
             </div>
-            <div class="event-meta-item">
-              <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">${isTelugu ? 'ప్రాంతం:' : 'Location:'}</span> <strong>${escapeHtml(evt.location || 'AP / Telangana')}</strong></div>
-            </div>
-            ${evt.presided ? `
-            <div class="event-meta-item">
-              <span>🎙️</span> <div><span data-en="Presided By / Focus:" data-te="దివ్య మార్గదర్శనం:">${isTelugu ? 'దివ్య మార్గదర్శనం:' : 'Presided By / Focus:'}</span> <strong>${escapeHtml(evt.presided)}</strong></div>
-            </div>` : ''}
+            <h3 class="event-title" data-en="${escapeHtml(titleEn)}" data-te="${escapeHtml(titleTe)}">
+              ${escapeHtml(isTelugu ? titleTe : titleEn)}
+            </h3>
+            <p class="event-desc" data-en="${escapeHtml(descEn)}" data-te="${escapeHtml(descTe)}">
+              ${escapeHtml(isTelugu ? descTe : descEn)}
+            </p>
           </div>
-          <p class="event-desc" data-en="${escapeHtml(descEn)}" data-te="${escapeHtml(descTe)}">
-            ${escapeHtml(isTelugu ? descTe : descEn)}
-          </p>
-          <div class="event-actions">
-            <a href="${escapeHtml(primaryUrl)}" class="btn-event-primary">
-              ${escapeHtml(primaryTxt)}
-            </a>
-            ${evt.secondaryBtnUrl === 'rsvp' || !evt.secondaryBtnUrl ? `
-              <button type="button" class="btn-event-secondary" onclick="openRSVPModal('${rsvpTitle}')">
-                ${escapeHtml(secTxt)}
-              </button>
-            ` : `
-              <a href="${escapeHtml(evt.secondaryBtnUrl)}" class="btn-event-secondary">
-                ${escapeHtml(secTxt)}
-              </a>
-            `}
+          <div class="event-card-cue">
+            <span data-en="View Event Details ➔" data-te="పూర్తి వివరాలు చూడండి ➔">${isTelugu ? 'పూర్తి వివరాలు చూడండి ➔' : 'View Event Details ➔'}</span>
           </div>
         </div>
       `;
     }).join('');
 
     applyLanguage();
-  }
-
-  function filterCategory(catKey, btn) {
-    currentCategory = catKey;
-    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    renderEvents();
   }
 
   function handleSearch(val) {
@@ -1101,13 +1148,14 @@
     const searchInput = document.getElementById('eventSearchInput');
     if (searchInput) {
       searchInput.placeholder = isTelugu ? 
-        "కార్యక్రమాలు, ప్రాంతం లేదా అంశం ద్వారా వెతకండి..." : 
-        "Search events by title, location, or topic...";
+        "కార్యక్రమాలను వెతకండి..." : 
+        "Search events...";
     }
     document.querySelectorAll('[data-en]').forEach(el => {
       const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
       if (val) el.textContent = val;
     });
+    renderEvents();
   }
 
   document.addEventListener('DOMContentLoaded', loadAllEvents);

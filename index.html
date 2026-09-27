@@ -1968,65 +1968,49 @@
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 12px !important;
     }
+    .events-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
     .event-card {
-      padding: 12px 10px !important;
+      padding: 14px 10px !important;
       border-radius: 12px !important;
+      min-height: 150px !important;
       display: flex !important;
       flex-direction: column !important;
+      justify-content: space-between !important;
     }
-    .event-header-row {
-      margin-bottom: 8px !important;
+    .event-card-top {
+      gap: 6px !important;
+      margin-bottom: 6px !important;
     }
-    .event-badge {
+    .event-icon-circle {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 1.05rem !important;
+    }
+    .event-date-chip {
       font-size: 0.62rem !important;
       padding: 2px 7px !important;
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      max-width: 100% !important;
-      border-radius: 12px !important;
+      border-radius: 10px !important;
     }
     .event-title {
-      font-size: 0.88rem !important;
+      font-size: 0.86rem !important;
       line-height: 1.25 !important;
-      margin-bottom: 8px !important;
+      margin-bottom: 5px !important;
       font-weight: 700 !important;
     }
-    .event-meta-list {
-      padding: 8px 6px !important;
-      font-size: 0.70rem !important;
-      gap: 4px !important;
-      margin-bottom: 10px !important;
-      border-radius: 8px !important;
-    }
-    .event-meta-item {
-      gap: 4px !important;
-      line-height: 1.3 !important;
-    }
-    .event-meta-item span {
-      font-size: 0.85rem !important;
-    }
     .event-desc {
-      font-size: 0.72rem !important;
+      font-size: 0.70rem !important;
       line-height: 1.35 !important;
-      margin-bottom: 12px !important;
+      margin-bottom: 8px !important;
       display: -webkit-box !important;
-      -webkit-line-clamp: 3 !important;
+      -webkit-line-clamp: 2 !important;
       -webkit-box-orient: vertical !important;
       overflow: hidden !important;
     }
-    .event-actions {
-      flex-direction: column !important;
-      gap: 5px !important;
-      margin-top: auto !important;
-    }
-    .btn-event-primary, .btn-event-secondary {
-      padding: 6px 8px !important;
-      font-size: 0.72rem !important;
-      border-radius: 6px !important;
-      justify-content: center !important;
-      width: 100% !important;
-      box-sizing: border-box !important;
+    .event-card-cue {
+      font-size: 0.68rem !important;
     }
 
     /* 4 Action Portals (2x2 Boxes Type on Mobile) */
@@ -2463,21 +2447,27 @@
     .events-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   }
   .event-card {
-    background: linear-gradient(145deg, rgba(26, 7, 7, 0.95) 0%, rgba(15, 4, 4, 0.98) 100%);
+    background: linear-gradient(145deg, rgba(28, 8, 8, 0.95) 0%, rgba(16, 4, 4, 0.98) 100%);
     border: 1px solid var(--border-gold);
-    border-radius: 16px;
-    padding: 26px 22px;
+    border-radius: 14px;
+    padding: 22px 18px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 32px rgba(0,0,0,0.65);
+    justify-content: space-between;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.65);
     overflow: hidden;
     position: relative;
-    transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.28s ease, border-color 0.28s, box-shadow 0.28s;
   }
   .event-card:hover {
     transform: translateY(-4px);
     border-color: var(--gold-bright);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.25);
   }
   .event-card.view-more-card {
     min-height: 100%;
@@ -2491,120 +2481,202 @@
     height: 3px;
     background: linear-gradient(90deg, var(--saffron), var(--gold-bright), var(--saffron));
   }
-  .event-header-row {
+  .event-card-top {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
   }
-  .event-badge {
-    display: inline-flex;
+  .event-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 107, 26, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255,107,26,0.15);
-    border: 1px solid rgba(255,107,26,0.45);
-    color: #FFA466;
-    font-size: 0.74rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .event-badge.convention {
-    background: rgba(212,175,55,0.15);
-    border-color: var(--gold);
+    justify-content: center;
+    font-size: 1.25rem;
     color: var(--gold-bright);
+    flex-shrink: 0;
   }
-  .event-badge.seva {
-    background: rgba(46, 204, 113, 0.15);
-    border-color: rgba(46, 204, 113, 0.45);
-    color: #2ecc71;
+  .event-date-chip {
+    font-size: 0.74rem;
+    color: #FFA466;
+    background: rgba(255, 107, 26, 0.12);
+    border: 1px solid rgba(255, 107, 26, 0.35);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 68%;
   }
   .event-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--gold-bright);
     line-height: 1.35;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     font-weight: 800;
   }
-  .event-meta-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    background: rgba(0,0,0,0.35);
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(212,175,55,0.15);
-  }
-  .event-meta-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.4;
-  }
-  .event-meta-item strong {
-    color: #FFF;
-  }
   .event-desc {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     color: #d8c7b5;
-    line-height: 1.6;
-    margin-bottom: 22px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     flex: 1;
   }
-  .event-actions {
+  .event-card-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-top: auto;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .event-card:hover .event-card-cue {
+    color: var(--gold-bright);
+    transform: translateX(3px);
+  }
+
+  /* EVENT DETAILS MODAL */
+  .event-detail-modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .event-detail-modal-backdrop.active {
     display: flex;
+  }
+  .event-detail-modal-box {
+    background: linear-gradient(145deg, #1f0808 0%, #110303 100%);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 580px;
+    width: 100%;
+    box-shadow: 0 16px 45px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.25);
+    position: relative;
+    animation: modalPop 0.25s ease-out;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .event-modal-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--text-muted);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .event-modal-close:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .event-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .event-modal-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,107,26,0.18);
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .event-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0;
+    padding-right: 30px;
+  }
+  .event-modal-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .event-modal-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: #FFA466;
+    background: rgba(255,107,26,0.12);
+    border: 1px solid rgba(255,107,26,0.35);
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-weight: 600;
+  }
+  .event-modal-chip.location {
+    color: var(--gold-bright);
+    background: rgba(212,175,55,0.12);
+    border-color: rgba(212,175,55,0.35);
+  }
+  .event-modal-matter {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: #FFF8EF;
+    white-space: pre-line;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-bottom: 20px;
+  }
+  .event-modal-matter::-webkit-scrollbar { width: 4px; }
+  .event-modal-matter::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+  .event-modal-actions {
+    display: flex;
+    justify-content: flex-end;
     gap: 10px;
     margin-top: auto;
   }
-  .btn-event-primary {
-    flex: 1;
-    text-decoration: none;
+  .btn-modal-close {
     background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
     color: #000;
-    font-weight: 800;
-    font-size: 0.84rem;
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .btn-event-primary:hover {
-    box-shadow: 0 4px 15px rgba(212,175,55,0.55);
-    transform: translateY(-2px);
-  }
-  .btn-event-secondary {
-    text-decoration: none;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border-gold);
-    color: var(--gold-bright);
+    border: none;
+    padding: 9px 24px;
+    border-radius: 20px;
     font-weight: 700;
-    font-size: 0.84rem;
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-align: center;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    font-size: 0.88rem;
     cursor: pointer;
+    transition: transform 0.2s;
   }
-  .btn-event-secondary:hover {
-    background: rgba(212,175,55,0.22);
-    color: #FFF;
-    border-color: var(--gold-bright);
+  .btn-modal-close:hover {
+    transform: scale(1.04);
   }
   .mission-card::before, .video-card::before {
     content: '';
@@ -3639,113 +3711,88 @@
 </section>
 
 <!-- ========================================================================= -->
-<!-- UPCOMING EVENTS, CONVENTIONS & SEVA DRIVES -->
+<!-- EVENTS -->
 <!-- ========================================================================= -->
 <section id="events" class="events-section">
   <div class="section-header">
-    <span class="eyebrow" data-en="Dharmic Action & Gatherings" data-te="ధార్మిక కార్యాచరణ & సమ్మేళనాలు">Dharmic Action & Gatherings</span>
-    <h2 class="section-title" data-en="Upcoming Events, Conventions & Seva Drives" data-te="రాబోయే కార్యక్రమాలు, సమ్మేళనాలు & సేవా యజ్ఞాలు">Upcoming Events, Conventions & Seva Drives</h2>
-    <p class="section-sub" data-en="Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives."
-       data-te="సనాతన ధర్మ పరిరక్షణ, యువ చైతన్య శిక్షణ, భగవద్గీత సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో భాగస్వామ్యం పొందండి.">
-      Join hands with thousands of Dharma Sevaks in our state conventions, youth defense camps, Gita discourses, and Nitya Annadanam drives.
+    <span class="eyebrow" data-en="Dharmic Gatherings & Seva" data-te="ధార్మిక సమావేశాలు & సేవా కార్యక్రమాలు">Dharmic Gatherings & Seva</span>
+    <h2 class="section-title" data-en="Events" data-te="కార్యక్రమాలు">Events</h2>
+    <p class="section-sub" data-en="Join hands with thousands of Dharma Sevaks in our state gatherings, meetings, satsangs, and Nitya Annadanam drives."
+       data-te="సనాతన ధర్మ పరిరక్షణ, సమావేశాలు, సత్సంగాలు మరియు నిత్య అన్నదాన సేవా కార్యక్రమాలలో భాగస్వామ్యం పొందండి.">
+      Join hands with thousands of Dharma Sevaks in our state gatherings, meetings, satsangs, and Nitya Annadanam drives.
     </p>
   </div>
 
   <div class="events-grid" id="eventsGrid">
     <!-- Event 1: State Youth Awakening Convention -->
-    <div class="event-card" onclick="window.location.href='events.html'">
-      <div class="event-header-row">
-        <span class="event-badge convention" data-en="🚩 State Convention • Tirupati" data-te="🚩 రాష్ట్ర సమ్మేళనం • తిరుపతి">🚩 State Convention • Tirupati</span>
+    <div class="event-card" onclick="openEventDetailModal('evt-1')">
+      <div>
+        <div class="event-card-top">
+          <div class="event-icon-circle">🚩</div>
+          <span class="event-date-chip">Sunday • 10:00 AM</span>
+        </div>
+        <h3 class="event-title" data-en="Maha Youth Awakening & Martial Defense Convention" data-te="మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం">Maha Youth Awakening & Martial Defense Convention</h3>
+        <p class="event-desc" data-en="Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage."
+           data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
+          Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
+        </p>
       </div>
-      <h3 class="event-title" data-en="Maha Youth Awakening & Martial Defense Convention" data-te="మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం">Maha Youth Awakening & Martial Defense Convention</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Upcoming • 10:00 AM onwards</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Tirupati Central Grounds, Andhra Pradesh</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>🎙️</span> <div><span data-en="Presided By:" data-te="దివ్య మార్గదర్శనం:">Presided By:</span> <strong>Shri Radha Manohar Das</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage."
-         data-te="యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.">
-        Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.
-      </p>
-      <div class="event-actions" onclick="event.stopPropagation()">
-        <a href="join.html" class="btn-event-primary" data-en="Enlist as Sevak 🚩" data-te="సేవక్ నమోదు 🚩">Enlist as Sevak 🚩</a>
-        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Maha Youth Awakening Convention - Tirupati')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      <div class="event-card-cue">
+        <span data-en="View Event Details ➔" data-te="పూర్తి వివరాలు చూడండి ➔">View Event Details ➔</span>
       </div>
     </div>
 
     <!-- Event 2: Nitya Annadanam & Gau Seva Maha Yajna -->
-    <div class="event-card" onclick="window.location.href='events.html'">
-      <div class="event-header-row">
-        <span class="event-badge seva" data-en="🐄 Gau Seva & Annadanam" data-te="🐄 గోసేవ & అన్నదాన యజ్ఞం">🐄 Gau Seva & Annadanam</span>
+    <div class="event-card" onclick="openEventDetailModal('evt-2')">
+      <div>
+        <div class="event-card-top">
+          <div class="event-icon-circle">🐄</div>
+          <span class="event-date-chip">Every Ekadashi</span>
+        </div>
+        <h3 class="event-title" data-en="Nitya Annadanam & Gau Samrakshana Maha Seva" data-te="నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ">Nitya Annadanam & Gau Samrakshana Maha Seva</h3>
+        <p class="event-desc" data-en="Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows."
+           data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
+          Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
+        </p>
       </div>
-      <h3 class="event-title" data-en="Nitya Annadanam & Gau Samrakshana Maha Seva" data-te="నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ">Nitya Annadanam & Gau Samrakshana Maha Seva</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Every Ekadashi & Sacred Festivals</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>Vijayawada & Sacred Kshetrams</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>🍲</span> <div><span data-en="Target:" data-te="లక్ష్యం:">Target:</span> <strong>5,000+ Devotee Meals & Gaushala Fodder</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows."
-         data-te="యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.">
-        Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.
-      </p>
-      <div class="event-actions" onclick="event.stopPropagation()">
-        <a href="donate.html" class="btn-event-primary" data-en="Support with Donation 💛" data-te="విరాళం అందించండి 💛">Support with Donation 💛</a>
-        <a href="join.html" class="btn-event-secondary" data-en="Volunteer Seva 🚩" data-te="వాలంటీర్ సేవ 🚩">Volunteer Seva 🚩</a>
+      <div class="event-card-cue">
+        <span data-en="View Event Details ➔" data-te="పూర్తి వివరాలు చూడండి ➔">View Event Details ➔</span>
       </div>
     </div>
 
     <!-- Event 3: Devalaya Swatantra & Legal Awareness Conclave -->
-    <div class="event-card" onclick="window.location.href='events.html'">
-      <div class="event-header-row">
-        <span class="event-badge" data-en="🏛️ Temple Defense" data-te="🏛️ ఆలయ పరిరక్షణ">🏛️ Temple Defense</span>
+    <div class="event-card" onclick="openEventDetailModal('evt-3')">
+      <div>
+        <div class="event-card-top">
+          <div class="event-icon-circle">🏛️</div>
+          <span class="event-date-chip">Monthly Conclave</span>
+        </div>
+        <h3 class="event-title" data-en="Devalaya Swatantra & Grama Dharma Jagruti" data-te="దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు">Devalaya Swatantra & Grama Dharma Jagruti</h3>
+        <p class="event-desc" data-en="Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions."
+           data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
+          Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
+        </p>
       </div>
-      <h3 class="event-title" data-en="Devalaya Swatantra & Grama Dharma Jagruti" data-te="దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు">Devalaya Swatantra & Grama Dharma Jagruti</h3>
-      <div class="event-meta-list">
-        <div class="event-meta-item">
-          <span>📅</span> <div><span data-en="Schedule:" data-te="సమయం:">Schedule:</span> <strong>Monthly Conclave • Twin Telugu States</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>📍</span> <div><span data-en="Location:" data-te="ప్రాంతం:">Location:</span> <strong>District Centers across AP & Telangana</strong></div>
-        </div>
-        <div class="event-meta-item">
-          <span>⚖️</span> <div><span data-en="Focus:" data-te="ముఖ్య లక్ష్యం:">Focus:</span> <strong>Anti-Encroachment & Temple Autonomy</strong></div>
-        </div>
-      </div>
-      <p class="event-desc" data-en="Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions."
-         data-te="గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.">
-        Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.
-      </p>
-      <div class="event-actions" onclick="event.stopPropagation()">
-        <a href="community.html" class="btn-event-primary" data-en="Join Discussion 💬" data-te="చర్చలో చేరండి 💬">Join Discussion 💬</a>
-        <button type="button" class="btn-event-secondary" onclick="openRSVPModal('Devalaya Swatantra Conclave')" data-en="RSVP 📋" data-te="నమోదు 📋">RSVP 📋</button>
+      <div class="event-card-cue">
+        <span data-en="View Event Details ➔" data-te="పూర్తి వివరాలు చూడండి ➔">View Event Details ➔</span>
       </div>
     </div>
 
     <!-- Box 4: View More Card (Takes to separate events page) -->
     <div class="event-card view-more-card" onclick="window.location.href='events.html'">
-      <div class="view-more-content">
-        <div class="view-more-icon-wrap">
-          <span class="view-more-icon">📅</span>
+      <div>
+        <div class="event-card-top">
+          <div class="event-icon-circle">📅</div>
+          <span class="event-date-chip" data-en="Calendar" data-te="క్యాలెండర్">Calendar</span>
         </div>
-        <span class="view-more-badge" data-en="Events Calendar" data-te="క్యాలెండర్">Events Calendar</span>
-        <h3 data-en="All Upcoming Events" data-te="సమగ్ర కార్యక్రమాలు">All Upcoming Events</h3>
-        <p data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
+        <h3 class="event-title" data-en="All Events" data-te="అన్ని కార్యక్రమాలు">All Events</h3>
+        <p class="event-desc" data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
            data-te="రాష్ట్ర సమ్మేళనాలు, ధార్మిక సభలు మరియు సేవా కార్యక్రమాల పూర్తి వివరాలను ఇక్కడ చూడండి.">
           Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives.
         </p>
-        <a href="events.html" class="btn-view-more" data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">View All Events ➔</a>
+      </div>
+      <div class="event-card-cue">
+        <span data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">View All Events ➔</span>
       </div>
     </div>
   </div>
@@ -3872,6 +3919,26 @@
       Thank you for your devotion! Your seat has been marked for this upcoming event. Details will be communicated via WhatsApp/Email.
     </p>
     <button class="modal-close-btn" onclick="closeRSVPModal()">Confirm & Close</button>
+  </div>
+</div>
+
+<!-- Event Detail Modal (Shows Complete Event on Click) -->
+<div class="event-detail-modal-backdrop" id="eventDetailModal" onclick="closeEventDetailModal()">
+  <div class="event-detail-modal-box" onclick="event.stopPropagation()">
+    <button type="button" class="event-modal-close" onclick="closeEventDetailModal()" aria-label="Close">&times;</button>
+    <div class="event-modal-header">
+      <div class="event-modal-icon">🚩</div>
+      <h3 class="event-modal-title" id="detailModalTitle">Event Details</h3>
+    </div>
+    <div class="event-modal-meta-row" id="detailModalMeta">
+      <!-- Injected dynamically: Date / Time & Location chips -->
+    </div>
+    <div class="event-modal-matter" id="detailModalDesc">
+      <!-- Injected dynamically: Complete Event Matter -->
+    </div>
+    <div class="event-modal-actions">
+      <button type="button" class="btn-modal-close" onclick="closeEventDetailModal()" data-en="Close ✕" data-te="ముగించండి ✕">Close ✕</button>
+    </div>
   </div>
 </div>
 
@@ -4120,58 +4187,35 @@
   }
 
   // =========================================================================
-  // DYNAMIC UPCOMING EVENTS SYSTEM (2x2 GRID & REAL-TIME DASHBOARD SYNC)
+  // DYNAMIC EVENTS SYSTEM (2x2 SMALL BOXES GRID & DETAIL MODAL)
   // =========================================================================
   const DEFAULT_AHS_EVENTS = [
     {
       id: 'evt-1',
       title: 'Maha Youth Awakening & Martial Defense Convention',
       title_te: 'మహా యువ చైతన్య & ఆత్మరక్షణ సమ్మేళనం',
-      category: '🚩 State Convention • Tirupati',
-      category_class: 'convention',
-      schedule: 'Upcoming • 10:00 AM onwards',
+      schedule: 'Sunday • 10:00 AM',
       location: 'Tirupati Central Grounds, Andhra Pradesh',
-      presided: 'Shri Radha Manohar Das',
-      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage.',
-      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి సదస్సు.',
-      primaryBtnText: 'Enlist as Sevak 🚩',
-      primaryBtnUrl: 'join.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Maha Youth Awakening Convention - Tirupati'
+      desc: 'Physical discipline, character empowerment, Bhagavad Gita moral values, and youth mobilization for safeguarding sacred heritage across Andhra Pradesh and Bharat.',
+      desc_te: 'యువతలో ఆత్మస్థైర్యం, క్రమశిక్షణ, శారీరక దృఢత్వం మరియు భగవద్గీత ధర్మ రక్షణ సూత్రాలను పెంపొందించేందుకు నిర్వహించే రాష్ట్రస్థాయి మహా సమ్మేళనం.'
     },
     {
       id: 'evt-2',
       title: 'Nitya Annadanam & Gau Samrakshana Maha Seva',
       title_te: 'నిత్య అన్నదానం & గో సంరక్షణ మహా సేవ',
-      category: '🐄 Gau Seva & Annadanam',
-      category_class: 'seva',
-      schedule: 'Every Ekadashi & Sacred Festivals',
+      schedule: 'Every Ekadashi',
       location: 'Vijayawada & Sacred Kshetrams',
-      presided: '5,000+ Devotee Meals & Gaushala Fodder',
-      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows.',
-      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.',
-      primaryBtnText: 'Support with Donation 💛',
-      primaryBtnUrl: 'donate.html',
-      secondaryBtnText: 'Volunteer Seva 🚩',
-      secondaryBtnUrl: 'join.html'
+      desc: 'Sanctified prasadam distribution to thousands of pilgrims and devotees, combined with medical aid and fodder support for rescued cows at local gaushalas.',
+      desc_te: 'యాత్రికులకు, భక్తులకు నిరంతర పవిత్ర ప్రసాద వితరణ మరియు సంరక్షించబడిన దేశీ గోవులకు పోషక దాణా, నిరంతర వైద్య సహాయం అందించే పవిత్ర యజ్ఞం.'
     },
     {
       id: 'evt-3',
       title: 'Devalaya Swatantra & Grama Dharma Jagruti',
       title_te: 'దేవాలయాల స్వతంత్ర & గ్రామ ధర్మ జాగృతి సదస్సు',
-      category: '🏛️ Temple Defense',
-      category_class: 'temple',
-      schedule: 'Monthly Conclave • Twin Telugu States',
+      schedule: 'Monthly Conclave',
       location: 'District Centers across AP & Telangana',
-      presided: 'Anti-Encroachment & Temple Autonomy',
-      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation and stop unlawful cultural disruptions.',
-      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.',
-      primaryBtnText: 'Join Discussion 💬',
-      primaryBtnUrl: 'community.html',
-      secondaryBtnText: 'RSVP 📋',
-      secondaryBtnUrl: 'rsvp',
-      rsvpTitle: 'Devalaya Swatantra Conclave'
+      desc: 'Uniting local village elders, temple archakas, and legal volunteers to oppose temple land alienation, preserve ancient rituals, and safeguard temple autonomy.',
+      desc_te: 'గ్రామ స్థాయి ఆలయాల పరిరక్షణ, భూ ఆక్రమణల నిరోధం మరియు హిందూ దేవాలయాలను భక్తుల పర్యవేక్షణలోకి తీసుకురావడానికి చట్టపరమైన సదస్సులు.'
     }
   ];
 
@@ -4189,6 +4233,49 @@
     return DEFAULT_AHS_EVENTS;
   }
 
+  function openEventDetailModal(eventId) {
+    const events = getLocalEvents();
+    const evt = events.find(e => e.id === eventId) || DEFAULT_AHS_EVENTS.find(e => e.id === eventId) || events[0];
+    if (!evt) return;
+
+    const titleEl = document.getElementById('detailModalTitle');
+    const metaEl = document.getElementById('detailModalMeta');
+    const descEl = document.getElementById('detailModalDesc');
+    const modal = document.getElementById('eventDetailModal');
+
+    const title = (isTelugu && evt.title_te) ? evt.title_te : (evt.title || 'Event Details');
+    const desc = (isTelugu && evt.desc_te) ? evt.desc_te : (evt.desc || 'No further details available.');
+
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = desc;
+
+    if (metaEl) {
+      let metaHtml = '';
+      if (evt.schedule) {
+        metaHtml += `<span class="event-modal-chip">📅 ${escapeHtml(evt.schedule)}</span>`;
+      }
+      if (evt.location) {
+        metaHtml += `<span class="event-modal-chip location">📍 ${escapeHtml(evt.location)}</span>`;
+      }
+      metaEl.innerHTML = metaHtml;
+    }
+
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEventDetailModal() {
+    const modal = document.getElementById('eventDetailModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeEventDetailModal();
+    }
+  });
+
   function renderEventsGrid(events) {
     const grid = document.getElementById('eventsGrid');
     if (!grid) return;
@@ -4196,51 +4283,32 @@
     const top3 = list.slice(0, 3);
 
     let html = '';
-    top3.forEach(evt => {
-      const catClass = evt.category_class || (evt.category && evt.category.includes('Convention') ? 'convention' : (evt.category && evt.category.includes('Seva') ? 'seva' : ''));
-      const rsvpTitle = (evt.rsvpTitle || evt.title || 'Upcoming Event').replace(/'/g, "\\'");
-      const primaryUrl = evt.primaryBtnUrl || 'join.html';
-      const primaryTxt = evt.primaryBtnText || 'Enlist as Sevak 🚩';
-      const secTxt = evt.secondaryBtnText || 'RSVP 📋';
+    const icons = ['🚩', '🐄', '🏛️', '🔥'];
+
+    top3.forEach((evt, idx) => {
+      const titleEn = evt.title || 'Event';
+      const titleTe = evt.title_te || titleEn;
+      const descEn = evt.desc || '';
+      const descTe = evt.desc_te || descEn;
+      const icon = icons[idx % icons.length];
+      const dateChip = evt.schedule ? `<span class="event-date-chip">${escapeHtml(evt.schedule)}</span>` : '';
 
       html += `
-        <div class="event-card" onclick="window.location.href='events.html'">
-          <div class="event-header-row">
-            <span class="event-badge ${catClass}">
-              ${escapeHtml(evt.category || '🚩 Event')}
-            </span>
-          </div>
-          <h3 class="event-title">
-            ${escapeHtml(evt.title || 'Upcoming Event')}
-          </h3>
-          <div class="event-meta-list">
-            <div class="event-meta-item">
-              <span>📅</span> <div><span>Schedule:</span> <strong>${escapeHtml(evt.schedule || 'Upcoming')}</strong></div>
+        <div class="event-card" onclick="openEventDetailModal('${escapeHtml(evt.id)}')">
+          <div>
+            <div class="event-card-top">
+              <div class="event-icon-circle">${icon}</div>
+              ${dateChip}
             </div>
-            <div class="event-meta-item">
-              <span>📍</span> <div><span>Location:</span> <strong>${escapeHtml(evt.location || 'AP / Telangana')}</strong></div>
-            </div>
-            ${evt.presided ? `
-            <div class="event-meta-item">
-              <span>🎙️</span> <div><span>Presided By:</span> <strong>${escapeHtml(evt.presided)}</strong></div>
-            </div>` : ''}
+            <h3 class="event-title" data-en="${escapeHtml(titleEn)}" data-te="${escapeHtml(titleTe)}">
+              ${escapeHtml(isTelugu ? titleTe : titleEn)}
+            </h3>
+            <p class="event-desc" data-en="${escapeHtml(descEn)}" data-te="${escapeHtml(descTe)}">
+              ${escapeHtml(isTelugu ? descTe : descEn)}
+            </p>
           </div>
-          <p class="event-desc">
-            ${escapeHtml(evt.desc || '')}
-          </p>
-          <div class="event-actions" onclick="event.stopPropagation()">
-            <a href="${escapeHtml(primaryUrl)}" class="btn-event-primary">
-              ${escapeHtml(primaryTxt)}
-            </a>
-            ${evt.secondaryBtnUrl === 'rsvp' || !evt.secondaryBtnUrl ? `
-              <button type="button" class="btn-event-secondary" onclick="openRSVPModal('${rsvpTitle}')">
-                ${escapeHtml(secTxt)}
-              </button>
-            ` : `
-              <a href="${escapeHtml(evt.secondaryBtnUrl)}" class="btn-event-secondary">
-                ${escapeHtml(secTxt)}
-              </a>
-            `}
+          <div class="event-card-cue">
+            <span data-en="View Event Details ➔" data-te="పూర్తి వివరాలు చూడండి ➔">${isTelugu ? 'పూర్తి వివరాలు చూడండి ➔' : 'View Event Details ➔'}</span>
           </div>
         </div>
       `;
@@ -4249,17 +4317,19 @@
     // Box 4: View More Card (Takes to separate events page)
     html += `
       <div class="event-card view-more-card" onclick="window.location.href='events.html'">
-        <div class="view-more-content">
-          <div class="view-more-icon-wrap">
-            <span class="view-more-icon">📅</span>
+        <div>
+          <div class="event-card-top">
+            <div class="event-icon-circle">📅</div>
+            <span class="event-date-chip" data-en="Calendar" data-te="క్యాలెండర్">${isTelugu ? 'క్యాలెండర్' : 'Calendar'}</span>
           </div>
-          <span class="view-more-badge" data-en="Events Calendar" data-te="క్యాలెండర్">Events Calendar</span>
-          <h3 data-en="All Upcoming Events" data-te="సమగ్ర కార్యక్రమాలు">All Upcoming Events</h3>
-          <p data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
+          <h3 class="event-title" data-en="All Events" data-te="అన్ని కార్యక్రమాలు">${isTelugu ? 'అన్ని కార్యక్రమాలు' : 'All Events'}</h3>
+          <p class="event-desc" data-en="Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives."
              data-te="రాష్ట్ర సమ్మేళనాలు, ధార్మిక సభలు మరియు సేవా కార్యక్రమాల పూర్తి వివరాలను ఇక్కడ చూడండి.">
-            Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives.
+            ${isTelugu ? 'రాష్ట్ర సమ్మేళనాలు, ధార్మిక సభలు మరియు సేవా కార్యక్రమాల పూర్తి వివరాలను ఇక్కడ చూడండి.' : 'Explore the full calendar of youth conventions, satsangs, rallies, and Annadanam drives.'}
           </p>
-          <a href="events.html" class="btn-view-more" data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">View All Events ➔</a>
+        </div>
+        <div class="event-card-cue">
+          <span data-en="View All Events ➔" data-te="అన్ని కార్యక్రమాలు చూడండి ➔">${isTelugu ? 'అన్ని కార్యక్రమాలు చూడండి ➔' : 'View All Events ➔'}</span>
         </div>
       </div>
     `;
@@ -4506,6 +4576,8 @@
       const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
       if (val) el.textContent = val;
     });
+
+    renderEventsGrid(getLocalEvents());
   }
 
   // Lightbox
