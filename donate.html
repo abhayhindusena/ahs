@@ -1509,15 +1509,19 @@
   function openGurujiAppointment() {
     const phone = "919866957796";
     const msg = 
-      "🚩 *హరే కృష్ణ! పూజ్యశ్రీ రాధా మనోహర్ దాస్ గురూజీతో మాట్లాడేందుకు అపాయింట్‌మెంట్ కావాలని కోరుతున్నాను.*\n" +
-      "(Hare Krishna! I would like to schedule an appointment to speak with Pujya Shri Radha Manohar Das Guruji.)\n\n" +
-      "👤 *పేరు (Name):* \n" +
+      "🚩 *హరే కృష్ణ గురూజీ! మీ పాదపద్మములకు సాష్టాంగ ప్రణామాలు.* 🙏\n" +
+      "(Hare Krishna Guruji! My humble dandavat pranams at your lotus feet.)\n\n" +
+      "గురూజీ, మీతో మాట్లాడి మార్గదర్శనం మరియు ఆశీస్సులు పొందేందుకు అపాయింట్‌మెంట్ సమయాన్ని అనుగ్రహించవలసిందిగా ప్రార్థిస్తున్నాను.\n" +
+      "(Guruji, I humbly seek your blessings and guidance, and request an appointment to speak with you.)\n\n" +
+      "👤 *నా పేరు (My Name):* \n" +
       "📍 *ఊరు / నగరం (Location):* \n" +
-      "📞 *మొబైల్ నంబర్ (Phone):* \n" +
-      "📝 *మాట్లాడాలనుకుంటున్న అంశం (Purpose / Query):* \n\n" +
-      "దయచేసి అపాయింట్‌మెంట్ సమయాన్ని తెలియజేయగలరు. జై శ్రీరామ్! 🙏🚩";
+      "📝 *మాట్లాడగోరే అంశం (Purpose / Query):* \n\n" +
+      "దయతో అనువైన సమయాన్ని తెలియజేయగలరు గురూజీ. జై శ్రీరామ్! 🙏🚩";
     const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(waUrl, '_blank');
+    const win = window.open(waUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = waUrl;
+    }
   }
 
   // Language Toggle
