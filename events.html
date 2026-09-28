@@ -250,67 +250,6 @@
     line-height: 1.7;
   }
 
-  /* SEARCH & FILTER CONTROLS */
-  .controls-wrap {
-    max-width: 900px;
-    margin: 30px auto 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .search-input-wrap {
-    position: relative;
-    width: 100%;
-  }
-  .search-input-wrap input {
-    width: 100%;
-    padding: 13px 20px 13px 46px;
-    background: rgba(22,7,7,0.85);
-    border: 1px solid var(--border-gold);
-    border-radius: 30px;
-    color: #FFF;
-    font-size: 0.95rem;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .search-input-wrap input:focus {
-    border-color: var(--gold-bright);
-    box-shadow: 0 0 15px rgba(212,175,55,0.3);
-  }
-  .search-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.1rem;
-    color: var(--gold);
-    pointer-events: none;
-  }
-  .filter-pills-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .filter-pill {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(212,175,55,0.25);
-    color: var(--text-muted);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  .filter-pill.active, .filter-pill:hover {
-    background: var(--gold);
-    color: #000;
-    border-color: var(--gold);
-    font-weight: 700;
-  }
-
   /* EVENTS SECTION & GRID */
   .events-container {
     padding: 40px 6% 80px;
@@ -770,14 +709,6 @@
      data-te="సనాతన ధర్మ పరిరక్షణ, సమావేశాలు, సత్సంగాలు మరియు నిత్య అన్నదాన సేవా యజ్ఞాలలో వేలాది మంది సేవకులతో కలిసి భాగస్వామ్యం పొందండి.">
     Join hands with thousands of Dharma Sevaks in our state gatherings, meetings, satsangs, and Nitya Annadanam drives.
   </p>
-
-  <!-- SEARCH CONTROL (NO CATEGORIES) -->
-  <div class="controls-wrap">
-    <div class="search-input-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="eventSearchInput" placeholder="Search events..." oninput="handleSearch(this.value)">
-    </div>
-  </div>
 </section>
 
 <!-- EVENTS LIST SECTION -->
@@ -919,7 +850,6 @@
   ];
 
   let allLoadedEvents = [];
-  let currentSearchQuery = '';
 
   function getLocalEvents() {
     try {
@@ -1028,35 +958,23 @@
     const grid = document.getElementById('allEventsGrid');
     if (!grid) return;
 
-    const q = currentSearchQuery.toLowerCase().trim();
-    const filtered = allLoadedEvents.filter(evt => {
-      if (!q) return true;
-      return (evt.title && evt.title.toLowerCase().includes(q)) ||
-             (evt.title_te && evt.title_te.toLowerCase().includes(q)) ||
-             (evt.desc && evt.desc.toLowerCase().includes(q)) ||
-             (evt.desc_te && evt.desc_te.toLowerCase().includes(q)) ||
-             (evt.location && evt.location.toLowerCase().includes(q)) ||
-             (evt.schedule && evt.schedule.toLowerCase().includes(q));
-    });
-
-    if (filtered.length === 0) {
+    if (!allLoadedEvents || allLoadedEvents.length === 0) {
       grid.innerHTML = `
         <div class="empty-state">
           <div style="font-size:2.5rem; margin-bottom:12px;">📅</div>
-          <h3 data-en="No Events Found" data-te="కార్యక్రమాలు ఏవీ కనుగొనబడలేదు">No Events Found</h3>
-          <p data-en="No scheduled events match your current search query. Try clearing your search keywords."
-             data-te="మీరు వెతికిన పదాలకు సరిపోలే కార్యక్రమాలు లేవు. దయచేసి శోధన పదాలను తొలగించి ప్రయత్నించండి.">
-            No scheduled events match your current search query. Try clearing your search keywords.
+          <h3 data-en="No Events Published Yet" data-te="ఇంకా కార్యక్రమాలు ప్రకటించబడలేదు">No Events Published Yet</h3>
+          <p data-en="Stay tuned for upcoming gatherings, rallies, and seva drives."
+             data-te="రాబోయే సమ్మేళనాలు, ర్యాలీలు మరియు సేవా కార్యక్రమాల కోసం వేచి ఉండండి.">
+            Stay tuned for upcoming gatherings, rallies, and seva drives.
           </p>
         </div>
       `;
-      applyLanguage();
       return;
     }
 
     const icons = ['🚩', '🐄', '🏛️', '📚', '🔥'];
 
-    grid.innerHTML = filtered.map((evt, idx) => {
+    grid.innerHTML = allLoadedEvents.map((evt, idx) => {
       const titleEn = evt.title || 'Event';
       const titleTe = evt.title_te || titleEn;
       const descEn = evt.desc || '';
@@ -1084,13 +1002,6 @@
         </div>
       `;
     }).join('');
-
-    applyLanguage();
-  }
-
-  function handleSearch(val) {
-    currentSearchQuery = val;
-    renderEvents();
   }
 
   function openRSVPModal(title) {
@@ -1148,12 +1059,6 @@
     const langLabel = document.getElementById('langText');
     if (langLabel) {
       langLabel.textContent = isTelugu ? 'తెలుగు (Active)' : 'English / తెలుగు';
-    }
-    const searchInput = document.getElementById('eventSearchInput');
-    if (searchInput) {
-      searchInput.placeholder = isTelugu ? 
-        "కార్యక్రమాలను వెతకండి..." : 
-        "Search events...";
     }
     document.querySelectorAll('[data-en]').forEach(el => {
       const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
