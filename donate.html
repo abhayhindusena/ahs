@@ -1273,71 +1273,6 @@
 
   </div>
 
-  <!-- 3. DEVOTEE SEVA RECEIPT INTIMATION FORM -->
-  <section class="receipt-section">
-    <div class="receipt-header">
-      <h3 data-en="Notify Foundation of Your Contribution" data-te="విరాళం అందించిన వివరాలను తెలియజేయండి">
-        Notify Foundation of Your Contribution
-      </h3>
-      <p data-en="Kindly share your payment details so our foundation can confirm receipt, dedicate Sankalpam in ongoing sevas, and convey sacred blessings."
-         data-te="మీరు విరాళం పంపిన తర్వాత ఈ క్రింది ఫారమ్ ద్వారా వివరాలు తెలియజేస్తే, మా నిర్వాహకులు రశీదును ధృవీకరించి ధర్మ సంకల్పంలో మీ పేరును చేరుస్తారు.">
-        Kindly share your payment details so our foundation can confirm receipt, dedicate Sankalpam in ongoing sevas, and convey sacred blessings.
-      </p>
-    </div>
-
-    <form id="donationNoticeForm" onsubmit="handleReceiptSubmit(event)">
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label" data-en="Devotee Full Name *" data-te="భక్తుని పూర్తి పేరు *">Devotee Full Name *</label>
-          <input type="text" id="donorName" class="form-input" placeholder="e.g. Ramesh Varma" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" data-en="WhatsApp Mobile Number *" data-te="వాట్సాప్ మొబైల్ నంబర్ *">WhatsApp Mobile Number *</label>
-          <input type="tel" id="donorPhone" class="form-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" data-en="City / District & State *" data-te="నగరం / జిల్లా & రాష్ట్రం *">City / District & State *</label>
-          <input type="text" id="donorPlace" class="form-input" placeholder="e.g. Vijayawada, AP" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" data-en="Amount Contributed (₹) *" data-te="అందించిన విరాళం మొత్తం (₹) *">Amount Contributed (₹) *</label>
-          <input type="number" id="donorAmount" class="form-input" placeholder="e.g. 1000" value="1000" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" data-en="Payment Method *" data-te="చెల్లింపు విధానం *">Payment Method *</label>
-          <select id="donorMethod" class="form-select" required>
-            <option value="UPI / QR Code Scan">UPI / QR Code (GPay / PhonePe / Paytm)</option>
-            <option value="Direct SBI Account Transfer">SBI Account Transfer (NEFT / IMPS / RTGS)</option>
-            <option value="Net Banking / Branch Cash Deposit">Net Banking / Branch Deposit</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" data-en="Bank UTR / Transaction Reference ID" data-te="బ్యాంక్ UTR / ట్రాన్సాక్షన్ నంబర్">Bank UTR / Transaction Reference ID</label>
-          <input type="text" id="donorUtr" class="form-input" placeholder="12-digit UTR / Ref Number">
-        </div>
-
-        <div class="form-group full-width">
-          <label class="form-label" data-en="Sacred Intention / Gotram & Nakshatram (Optional for Sankalpam)" data-te="సంకల్పం కోసం గోత్రం & నక్షత్రం (ఐచ్ఛికం)">Sacred Intention / Gotram & Nakshatram (Optional for Sankalpam)</label>
-          <input type="text" id="donorIntention" class="form-input" placeholder="e.g. Koundinya Gotram, Rohini Nakshatram">
-        </div>
-      </div>
-
-      <div class="form-actions">
-        <button type="submit" class="btn-submit-wa">
-          📲 Send Details on Official WhatsApp ➔
-        </button>
-        <button type="button" class="btn-submit-direct" onclick="submitDirectLocal()">
-          💾 Save Receipt Request Online
-        </button>
-      </div>
-    </form>
-  </section>
-
 </div>
 
 <!-- TOAST BOX -->
@@ -1389,7 +1324,6 @@
     document.querySelectorAll('.amount-chip').forEach(chip => {
       chip.classList.toggle('active', Number(chip.getAttribute('data-amount')) === Number(amt));
     });
-    document.getElementById('donorAmount').value = amt;
     updateUpiIntent();
   }
 
@@ -1400,7 +1334,6 @@
       document.querySelectorAll('.amount-chip').forEach(chip => {
         chip.classList.toggle('active', Number(chip.getAttribute('data-amount')) === num);
       });
-      document.getElementById('donorAmount').value = num;
       updateUpiIntent();
     }
   }
@@ -1439,66 +1372,6 @@
   }
   function closeQrModal() {
     document.getElementById('qrModal').classList.remove('active');
-  }
-
-  // Handle Form Submission
-  function handleReceiptSubmit(e) {
-    e.preventDefault();
-    const name = document.getElementById('donorName').value.trim();
-    const phone = document.getElementById('donorPhone').value.trim();
-    const place = document.getElementById('donorPlace').value.trim();
-    const amount = document.getElementById('donorAmount').value.trim();
-    const method = document.getElementById('donorMethod').value;
-    const utr = document.getElementById('donorUtr').value.trim() || 'Pending';
-    const intention = document.getElementById('donorIntention').value.trim() || 'Sanatana Dharma Seva';
-
-    // Save locally
-    saveDonationRecord({ name, phone, place, amount, method, utr, intention, date: new Date().toISOString() });
-
-    // Format WhatsApp message
-    const waText = 
-      `🚩 *నమస్కారం! శ్రీ రాధా మనోహర్ దాస్ ఫౌండేషన్ (అభయ్ హిందూ సేన)*\n\n` +
-      `నేను ధర్మ సేవ కోసం పవిత్ర విరాళాన్ని సమర్పించాను. వివరాలు:\n` +
-      `👤 *భక్తుని పేరు:* ${name}\n` +
-      `📱 *మొబైల్ నంబర్:* ${phone}\n` +
-      `📍 *ప్రాంతం:* ${place}\n` +
-      `💰 *విరాళం మొత్తం:* ₹${amount}\n` +
-      `💳 *చెల్లింపు విధానం:* ${method}\n` +
-      `🔢 *UTR / ట్రాన్సాక్షన్ ID:* ${utr}\n` +
-      `🙏 *సేవా సంకల్పం:* ${intention}\n\n` +
-      `దయచేసి రశీదు మరియు ఆశీస్సులు అందించవలసిందిగా కోరుతున్నాను. జై శ్రీరామ్! 🚩`;
-
-    const waUrl = `https://wa.me/?text=${encodeURIComponent(waText)}`;
-    window.open(waUrl, '_blank');
-    showToast("Opening WhatsApp with your donation details... 🚩");
-  }
-
-  function submitDirectLocal() {
-    const name = document.getElementById('donorName').value.trim();
-    const phone = document.getElementById('donorPhone').value.trim();
-    const amount = document.getElementById('donorAmount').value.trim();
-
-    if (!name || !phone || !amount) {
-      alert("Please fill in your Name, Phone Number, and Amount before submitting.");
-      return;
-    }
-
-    const place = document.getElementById('donorPlace').value.trim() || 'Bharat';
-    const method = document.getElementById('donorMethod').value;
-    const utr = document.getElementById('donorUtr').value.trim() || 'Pending';
-    const intention = document.getElementById('donorIntention').value.trim() || 'Sanatana Dharma Seva';
-
-    saveDonationRecord({ name, phone, place, amount, method, utr, intention, date: new Date().toISOString() });
-    alert("🙏 Thank you! Your donation intimation has been saved. Our team will verify and acknowledge your sacred contribution.");
-    document.getElementById('donationNoticeForm').reset();
-  }
-
-  function saveDonationRecord(record) {
-    try {
-      const list = JSON.parse(localStorage.getItem('ahs_donation_records') || '[]');
-      list.unshift(record);
-      localStorage.setItem('ahs_donation_records', JSON.stringify(list));
-    } catch(e) {}
   }
 
   // Open WhatsApp to book an appointment with Guruji
