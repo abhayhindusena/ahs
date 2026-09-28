@@ -481,16 +481,6 @@
   }
   .lightbox-prev { left: -22px; }
   .lightbox-next { right: -22px; }
-  .swipe-hint-pill {
-    display: inline-block;
-    font-size: 0.74rem;
-    color: var(--gold-bright);
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    padding: 3px 12px;
-    border-radius: 14px;
-    font-weight: 500;
-  }
 
   /* FOOTER */
   footer {
@@ -608,31 +598,16 @@
       gap: 8px;
     }
     .gallery-grid {
-      display: flex !important;
-      flex-direction: row !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      scroll-snap-type: x mandatory !important;
-      -webkit-overflow-scrolling: touch !important;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
       gap: 10px !important;
-      padding: 6px 2px 14px !important;
-      justify-content: flex-start !important;
-      scrollbar-width: thin !important;
-    }
-    .gallery-grid::-webkit-scrollbar {
-      height: 4px;
-    }
-    .gallery-grid::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 4px;
+      padding: 0 !important;
+      overflow: visible !important;
     }
     .gallery-card {
-      flex: 0 0 calc(50% - 5px) !important;
-      width: calc(50% - 5px) !important;
-      max-width: calc(50% - 5px) !important;
-      height: 220px !important;
-      scroll-snap-align: start !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 190px !important;
       border-radius: 12px !important;
       margin: 0 !important;
     }
@@ -705,7 +680,6 @@
 <main class="gallery-main">
   <div class="gallery-stats">
     <span id="photoCountDisplay">Showing <strong>0</strong> photos</span>
-    <span class="swipe-hint-pill" data-en="👉 Swipe Photos 👈" data-te="👉 స్వైప్ చేయండి 👈">👉 Swipe Photos 👈</span>
     <a href="index.html" style="color:var(--gold); text-decoration:none; font-weight:600;">← Back to Main Website</a>
   </div>
 
