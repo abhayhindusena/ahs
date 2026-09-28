@@ -1700,12 +1700,18 @@
     padding-top: 18px;
   }
 
-  /* TELUGU MODE ADJUSTMENTS - PREVENTS ANY ASCENDER OR MATRA CLIPPING */
+  /* TELUGU MODE ADJUSTMENTS - ENHANCED LEGIBILITY & SCALE */
+  html.telugu-mode {
+    font-size: 107.5%; /* Gently scales all rem units up ~7.5% for clear Telugu legibility */
+  }
   body.telugu-mode {
     font-family: 'Mandali', 'Noto Sans Telugu', 'Poppins', sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
   }
   body.telugu-mode .hero-title {
     font-family: 'Mandali', 'Noto Sans Telugu', serif;
+    font-size: 1.08em;
     line-height: 1.45;
     padding-top: 18px;
     padding-bottom: 10px;
@@ -1718,12 +1724,29 @@
   body.telugu-mode .founder-details h3,
   body.telugu-mode .mission-card h3,
   body.telugu-mode .event-card h4,
+  body.telugu-mode .event-title,
+  body.telugu-mode .video-info h4,
   body.telugu-mode h1,
   body.telugu-mode h2,
   body.telugu-mode h3,
   body.telugu-mode h4 {
     font-family: 'Mandali', 'Noto Sans Telugu', serif;
-    line-height: 1.42 !important;
+    line-height: 1.45 !important;
+    font-size: 1.06em;
+  }
+  body.telugu-mode p,
+  body.telugu-mode .hero-lead,
+  body.telugu-mode .section-sub,
+  body.telugu-mode .page-sub,
+  body.telugu-mode .event-desc,
+  body.telugu-mode .mission-desc {
+    font-size: 1.04em;
+    line-height: 1.75;
+  }
+  body.telugu-mode .glass-nav-links a,
+  body.telugu-mode .btn,
+  body.telugu-mode button {
+    letter-spacing: 0.25px;
   }
 
   /* MODALS */
@@ -4624,12 +4647,24 @@
     loadRecentVideos();
     initLiveGallery();
     initLiveEvents();
+
+    try {
+      if (localStorage.getItem('ahs_preferred_lang') === 'te') {
+        toggleLanguage(true);
+      }
+    } catch(e) {}
   });
   // Language toggle logic
   let isTelugu = false;
-  function toggleLanguage() {
-    isTelugu = !isTelugu;
+  function toggleLanguage(forcedState) {
+    if (typeof forcedState === 'boolean') {
+      isTelugu = forcedState;
+    } else {
+      isTelugu = !isTelugu;
+    }
+    try { localStorage.setItem('ahs_preferred_lang', isTelugu ? 'te' : 'en'); } catch(e) {}
     document.body.classList.toggle('telugu-mode', isTelugu);
+    document.documentElement.classList.toggle('telugu-mode', isTelugu);
     const langLabel = document.getElementById('langText');
     if (langLabel) {
       langLabel.textContent = isTelugu ? 'తెలుగు (Active)' : 'English / తెలుగు';

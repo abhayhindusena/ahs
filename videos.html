@@ -582,13 +582,36 @@
     padding-top: 16px;
   }
 
+  /* TELUGU MODE ADJUSTMENTS - ENHANCED LEGIBILITY & SCALE */
+  html.telugu-mode {
+    font-size: 107.5%;
+  }
   body.telugu-mode {
     font-family: 'Mandali', 'Noto Sans Telugu', 'Poppins', sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
   }
+  body.telugu-mode .header-brand-text h1,
   body.telugu-mode .page-title,
+  body.telugu-mode .footer-brand,
+  body.telugu-mode h1,
+  body.telugu-mode h2,
+  body.telugu-mode h3,
   body.telugu-mode h4 {
     font-family: 'Mandali', 'Noto Sans Telugu', serif;
-    line-height: 1.4 !important;
+    font-size: 1.06em;
+    line-height: 1.45 !important;
+  }
+  body.telugu-mode p,
+  body.telugu-mode .page-sub,
+  body.telugu-mode .video-info p {
+    font-size: 1.04em;
+    line-height: 1.7;
+  }
+  body.telugu-mode .glass-nav-links a,
+  body.telugu-mode .btn,
+  body.telugu-mode button {
+    letter-spacing: 0.25px;
   }
 
   @media (max-width: 768px) {
@@ -881,9 +904,15 @@
 
   // Language toggle logic
   let isTelugu = false;
-  function toggleLanguage() {
-    isTelugu = !isTelugu;
+  function toggleLanguage(forcedState) {
+    if (typeof forcedState === 'boolean') {
+      isTelugu = forcedState;
+    } else {
+      isTelugu = !isTelugu;
+    }
+    try { localStorage.setItem('ahs_preferred_lang', isTelugu ? 'te' : 'en'); } catch(e) {}
     document.body.classList.toggle('telugu-mode', isTelugu);
+    document.documentElement.classList.toggle('telugu-mode', isTelugu);
     const langLabel = document.getElementById('langText');
     if (langLabel) {
       langLabel.textContent = isTelugu ? 'తెలుగు (Active)' : 'English / తెలుగు';
@@ -894,7 +923,14 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', loadAllVideos);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadAllVideos();
+    try {
+      if (localStorage.getItem('ahs_preferred_lang') === 'te') {
+        toggleLanguage(true);
+      }
+    } catch(e) {}
+  });
 </script>
 </body>
 </html>
