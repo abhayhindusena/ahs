@@ -1157,15 +1157,15 @@
       Select Contribution Amount (₹)
     </div>
     <div class="amount-chips">
-      <button type="button" class="amount-chip" onclick="setAmount(501)">₹501</button>
-      <button type="button" class="amount-chip active" onclick="setAmount(1116)">₹1,116</button>
-      <button type="button" class="amount-chip" onclick="setAmount(2116)">₹2,116</button>
-      <button type="button" class="amount-chip" onclick="setAmount(5116)">₹5,116</button>
-      <button type="button" class="amount-chip" onclick="setAmount(11116)">₹11,116</button>
+      <button type="button" class="amount-chip" data-amount="500" onclick="setAmount(500)">₹500</button>
+      <button type="button" class="amount-chip active" data-amount="1000" onclick="setAmount(1000)">₹1,000</button>
+      <button type="button" class="amount-chip" data-amount="2000" onclick="setAmount(2000)">₹2,000</button>
+      <button type="button" class="amount-chip" data-amount="5000" onclick="setAmount(5000)">₹5,000</button>
+      <button type="button" class="amount-chip" data-amount="10000" onclick="setAmount(10000)">₹10,000</button>
     </div>
     <div class="custom-amount-wrap">
       <span>₹</span>
-      <input type="number" id="customAmountInput" class="custom-amount-input" placeholder="Custom Amount" value="1116" oninput="handleCustomAmount(this.value)">
+      <input type="number" id="customAmountInput" class="custom-amount-input" placeholder="Custom Amount" value="1000" oninput="handleCustomAmount(this.value)">
     </div>
   </div>
 
@@ -1199,7 +1199,7 @@
       </div>
 
       <!-- DIRECT MOBILE PAY BUTTON -->
-      <a href="upi://pay?pa=44174507242@sbi&pn=SRI+RADHA+MANOHAR+DAS+FOUNDATION&cu=INR&am=1116&tn=Sanatana+Dharma+Daan" id="upiDeepLink" class="btn-upi-mobile">
+      <a href="upi://pay?pa=44174507242@sbi&pn=SRI+RADHA+MANOHAR+DAS+FOUNDATION&cu=INR&am=1000&tn=Sanatana+Dharma+Daan" id="upiDeepLink" class="btn-upi-mobile">
         📱 Open in UPI App (GPay / PhonePe)
       </a>
 
@@ -1310,7 +1310,7 @@
 
         <div class="form-group">
           <label class="form-label" data-en="Amount Contributed (₹) *" data-te="అందించిన విరాళం మొత్తం (₹) *">Amount Contributed (₹) *</label>
-          <input type="number" id="donorAmount" class="form-input" placeholder="e.g. 1116" value="1116" required>
+          <input type="number" id="donorAmount" class="form-input" placeholder="e.g. 1000" value="1000" required>
         </div>
 
         <div class="form-group">
@@ -1387,13 +1387,13 @@
 </footer>
 
 <script>
-  let currentAmount = 1116;
+  let currentAmount = 1000;
 
   function setAmount(amt) {
     currentAmount = amt;
     document.getElementById('customAmountInput').value = amt;
     document.querySelectorAll('.amount-chip').forEach(chip => {
-      chip.classList.toggle('active', chip.textContent.includes(amt.toString()));
+      chip.classList.toggle('active', Number(chip.getAttribute('data-amount')) === Number(amt));
     });
     document.getElementById('donorAmount').value = amt;
     updateUpiIntent();
@@ -1403,7 +1403,9 @@
     const num = parseInt(val, 10);
     if (!isNaN(num) && num > 0) {
       currentAmount = num;
-      document.querySelectorAll('.amount-chip').forEach(chip => chip.classList.remove('active'));
+      document.querySelectorAll('.amount-chip').forEach(chip => {
+        chip.classList.toggle('active', Number(chip.getAttribute('data-amount')) === num);
+      });
       document.getElementById('donorAmount').value = num;
       updateUpiIntent();
     }
