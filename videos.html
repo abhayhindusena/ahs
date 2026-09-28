@@ -667,20 +667,6 @@
     Watch powerful Bhagavad Gita satsangs, youth defense lectures, and temple protection discourses by Shri Radha Manohar Das.
   </p>
 
-  <!-- Controls: Search & Category Pills -->
-  <div class="controls-wrap">
-    <div class="search-input-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="videoSearchInput" placeholder="Search discourses by title or keyword..." oninput="handleSearch(this.value)">
-    </div>
-    <div class="filter-pills-row">
-      <button class="filter-pill active" onclick="filterCategory('all', this)">All / అన్నీ</button>
-      <button class="filter-pill" onclick="filterCategory('Bhagavad Gita', this)">Bhagavad Gita</button>
-      <button class="filter-pill" onclick="filterCategory('Temple Defense', this)">Temple Defense</button>
-      <button class="filter-pill" onclick="filterCategory('Youth & Dharma', this)">Youth & Dharma</button>
-      <button class="filter-pill" onclick="filterCategory('General', this)">General</button>
-    </div>
-  </div>
 </section>
 
 <!-- Video Grid -->
@@ -811,27 +797,19 @@
     const grid = document.getElementById('allVideosGrid');
     if (!grid) return;
 
-    const filtered = allLoadedVideos.filter(v => {
-      const matchCat = currentCategory === 'all' || (v.category && v.category.toLowerCase() === currentCategory.toLowerCase());
-      const q = currentSearchQuery.toLowerCase().trim();
-      const matchSearch = !q || (v.title && v.title.toLowerCase().includes(q)) || (v.description && v.description.toLowerCase().includes(q));
-      return matchCat && matchSearch;
-    });
-
-    if (filtered.length === 0) {
+    if (!allLoadedVideos || allLoadedVideos.length === 0) {
       grid.innerHTML = `
         <div class="empty-state">
           <h3>No Discourses Found</h3>
-          <p>No video matches your current search or category filter. Try selecting 'All' or clearing your search query.</p>
+          <p>Discourses will appear here shortly.</p>
         </div>
       `;
       return;
     }
 
-    grid.innerHTML = filtered.map(v => {
+    grid.innerHTML = allLoadedVideos.map(v => {
       const vid = v.videoId;
       const title = v.title || 'Shri Radha Manohar Das Pravachan';
-      const cat = v.category || 'Discourse';
       const desc = v.description || 'Watch divine pravachan and spiritual guidance by Shri Radha Manohar Das.';
       const thumb = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
       const escapedTitle = title.replace(/'/g, "\\'");
@@ -843,7 +821,6 @@
             <div class="video-play-overlay">
               <div class="video-play-btn">▶</div>
             </div>
-            <span class="video-cat-badge">${escapeHtml(cat)}</span>
           </div>
           <div class="video-info">
             <h4>${escapeHtml(title)}</h4>
@@ -853,18 +830,6 @@
         </div>
       `;
     }).join('');
-  }
-
-  function filterCategory(cat, btn) {
-    currentCategory = cat;
-    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    renderVideos();
-  }
-
-  function handleSearch(val) {
-    currentSearchQuery = val;
-    renderVideos();
   }
 
   function openCinemaVideo(videoId, title) {
