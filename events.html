@@ -693,13 +693,13 @@
 
   /* MOBILE RESPONSIVENESS */
   @media (max-width: 768px) {
-    .site-header { padding: 8px 12px; }
-    .header-brand-text h1 { font-size: 0.95rem; }
-    .header-brand-text span { font-size: 0.65rem; }
-    .circle-logo { width: 36px; height: 36px; }
-    .header-actions { gap: 6px; }
-    .header-btn { padding: 6px 12px; font-size: 0.75rem; border-radius: 14px; }
-    .btn-community-top { display: none; }
+    .site-header { padding: 9px 14px; justify-content: flex-start; }
+    .header-brand { width: 100%; display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .circle-logo { width: 38px; height: 38px; flex-shrink: 0; }
+    .header-brand-text { flex: 1; min-width: 0; }
+    .header-brand-text h1 { font-size: 1.05rem; white-space: nowrap; overflow: visible; margin: 0; letter-spacing: 0.4px; }
+    .header-brand-text span { font-size: 0.68rem; white-space: nowrap; overflow: visible; display: block; letter-spacing: 0.2px; }
+    .header-actions { display: none !important; }
     .glass-nav-links a { font-size: 0.76rem !important; padding: 4px 8px !important; }
     .glass-lang-btn { font-size: 0.72rem !important; padding: 3px 8px !important; }
     .events-hero { padding: 35px 16px 25px; }

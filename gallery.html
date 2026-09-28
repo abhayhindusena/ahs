@@ -512,15 +512,13 @@
   }
 
   @media (max-width: 768px) {
-    .site-header { padding: 8px 12px; width: 100%; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; }
-    .header-brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1 1 auto; overflow: hidden; }
+    .site-header { padding: 9px 14px; width: 100%; box-sizing: border-box; display: flex; justify-content: flex-start; align-items: center; }
+    .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; width: 100%; flex: 1; overflow: visible; }
     .circle-logo { width: 38px !important; height: 38px !important; flex-shrink: 0; }
-    .header-brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-    .header-brand-text h1 { font-size: 0.92rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; }
-    .header-brand-text span { font-size: 0.62rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
-    .header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .header-actions .btn-community-top, .header-actions .btn-appointment-top { display: none !important; }
-    .header-btn { padding: 6px 11px; font-size: 0.74rem; border-radius: 16px; gap: 4px; white-space: nowrap; flex-shrink: 0; }
+    .header-brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; flex: 1; overflow: visible; }
+    .header-brand-text h1 { font-size: 1.05rem; line-height: 1.2; white-space: nowrap; overflow: visible; margin: 0; letter-spacing: 0.4px; }
+    .header-brand-text span { font-size: 0.68rem; line-height: 1.2; white-space: nowrap; overflow: visible; display: block; letter-spacing: 0.2px; }
+    .header-actions { display: none !important; }
     .glass-navbar {
       width: calc(100% - 16px) !important;
       max-width: calc(100% - 16px) !important;

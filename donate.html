@@ -861,10 +861,11 @@
     .header-brand {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       min-width: 0;
-      flex: 1 1 auto;
-      overflow: hidden;
+      flex: 1 1 100%;
+      width: 100%;
+      overflow: visible;
     }
     .circle-logo {
       width: 38px;
@@ -876,41 +877,30 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      overflow: hidden;
+      flex: 1;
+      overflow: visible;
     }
     .header-brand-text h1 {
-      font-size: 0.92rem;
+      font-size: 1.05rem;
       line-height: 1.2;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      overflow: visible;
+      text-overflow: clip;
       margin: 0;
+      letter-spacing: 0.4px;
     }
     .header-brand-text span {
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       line-height: 1.2;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      overflow: visible;
+      text-overflow: clip;
       display: block;
+      letter-spacing: 0.2px;
     }
+    /* Hide top header action buttons on mobile so full brand name displays completely */
     .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .header-actions .btn-community-top,
-    .header-actions .btn-appointment-top {
       display: none !important;
-    }
-    .header-btn {
-      padding: 6px 11px;
-      font-size: 0.74rem;
-      border-radius: 16px;
-      gap: 4px;
-      white-space: nowrap;
-      flex-shrink: 0;
     }
     .glass-navbar {
       width: calc(100% - 20px);
