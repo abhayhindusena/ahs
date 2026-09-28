@@ -457,6 +457,40 @@
     background: #e74c3c;
     border-color: #e74c3c;
   }
+  .lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(18, 5, 5, 0.75);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s;
+  }
+  .lightbox-nav-btn:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .lightbox-prev { left: -22px; }
+  .lightbox-next { right: -22px; }
+  .swipe-hint-pill {
+    display: inline-block;
+    font-size: 0.74rem;
+    color: var(--gold-bright);
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-weight: 500;
+  }
 
   /* FOOTER */
   footer {
@@ -534,12 +568,62 @@
       font-size: 0.72rem !important;
       padding: 3px 8px !important;
     }
-    .gallery-hero { padding: 30px 4% 20px; }
-    .gallery-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+    .gallery-hero { padding: 30px 4% 15px; }
+    .gallery-main {
+      padding: 10px 10px 60px !important;
+      overflow-x: hidden !important;
     }
-    .gallery-card { height: 260px; }
+    .gallery-stats {
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      padding: 0 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .gallery-grid {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      gap: 10px !important;
+      padding: 6px 2px 14px !important;
+      justify-content: flex-start !important;
+      scrollbar-width: thin !important;
+    }
+    .gallery-grid::-webkit-scrollbar {
+      height: 4px;
+    }
+    .gallery-grid::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+    .gallery-card {
+      flex: 0 0 calc(50% - 5px) !important;
+      width: calc(50% - 5px) !important;
+      max-width: calc(50% - 5px) !important;
+      height: 220px !important;
+      scroll-snap-align: start !important;
+      border-radius: 12px !important;
+      margin: 0 !important;
+    }
+    .gallery-overlay {
+      padding: 10px 8px 6px !important;
+      font-size: 0.74rem !important;
+      line-height: 1.25 !important;
+    }
+    .lightbox-nav-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+    }
+    .lightbox-prev { left: 4px; }
+    .lightbox-next { right: 4px; }
   }
 </style>
 </head>
@@ -591,19 +675,13 @@
     Explore snapshots of annual conventions, youth rallies, dharmic discourse meetings, Annadanam, and seva drives.
   </p>
 
-  <!-- Controls: Search -->
-  <div class="controls-wrap">
-    <div class="search-input-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="photoSearchInput" placeholder="Search photos by caption or keyword..." oninput="handleSearch(this.value)">
-    </div>
-  </div>
 </section>
 
 <!-- Main Gallery Section -->
 <main class="gallery-main">
   <div class="gallery-stats">
     <span id="photoCountDisplay">Showing <strong>0</strong> photos</span>
+    <span class="swipe-hint-pill" data-en="👉 Swipe Photos 👈" data-te="👉 స్వైప్ చేయండి 👈">👉 Swipe Photos 👈</span>
     <a href="index.html" style="color:var(--gold); text-decoration:none; font-weight:600;">← Back to Main Website</a>
   </div>
 
@@ -619,6 +697,8 @@
 <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
   <div class="lightbox-content" onclick="event.stopPropagation()">
     <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" onclick="prevLightbox(event)" aria-label="Previous Photo">❮</button>
+    <button class="lightbox-nav-btn lightbox-next" onclick="nextLightbox(event)" aria-label="Next Photo">❯</button>
     <div class="lightbox-img-wrap">
       <img id="lightboxImg" src="" alt="Full Screen Photo">
     </div>
@@ -775,39 +855,34 @@
     };
   } catch (e) {}
 
+  let currentLightboxIndex = 0;
+
   function renderPhotos() {
     const grid = document.getElementById('allPhotosGrid');
     const countDisplay = document.getElementById('photoCountDisplay');
     if (!grid) return;
 
-    const q = currentSearchQuery.toLowerCase().trim();
-    const filtered = allLoadedPhotos.filter(p => {
-      const title = (p.title || '').toLowerCase();
-      return !q || title.includes(q);
-    });
-
-    if (countDisplay) {
-      countDisplay.innerHTML = `Showing <strong>${filtered.length}</strong> photo${filtered.length === 1 ? '' : 's'}`;
-    }
-
-    if (filtered.length === 0) {
+    if (!allLoadedPhotos || allLoadedPhotos.length === 0) {
+      if (countDisplay) countDisplay.innerHTML = `Showing <strong>0</strong> photos`;
       grid.innerHTML = `
         <div class="empty-state">
-          <h3>${q ? 'No Photos Found' : 'No Photos Published Yet'}</h3>
-          <p>${q ? 'No photos match your current search query. Try clearing the search box.' : 'Photos uploaded or linked from Instagram, YouTube, or web links via the Admin Portal will appear here.'}</p>
+          <h3>No Photos Published Yet</h3>
+          <p>Photos uploaded or linked via the Admin Portal will appear here.</p>
         </div>
       `;
       return;
     }
 
-    grid.innerHTML = filtered.map(p => {
+    if (countDisplay) {
+      countDisplay.innerHTML = `Showing <strong>${allLoadedPhotos.length}</strong> photo${allLoadedPhotos.length === 1 ? '' : 's'}`;
+    }
+
+    grid.innerHTML = allLoadedPhotos.map((p, idx) => {
       const title = p.title || 'Abhay Hindu Sena Moment';
       const imgUrl = p.imageUrl || p.thumbnailUrl || 'assets/hero-desktop.png';
-      const escapedTitle = title.replace(/'/g, "\\'");
-      const escapedUrl = imgUrl.replace(/'/g, "\\'");
 
       return `
-        <div class="gallery-card" onclick="openLightbox('${escapedUrl}', '${escapedTitle}')">
+        <div class="gallery-card" onclick="openLightboxByIndex(${idx})">
           <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.src='assets/hero-desktop.png'">
           <div class="gallery-overlay">${escapeHtml(title)}</div>
         </div>
@@ -815,23 +890,64 @@
     }).join('');
   }
 
-  function handleSearch(val) {
-    currentSearchQuery = val;
-    renderPhotos();
+  // Lightbox with Prev / Next & Touch Swipe
+  function openLightboxByIndex(idx) {
+    if (!allLoadedPhotos || allLoadedPhotos.length === 0) return;
+    if (idx < 0) idx = allLoadedPhotos.length - 1;
+    if (idx >= allLoadedPhotos.length) idx = 0;
+    currentLightboxIndex = idx;
+    const p = allLoadedPhotos[idx];
+    if (!p) return;
+    const imgUrl = p.imageUrl || p.thumbnailUrl || 'assets/hero-desktop.png';
+    const title = p.title || 'Abhay Hindu Sena Moment';
+    openLightbox(imgUrl, title);
   }
 
-  // Lightbox
+  function prevLightbox(e) {
+    if (e) e.stopPropagation();
+    openLightboxByIndex(currentLightboxIndex - 1);
+  }
+
+  function nextLightbox(e) {
+    if (e) e.stopPropagation();
+    openLightboxByIndex(currentLightboxIndex + 1);
+  }
+
   function openLightbox(imgSrc, caption) {
     document.getElementById('lightboxImg').src = imgSrc;
     document.getElementById('lightboxCaption').textContent = caption;
     document.getElementById('lightboxModal').classList.add('active');
   }
+
   function closeLightbox() {
     document.getElementById('lightboxModal').classList.remove('active');
   }
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevLightbox();
+    if (e.key === 'ArrowRight') nextLightbox();
   });
+
+  // Touch swipe support for full screen lightbox
+  let lbStartX = 0;
+  let lbEndX = 0;
+  const lbModalEl = document.getElementById('lightboxModal');
+  if (lbModalEl) {
+    lbModalEl.addEventListener('touchstart', e => {
+      lbStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    lbModalEl.addEventListener('touchend', e => {
+      lbEndX = e.changedTouches[0].screenX;
+      if (Math.abs(lbEndX - lbStartX) > 40) {
+        if (lbEndX < lbStartX) {
+          nextLightbox(); // swiped left
+        } else {
+          prevLightbox(); // swiped right
+        }
+      }
+    }, { passive: true });
+  }
 
   // Language Toggle
   let isTelugu = false;

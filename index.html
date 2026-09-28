@@ -1012,6 +1012,43 @@
     line-height: 1.4;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
   }
+  .swipe-hint-pill {
+    display: inline-block;
+    font-size: 0.74rem;
+    color: var(--gold-bright);
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-weight: 500;
+  }
+  .mobile-only-hint {
+    display: none;
+  }
+  .lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(18, 5, 5, 0.75);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s;
+  }
+  .lightbox-nav-btn:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
 
   /* COMMUNITY CHAT ROOM */
   .community-section {
@@ -2087,18 +2124,53 @@
       gap: 4px !important;
     }
 
-    /* Videos & Gallery - 2x2 Grid */
+    /* Videos - 2x2 Grid */
     .videos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    /* Gallery - 2 Photos Side-by-Side & Horizontal Swipe */
     .gallery-grid { 
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-      gap: 16px; 
-      justify-content: center;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      gap: 10px !important;
+      padding: 6px 2px 14px !important;
+      justify-content: flex-start !important;
+      scrollbar-width: thin !important;
+    }
+    .gallery-grid::-webkit-scrollbar {
+      height: 4px;
+    }
+    .gallery-grid::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
     }
     .gallery-card { 
-      height: 250px; 
-      max-width: 360px;
-      margin: 0 auto;
+      flex: 0 0 calc(50% - 5px) !important;
+      width: calc(50% - 5px) !important;
+      max-width: calc(50% - 5px) !important;
+      height: 220px !important;
+      scroll-snap-align: start !important;
+      border-radius: 12px !important;
+      margin: 0 !important;
     }
+    .gallery-overlay {
+      padding: 10px 8px 6px !important;
+      font-size: 0.74rem !important;
+      line-height: 1.25 !important;
+    }
+    .mobile-only-hint {
+      display: inline-block !important;
+    }
+    .lightbox-nav-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+    }
+    .lightbox-prev { left: 4px; }
+    .lightbox-next { right: 4px; }
 
     /* Community Chat Box & Input (Prevents Button from Overflowing) */
     .community-chat-container, .chat-box-container {
@@ -3663,18 +3735,21 @@
        data-te="వార్షికోత్సవాలు, యువ చైతన్య ర్యాలీలు మరియు నిరంతర సేవా దృశ్యాలు.">
       Snapshots of annual conventions, youth rallies, discourse meetings, and Annadanam drives.
     </p>
+    <div style="margin-top: 10px;">
+      <span class="swipe-hint-pill mobile-only-hint" data-en="👉 Swipe Photos 👈" data-te="👉 ఫోటోలను స్వైప్ చేయండి 👈">👉 Swipe Photos 👈</span>
+    </div>
   </div>
 
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-card" onclick="openLightbox('assets/founder.jpg', 'Shri Radha Manohar Das addressing devotees at Annual Convention')">
+    <div class="gallery-card" onclick="openLightboxByIndex(0)">
       <img src="assets/founder.jpg" alt="Convention Address">
       <div class="gallery-overlay">Annual Convention Address</div>
     </div>
-    <div class="gallery-card" onclick="openLightbox('assets/hero-desktop.png', 'Youth Awakening & Martial Discipline Rally')">
+    <div class="gallery-card" onclick="openLightboxByIndex(1)">
       <img src="assets/hero-desktop.png" alt="Youth Awakening">
       <div class="gallery-overlay">Youth Awakening Rally</div>
     </div>
-    <div class="gallery-card" onclick="openLightbox('assets/hero-mobile.png', 'Dharma Raksha & Seva Convention')">
+    <div class="gallery-card" onclick="openLightboxByIndex(2)">
       <img src="assets/hero-mobile.png" alt="Dharma Raksha Drive">
       <div class="gallery-overlay">Dharma Raksha & Seva Drive</div>
     </div>
@@ -3889,7 +3964,9 @@
 
 <!-- Lightbox Modal for Gallery -->
 <div class="modal-backdrop" id="lightboxModal" onclick="closeLightbox()">
-  <div class="modal-content" style="max-width:680px;" onclick="event.stopPropagation()">
+  <div class="modal-content" style="max-width:680px; position:relative;" onclick="event.stopPropagation()">
+    <button class="lightbox-nav-btn lightbox-prev" onclick="prevLightbox(event)" aria-label="Previous Photo">❮</button>
+    <button class="lightbox-nav-btn lightbox-next" onclick="nextLightbox(event)" aria-label="Next Photo">❯</button>
     <img id="lightboxImg" src="" alt="Gallery Preview" style="width:100%; max-height:420px; object-fit:contain; border-radius:8px; margin-bottom:12px;">
     <h4 id="lightboxTitle" style="color:var(--gold-bright); font-family:'Cinzel',serif; font-size:1.1rem; margin-bottom:8px;"></h4>
     <button class="modal-close-btn" onclick="closeLightbox()">Close / మూసివేయండి</button>
@@ -4092,14 +4169,16 @@
 
       if (top3.length > 0) {
         // Box 1, Box 2, Box 3: Latest Photos
-        top3.forEach((photo) => {
+        window.homePhotos = top3.map(p => ({
+          url: p.imageUrl || p.url || p.thumbnailUrl || 'assets/founder.jpg',
+          title: p.title || 'Abhay Hindu Sena Sacred Moment'
+        }));
+        top3.forEach((photo, idx) => {
           const url = photo.imageUrl || photo.url || photo.thumbnailUrl || 'assets/founder.jpg';
           const title = photo.title || 'Abhay Hindu Sena Sacred Moment';
-          const escapedTitle = title.replace(/'/g, "\\'");
-          const escapedUrl = url.replace(/'/g, "\\'");
 
           html += `
-            <div class="gallery-card" onclick="openLightbox('${escapedUrl}', '${escapedTitle}')">
+            <div class="gallery-card" onclick="openLightboxByIndex(${idx})">
               <img src="${escapeHtml(url)}" alt="${escapeHtml(title)}" loading="lazy" onerror="this.src='assets/founder.jpg'">
               <div class="gallery-overlay">${escapeHtml(title)}</div>
             </div>
@@ -4112,11 +4191,10 @@
           { url: 'assets/hero-desktop.png', title: 'Youth Awakening & Martial Discipline Rally' },
           { url: 'assets/hero-mobile.png', title: 'Dharma Raksha & Seva Convention' }
         ];
-        defaults.forEach(photo => {
-          const escapedTitle = photo.title.replace(/'/g, "\\'");
-          const escapedUrl = photo.url.replace(/'/g, "\\'");
+        window.homePhotos = defaults;
+        defaults.forEach((photo, idx) => {
           html += `
-            <div class="gallery-card" onclick="openLightbox('${escapedUrl}', '${escapedTitle}')">
+            <div class="gallery-card" onclick="openLightboxByIndex(${idx})">
               <img src="${escapeHtml(photo.url)}" alt="${escapeHtml(photo.title)}" loading="lazy">
               <div class="gallery-overlay">${escapeHtml(photo.title)}</div>
             </div>
@@ -4565,14 +4643,69 @@
     renderEventsGrid(getLocalEvents());
   }
 
-  // Lightbox
+  // Lightbox Navigation & Touch Swipe
+  let currentHomeLbIdx = 0;
+  window.homePhotos = [
+    { url: 'assets/founder.jpg', title: 'Shri Radha Manohar Das addressing devotees at Annual Convention' },
+    { url: 'assets/hero-desktop.png', title: 'Youth Awakening & Martial Discipline Rally' },
+    { url: 'assets/hero-mobile.png', title: 'Dharma Raksha & Seva Convention' }
+  ];
+
+  function openLightboxByIndex(idx) {
+    if (!window.homePhotos || window.homePhotos.length === 0) return;
+    if (idx < 0) idx = window.homePhotos.length - 1;
+    if (idx >= window.homePhotos.length) idx = 0;
+    currentHomeLbIdx = idx;
+    const p = window.homePhotos[idx];
+    if (p) openLightbox(p.url, p.title);
+  }
+
+  function prevLightbox(e) {
+    if (e) e.stopPropagation();
+    openLightboxByIndex(currentHomeLbIdx - 1);
+  }
+
+  function nextLightbox(e) {
+    if (e) e.stopPropagation();
+    openLightboxByIndex(currentHomeLbIdx + 1);
+  }
+
   function openLightbox(imgSrc, title) {
+    const idx = (window.homePhotos || []).findIndex(p => p.url === imgSrc);
+    if (idx !== -1) currentHomeLbIdx = idx;
     document.getElementById('lightboxImg').src = imgSrc;
     document.getElementById('lightboxTitle').textContent = title;
     document.getElementById('lightboxModal').classList.add('active');
   }
+
   function closeLightbox() {
     document.getElementById('lightboxModal').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevLightbox();
+    if (e.key === 'ArrowRight') nextLightbox();
+  });
+
+  // Touch swipe support for home lightbox
+  let homeLbStartX = 0;
+  let homeLbEndX = 0;
+  const homeLbModalEl = document.getElementById('lightboxModal');
+  if (homeLbModalEl) {
+    homeLbModalEl.addEventListener('touchstart', e => {
+      homeLbStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    homeLbModalEl.addEventListener('touchend', e => {
+      homeLbEndX = e.changedTouches[0].screenX;
+      if (Math.abs(homeLbEndX - homeLbStartX) > 40) {
+        if (homeLbEndX < homeLbStartX) {
+          nextLightbox(); // swiped left
+        } else {
+          prevLightbox(); // swiped right
+        }
+      }
+    }, { passive: true });
   }
 
   // Gallery filter
