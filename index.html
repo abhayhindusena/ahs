@@ -2049,6 +2049,52 @@
       font-size: 0.68rem !important;
     }
 
+    /* Songs & Dialogues - 2x2 Grid on Mobile */
+    .songs-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+    .song-card {
+      border-radius: 12px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+    .song-card-body {
+      padding: 10px 8px !important;
+    }
+    .song-speaker {
+      font-size: 0.62rem !important;
+      margin-bottom: 2px !important;
+    }
+    .song-title {
+      font-size: 0.82rem !important;
+      line-height: 1.25 !important;
+      margin-bottom: 4px !important;
+      -webkit-line-clamp: 2 !important;
+    }
+    .song-quote-box {
+      font-size: 0.66rem !important;
+      line-height: 1.3 !important;
+      padding: 4px 6px !important;
+      margin-bottom: 8px !important;
+      -webkit-line-clamp: 2 !important;
+    }
+    .song-card-cue {
+      font-size: 0.68rem !important;
+    }
+    .song-type-badge {
+      font-size: 0.58rem !important;
+      padding: 2px 6px !important;
+      top: 6px !important;
+      left: 6px !important;
+    }
+    .song-play-btn {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 0.85rem !important;
+    }
+
     /* 4 Action Portals (2x2 Boxes Type on Mobile) */
     .portals-section {
       padding: 40px 4% 48px !important;
@@ -2596,6 +2642,180 @@
     transition: color 0.2s, transform 0.2s;
   }
   .event-card:hover .event-card-cue {
+    color: var(--gold-bright);
+    transform: translateX(3px);
+  }
+
+  /* SONGS & DIALOGUES SECTION */
+  .songs-section {
+    padding: 70px 6% 85px;
+    background: radial-gradient(circle at 50% 12%, rgba(90,10,10,0.38) 0%, rgba(13,4,4,0.98) 75%);
+    border-top: 1px solid rgba(212,175,55,0.25);
+    border-bottom: 1px solid rgba(212,175,55,0.25);
+    position: relative;
+  }
+  .songs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  @media (max-width: 960px) {
+    .songs-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  .song-card {
+    background: linear-gradient(145deg, rgba(28, 8, 8, 0.95) 0%, rgba(16, 4, 4, 0.98) 100%);
+    border: 1px solid var(--border-gold);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.65);
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.28s ease, border-color 0.28s, box-shadow 0.28s;
+  }
+  .song-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.25);
+  }
+  .song-card.view-more-card {
+    min-height: 100%;
+    padding: 22px 18px;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .song-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold-bright), var(--saffron));
+    z-index: 3;
+  }
+  .song-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000;
+  }
+  .song-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .song-card:hover .song-thumb {
+    transform: scale(1.06);
+  }
+  .song-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(13,4,4,0.88);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    font-size: 0.70rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    z-index: 2;
+  }
+  .song-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(13,4,4,0.72) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s;
+  }
+  .song-card:hover .song-play-overlay {
+    background: rgba(0,0,0,0.4);
+  }
+  .song-play-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B1A 0%, #D4AF37 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 18px rgba(255,107,26,0.6);
+    transition: transform 0.25s;
+    padding-left: 2px;
+  }
+  .song-card:hover .song-play-btn {
+    transform: scale(1.15);
+  }
+  .song-card-body {
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+  .song-speaker {
+    font-size: 0.72rem;
+    color: var(--saffron);
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .song-title {
+    font-family: var(--font-heading);
+    font-size: 0.98rem;
+    color: #FFF;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .song-quote-box {
+    background: rgba(212,175,55,0.06);
+    border-left: 2px solid var(--gold);
+    padding: 8px 10px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .song-card-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold);
+    font-size: 0.80rem;
+    font-weight: 700;
+    margin-top: auto;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .song-card:hover .song-card-cue {
     color: var(--gold-bright);
     transform: translateX(3px);
   }
@@ -3482,6 +3702,7 @@
     <a href="#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
     <a href="#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
     <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="#songs" data-en="Songs & Dialogues" data-te="గీతాలు & గర్జనలు">Songs & Dialogues</a>
     <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
     <a href="#events" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
@@ -3847,6 +4068,111 @@
   </div>
 </section>
 
+<!-- ========================================================================= -->
+<!-- SONGS & DIALOGUES OF SHRI RADHA MANOHAR DAS -->
+<!-- ========================================================================= -->
+<section id="songs" class="songs-section">
+  <div class="section-header">
+    <span class="eyebrow" data-en="Dharmic Awakening & Melodies" data-te="ధర్మ గర్జనలు & భక్తి గీతాలు">Dharmic Awakening & Melodies</span>
+    <h2 class="section-title" data-en="Songs & Fiery Dialogues" data-te="భక్తి గీతాలు & ధర్మ గర్జనలు">Songs & Fiery Dialogues</h2>
+    <p class="section-sub"
+       data-en="Devotional bhajans, inspiring songs, and lionhearted discourses of Shri Radha Manohar Das awakening the youth to protect Sanatana Dharma."
+       data-te="యువతలో ఆధ్యాత్మిక చైతన్యాన్ని, ఆత్మస్థైర్యాన్ని నింపే శ్రీ రాధా మనోహర్ దాస్ గారి భక్తి గీతాలు, భజనలు మరియు సింహ గర్జనలు.">
+      Devotional bhajans, inspiring songs, and lionhearted discourses of Shri Radha Manohar Das awakening the youth to protect Sanatana Dharma.
+    </p>
+  </div>
+
+  <div class="songs-grid" id="songsGrid">
+    <!-- Song 1: Hindu Samaj Awakening -->
+    <div class="song-card" onclick="openCinemaVideo('OpLuFO3Hep0', 'హిందూ సమాజం నిద్ర లేవాలి - ధర్మ గర్జన')">
+      <div class="song-thumb-wrap">
+        <img src="https://img.youtube.com/vi/OpLuFO3Hep0/hqdefault.jpg" alt="Hindu Samaj Awakening" class="song-thumb" loading="lazy">
+        <span class="song-type-badge">🎙️ Dialogue</span>
+        <div class="song-play-overlay">
+          <div class="song-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="song-card-body">
+        <div>
+          <div class="song-speaker">🚩 Shri Radha Manohar Das</div>
+          <h4 class="song-title" data-en="Hindu Samaj Awakening" data-te="హిందూ సమాజం నిద్ర లేవాలి - ధర్మ గర్జన">Hindu Samaj Awakening</h4>
+          <div class="song-quote-box" data-en="Every Hindu must awaken to protect Sanatana Dharma! Dharma protects those who protect it!" data-te="సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి! ధర్మో రక్షతి రక్షితః!">
+            "సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి! ధర్మో రక్షతి రక్షితః!"
+          </div>
+        </div>
+        <div class="song-card-cue">
+          <span data-en="Play Dialogue ▶" data-te="గర్జన వినండి ▶">Play Dialogue ▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song 2: Abhay Hindu Sena Vijaya Geetham -->
+    <div class="song-card" onclick="openCinemaVideo('wH1w9M4mMnM', 'అభయ్ హిందూ సేన విజయ గీతం')">
+      <div class="song-thumb-wrap">
+        <img src="https://img.youtube.com/vi/wH1w9M4mMnM/hqdefault.jpg" alt="Abhay Hindu Sena Vijaya Geetham" class="song-thumb" loading="lazy">
+        <span class="song-type-badge">🎵 Song</span>
+        <div class="song-play-overlay">
+          <div class="song-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="song-card-body">
+        <div>
+          <div class="song-speaker">🚩 Shri Radha Manohar Das</div>
+          <h4 class="song-title" data-en="Abhay Hindu Sena Vijaya Geetham" data-te="అభయ్ హిందూ సేన విజయ గీతం">Abhay Hindu Sena Vijaya Geetham</h4>
+          <div class="song-quote-box" data-en="Singing the song of victory, marching on the path of Dharma with courage!" data-te="విజయ గీతం పాడెదం... ధర్మ పథంలో నడిచెదం! సనాతన వైభవాన్ని చాటెదం!">
+            "విజయ గీతం పాడెదం... ధర్మ పథంలో నడిచెదం! సనాతన వైభవాన్ని చాటెదం!"
+          </div>
+        </div>
+        <div class="song-card-cue">
+          <span data-en="Play Song ▶" data-te="గీతం వినండి ▶">Play Song ▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song 3: Gau Raksha & Dharma Sandesham -->
+    <div class="song-card" onclick="openCinemaVideo('9gQdFrP_Ulc', 'గోమాత రక్షణే మన పరమ ధర్మం')">
+      <div class="song-thumb-wrap">
+        <img src="https://img.youtube.com/vi/9gQdFrP_Ulc/hqdefault.jpg" alt="Gau Raksha Dialogue" class="song-thumb" loading="lazy">
+        <span class="song-type-badge">🎙️ Dialogue</span>
+        <div class="song-play-overlay">
+          <div class="song-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="song-card-body">
+        <div>
+          <div class="song-speaker">🚩 Shri Radha Manohar Das</div>
+          <h4 class="song-title" data-en="Gau Raksha & Dharma Sandesham" data-te="గోమాత రక్షణే మన పరమ ధర్మం - సింహ గర్జన">Gau Raksha & Dharma Sandesham</h4>
+          <div class="song-quote-box" data-en="Protecting the sacred cow is not merely worship, it is our dharmic fight for existence!" data-te="గోమాతను కాపాడడం కేవలం పూజ మాత్రమే కాదు, మన అస్తిత్వపు పోరాటం!">
+            "గోమాతను కాపాడడం కేవలం పూజ మాత్రమే కాదు, మన అస్తిత్వపు పోరాటం!"
+          </div>
+        </div>
+        <div class="song-card-cue">
+          <span data-en="Play Dialogue ▶" data-te="గర్జన వినండి ▶">Play Dialogue ▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Box 4: View More Card (Takes to separate songs page) -->
+    <div class="song-card view-more-card" onclick="window.location.href='songs.html'">
+      <div>
+        <div class="event-card-top" style="margin-bottom:12px;">
+          <div class="event-icon-circle" style="background:rgba(212,175,55,0.15); border-color:var(--gold);">🎵</div>
+          <span class="event-date-chip" style="color:var(--gold-bright); background:rgba(212,175,55,0.12); border-color:var(--border-gold);" data-en="Collection" data-te="నిధి">Collection</span>
+        </div>
+        <h3 class="event-title" data-en="All Songs & Dialogues" data-te="అన్ని గీతాలు & గర్జనలు">All Songs & Dialogues</h3>
+        <p class="event-desc"
+           data-en="Explore the full collection of devotional songs, bhajans, stotrams, and fiery pravachans of Shri Radha Manohar Das."
+           data-te="శ్రీ రాధా మనోహర్ దాస్ గారి అన్ని భక్తి గీతాలు, భజనలు, స్తోత్రాలు మరియు ధర్మ ప్రవచనాలను ఇక్కడ వినండి.">
+          Explore the full collection of devotional songs, bhajans, stotrams, and fiery pravachans of Shri Radha Manohar Das.
+        </p>
+      </div>
+      <div class="song-card-cue">
+        <span data-en="View All Songs ➔" data-te="అన్ని గీతాలు చూడండి ➔">View All Songs ➔</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Action Portals Section: Join Us, Donate, Community -->
 <section id="portals" class="portals-section">
   <div class="section-header">
@@ -3937,6 +4263,7 @@
     <a href="#founder">Founder</a>
     <a href="#missions">Missions</a>
     <a href="videos.html">Videos</a>
+    <a href="songs.html">Songs & Dialogues</a>
     <a href="gallery.html">Gallery</a>
     <a href="#events">Events</a>
     <a href="community.html">Community</a>
@@ -4426,6 +4753,165 @@
   }
 
   // =========================================================================
+  // SONGS & DIALOGUES LIVE SYSTEM
+  // =========================================================================
+  const DEFAULT_INDEX_SONGS = [
+    {
+      id: 'song_1',
+      title: 'Hindu Samaj Awakening',
+      titleTe: 'హిందూ సమాజం నిద్ర లేవాలి - ధర్మ గర్జన',
+      type: 'Dialogue',
+      mediaUrl: 'https://www.youtube.com/watch?v=OpLuFO3Hep0',
+      videoId: 'OpLuFO3Hep0',
+      excerpt: 'సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి! ధర్మో రక్షతి రక్షితః!',
+      speaker: 'Shri Radha Manohar Das'
+    },
+    {
+      id: 'song_2',
+      title: 'Abhay Hindu Sena Vijaya Geetham',
+      titleTe: 'అభయ్ హిందూ సేన విజయ గీతం - ధర్మ రక్షణ ప్రబోధ గీతం',
+      type: 'Song',
+      mediaUrl: 'https://www.youtube.com/watch?v=wH1w9M4mMnM',
+      videoId: 'wH1w9M4mMnM',
+      excerpt: 'విజయ గీతం పాడెదం... ధర్మ పథంలో నడిచెదం! సనాతన వైభవాన్ని చాటెదం!',
+      speaker: 'Shri Radha Manohar Das'
+    },
+    {
+      id: 'song_3',
+      title: 'Gau Raksha & Dharma Sandesham',
+      titleTe: 'గోమాత రక్షణే మన పరమ ధర్మం - సింహ గర్జన',
+      type: 'Dialogue',
+      mediaUrl: 'https://www.youtube.com/watch?v=9gQdFrP_Ulc',
+      videoId: '9gQdFrP_Ulc',
+      excerpt: 'గోమాతను కాపాడడం కేవలం పూజ మాత్రమే కాదు, మన అస్తిత్వపు పోరాటం!',
+      speaker: 'Shri Radha Manohar Das'
+    }
+  ];
+
+  function extractIndexSongYtId(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/i);
+    return match ? match[1] : null;
+  }
+
+  function getLocalIndexSongs() {
+    try {
+      const stored = localStorage.getItem('ahs_songs_list');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    return [...DEFAULT_INDEX_SONGS];
+  }
+
+  function renderSongsGrid(songs) {
+    const grid = document.getElementById('songsGrid');
+    if (!grid) return;
+
+    const list = Array.isArray(songs) && songs.length > 0 ? songs.slice(0, 3) : DEFAULT_INDEX_SONGS.slice(0, 3);
+
+    let html = list.map(song => {
+      const ytId = song.videoId || extractIndexSongYtId(song.mediaUrl);
+      const thumb = ytId
+        ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+        : 'assets/logo.png';
+      const type = song.type || 'Song';
+      const typeIcon = type === 'Dialogue' ? '🎙️' : (type === 'Song' ? '🎵' : (type === 'Bhajan' ? '🚩' : '🕉️'));
+      const title = (isTelugu && song.titleTe) ? song.titleTe : (song.title || 'Shri Radha Manohar Das Pravachan');
+      const quote = song.excerpt || 'సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి!';
+      const speaker = song.speaker || 'Shri Radha Manohar Das';
+      const playAction = ytId
+        ? `openCinemaVideo('${ytId}', '${title.replace(/'/g, "\\'")}')`
+        : `window.location.href='songs.html'`;
+
+      return `
+        <div class="song-card" onclick="${playAction}">
+          <div class="song-thumb-wrap">
+            <img src="${thumb}" alt="${escapeHtml(title)}" class="song-thumb" loading="lazy">
+            <span class="song-type-badge">${typeIcon} ${escapeHtml(type)}</span>
+            <div class="song-play-overlay">
+              <div class="song-play-btn">▶</div>
+            </div>
+          </div>
+          <div class="song-card-body">
+            <div>
+              <div class="song-speaker">🚩 ${escapeHtml(speaker)}</div>
+              <h4 class="song-title">${escapeHtml(title)}</h4>
+              <div class="song-quote-box">"${escapeHtml(quote)}"</div>
+            </div>
+            <div class="song-card-cue">
+              <span>${type === 'Dialogue' ? (isTelugu ? 'గర్జన వినండి ▶' : 'Play Dialogue ▶') : (isTelugu ? 'గీతం వినండి ▶' : 'Play Song ▶')}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Box 4: View More Card (Takes to separate page songs.html)
+    html += `
+      <div class="song-card view-more-card" onclick="window.location.href='songs.html'">
+        <div>
+          <div class="event-card-top" style="margin-bottom:12px;">
+            <div class="event-icon-circle" style="background:rgba(212,175,55,0.15); border-color:var(--gold);">🎵</div>
+            <span class="event-date-chip" style="color:var(--gold-bright); background:rgba(212,175,55,0.12); border-color:var(--border-gold);" data-en="Collection" data-te="నిధి">${isTelugu ? 'నిధి' : 'Collection'}</span>
+          </div>
+          <h3 class="event-title" data-en="All Songs & Dialogues" data-te="అన్ని గీతాలు & గర్జనలు">${isTelugu ? 'అన్ని గీతాలు & గర్జనలు' : 'All Songs & Dialogues'}</h3>
+          <p class="event-desc"
+             data-en="Explore the full collection of devotional songs, bhajans, stotrams, and fiery pravachans of Shri Radha Manohar Das."
+             data-te="శ్రీ రాధా మనోహర్ దాస్ గారి అన్ని భక్తి గీతాలు, భజనలు, స్తోత్రాలు మరియు ధర్మ ప్రవచనాలను ఇక్కడ వినండి.">
+            ${isTelugu
+              ? 'శ్రీ రాధా మనోహర్ దాస్ గారి అన్ని భక్తి గీతాలు, భజనలు, స్తోత్రాలు మరియు ధర్మ ప్రవచనాలను ఇక్కడ వినండి.'
+              : 'Explore the full collection of devotional songs, bhajans, stotrams, and fiery pravachans of Shri Radha Manohar Das.'}
+          </p>
+        </div>
+        <div class="song-card-cue">
+          <span data-en="View All Songs ➔" data-te="అన్ని గీతాలు చూడండి ➔">${isTelugu ? 'అన్ని గీతాలు చూడండి ➔' : 'View All Songs ➔'}</span>
+        </div>
+      </div>
+    `;
+
+    grid.innerHTML = html;
+  }
+
+  function initLiveSongs() {
+    renderSongsGrid(getLocalIndexSongs());
+
+    // BroadcastChannel cross-tab live updates
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const ch = new BroadcastChannel('ahs_songs_channel');
+        ch.onmessage = () => {
+          renderSongsGrid(getLocalIndexSongs());
+        };
+      } catch(e) {}
+    }
+
+    // Storage listener
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_songs_list') {
+        renderSongsGrid(getLocalIndexSongs());
+      }
+    });
+
+    // Firestore live stream
+    if (db) {
+      try {
+        db.collection('songs_dialogues').orderBy('timestamp', 'desc').limit(10).onSnapshot(snapshot => {
+          if (!snapshot.empty) {
+            const remoteSongs = [];
+            snapshot.forEach(doc => remoteSongs.push({ id: doc.id, ...doc.data() }));
+            localStorage.setItem('ahs_songs_list', JSON.stringify(remoteSongs));
+            renderSongsGrid(remoteSongs);
+          }
+        }, err => {
+          console.warn("Firestore songs stream notice (resilient mode active):", err.message);
+        });
+      } catch(e) {}
+    }
+  }
+
+  // =========================================================================
   // REAL-TIME DIGITAL INAUGURATION & LAUNCH SYSTEM
   // =========================================================================
   let visitorSiteStatus = null;
@@ -4612,6 +5098,7 @@
     loadRecentVideos();
     initLiveGallery();
     initLiveEvents();
+    initLiveSongs();
 
     try {
       if (localStorage.getItem('ahs_preferred_lang') === 'te') {
@@ -4641,6 +5128,7 @@
     });
 
     renderEventsGrid(getLocalEvents());
+    renderSongsGrid(getLocalIndexSongs());
   }
 
   // Lightbox Navigation & Touch Swipe

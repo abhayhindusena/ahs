@@ -1307,6 +1307,9 @@
     <button class="admin-tab" id="tabEventsBtn" onclick="switchAdminTab('events')">
       📅 Events (<span id="tabEventCount">0</span>)
     </button>
+    <button class="admin-tab" id="tabSongsBtn" onclick="switchAdminTab('songs')">
+      🎵 Songs & Dialogues (<span id="tabSongCount">0</span>)
+    </button>
   </div>
 
   <!-- VIEW 1: VIDEOS VIEW -->
@@ -1361,6 +1364,27 @@
             🚀 Publish Video to Website
           </button>
         </form>
+
+        <!-- Manage Video Categories Panel -->
+        <div class="category-manager-card" style="margin-top:24px; padding:16px; background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.3); border-radius:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h4 style="color:var(--gold-bright); font-size:0.92rem; margin:0; display:flex; align-items:center; gap:6px;">
+              <span>🏷️ Manage Video Categories</span>
+            </h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Synced to live website</span>
+          </div>
+          
+          <div id="videoCategoryChipsList" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; min-height:30px;">
+            <span style="color:var(--text-muted); font-size:0.8rem;">Loading categories...</span>
+          </div>
+
+          <div style="display:flex; gap:8px;">
+            <input type="text" id="newCategoryInput" class="form-input" placeholder="New category name (e.g. Youth Rallies)..." style="padding:9px 12px; font-size:0.85rem;" onkeydown="if(event.key==='Enter'){event.preventDefault();handleAddVideoCategory();}">
+            <button type="button" class="btn-action" style="background:var(--gold); color:#000; font-weight:700; padding:9px 16px; white-space:nowrap; border-radius:8px; cursor:pointer;" onclick="handleAddVideoCategory()">
+              ➕ Add Category
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- RIGHT: PUBLISHED VIDEOS -->
@@ -1699,6 +1723,91 @@
         <div id="eventsAdminList">
           <div style="text-align:center; padding:40px; color:var(--text-muted);">
             Loading events...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 6: SONGS & DIALOGUES MANAGEMENT -->
+  <div id="songsView" style="display:none;">
+    <div class="dashboard-grid">
+      <!-- LEFT: PUBLISH SONG / DIALOGUE FORM -->
+      <div class="dash-card">
+        <h2>🎵 Add Song or Dialogue</h2>
+        <p class="card-desc">Publish devotional songs, bhajans, or lionhearted dialogues of Shri Radha Manohar Das to the live website and dedicated songs page.</p>
+
+        <form id="addSongForm" onsubmit="handlePublishSong(event)">
+          <!-- Title (English / Common) -->
+          <div class="form-group">
+            <label for="songTitle">Title (English / Common) *</label>
+            <input type="text" id="songTitle" class="form-input" placeholder="e.g. Abhay Hindu Sena Vijaya Geetham" required>
+          </div>
+
+          <!-- Title (Telugu) -->
+          <div class="form-group">
+            <label for="songTitleTe">Title in Telugu (శీర్షిక)</label>
+            <input type="text" id="songTitleTe" class="form-input" placeholder="e.g. అభయ్ హిందూ సేన విజయ గీతం">
+          </div>
+
+          <!-- Type / Category -->
+          <div class="form-group">
+            <label for="songType">Content Type *</label>
+            <select id="songType" class="form-select">
+              <option value="Dialogue">🎙️ Fiery Dialogue (ధర్మ గర్జన / సంభాషణ)</option>
+              <option value="Song">🎵 Devotional Song (భక్తి గీతం)</option>
+              <option value="Bhajan">🚩 Bhajan (భజన)</option>
+              <option value="Stotram">🕉️ Stotram / Mantra (స్తోత్రం)</option>
+              <option value="Discourse">📢 Youth Address (ధర్మ సందేశం)</option>
+            </select>
+          </div>
+
+          <!-- YouTube / Audio URL -->
+          <div class="form-group">
+            <label for="songMediaUrl">YouTube Link or Audio URL *</label>
+            <input type="text" id="songMediaUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=... or direct MP3 audio link" required oninput="handleSongMediaInput(this.value)">
+            <div id="songThumbPreview" style="margin-top:8px; display:none;">
+              <img id="songThumbImg" src="" alt="Media Thumbnail" style="width:120px; height:68px; object-fit:cover; border-radius:6px; border:1px solid var(--border-gold);">
+            </div>
+          </div>
+
+          <!-- Short Excerpt / Powerful Dialogue Quote -->
+          <div class="form-group">
+            <label for="songExcerpt">Short Dialogue Quote or Excerpt *</label>
+            <textarea id="songExcerpt" class="form-textarea" rows="2" placeholder="e.g. సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి!" required></textarea>
+          </div>
+
+          <!-- Full Lyrics or Dialogue Transcript (Optional) -->
+          <div class="form-group">
+            <label for="songLyrics">Lyrics or Transcript (Optional)</label>
+            <textarea id="songLyrics" class="form-textarea" rows="3" placeholder="Additional message lines or lyrics..."></textarea>
+          </div>
+
+          <!-- Speaker / Artist -->
+          <div class="form-group">
+            <label for="songSpeaker">Speaker / Artist</label>
+            <input type="text" id="songSpeaker" class="form-input" value="Shri Radha Manohar Das" placeholder="Shri Radha Manohar Das">
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitSongBtn">
+            🚀 Publish Song / Dialogue to Website
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT: PUBLISHED SONGS & DIALOGUES -->
+      <div class="dash-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h2 style="margin-bottom: 0;">🎵 Songs & Dialogues (<span id="songsListCount">0</span>)</h2>
+          <span style="font-size: 0.78rem; color: var(--gold-bright); background: rgba(212,175,55,0.15); padding: 4px 10px; border-radius: 12px; border: 1px solid var(--border-gold);">
+            Live Sync Active
+          </span>
+        </div>
+        <p class="card-desc">All published songs, bhajans, and dialogues. The top 3 automatically appear on the homepage.</p>
+
+        <div id="songsAdminList">
+          <div style="text-align:center; padding:40px; color:var(--text-muted);">
+            Loading items...
           </div>
         </div>
       </div>
@@ -2142,23 +2251,27 @@ service cloud.firestore {
     const rTabBtn = document.getElementById('tabRegistrationsBtn');
     const gTabBtn = document.getElementById('tabGalleryBtn');
     const eTabBtn = document.getElementById('tabEventsBtn');
+    const sTabBtn = document.getElementById('tabSongsBtn');
     const vView = document.getElementById('videosView');
     const cView = document.getElementById('communityView');
     const rView = document.getElementById('registrationsView');
     const gView = document.getElementById('galleryView');
     const eView = document.getElementById('eventsView');
+    const sView = document.getElementById('songsView');
 
     vTabBtn.classList.remove('active');
     cTabBtn.classList.remove('active');
     if (rTabBtn) rTabBtn.classList.remove('active');
     if (gTabBtn) gTabBtn.classList.remove('active');
     if (eTabBtn) eTabBtn.classList.remove('active');
+    if (sTabBtn) sTabBtn.classList.remove('active');
 
     vView.style.display = 'none';
     cView.style.display = 'none';
     if (rView) rView.style.display = 'none';
     if (gView) gView.style.display = 'none';
     if (eView) eView.style.display = 'none';
+    if (sView) sView.style.display = 'none';
 
     if (tab === 'videos') {
       vTabBtn.classList.add('active');
@@ -2176,6 +2289,10 @@ service cloud.firestore {
       if (eTabBtn) eTabBtn.classList.add('active');
       if (eView) eView.style.display = 'block';
       if (typeof renderAdminEvents === 'function') renderAdminEvents();
+    } else if (tab === 'songs') {
+      if (sTabBtn) sTabBtn.classList.add('active');
+      if (sView) sView.style.display = 'block';
+      if (typeof renderAdminSongs === 'function') renderAdminSongs();
     }
   }
 
@@ -2450,18 +2567,22 @@ service cloud.firestore {
   // ==========================================
   function initDashboard() {
     initLaunchControlAdmin();
+    initVideoCategoriesAdmin();
     initVideosListener();
     initCommunityChatAdmin();
     initSevaksDirectoryAdmin();
     initVolunteerRegistrationsAdmin();
     initGalleryAdmin();
     initEventsAdmin();
+    initSongsAdmin();
   }
 
   // Initial load check even before login
   document.addEventListener('DOMContentLoaded', () => {
     initLaunchControlAdmin();
+    initVideoCategoriesAdmin();
     initEventsAdmin();
+    initSongsAdmin();
   });
 
   // ==========================================
@@ -4519,6 +4640,446 @@ service cloud.firestore {
           }
         }, err => {
           console.warn("Firestore events stream notice (resilient mode active):", err.message);
+        });
+      } catch(e) {}
+    }
+  }
+
+  // ==========================================
+  // VIDEO CATEGORIES MANAGEMENT SYSTEM
+  // ==========================================
+  const DEFAULT_VIDEO_CATEGORIES = [
+    "Bhagavad Gita",
+    "Temple Defense",
+    "Youth & Dharma",
+    "Dharma Pravachan",
+    "Gau Raksha",
+    "General"
+  ];
+  let videoCategoriesChannel = null;
+
+  function loadVideoCategories() {
+    try {
+      const stored = localStorage.getItem('ahs_video_categories');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    return [...DEFAULT_VIDEO_CATEGORIES];
+  }
+
+  function saveVideoCategories(categories) {
+    try {
+      localStorage.setItem('ahs_video_categories', JSON.stringify(categories));
+    } catch(e) {}
+
+    // Broadcast across tabs
+    try {
+      if (videoCategoriesChannel) {
+        videoCategoriesChannel.postMessage({ type: 'update_categories', categories });
+      }
+    } catch(e) {}
+    window.dispatchEvent(new Event('storage'));
+
+    // Sync with Firestore doc config/video_categories
+    if (db) {
+      try {
+        db.collection('config').doc('video_categories').set({
+          categories: categories,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch(err => {
+          console.warn("Firestore categories sync deferred:", err.message);
+        });
+      } catch(e) {}
+    }
+  }
+
+  function renderVideoCategoryAdmin() {
+    const categories = loadVideoCategories();
+    const chipsList = document.getElementById('videoCategoryChipsList');
+    const selectEl = document.getElementById('videoCategory');
+
+    // Update Chips in Admin Panel
+    if (chipsList) {
+      if (categories.length === 0) {
+        chipsList.innerHTML = '<span style="color:var(--text-muted); font-size:0.8rem;">No categories defined yet. Add one below!</span>';
+      } else {
+        chipsList.innerHTML = categories.map(cat => `
+          <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(212,175,55,0.12); border:1px solid var(--border-gold); color:var(--gold-bright); padding:4px 10px; border-radius:16px; font-size:0.82rem; font-weight:600;">
+            <span>🏷️ ${escapeHtml(cat)}</span>
+            <button type="button" onclick="handleDeleteVideoCategory('${escapeHtml(cat).replace(/'/g, "\\'")}')" title="Delete Category" style="background:none; border:none; color:rgba(255,255,255,0.6); cursor:pointer; font-size:0.8rem; padding:0 2px; line-height:1; display:flex; align-items:center; transition:color 0.2s;" onmouseover="this.style.color='#e74c3c'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✖</button>
+          </span>
+        `).join('');
+      }
+    }
+
+    // Update Dropdown in Add Video Form
+    if (selectEl) {
+      const currentSelected = selectEl.value;
+      selectEl.innerHTML = categories.map(cat => `
+        <option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>
+      `).join('');
+      if (categories.includes(currentSelected)) {
+        selectEl.value = currentSelected;
+      }
+    }
+  }
+
+  function handleAddVideoCategory() {
+    const input = document.getElementById('newCategoryInput');
+    if (!input) return;
+    const val = input.value.trim();
+    if (!val) {
+      alert("Please enter a category name!");
+      input.focus();
+      return;
+    }
+    const categories = loadVideoCategories();
+    if (categories.some(c => c.toLowerCase() === val.toLowerCase())) {
+      alert(`Category "${val}" already exists!`);
+      input.focus();
+      return;
+    }
+    categories.push(val);
+    saveVideoCategories(categories);
+    renderVideoCategoryAdmin();
+    input.value = '';
+    showToast(`Category "${val}" added! 🏷️`);
+  }
+
+  function handleDeleteVideoCategory(catName) {
+    if (!confirm(`Are you sure you want to delete the category "${catName}"?`)) return;
+    let categories = loadVideoCategories();
+    categories = categories.filter(c => c !== catName);
+    if (categories.length === 0) {
+      categories = ["General"];
+    }
+    saveVideoCategories(categories);
+    renderVideoCategoryAdmin();
+    showToast(`Category "${catName}" deleted! 🗑️`);
+  }
+
+  function initVideoCategoriesAdmin() {
+    renderVideoCategoryAdmin();
+
+    try {
+      videoCategoriesChannel = new BroadcastChannel('ahs_categories_channel');
+      videoCategoriesChannel.onmessage = () => {
+        renderVideoCategoryAdmin();
+      };
+    } catch(e) {}
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_video_categories') {
+        renderVideoCategoryAdmin();
+      }
+    });
+
+    if (db) {
+      try {
+        db.collection('config').doc('video_categories').onSnapshot(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            if (data && Array.isArray(data.categories) && data.categories.length > 0) {
+              try {
+                localStorage.setItem('ahs_video_categories', JSON.stringify(data.categories));
+              } catch(e) {}
+              renderVideoCategoryAdmin();
+            }
+          }
+        }, err => {
+          console.warn("Firestore categories stream notice:", err.message);
+        });
+      } catch(e) {}
+    }
+  }
+
+  // ==========================================
+  // SONGS & DIALOGUES MANAGEMENT SYSTEM
+  // ==========================================
+  const DEFAULT_SONGS = [
+    {
+      id: 'song_1',
+      title: 'Hindu Samaj Awakening (హిందూ సమాజం నిద్ర లేవాలి)',
+      titleTe: 'హిందూ సమాజం నిద్ర లేవాలి - ధర్మ గర్జన',
+      type: 'Dialogue',
+      mediaUrl: 'https://www.youtube.com/watch?v=OpLuFO3Hep0',
+      videoId: 'OpLuFO3Hep0',
+      excerpt: 'సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి! ధర్మం మన ప్రాణం, ధర్మో రక్షతి రక్షితః!',
+      lyrics: 'మౌనం వీడండి... ధర్మ రక్షణకు నడుం బిగించండి! అభయ్ హిందూ సేన శంఖారావం!',
+      speaker: 'Shri Radha Manohar Das',
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: 'song_2',
+      title: 'Abhay Hindu Sena Vijaya Geetham (విజయ గీతం)',
+      titleTe: 'అభయ్ హిందూ సేన విజయ గీతం - ధర్మ రక్షణ ప్రబోధ గీతం',
+      type: 'Song',
+      mediaUrl: 'https://www.youtube.com/watch?v=wH1w9M4mMnM',
+      videoId: 'wH1w9M4mMnM',
+      excerpt: 'విజయ గీతం పాడెదం... ధర్మ పథంలో నడిచెదం! సనాతన వైభవాన్ని చాటెదం!',
+      lyrics: 'హిందూ జాతి జాగృతికై నిరంతరం సేవా తత్పరతతో మునుముందుకు...',
+      speaker: 'Shri Radha Manohar Das',
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: 'song_3',
+      title: 'Gau Raksha & Dharma Sandesham (గో రక్షణ గర్జన)',
+      titleTe: 'గోమాత రక్షణే మన పరమ ధర్మం - సింహ గర్జన',
+      type: 'Dialogue',
+      mediaUrl: 'https://www.youtube.com/watch?v=9gQdFrP_Ulc',
+      videoId: '9gQdFrP_Ulc',
+      excerpt: 'గోమాతను కాపాడడం కేవలం పూజ మాత్రమే కాదు, మన అస్తిత్వపు పోరాటం!',
+      lyrics: 'ప్రతి గ్రామంలో గో రక్షణ దళాలు ఏర్పడాలి... గోవులను సంరక్షించాలి.',
+      speaker: 'Shri Radha Manohar Das',
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: 'song_4',
+      title: 'Dharma Samsthapana Stotram & Bhajan (భజన & సంకీర్తన)',
+      titleTe: 'ధర్మ సంస్థాపనార్థాయ భజన & సంకీర్తన',
+      type: 'Bhajan',
+      mediaUrl: 'https://www.youtube.com/watch?v=U2l_7Mt7fBw',
+      videoId: 'U2l_7Mt7fBw',
+      excerpt: 'శ్రీకృష్ణ భగవానుని నామ సంకీర్తన మరియు ధర్మ సంస్థాపన ప్రేరణ.',
+      lyrics: 'హరే కృష్ణ హరే రామ... ధర్మ సంస్థాపనార్థాయ సంభవామి యుగే యుగే...',
+      speaker: 'Shri Radha Manohar Das',
+      createdAt: new Date().toISOString()
+    }
+  ];
+
+  let adminSongsChannel = null;
+
+  function extractSongYouTubeId(url) {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/i);
+    return match ? match[1] : null;
+  }
+
+  function handleSongMediaInput(url) {
+    const previewBox = document.getElementById('songThumbPreview');
+    const previewImg = document.getElementById('songThumbImg');
+    const ytId = extractSongYouTubeId(url);
+    if (ytId && previewBox && previewImg) {
+      previewImg.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+      previewBox.style.display = 'block';
+    } else if (previewBox) {
+      previewBox.style.display = 'none';
+    }
+  }
+
+  function getLocalAdminSongs() {
+    try {
+      const stored = localStorage.getItem('ahs_songs_list');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch(e) {}
+    return [...DEFAULT_SONGS];
+  }
+
+  function renderAdminSongs() {
+    const songs = getLocalAdminSongs();
+    const countEl = document.getElementById('songsListCount');
+    const tabCountEl = document.getElementById('tabSongCount');
+    const listEl = document.getElementById('songsAdminList');
+
+    if (countEl) countEl.textContent = songs.length;
+    if (tabCountEl) tabCountEl.textContent = songs.length;
+
+    if (!listEl) return;
+
+    if (songs.length === 0) {
+      listEl.innerHTML = `
+        <div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
+          <div style="font-size:2.5rem; margin-bottom:12px;">🎵</div>
+          <h3 style="color:var(--gold-bright); font-size:1.15rem; margin-bottom:6px;">No Songs or Dialogues Published</h3>
+          <p style="font-size:0.85rem;">Use the form on the left to publish devotional songs, bhajans, or fiery dialogues.</p>
+        </div>
+      `;
+      return;
+    }
+
+    listEl.innerHTML = songs.map(song => {
+      const ytId = song.videoId || extractSongYouTubeId(song.mediaUrl);
+      const thumb = ytId
+        ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+        : 'assets/logo.png';
+      const typeIcon = song.type === 'Dialogue' ? '🎙️' : (song.type === 'Song' ? '🎵' : (song.type === 'Bhajan' ? '🚩' : '🕉️'));
+
+      return `
+        <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:rgba(255,255,255,0.02); border:1px solid var(--border-gold); border-radius:12px; margin-bottom:14px; position:relative;">
+          <div style="width:110px; height:65px; border-radius:8px; overflow:hidden; background:#000; flex-shrink:0; border:1px solid rgba(212,175,55,0.4); position:relative;">
+            <img src="${thumb}" alt="${escapeHtml(song.title)}" style="width:100%; height:100%; object-fit:cover;">
+            ${ytId ? '<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); color:#fff; font-size:0.9rem;">▶</div>' : ''}
+          </div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
+              <span style="background:rgba(212,175,55,0.15); border:1px solid var(--border-gold); color:var(--gold-bright); font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:10px;">
+                ${typeIcon} ${escapeHtml(song.type || 'Song')}
+              </span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">
+                ${escapeHtml(song.speaker || 'Shri Radha Manohar Das')}
+              </span>
+            </div>
+            <h4 style="color:#FFF; font-size:0.95rem; margin:0 0 4px; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              ${escapeHtml(song.title)}
+            </h4>
+            ${song.titleTe ? `<div style="font-size:0.84rem; color:var(--gold-bright); margin-bottom:6px; line-height:1.3;">${escapeHtml(song.titleTe)}</div>` : ''}
+            <p style="color:var(--text-muted); font-size:0.8rem; line-height:1.45; margin:0 0 10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-style:italic;">
+              "${escapeHtml(song.excerpt || '')}"
+            </p>
+            <div style="display:flex; gap:10px; align-items:center;">
+              ${ytId ? `
+                <a href="https://www.youtube.com/watch?v=${ytId}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; color:var(--gold-bright); text-decoration:none; padding:4px 10px; border:1px solid var(--border-gold); border-radius:6px; background:rgba(212,175,55,0.08);">
+                  ▶ Play Link
+                </a>
+              ` : `
+                <a href="${escapeHtml(song.mediaUrl)}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; color:var(--gold-bright); text-decoration:none; padding:4px 10px; border:1px solid var(--border-gold); border-radius:6px; background:rgba(212,175,55,0.08);">
+                  🎵 Open Audio
+                </a>
+              `}
+              <button type="button" onclick="deleteSong('${song.id}', '${escapeHtml(song.title).replace(/'/g, "\\'")}')" style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; color:#e74c3c; background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.3); padding:4px 10px; border-radius:6px; cursor:pointer;" onmouseover="this.style.background='rgba(231,76,60,0.25)'" onmouseout="this.style.background='rgba(231,76,60,0.1)'">
+                🗑️ Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function handlePublishSong(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitSongBtn');
+    const title = document.getElementById('songTitle').value.trim();
+    const titleTe = (document.getElementById('songTitleTe')?.value || '').trim();
+    const type = document.getElementById('songType').value;
+    const mediaUrl = document.getElementById('songMediaUrl').value.trim();
+    const excerpt = document.getElementById('songExcerpt').value.trim();
+    const lyrics = (document.getElementById('songLyrics')?.value || '').trim();
+    const speaker = (document.getElementById('songSpeaker')?.value || 'Shri Radha Manohar Das').trim();
+
+    if (!title || !mediaUrl || !excerpt) {
+      alert("Please fill in Title, Media Link, and Short Excerpt!");
+      return;
+    }
+
+    const videoId = extractSongYouTubeId(mediaUrl);
+
+    btn.disabled = true;
+    btn.textContent = "Publishing to Website... ⏳";
+
+    const newSong = {
+      id: 'song_' + Date.now(),
+      title: title,
+      titleTe: titleTe,
+      type: type,
+      mediaUrl: mediaUrl,
+      videoId: videoId,
+      excerpt: excerpt,
+      lyrics: lyrics,
+      speaker: speaker,
+      createdAt: new Date().toISOString()
+    };
+
+    // 1. Save locally
+    let songs = getLocalAdminSongs();
+    songs.unshift(newSong);
+    localStorage.setItem('ahs_songs_list', JSON.stringify(songs));
+
+    // 2. Broadcast across tabs
+    try {
+      if (adminSongsChannel) {
+        adminSongsChannel.postMessage({ type: 'new_song', song: newSong });
+      }
+    } catch(e) {}
+    window.dispatchEvent(new Event('storage'));
+
+    // 3. Firestore sync non-blocking
+    if (db) {
+      try {
+        db.collection('songs_dialogues').doc(newSong.id).set({
+          ...newSong,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch(err => {
+          console.warn("Firestore song save deferred:", err.message);
+        });
+      } catch(e) {}
+    }
+
+    renderAdminSongs();
+    document.getElementById('addSongForm').reset();
+    const prev = document.getElementById('songThumbPreview');
+    if (prev) prev.style.display = 'none';
+
+    btn.disabled = false;
+    btn.textContent = "🚀 Publish Song / Dialogue to Website";
+    showToast(`"${title}" published live to website! 🎵`);
+  }
+
+  async function deleteSong(id, title) {
+    if (!confirm(`Are you sure you want to delete this song/dialogue?\n\n"${title}"`)) return;
+
+    let songs = getLocalAdminSongs();
+    songs = songs.filter(s => s.id !== id);
+    localStorage.setItem('ahs_songs_list', JSON.stringify(songs));
+
+    try {
+      if (adminSongsChannel) {
+        adminSongsChannel.postMessage({ type: 'delete_song', id: id });
+      }
+    } catch(e) {}
+    window.dispatchEvent(new Event('storage'));
+
+    if (db) {
+      try {
+        db.collection('songs_dialogues').doc(id).delete().catch(err => {
+          console.warn("Firestore song delete deferred:", err.message);
+        });
+      } catch(e) {}
+    }
+
+    renderAdminSongs();
+    showToast("Song/Dialogue removed from website! 🗑️");
+  }
+
+  function initSongsAdmin() {
+    renderAdminSongs();
+
+    try {
+      adminSongsChannel = new BroadcastChannel('ahs_songs_channel');
+      adminSongsChannel.onmessage = () => {
+        renderAdminSongs();
+      };
+    } catch(e) {}
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_songs_list') {
+        renderAdminSongs();
+      }
+    });
+
+    if (db) {
+      try {
+        db.collection('songs_dialogues').orderBy('timestamp', 'desc').limit(40).onSnapshot(snapshot => {
+          if (!snapshot.empty) {
+            const remote = [];
+            snapshot.forEach(doc => remote.push({ id: doc.id, ...doc.data() }));
+            const local = getLocalAdminSongs();
+            const merged = [...local];
+            remote.forEach(r => {
+              if (!merged.some(l => l.id === r.id)) {
+                merged.push(r);
+              }
+            });
+            localStorage.setItem('ahs_songs_list', JSON.stringify(merged));
+            renderAdminSongs();
+          }
+        }, err => {
+          console.warn("Firestore songs stream notice (resilient mode active):", err.message);
         });
       } catch(e) {}
     }

@@ -639,6 +639,54 @@
       padding: 3px 8px !important;
       flex-shrink: 0;
     }
+    .videos-section {
+      padding: 24px 12px 60px !important;
+    }
+    .videos-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+    .video-card {
+      border-radius: 10px !important;
+    }
+    .video-info {
+      padding: 10px 8px !important;
+    }
+    .video-info h4 {
+      font-size: 0.82rem !important;
+      line-height: 1.25 !important;
+      margin-bottom: 4px !important;
+      -webkit-line-clamp: 2 !important;
+    }
+    .video-info p {
+      font-size: 0.72rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 6px !important;
+      -webkit-line-clamp: 2 !important;
+    }
+    .btn-watch-now {
+      padding: 5px 8px !important;
+      font-size: 0.72rem !important;
+    }
+    .video-cat-badge {
+      font-size: 0.60rem !important;
+      padding: 2px 6px !important;
+      top: 6px !important;
+      left: 6px !important;
+    }
+    .video-play-btn {
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 0.9rem !important;
+    }
+    .filter-pills-row {
+      gap: 6px !important;
+      margin-top: 18px !important;
+    }
+    .filter-pill {
+      font-size: 0.72rem !important;
+      padding: 4px 10px !important;
+    }
   }
 </style>
 </head>
@@ -668,6 +716,7 @@
     <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
     <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
     <a href="videos.html" class="active" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="songs.html" data-en="Songs & Dialogues" data-te="గీతాలు & గర్జనలు">Songs & Dialogues</a>
     <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
     <a href="events.html" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
@@ -690,6 +739,10 @@
     Watch powerful Bhagavad Gita satsangs, youth defense lectures, and temple protection discourses by Shri Radha Manohar Das.
   </p>
 
+  <!-- Video Categories Filter Pills -->
+  <div class="filter-pills-row" id="videoCategoryPills">
+    <button class="filter-pill active" onclick="setCategoryFilter('all')">All</button>
+  </div>
 </section>
 
 <!-- Video Grid -->
@@ -721,6 +774,7 @@
     <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
     <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
     <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="songs.html" data-en="Songs & Dialogues" data-te="గీతాలు & గర్జనలు">Songs & Dialogues</a>
     <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
     <a href="events.html" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
     <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
@@ -790,9 +844,99 @@
     }
   ];
 
+  const DEFAULT_VIDEO_CATEGORIES = [
+    "Bhagavad Gita",
+    "Temple Defense",
+    "Youth & Dharma",
+    "Dharma Pravachan",
+    "Gau Raksha",
+    "General"
+  ];
+  let currentVideoCategories = [...DEFAULT_VIDEO_CATEGORIES];
+
   let allLoadedVideos = [];
   let currentCategory = 'all';
-  let currentSearchQuery = '';
+
+  function loadDynamicCategories() {
+    try {
+      const stored = localStorage.getItem('ahs_video_categories');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          currentVideoCategories = parsed;
+        }
+      }
+    } catch(e) {}
+    renderCategoryPills();
+
+    // BroadcastChannel sync across admin & site tabs
+    try {
+      const ch = new BroadcastChannel('ahs_categories_channel');
+      ch.onmessage = (msg) => {
+        if (msg.data && msg.data.categories) {
+          currentVideoCategories = msg.data.categories;
+          renderCategoryPills();
+          renderVideos();
+        }
+      };
+    } catch(e) {}
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ahs_video_categories') {
+        try {
+          currentVideoCategories = JSON.parse(e.newValue);
+          renderCategoryPills();
+          renderVideos();
+        } catch(err) {}
+      }
+    });
+
+    if (db) {
+      try {
+        db.collection('config').doc('video_categories').onSnapshot(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            if (data && Array.isArray(data.categories) && data.categories.length > 0) {
+              currentVideoCategories = data.categories;
+              try { localStorage.setItem('ahs_video_categories', JSON.stringify(data.categories)); } catch(e) {}
+              renderCategoryPills();
+              renderVideos();
+            }
+          }
+        }, err => {
+          console.warn("Firestore categories notice:", err);
+        });
+      } catch(e) {}
+    }
+  }
+
+  function renderCategoryPills() {
+    const container = document.getElementById('videoCategoryPills');
+    if (!container) return;
+
+    let html = `
+      <button class="filter-pill ${currentCategory === 'all' ? 'active' : ''}" onclick="setCategoryFilter('all')">
+        ${isTelugu ? 'అన్నీ (All)' : 'All'}
+      </button>
+    `;
+
+    currentVideoCategories.forEach(cat => {
+      const isActive = currentCategory.toLowerCase() === cat.toLowerCase();
+      html += `
+        <button class="filter-pill ${isActive ? 'active' : ''}" onclick="setCategoryFilter('${escapeHtml(cat).replace(/'/g, "\\'")}')">
+          ${escapeHtml(cat)}
+        </button>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+
+  function setCategoryFilter(cat) {
+    currentCategory = cat;
+    renderCategoryPills();
+    renderVideos();
+  }
 
   function loadAllVideos() {
     allLoadedVideos = defaultVideos;
@@ -820,20 +964,26 @@
     const grid = document.getElementById('allVideosGrid');
     if (!grid) return;
 
-    if (!allLoadedVideos || allLoadedVideos.length === 0) {
+    let filtered = allLoadedVideos;
+    if (currentCategory && currentCategory !== 'all') {
+      filtered = allLoadedVideos.filter(v => (v.category || '').toLowerCase() === currentCategory.toLowerCase());
+    }
+
+    if (!filtered || filtered.length === 0) {
       grid.innerHTML = `
         <div class="empty-state">
           <h3>No Discourses Found</h3>
-          <p>Discourses will appear here shortly.</p>
+          <p>No videos available in this category yet. Please select another category.</p>
         </div>
       `;
       return;
     }
 
-    grid.innerHTML = allLoadedVideos.map(v => {
+    grid.innerHTML = filtered.map(v => {
       const vid = v.videoId;
       const title = v.title || 'Shri Radha Manohar Das Pravachan';
       const desc = v.description || 'Watch divine pravachan and spiritual guidance by Shri Radha Manohar Das.';
+      const cat = v.category || 'Discourse';
       const thumb = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`;
       const escapedTitle = title.replace(/'/g, "\\'");
 
@@ -841,6 +991,7 @@
         <div class="video-card" onclick="openCinemaVideo('${vid}', '${escapedTitle}')">
           <div class="video-thumb-wrap">
             <img src="${thumb}" alt="${escapeHtml(title)}" class="video-thumb" loading="lazy">
+            <span class="video-cat-badge">${escapeHtml(cat)}</span>
             <div class="video-play-overlay">
               <div class="video-play-btn">▶</div>
             </div>
@@ -921,9 +1072,11 @@
       const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
       if (val) el.textContent = val;
     });
+    renderCategoryPills();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    loadDynamicCategories();
     loadAllVideos();
     try {
       if (localStorage.getItem('ahs_preferred_lang') === 'te') {
