@@ -44,6 +44,20 @@
 </script>
 
 <link rel="icon" type="image/png" href="assets/logo.png">
+
+<!-- Early Launch Status Gatekeeper: Prevents any content flash before status is resolved -->
+<script>
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const isPreview = params.get('preview') === 'true' || sessionStorage.getItem('ahs_preview_bypass') === 'true';
+    if (!isPreview) {
+      const cached = localStorage.getItem('ahs_launch_status');
+      if (cached !== 'launched') {
+        document.documentElement.classList.add('ahs-site-prelaunch');
+      }
+    }
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Mandali&family=Noto+Sans+Devanagari:wght@500;600;700;800&family=Noto+Sans+Telugu:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -3129,6 +3143,47 @@
   /* ========================================================================= */
   /* DIGITAL INAUGURATION CEREMONY CURTAIN & MAINTENANCE STYLES */
   /* ========================================================================= */
+  html.ahs-site-prelaunch #launchCurtainOverlay {
+    display: flex !important;
+  }
+  html.ahs-site-prelaunch body {
+    overflow: hidden !important;
+  }
+  .curtain-admin-bypass-pill {
+    margin-top: 24px;
+    padding: 8px 18px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: #F7D57F;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .btn-curtain-admin-preview, .btn-curtain-admin-dash {
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.78rem;
+    transition: all 0.2s;
+  }
+  .btn-curtain-admin-preview {
+    background: rgba(255, 107, 26, 0.25);
+    border: 1px solid #FF6B1A;
+    color: #fff;
+  }
+  .btn-curtain-admin-dash {
+    background: rgba(212, 175, 55, 0.25);
+    border: 1px solid #D4AF37;
+    color: #FFD700;
+  }
+  .btn-curtain-admin-preview:hover, .btn-curtain-admin-dash:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.2);
+  }
   .launch-curtain-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -3534,9 +3589,10 @@
 <!-- ========================================================================= -->
 <div id="adminPreviewBar" class="admin-preview-bar" style="display:none;">
   <div class="admin-preview-content">
-    <span>👁️ <strong>Admin Preview Mode Active:</strong> Visitors currently see the Inauguration Curtain.</span>
+    <span>👁️ <strong>Admin Preview Mode Active:</strong> Public website is NOT RELEASED (Curtain Active).</span>
     <div class="admin-preview-btns">
-      <a href="admin.html" class="preview-btn launch">🚀 Open Launch Control</a>
+      <a href="index.html" class="preview-btn" style="background:#c0392b; color:#fff; text-decoration:none;">🔒 Test Visitor View (See Curtain)</a>
+      <a href="admin.html" class="preview-btn launch" style="text-decoration:none;">⚙️ Open Dashboard</a>
       <button type="button" onclick="closeAdminPreview()" class="preview-btn close">Hide Bar ✕</button>
     </div>
   </div>
@@ -3545,7 +3601,7 @@
 <!-- ========================================================================= -->
 <!-- 2. PRE-LAUNCH / DIGITAL INAUGURATION CEREMONY CURTAIN -->
 <!-- ========================================================================= -->
-<div id="launchCurtainOverlay" class="launch-curtain-overlay" style="display:none;">
+<div id="launchCurtainOverlay" class="launch-curtain-overlay">
   <div class="launch-curtain-container">
     
     <!-- Sacred Crest with Golden Aura -->
@@ -3614,6 +3670,15 @@
         <a href="https://instagram.com/abhayhindusena" target="_blank" rel="noopener" class="btn-curtain-action insta">
           📸 Instagram
         </a>
+      </div>
+    </div>
+
+    <!-- Admin Bypass & Dashboard Indicator (Displayed only if Admin token is detected) -->
+    <div id="curtainAdminBypassPill" class="curtain-admin-bypass-pill" style="display:none;">
+      <span>👑 <strong>Admin Detected:</strong> Website is locked for public.</span>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <a href="index.html?preview=true" class="btn-curtain-admin-preview">👁️ Preview Live Site ↗</a>
+        <a href="admin.html" class="btn-curtain-admin-dash">⚙️ Dashboard ➔</a>
       </div>
     </div>
 
@@ -4921,9 +4986,7 @@
   function isPreviewMode() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('preview') === 'true') return true;
-    try {
-      if (localStorage.getItem('ahs_admin_token') === 'true') return true;
-    } catch(e) {}
+    if (sessionStorage.getItem('ahs_preview_bypass') === 'true') return true;
     return false;
   }
 
@@ -4936,18 +4999,50 @@
     const curtain = document.getElementById('launchCurtainOverlay');
     const maintenance = document.getElementById('maintenanceOverlay');
     const previewBar = document.getElementById('adminPreviewBar');
+    const adminPill = document.getElementById('curtainAdminBypassPill');
 
     // If Admin preview mode is active, do not block the page!
     if (isPreviewMode()) {
+      document.documentElement.classList.remove('ahs-site-prelaunch');
       if (curtain) curtain.style.display = 'none';
       if (maintenance) maintenance.style.display = 'none';
       if (previewBar) previewBar.style.display = 'block';
+      document.body.style.overflow = '';
+
+      // Preserve preview=true on internal links so admin can browse
+      try {
+        document.querySelectorAll('a[href$=".html"]').forEach(a => {
+          const href = a.getAttribute('href');
+          if (href && !href.includes('admin.html') && !href.includes('preview=true')) {
+            a.setAttribute('href', href + (href.includes('?') ? '&preview=true' : '?preview=true'));
+          }
+        });
+      } catch(e) {}
       return;
     }
 
-    // Default status: 'launched' (website is open and live for public worldwide!)
-    const cachedStatus = localStorage.getItem('ahs_launch_status') || 'launched';
+    // Check if admin token is present in localStorage to show the helpful bypass pill on the curtain
+    try {
+      if (localStorage.getItem('ahs_admin_token') === 'true' && adminPill) {
+        adminPill.style.display = 'inline-flex';
+      }
+    } catch(e) {}
+
+    // Default status: 'prelaunch' (website is locked until explicitly launched or confirmed by Firestore)
+    const cachedStatus = localStorage.getItem('ahs_launch_status') || 'prelaunch';
     applyVisitorStatus(cachedStatus);
+
+    // Fast REST API check to sync status right away
+    fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status')
+      .then(r => r.json())
+      .then(doc => {
+        if (doc && doc.fields && doc.fields.status) {
+          const st = doc.fields.status.stringValue || 'prelaunch';
+          applyVisitorStatus(st);
+          localStorage.setItem('ahs_launch_status', st);
+        }
+      })
+      .catch(() => {});
 
     // Listen on Firestore using the publicly accessible 'videos/site_launch_status' document
     if (db) {
@@ -5000,15 +5095,18 @@
     const maintenance = document.getElementById('maintenanceOverlay');
 
     if (status === 'launched') {
+      document.documentElement.classList.remove('ahs-site-prelaunch');
       if (curtain) curtain.style.display = 'none';
       if (maintenance) maintenance.style.display = 'none';
       document.body.style.overflow = '';
     } else if (status === 'maintenance') {
+      document.documentElement.classList.remove('ahs-site-prelaunch');
       if (curtain) curtain.style.display = 'none';
       if (maintenance) maintenance.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     } else {
       // 'prelaunch'
+      document.documentElement.classList.add('ahs-site-prelaunch');
       if (maintenance) maintenance.style.display = 'none';
       if (curtain) {
         curtain.style.display = 'flex';

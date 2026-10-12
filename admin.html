@@ -1035,6 +1035,22 @@
     border-color: #e74c3c;
     color: #ff6b6b;
   }
+  .btn-launch-primary.active-status {
+    box-shadow: 0 0 25px rgba(46, 204, 113, 0.8), 0 0 10px #2ecc71 !important;
+    border: 2px solid #2ecc71 !important;
+  }
+  .btn-launch-secondary.active-status.unlaunch {
+    background: rgba(231, 76, 60, 0.25) !important;
+    border-color: #e74c3c !important;
+    color: #ff6b6b !important;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5) !important;
+  }
+  .btn-launch-secondary.active-status.pause {
+    background: rgba(243, 156, 18, 0.25) !important;
+    border-color: #f39c12 !important;
+    color: #f39c12 !important;
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.5) !important;
+  }
   .launch-explanation {
     margin-top: 10px;
     font-size: 0.8rem;
@@ -1262,23 +1278,26 @@
       </div>
       <div>
         <div id="launchStatusBadge" class="launch-status-pill prelaunch">
-          <span id="launchStatusDot">🔴</span> <span id="launchStatusText">PRE-LAUNCH (Curtain Active)</span>
+          <span id="launchStatusDot">🔴</span> <span id="launchStatusText">WEBSITE NOT RELEASED (Curtain Active)</span>
         </div>
       </div>
     </div>
 
     <div class="launch-actions-bar">
+      <button type="button" id="btnUnlaunchSite" class="btn-launch-secondary unlaunch" onclick="setSiteStatus('prelaunch')">
+        🔒 Website Not Released (Lock Behind Curtain)
+      </button>
       <button type="button" id="btnLaunchSite" class="btn-launch-primary" onclick="startLaunchCountdown()">
-        🚀 Launch Website (10s Countdown)
+        🚀 Launch & Release Live (10s Countdown)
       </button>
       <button type="button" id="btnPauseSite" class="btn-launch-secondary pause" onclick="setSiteStatus('maintenance')">
         ⏸️ Pause / Maintenance Mode
       </button>
-      <button type="button" id="btnUnlaunchSite" class="btn-launch-secondary unlaunch" onclick="setSiteStatus('prelaunch')">
-        🔒 Unlaunch / Pre-Launch Mode
-      </button>
+      <a href="index.html" target="_blank" class="btn-launch-secondary">
+        👁️ Test Visitor View (See Curtain) ↗
+      </a>
       <a href="index.html?preview=true" target="_blank" class="btn-launch-secondary preview">
-        👁️ Preview Live Site (Bypass) ↗
+        🔑 Admin Preview Live Site (Bypass) ↗
       </a>
     </div>
 
@@ -2334,11 +2353,23 @@ service cloud.firestore {
   }
 
   function initLaunchControlAdmin() {
-    // 1. Check local storage first for instant response
-    const cachedStatus = localStorage.getItem('ahs_launch_status') || 'launched';
+    // 1. Check local storage first (defaults to prelaunch)
+    const cachedStatus = localStorage.getItem('ahs_launch_status') || 'prelaunch';
     applyStatusToAdminUI(cachedStatus);
 
-    // 2. Listen to Firestore on the accessible videos collection
+    // 2. Fast REST API check to sync status right away
+    fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status')
+      .then(r => r.json())
+      .then(doc => {
+        if (doc && doc.fields && doc.fields.status) {
+          const st = doc.fields.status.stringValue || 'prelaunch';
+          applyStatusToAdminUI(st);
+          localStorage.setItem('ahs_launch_status', st);
+        }
+      })
+      .catch(() => {});
+
+    // 3. Listen to Firestore on the accessible videos collection
     const firestoreDb = getFirebaseDb();
     if (firestoreDb) {
       firestoreDb.collection('videos').doc('site_launch_status').onSnapshot(doc => {
@@ -2354,7 +2385,7 @@ service cloud.firestore {
       });
     }
 
-    // 3. Listen to BroadcastChannel
+    // 4. Listen to BroadcastChannel
     if (launchBroadcastChannel) {
       launchBroadcastChannel.onmessage = (event) => {
         if (event.data && event.data.action === 'site_status_changed') {
@@ -2370,22 +2401,34 @@ service cloud.firestore {
     const dot = document.getElementById('launchStatusDot');
     const text = document.getElementById('launchStatusText');
     const desc = document.getElementById('launchExplanationText');
+    const btnLaunch = document.getElementById('btnLaunchSite');
+    const btnPause = document.getElementById('btnPauseSite');
+    const btnUnlaunch = document.getElementById('btnUnlaunchSite');
+
+    if (btnLaunch) btnLaunch.classList.remove('active-status');
+    if (btnPause) btnPause.classList.remove('active-status');
+    if (btnUnlaunch) btnUnlaunch.classList.remove('active-status');
+
     if (!badge || !text) return;
 
     badge.className = 'launch-status-pill ' + status;
 
     if (status === 'launched') {
       dot.textContent = '🟢';
-      text.textContent = 'LIVE TO PUBLIC';
-      if (desc) desc.innerHTML = '<span style="color:#2ecc71; font-weight:600;">Website is fully LIVE to the public worldwide.</span> Visitors see the full official portal without any curtain.';
+      text.textContent = 'LIVE TO PUBLIC WORLDWIDE';
+      if (btnLaunch) btnLaunch.classList.add('active-status');
+      if (desc) desc.innerHTML = '<span style="color:#2ecc71; font-weight:700;">🟢 Website is LIVE to the public worldwide.</span> Visitors see the full official portal without any curtain.';
     } else if (status === 'maintenance') {
       dot.textContent = '🟡';
-      text.textContent = 'PAUSED (Maintenance Mode)';
-      if (desc) desc.innerHTML = '<span style="color:#f39c12; font-weight:600;">Website is PAUSED for maintenance.</span> Visitors see a dignified "Scheduled Maintenance" notice.';
+      text.textContent = 'MAINTENANCE MODE (PAUSED)';
+      if (btnPause) btnPause.classList.add('active-status');
+      if (desc) desc.innerHTML = '<span style="color:#f39c12; font-weight:700;">🟡 Website is PAUSED for maintenance.</span> Visitors see a dignified "Scheduled Maintenance" notice.';
     } else {
+      // prelaunch
       dot.textContent = '🔴';
-      text.textContent = 'PRE-LAUNCH (Curtain Active)';
-      if (desc) desc.innerHTML = '<span style="color:#ff6b6b; font-weight:600;">Website is locked behind Inauguration Curtain.</span> Visitors see "Launching Soon" with live listener.';
+      text.textContent = 'WEBSITE NOT RELEASED (Curtain Active)';
+      if (btnUnlaunch) btnUnlaunch.classList.add('active-status');
+      if (desc) desc.innerHTML = '<span style="color:#ff6b6b; font-weight:700;">🔒 Website is NOT RELEASED.</span> All public visitors are locked behind the Grand Inauguration Ceremony Curtain with live countdown listener.';
     }
   }
 
@@ -2393,7 +2436,9 @@ service cloud.firestore {
     if (newStatus === 'maintenance') {
       if (!confirm("Pause public website access and display Maintenance Notice to visitors?")) return;
     } else if (newStatus === 'prelaunch') {
-      if (!confirm("Reset website to Pre-Launch mode? (The Inauguration Curtain will be displayed to all visitors)")) return;
+      if (!confirm("Lock website as 'NOT RELEASED'?\n\nAll public visitors will be blocked by the Grand Inauguration Pre-Launch Curtain.")) return;
+    } else if (newStatus === 'launched') {
+      if (!confirm("Release website LIVE to the public worldwide immediately?")) return;
     }
 
     applyStatusToAdminUI(newStatus);
@@ -2417,11 +2462,33 @@ service cloud.firestore {
           updatedBy: (auth && auth.currentUser) ? auth.currentUser.email : 'admin'
         }, { merge: true });
       } catch (err) {
-        console.error("Failed to update status in Firestore:", err);
+        console.warn("Failed to update status in Firestore SDK, trying REST fallback:", err);
       }
     }
 
-    alert(newStatus === 'maintenance' ? 'Website paused in Maintenance Mode.' : (newStatus === 'launched' ? 'Website is LIVE to the public!' : 'Website reset to Pre-Launch Curtain.'));
+    // Direct REST API sync fallback
+    try {
+      await fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status?updateMask.fieldPaths=status&updateMask.fieldPaths=countdownActive', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            status: { stringValue: newStatus },
+            countdownActive: { booleanValue: false }
+          }
+        })
+      });
+    } catch (restErr) {
+      console.warn("REST API fallback note:", restErr);
+    }
+
+    if (newStatus === 'prelaunch') {
+      alert("🔒 WEBSITE LOCKED AS NOT RELEASED!\n\nAll public visitors are now locked behind the Pre-Launch Inauguration Curtain.\n\n• Click 'Test Visitor View' to see the curtain yourself.\n• Click 'Admin Preview' to view the full site while keeping it locked for others.");
+    } else if (newStatus === 'maintenance') {
+      alert("⏸️ Website paused in Maintenance Mode.\n\nVisitors will see the Scheduled Maintenance notice.");
+    } else {
+      alert("🚀 Website is now LIVE to the public worldwide!");
+    }
   }
 
   function startLaunchCountdown() {
@@ -2555,6 +2622,19 @@ service cloud.firestore {
         console.error("Error setting launched status:", err);
       }
     }
+
+    try {
+      await fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status?updateMask.fieldPaths=status&updateMask.fieldPaths=countdownActive', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            status: { stringValue: 'launched' },
+            countdownActive: { booleanValue: false }
+          }
+        })
+      });
+    } catch (e) {}
 
     // Direct redirect to index.html after short celebration
     setTimeout(() => {
