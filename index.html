@@ -3143,246 +3143,459 @@
   /* ========================================================================= */
   /* DIGITAL INAUGURATION CEREMONY CURTAIN & MAINTENANCE STYLES */
   /* ========================================================================= */
+  /* GRAND DIGITAL INAUGURATION — SUPER COOL LAUNCHING SOON SCREEN */
+  /* ========================================================================= */
   html.ahs-site-prelaunch #launchCurtainOverlay {
     display: flex !important;
   }
   html.ahs-site-prelaunch body {
     overflow: hidden !important;
   }
-  .curtain-admin-bypass-pill {
-    margin-top: 24px;
-    padding: 8px 18px;
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-radius: 30px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.82rem;
-    color: #F7D57F;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  }
-  .btn-curtain-admin-preview, .btn-curtain-admin-dash {
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.78rem;
-    transition: all 0.2s;
-  }
-  .btn-curtain-admin-preview {
-    background: rgba(255, 107, 26, 0.25);
-    border: 1px solid #FF6B1A;
-    color: #fff;
-  }
-  .btn-curtain-admin-dash {
-    background: rgba(212, 175, 55, 0.25);
-    border: 1px solid #D4AF37;
-    color: #FFD700;
-  }
-  .btn-curtain-admin-preview:hover, .btn-curtain-admin-dash:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.2);
-  }
+
   .launch-curtain-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle at center top, #2C0909 0%, #150303 60%, #080101 100%);
+    background: radial-gradient(ellipse at 50% 25%, #380808 0%, #170303 45%, #050000 100%);
     z-index: 999999;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
+    padding: 30px 18px;
     box-sizing: border-box;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .launch-curtain-overlay.curtain-fadeout {
     opacity: 0;
-    transform: scale(1.05);
+    transform: scale(1.06);
     pointer-events: none;
   }
+
+  /* Dynamic Sparks Canvas covering the entire background */
+  .curtain-sparks-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Glowing Atmospheric Light Orbs */
+  .curtain-glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 2;
+    animation: floatOrb 10s ease-in-out infinite alternate;
+  }
+  .curtain-glow-orb.orb-1 {
+    width: 450px;
+    height: 450px;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 107, 26, 0.28) 0%, rgba(212, 175, 55, 0.12) 60%, transparent 80%);
+  }
+  .curtain-glow-orb.orb-2 {
+    width: 320px;
+    height: 320px;
+    bottom: -60px;
+    left: 15%;
+    background: radial-gradient(circle, rgba(255, 60, 0, 0.2) 0%, transparent 70%);
+    animation-delay: -3s;
+  }
+  .curtain-glow-orb.orb-3 {
+    width: 360px;
+    height: 360px;
+    bottom: -60px;
+    right: 15%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+    animation-delay: -6s;
+  }
+  @keyframes floatOrb {
+    0% { transform: translateY(0) scale(0.95); opacity: 0.6; }
+    100% { transform: translateY(30px) scale(1.1); opacity: 0.95; }
+  }
+
+  /* Main Centered Content Container */
   .launch-curtain-container {
-    max-width: 680px;
+    max-width: 640px;
     width: 100%;
     margin: auto;
     text-align: center;
     position: relative;
     z-index: 10;
   }
+
+  /* Crest / Emblem with Layered Rotating Sunbeams & Sacred Aura */
   .launch-crest-wrap {
     position: relative;
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
     margin: 0 auto 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: crestFloat 4s ease-in-out infinite;
+    cursor: pointer;
+    user-select: none;
   }
+  @keyframes crestFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Rotating God-Rays */
+  .launch-solar-rays {
+    position: absolute;
+    inset: -35px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      rgba(255,107,26,0.35) 0deg,
+      transparent 20deg,
+      rgba(212,175,55,0.3) 45deg,
+      transparent 65deg,
+      rgba(255,107,26,0.35) 90deg,
+      transparent 110deg,
+      rgba(212,175,55,0.3) 135deg,
+      transparent 155deg,
+      rgba(255,107,26,0.35) 180deg,
+      transparent 200deg,
+      rgba(212,175,55,0.3) 225deg,
+      transparent 245deg,
+      rgba(255,107,26,0.35) 270deg,
+      transparent 290deg,
+      rgba(212,175,55,0.3) 315deg,
+      transparent 335deg,
+      rgba(255,107,26,0.35) 360deg
+    );
+    animation: spinRays 30s linear infinite;
+    filter: blur(3px);
+  }
+  @keyframes spinRays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Sacred Concentric Dashed Ring */
+  .launch-mandala-ring {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(247, 213, 127, 0.55);
+    animation: spinMandala 20s linear infinite reverse;
+  }
+  @keyframes spinMandala {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Pulsing Radial Aura */
   .launch-aura-ring {
     position: absolute;
-    inset: -12px;
+    inset: -8px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,107,26,0.5) 0%, rgba(212,175,55,0.2) 60%, transparent 80%);
-    animation: auraPulse 2.5s infinite alternate ease-in-out;
+    background: radial-gradient(circle, rgba(255,107,26,0.7) 0%, rgba(212,175,55,0.35) 60%, transparent 85%);
+    animation: auraPulse 2.8s infinite alternate ease-in-out;
   }
   @keyframes auraPulse {
-    0% { transform: scale(0.9); opacity: 0.5; }
-    100% { transform: scale(1.15); opacity: 0.9; filter: drop-shadow(0 0 25px rgba(255,107,26,0.8)); }
+    0% { transform: scale(0.92); opacity: 0.55; }
+    100% { transform: scale(1.15); opacity: 0.95; filter: drop-shadow(0 0 25px rgba(255,107,26,0.9)); }
   }
+
+  /* The Sacred Crest Logo */
   .launch-crest-img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
     background: #FFF;
-    border: 3px solid var(--gold);
-    box-shadow: 0 0 35px rgba(212,175,55,0.6);
+    border: 3.5px solid var(--gold);
+    box-shadow: 0 0 35px rgba(212,175,55,0.8), 0 0 70px rgba(255,107,26,0.5);
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    transition: transform 0.3s;
   }
+  .launch-crest-wrap:hover .launch-crest-img {
+    transform: scale(1.04);
+  }
+
+  /* Sacred Vedic Shloka */
   .launch-shloka-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-family: 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Poppins', sans-serif;
-    background: rgba(255,107,26,0.14);
-    border: 1px solid rgba(255,107,26,0.45);
-    color: #FFA466;
-    font-size: 0.85rem;
+    background: linear-gradient(135deg, rgba(255,107,26,0.2) 0%, rgba(212,175,55,0.15) 100%);
+    border: 1px solid rgba(212,175,55,0.45);
+    color: #FFD899;
+    font-size: clamp(0.75rem, 2.5vw, 0.88rem);
     font-weight: 700;
     padding: 6px 20px;
-    border-radius: 25px;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
+    border-radius: 30px;
+    margin-bottom: 14px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 15px rgba(255,107,26,0.2);
+    backdrop-filter: blur(8px);
   }
+
+  /* Brand Name: ABHAY HINDU SENA (Shimmering Metallic Gold) */
   .launch-curtain-title {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.8rem, 5vw, 2.7rem);
-    color: var(--gold-bright);
+    font-size: clamp(2rem, 5.8vw, 3.2rem);
     font-weight: 900;
-    letter-spacing: 2px;
-    margin: 0 0 2px;
-    text-shadow: 0 0 20px rgba(212,175,55,0.5);
-    line-height: 1.2;
+    letter-spacing: clamp(2px, 0.8vw, 4px);
+    margin: 0;
+    line-height: 1.15;
+    background: linear-gradient(90deg, #FFE8A3 0%, #D4AF37 25%, #FFFDF5 50%, #D4AF37 75%, #FFE8A3 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 5s linear infinite;
+    filter: drop-shadow(0 0 25px rgba(212,175,55,0.5));
   }
+  @keyframes goldShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* Telugu Brand Subtitle */
   .launch-curtain-telugu {
     font-family: 'Noto Sans Telugu', serif;
-    font-size: 1.15rem;
-    color: var(--saffron);
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
-  }
-  .launch-curtain-founder {
-    font-size: 0.78rem;
-    color: var(--text-muted);
+    font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+    color: #FF7F32;
+    font-weight: 800;
+    margin: 4px 0 10px;
     letter-spacing: 1px;
-    margin-bottom: 24px;
+    text-shadow: 0 0 18px rgba(255,107,26,0.6);
   }
-  .launch-curtain-founder strong {
-    color: #FFF;
-    font-size: 0.88rem;
-    display: block;
-    margin-top: 2px;
-  }
-  .launch-curtain-card {
-    background: rgba(26, 7, 7, 0.88);
-    border: 2px solid var(--gold);
-    border-radius: 18px;
-    padding: 30px 24px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.2);
-    backdrop-filter: blur(12px);
-    position: relative;
-    overflow: hidden;
-  }
-  .launch-pill-live {
+
+  /* Founder Badge */
+  .launch-curtain-founder {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,107,26,0.18);
-    border: 1px solid var(--saffron);
-    color: #FFA466;
-    padding: 4px 14px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    padding: 3px 14px;
     border-radius: 20px;
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
   }
-  .live-dot-pulse {
+  .founder-wing {
+    color: #D4AF37;
+    font-size: 0.7rem;
+    opacity: 0.75;
+  }
+  .founder-label {
+    opacity: 0.75;
+    font-size: 0.7rem;
+  }
+  .founder-name {
+    color: #FFF;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+  }
+
+  /* SUPER COOL CINEMATIC "LAUNCHING SOON" HERO SECTION */
+  .launching-soon-hero {
+    position: relative;
+    padding: 30px 24px 26px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(38, 10, 10, 0.7) 0%, rgba(14, 3, 3, 0.85) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.85), 0 0 45px rgba(255,107,26,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+    backdrop-filter: blur(16px);
+  }
+  .launching-soon-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FF6B1A, #D4AF37, #FF6B1A, transparent);
+    box-shadow: 0 0 15px rgba(255,107,26,0.8);
+  }
+
+  /* Glowing Live Pill */
+  .launching-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,107,26,0.15);
+    border: 1px solid rgba(255,107,26,0.5);
+    color: #FFA466;
+    padding: 4px 16px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .live-pulse-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: #FF6B1A;
-    box-shadow: 0 0 10px #FF6B1A;
-    animation: blinkDot 1s infinite alternate;
+    box-shadow: 0 0 10px #FF6B1A, 0 0 20px #FF6B1A;
+    animation: livePulse 1.2s infinite alternate ease-in-out;
   }
-  @keyframes blinkDot {
-    0% { opacity: 0.4; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1.3); }
+  @keyframes livePulse {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.3); opacity: 1; }
   }
-  .launch-curtain-heading {
+
+  /* GIANT, SPECTACULAR "LAUNCHING SOON" TEXT */
+  .launching-soon-title-wrap {
+    margin: 8px 0 14px;
+  }
+  .launching-soon-text {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.3rem, 3.8vw, 1.85rem);
-    color: var(--gold-bright);
+    font-size: clamp(2.2rem, 6.5vw, 3.8rem);
+    font-weight: 900;
+    letter-spacing: clamp(3px, 1.2vw, 8px);
     margin: 0 0 10px;
-    letter-spacing: 1px;
+    line-height: 1.1;
+    background: linear-gradient(90deg, #FF6B1A 0%, #FFD700 25%, #FFFFFF 50%, #FFD700 75%, #FF6B1A 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineSweep 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 35px rgba(255,107,26,0.65));
   }
-  .launch-curtain-sub {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 22px;
+  @keyframes shineSweep {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 200% center; }
   }
-  .curtain-live-sync-indicator {
+
+  /* Glowing Beam */
+  .launching-soon-glow-bar {
+    height: 2px;
+    width: 160px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #FF6B1A 20%, #FFF 50%, #FFD700 80%, transparent);
+    box-shadow: 0 0 12px rgba(255,107,26,0.9), 0 0 24px rgba(212,175,55,0.7);
+    border-radius: 2px;
+    animation: beamPulse 2.5s infinite alternate ease-in-out;
+  }
+  @keyframes beamPulse {
+    0% { width: 120px; opacity: 0.6; }
+    100% { width: 190px; opacity: 1; filter: drop-shadow(0 0 8px #FFD700); }
+  }
+
+  /* Inspiring Taglines */
+  .launching-soon-tagline-te {
+    font-family: 'Noto Sans Telugu', serif;
+    font-size: clamp(0.95rem, 2.8vw, 1.18rem);
+    color: #F7D57F;
+    font-weight: 700;
+    margin: 16px 0 4px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 15px rgba(212,175,55,0.4);
+  }
+  .launching-soon-tagline-en {
+    font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+    color: #C7B5A0;
+    margin: 0 0 24px;
+    letter-spacing: 0.8px;
+    opacity: 0.85;
+  }
+
+  /* Action Buttons */
+  .curtain-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .btn-curtain-action {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.78rem;
-    color: var(--gold);
-    background: rgba(212,175,55,0.08);
-    border: 1px dashed rgba(212,175,55,0.4);
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 22px;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .sync-radar-icon {
-    display: inline-block;
-    animation: radarSpin 3s linear infinite;
+  .btn-curtain-action.join {
+    background: linear-gradient(135deg, #FF6B1A 0%, #E6A117 50%, #D4AF37 100%);
+    color: #000;
+    border: none;
+    box-shadow: 0 4px 20px rgba(255,107,26,0.5), 0 0 25px rgba(212,175,55,0.3);
   }
-  @keyframes radarSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  .btn-curtain-action.join:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 30px rgba(212,175,55,0.7), 0 0 40px rgba(255,107,26,0.6);
   }
+  .btn-curtain-action.yt {
+    background: rgba(255, 0, 0, 0.12);
+    border: 1px solid rgba(255, 60, 60, 0.45);
+    color: #FFA3A3;
+    backdrop-filter: blur(8px);
+  }
+  .btn-curtain-action.yt:hover {
+    background: #E60000;
+    color: #FFF;
+    border-color: #E60000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(230, 0, 0, 0.5);
+  }
+  .btn-curtain-action.insta {
+    background: rgba(225, 48, 108, 0.12);
+    border: 1px solid rgba(225, 48, 108, 0.45);
+    color: #FFB3D1;
+    backdrop-filter: blur(8px);
+  }
+  .btn-curtain-action.insta:hover {
+    background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);
+    color: #FFF;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(225, 48, 108, 0.5);
+  }
+
+  /* FULLSCREEN COUNTDOWN MODAL (When live inauguration ceremony is triggered) */
   .curtain-countdown-box {
-    background: radial-gradient(circle, rgba(255,107,26,0.25) 0%, rgba(20,4,4,0.95) 100%);
+    background: radial-gradient(circle, rgba(255,107,26,0.3) 0%, rgba(20,4,4,0.95) 100%);
     border: 2px solid var(--saffron);
-    border-radius: 16px;
-    padding: 24px 16px;
-    margin: 15px 0 22px;
-    box-shadow: 0 0 40px rgba(255,107,26,0.4);
+    border-radius: 20px;
+    padding: 26px 16px;
+    margin: 15px 0 20px;
+    box-shadow: 0 0 50px rgba(255,107,26,0.5);
     animation: pulseCurtainBox 1s infinite alternate;
   }
   @keyframes pulseCurtainBox {
-    0% { box-shadow: 0 0 20px rgba(255,107,26,0.3); }
-    100% { box-shadow: 0 0 50px rgba(255,107,26,0.7); }
+    0% { box-shadow: 0 0 25px rgba(255,107,26,0.35); }
+    100% { box-shadow: 0 0 65px rgba(255,107,26,0.85); }
   }
   .countdown-tagline {
     font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #FFA466;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-weight: 800;
+    letter-spacing: 2px;
     margin-bottom: 8px;
   }
   .curtain-countdown-digit {
     font-family: 'Cinzel', serif;
-    font-size: clamp(4.5rem, 12vw, 6.5rem);
+    font-size: clamp(5rem, 14vw, 7.5rem);
     font-weight: 900;
     color: var(--gold-bright);
     line-height: 1;
-    text-shadow: 0 0 30px rgba(247,213,127,0.9), 0 0 60px rgba(255,107,26,0.7);
+    text-shadow: 0 0 35px rgba(247,213,127,0.95), 0 0 70px rgba(255,107,26,0.8);
     animation: zoomDigit 1s infinite ease-out;
   }
   @keyframes zoomDigit {
@@ -3391,85 +3604,22 @@
     100% { transform: scale(1); opacity: 0.95; }
   }
   .curtain-countdown-desc {
-    font-size: 0.84rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
-    margin-top: 6px;
+    margin-top: 8px;
   }
   .curtain-celebration-box {
-    background: radial-gradient(circle, rgba(46,204,113,0.2) 0%, rgba(20,4,4,0.9) 100%);
+    background: radial-gradient(circle, rgba(46,204,113,0.25) 0%, rgba(20,4,4,0.95) 100%);
     border: 2px solid #2ecc71;
-    border-radius: 14px;
-    padding: 18px;
-    margin: 15px 0 22px;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 15px 0 20px;
   }
   .celebration-title {
     font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #2ecc71;
     font-weight: 800;
-  }
-  .curtain-actions-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  .btn-curtain-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    padding: 9px 18px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-curtain-action.join {
-    background: linear-gradient(135deg, #FF6B1A 0%, #D4AF37 100%);
-    color: #000;
-    border: none;
-    box-shadow: 0 2px 14px rgba(255,107,26,0.4);
-  }
-  .btn-curtain-action.join:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(212,175,55,0.6);
-  }
-  .btn-curtain-action.yt {
-    background: rgba(255,0,0,0.15);
-    border: 1px solid rgba(255,0,0,0.4);
-    color: #ff8585;
-  }
-  .btn-curtain-action.yt:hover {
-    background: #ff0000;
-    color: #FFF;
-  }
-  .btn-curtain-action.insta {
-    background: rgba(225,48,108,0.15);
-    border: 1px solid rgba(225,48,108,0.4);
-    color: #ff9ec4;
-  }
-  .btn-curtain-action.insta:hover {
-    background: #e1306c;
-    color: #FFF;
-  }
-  .btn-curtain-action.admin {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border-gold);
-    color: var(--text-main);
-  }
-  .curtain-footer-admin {
-    margin-top: 24px;
-    font-size: 0.76rem;
-  }
-  .curtain-footer-admin a {
-    color: rgba(255,255,255,0.3);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .curtain-footer-admin a:hover {
-    color: var(--gold-bright);
   }
 
   /* MAINTENANCE OVERLAY */
@@ -3602,42 +3752,53 @@
 <!-- 2. PRE-LAUNCH / DIGITAL INAUGURATION CEREMONY CURTAIN -->
 <!-- ========================================================================= -->
 <div id="launchCurtainOverlay" class="launch-curtain-overlay">
+  <!-- Dynamic Golden Ember Sparks Canvas -->
+  <canvas id="curtainSparksCanvas" class="curtain-sparks-canvas"></canvas>
+
+  <!-- Glowing Atmospheric Light Orbs -->
+  <div class="curtain-glow-orb orb-1"></div>
+  <div class="curtain-glow-orb orb-2"></div>
+  <div class="curtain-glow-orb orb-3"></div>
+
   <div class="launch-curtain-container">
     
-    <!-- Sacred Crest with Golden Aura -->
-    <div class="launch-crest-wrap">
+    <!-- Sacred Crest with Rotating Solar God-Rays and Mandala Ring -->
+    <div class="launch-crest-wrap" onclick="handleCrestSecretClick()" title="అభయ్ హిందూ సేన">
+      <div class="launch-solar-rays"></div>
+      <div class="launch-mandala-ring"></div>
       <div class="launch-aura-ring"></div>
       <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="launch-crest-img">
     </div>
 
     <!-- Sacred Vedic Invocation -->
     <div class="launch-shloka-badge">
-      <span>🚩 ॐ श्री गुरुभ्यो नमः • धर्मो रक्षति रक्षितः 🚩</span>
+      <span>🚩 ॐ श्री गुरुभ्यो नमः • धर्मो रक्षति రక్షితః 🚩</span>
     </div>
 
     <h1 class="launch-curtain-title">ABHAY HINDU SENA</h1>
     <div class="launch-curtain-telugu">అభయ్ హిందూ సేన</div>
     
     <div class="launch-curtain-founder">
-      <span>FOUNDED BY</span>
-      <strong>SHRI RADHA MANOHAR DAS</strong>
+      <span class="founder-wing">✦</span>
+      <span class="founder-label">FOUNDED BY</span>
+      <span class="founder-name">SHRI RADHA MANOHAR DAS</span>
+      <span class="founder-wing">✦</span>
     </div>
 
-    <!-- Launching Soon Ribbon / Card -->
-    <div class="launch-curtain-card">
-      <div class="launch-pill-live">
-        <span class="live-dot-pulse"></span>
-        <span id="curtainStatusText">INAUGURATION CEREMONY</span>
+    <!-- Super Cool Cinematic "LAUNCHING SOON" Hero Box -->
+    <div class="launching-soon-hero">
+      <div class="launching-badge">
+        <span class="live-pulse-dot"></span>
+        <span>OFFICIAL DIGITAL PORTAL</span>
       </div>
 
-      <h2 class="launch-curtain-heading" id="curtainMainHeading">
-        OFFICIAL PORTAL LAUNCHING SOON
-      </h2>
-      <p class="launch-curtain-sub" id="curtainSubText">
-        ధర్మ రక్షణ, ఆలయ పరిరక్షణ మరియు యువజన జాగృతి కోసం అభయ్ హిందూ సేన అధికారిక పోర్టల్ త్వరలో లోకార్పణ కానుంది.
-        <br>
-        The official digital gateway is undergoing sacred consecration for worldwide unveiling.
-      </p>
+      <div class="launching-soon-title-wrap">
+        <h2 class="launching-soon-text" id="curtainMainHeading">LAUNCHING SOON</h2>
+        <div class="launching-soon-glow-bar"></div>
+      </div>
+
+      <div class="launching-soon-tagline-te">ధర్మ రక్షణ • ఆలయ పరిరక్షణ • యువజన జాగృతి</div>
+      <div class="launching-soon-tagline-en">Awakening Dharma • Preserving Sacred Heritage • Serving Society</div>
 
       <!-- LIVE COUNTDOWN DISPLAY (Revealed when Admin initiates 10s Launch) -->
       <div id="curtainCountdownBox" class="curtain-countdown-box" style="display:none;">
@@ -3651,12 +3812,7 @@
       <!-- CELEBRATION MESSAGE (At 0s) -->
       <div id="curtainCelebrationBox" class="curtain-celebration-box" style="display:none;">
         <div class="celebration-title">✨ జై శ్రీ రామ్! JAI SHREE RAM! ✨</div>
-        <p>The Official Portal of Abhay Hindu Sena is now LIVE!</p>
-      </div>
-
-      <!-- Stay tuned indicator -->
-      <div class="curtain-live-sync-indicator" id="curtainLiveSyncIndicator">
-        <span class="sync-radar-icon">📡</span> Live Ceremony Sync Active • Portal unlocks automatically on launch
+        <p style="color:#FFD899; margin:6px 0 0; font-size:0.95rem;">The Official Portal of Abhay Hindu Sena is now LIVE!</p>
       </div>
 
       <!-- Quick Action Buttons -->
@@ -3670,15 +3826,6 @@
         <a href="https://instagram.com/abhayhindusena" target="_blank" rel="noopener" class="btn-curtain-action insta">
           📸 Instagram
         </a>
-      </div>
-    </div>
-
-    <!-- Admin Bypass & Dashboard Indicator (Displayed only if Admin token is detected) -->
-    <div id="curtainAdminBypassPill" class="curtain-admin-bypass-pill" style="display:none;">
-      <span>👑 <strong>Admin Detected:</strong> Website is locked for public.</span>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <a href="index.html?preview=true" class="btn-curtain-admin-preview">👁️ Preview Live Site ↗</a>
-        <a href="admin.html" class="btn-curtain-admin-dash">⚙️ Dashboard ➔</a>
       </div>
     </div>
 
@@ -4995,11 +5142,90 @@
     if (bar) bar.style.display = 'none';
   }
 
+  // Secret Admin Access via Triple Click on Sacred Crest
+  let crestClickCount = 0;
+  let crestClickTimer = null;
+  function handleCrestSecretClick() {
+    crestClickCount++;
+    clearTimeout(crestClickTimer);
+    crestClickTimer = setTimeout(() => {
+      crestClickCount = 0;
+    }, 1000);
+    if (crestClickCount >= 3) {
+      crestClickCount = 0;
+      sessionStorage.setItem('ahs_preview_bypass', 'true');
+      window.location.href = 'index.html?preview=true';
+    }
+  }
+
+  // Golden Sparks Canvas Animation for Pre-Launch Curtain
+  function initCurtainSparks() {
+    const canvas = document.getElementById('curtainSparksCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    const sparksCount = window.innerWidth < 768 ? 32 : 65;
+    const sparks = [];
+    const colors = ['rgba(255, 107, 26,', 'rgba(212, 175, 55,', 'rgba(255, 215, 0,', 'rgba(255, 140, 0,'];
+
+    for (let i = 0; i < sparksCount; i++) {
+      sparks.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2.2 + 0.8,
+        speedY: Math.random() * 0.7 + 0.35,
+        speedX: (Math.random() - 0.5) * 0.45,
+        alpha: Math.random() * 0.65 + 0.25,
+        pulseSpeed: Math.random() * 0.025 + 0.01,
+        pulseVal: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function render() {
+      const curtain = document.getElementById('launchCurtainOverlay');
+      if (curtain && curtain.style.display === 'none') return;
+
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < sparks.length; i++) {
+        const s = sparks[i];
+        s.y -= s.speedY;
+        s.x += s.speedX + Math.sin(s.pulseVal) * 0.4;
+        s.pulseVal += s.pulseSpeed;
+
+        if (s.y < -15) {
+          s.y = height + 15;
+          s.x = Math.random() * width;
+        }
+
+        const currentAlpha = Math.max(0.12, s.alpha * (0.6 + Math.sin(s.pulseVal) * 0.4));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.color + currentAlpha + ')';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(255, 107, 26, 0.8)';
+        ctx.fill();
+      }
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+  }
+
   function initLaunchGatekeeper() {
     const curtain = document.getElementById('launchCurtainOverlay');
     const maintenance = document.getElementById('maintenanceOverlay');
     const previewBar = document.getElementById('adminPreviewBar');
-    const adminPill = document.getElementById('curtainAdminBypassPill');
+
+    // Launch sparks particle animation
+    initCurtainSparks();
 
     // If Admin preview mode is active, do not block the page!
     if (isPreviewMode()) {
@@ -5020,13 +5246,6 @@
       } catch(e) {}
       return;
     }
-
-    // Check if admin token is present in localStorage to show the helpful bypass pill on the curtain
-    try {
-      if (localStorage.getItem('ahs_admin_token') === 'true' && adminPill) {
-        adminPill.style.display = 'inline-flex';
-      }
-    } catch(e) {}
 
     // Default status: 'prelaunch' (website is locked until explicitly launched or confirmed by Firestore)
     const cachedStatus = localStorage.getItem('ahs_launch_status') || 'prelaunch';
@@ -5160,8 +5379,8 @@
     const mainHead = document.getElementById('curtainMainHeading');
     const subText = document.getElementById('curtainSubText');
     if (countBox) countBox.style.display = 'none';
-    if (mainHead) mainHead.textContent = 'OFFICIAL PORTAL LAUNCHING SOON';
-    if (subText) subText.innerHTML = 'ధర్మ రక్షణ, ఆలయ పరిరక్షణ మరియు యువజన జాగృతి కోసం అభయ్ హిందూ సేన అధికారిక పోర్టల్ త్వరలో లోకార్పణ కానుంది.<br>The official digital gateway is undergoing sacred consecration for worldwide unveiling.';
+    if (mainHead) mainHead.textContent = 'LAUNCHING SOON';
+    if (subText) subText.innerHTML = 'Awakening Dharma • Preserving Sacred Heritage • Serving Society';
   }
 
   function completeVisitorLaunch() {
