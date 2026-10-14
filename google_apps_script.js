@@ -219,7 +219,7 @@ function doGet(e) {
       status: "online",
       organization: "Abhay Hindu Sena",
       service: "Sevak Registration API",
-      founder: "Shri Radha Manohar Das",
+      founder: "RADHA MANOHAR DAS Swamiji",
       kaliYugaYear: getKaliYugamYear(new Date())
     }))
     .setMimeType(ContentService.MimeType.JSON);

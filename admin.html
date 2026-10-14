@@ -1754,7 +1754,7 @@
       <!-- LEFT: PUBLISH SONG / DIALOGUE FORM -->
       <div class="dash-card">
         <h2>🎵 Add Song or Dialogue</h2>
-        <p class="card-desc">Publish devotional songs, bhajans, or lionhearted dialogues of Shri Radha Manohar Das to the live website and dedicated songs page.</p>
+        <p class="card-desc">Publish devotional songs, bhajans, or lionhearted dialogues of RADHA MANOHAR DAS Swamiji to the live website and dedicated songs page.</p>
 
         <form id="addSongForm" onsubmit="handlePublishSong(event)">
           <!-- Title (English / Common) -->
@@ -1805,7 +1805,7 @@
           <!-- Speaker / Artist -->
           <div class="form-group">
             <label for="songSpeaker">Speaker / Artist</label>
-            <input type="text" id="songSpeaker" class="form-input" value="Shri Radha Manohar Das" placeholder="Shri Radha Manohar Das">
+            <input type="text" id="songSpeaker" class="form-input" value="RADHA MANOHAR DAS Swamiji" placeholder="RADHA MANOHAR DAS Swamiji">
           </div>
 
           <button type="submit" class="btn-submit" id="submitSongBtn">
@@ -2231,8 +2231,8 @@ service cloud.firestore {
         videoId: id,
         title: title,
         category: category,
-        description: description || "Pravachan discourse by Shri Radha Manohar Das.",
-        author: "Shri Radha Manohar Das",
+        description: description || "Pravachan discourse by RADHA MANOHAR DAS Swamiji.",
+        author: "RADHA MANOHAR DAS Swamiji",
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
 
@@ -2604,7 +2604,7 @@ service cloud.firestore {
     {
       id: "sevak_seed_3",
       uid: "sevak_seed_3",
-      name: "Radha Manohar Das",
+      name: "RADHA MANOHAR DAS Swamiji",
       place: "Kendriya Karyalayam",
       role: "Leader",
       text: "సనాతన ధర్మ రక్షణ, గో సంరక్షణ మరియు నిత్య అన్నదానంలో యువత భాగస్వామ్యమే మన బలం. ప్రతి ఒక్కరూ ధర్మ సేవకులుగా ముందుకు రండి. 🙏🚩",
@@ -3484,7 +3484,7 @@ service cloud.firestore {
 
     const backupPayload = {
       organization: "Abhay Hindu Sena",
-      founder: "Shri Radha Manohar Das",
+      founder: "RADHA MANOHAR DAS Swamiji",
       backupDate: new Date().toISOString(),
       totalRecords: allRegistrations.length,
       sevaks: allRegistrations
@@ -4741,7 +4741,7 @@ service cloud.firestore {
       videoId: 'OpLuFO3Hep0',
       excerpt: 'సనాతన ధర్మ రక్షణకై ప్రతి హిందువూ జాగృతమవ్వాలి! ధర్మం మన ప్రాణం, ధర్మో రక్షతి రక్షితః!',
       lyrics: 'మౌనం వీడండి... ధర్మ రక్షణకు నడుం బిగించండి! అభయ్ హిందూ సేన శంఖారావం!',
-      speaker: 'Shri Radha Manohar Das',
+      speaker: 'RADHA MANOHAR DAS Swamiji',
       createdAt: new Date().toISOString()
     },
     {
@@ -4753,7 +4753,7 @@ service cloud.firestore {
       videoId: 'wH1w9M4mMnM',
       excerpt: 'విజయ గీతం పాడెదం... ధర్మ పథంలో నడిచెదం! సనాతన వైభవాన్ని చాటెదం!',
       lyrics: 'హిందూ జాతి జాగృతికై నిరంతరం సేవా తత్పరతతో మునుముందుకు...',
-      speaker: 'Shri Radha Manohar Das',
+      speaker: 'RADHA MANOHAR DAS Swamiji',
       createdAt: new Date().toISOString()
     },
     {
@@ -4765,7 +4765,7 @@ service cloud.firestore {
       videoId: '9gQdFrP_Ulc',
       excerpt: 'గోమాతను కాపాడడం కేవలం పూజ మాత్రమే కాదు, మన అస్తిత్వపు పోరాటం!',
       lyrics: 'ప్రతి గ్రామంలో గో రక్షణ దళాలు ఏర్పడాలి... గోవులను సంరక్షించాలి.',
-      speaker: 'Shri Radha Manohar Das',
+      speaker: 'RADHA MANOHAR DAS Swamiji',
       createdAt: new Date().toISOString()
     },
     {
@@ -4777,7 +4777,7 @@ service cloud.firestore {
       videoId: 'U2l_7Mt7fBw',
       excerpt: 'శ్రీకృష్ణ భగవానుని నామ సంకీర్తన మరియు ధర్మ సంస్థాపన ప్రేరణ.',
       lyrics: 'హరే కృష్ణ హరే రామ... ధర్మ సంస్థాపనార్థాయ సంభవామి యుగే యుగే...',
-      speaker: 'Shri Radha Manohar Das',
+      speaker: 'RADHA MANOHAR DAS Swamiji',
       createdAt: new Date().toISOString()
     }
   ];
@@ -4854,7 +4854,7 @@ service cloud.firestore {
                 ${typeIcon} ${escapeHtml(song.type || 'Song')}
               </span>
               <span style="font-size:0.75rem; color:var(--text-muted);">
-                ${escapeHtml(song.speaker || 'Shri Radha Manohar Das')}
+                ${escapeHtml(song.speaker || 'RADHA MANOHAR DAS Swamiji')}
               </span>
             </div>
             <h4 style="color:#FFF; font-size:0.95rem; margin:0 0 4px; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
@@ -4893,7 +4893,7 @@ service cloud.firestore {
     const mediaUrl = document.getElementById('songMediaUrl').value.trim();
     const excerpt = document.getElementById('songExcerpt').value.trim();
     const lyrics = (document.getElementById('songLyrics')?.value || '').trim();
-    const speaker = (document.getElementById('songSpeaker')?.value || 'Shri Radha Manohar Das').trim();
+    const speaker = (document.getElementById('songSpeaker')?.value || 'RADHA MANOHAR DAS Swamiji').trim();
 
     if (!title || !mediaUrl || !excerpt) {
       alert("Please fill in Title, Media Link, and Short Excerpt!");
