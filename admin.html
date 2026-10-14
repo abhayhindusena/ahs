@@ -1287,9 +1287,9 @@
       <button type="button" id="btnUnlaunchSite" class="btn-launch-secondary unlaunch" onclick="setSiteStatus('prelaunch')">
         🔒 Website Not Released (Lock Behind Curtain)
       </button>
-      <button type="button" id="btnLaunchSite" class="btn-launch-primary" onclick="startLaunchCountdown()">
-        🚀 Launch & Release Live (10s Countdown)
-      </button>
+      <a href="launch.html" id="btnLaunchSite" class="btn-launch-primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+        🚀 Launch Ceremony Page (10s Countdown) ➔
+      </a>
       <button type="button" id="btnPauseSite" class="btn-launch-secondary pause" onclick="setSiteStatus('maintenance')">
         ⏸️ Pause / Maintenance Mode
       </button>
@@ -2492,154 +2492,7 @@ service cloud.firestore {
   }
 
   function startLaunchCountdown() {
-    if (countdownTimerId) clearInterval(countdownTimerId);
-
-    countdownSecondsRemaining = 10;
-    const modal = document.getElementById('adminCountdownModal');
-    const numEl = document.getElementById('countdownNumber');
-    const fillEl = document.getElementById('countdownProgressFill');
-    const subTitle = document.getElementById('countdownModalSubtitle');
-    const statusMsg = document.getElementById('countdownStatusMsg');
-
-    if (modal) modal.classList.add('active');
-    if (numEl) {
-      numEl.textContent = '10';
-      numEl.style.fontSize = '4.8rem';
-    }
-    if (fillEl) fillEl.style.width = '100%';
-    if (subTitle) subTitle.textContent = 'Grand Digital Inauguration Commencing In...';
-    if (statusMsg) statusMsg.textContent = 'Broadcasting inauguration countdown to all active visitors... 📡';
-
-    playLaunchAudioTone(880, 0.15);
-
-    // Broadcast countdown start to Firestore and BroadcastChannel
-    if (launchBroadcastChannel) {
-      launchBroadcastChannel.postMessage({
-        action: 'countdown_start',
-        seconds: 10,
-        startTime: Date.now()
-      });
-    }
-
-    const firestoreDb = getFirebaseDb();
-    if (firestoreDb) {
-      firestoreDb.collection('videos').doc('site_launch_status').set({
-        countdownActive: true,
-        countdownDuration: 10,
-        countdownStartTime: Date.now(),
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      }, { merge: true }).catch(err => console.warn(err));
-    }
-
-    countdownTimerId = setInterval(() => {
-      countdownSecondsRemaining--;
-
-      if (numEl) numEl.textContent = countdownSecondsRemaining;
-      if (fillEl) fillEl.style.width = (countdownSecondsRemaining * 10) + '%';
-
-      if (countdownSecondsRemaining > 0) {
-        // Ticking audio tone
-        playLaunchAudioTone(800 + (10 - countdownSecondsRemaining) * 40, 0.1);
-      } else {
-        clearInterval(countdownTimerId);
-        countdownTimerId = null;
-        onCountdownFinished();
-      }
-    }, 1000);
-  }
-
-  function completeLaunchImmediately() {
-    if (countdownTimerId) {
-      clearInterval(countdownTimerId);
-      countdownTimerId = null;
-    }
-    onCountdownFinished();
-  }
-
-  function cancelLaunchCountdown() {
-    if (countdownTimerId) {
-      clearInterval(countdownTimerId);
-      countdownTimerId = null;
-    }
-    const modal = document.getElementById('adminCountdownModal');
-    if (modal) modal.classList.remove('active');
-
-    // Cancel in Firestore and BroadcastChannel
-    if (launchBroadcastChannel) {
-      launchBroadcastChannel.postMessage({ action: 'countdown_cancelled' });
-    }
-    const firestoreDb = getFirebaseDb();
-    if (firestoreDb) {
-      firestoreDb.collection('videos').doc('site_launch_status').set({
-        countdownActive: false,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-      }, { merge: true }).catch(err => console.warn(err));
-    }
-  }
-
-  async function onCountdownFinished() {
-    const numEl = document.getElementById('countdownNumber');
-    const subTitle = document.getElementById('countdownModalSubtitle');
-    const statusMsg = document.getElementById('countdownStatusMsg');
-    const fillEl = document.getElementById('countdownProgressFill');
-
-    if (numEl) {
-      numEl.textContent = '🚀';
-      numEl.style.fontSize = '3.5rem';
-    }
-    if (fillEl) fillEl.style.width = '0%';
-    if (subTitle) subTitle.textContent = '✨ JAI SHREE RAM! ✨';
-    if (statusMsg) statusMsg.innerHTML = '<span style="color:#2ecc71; font-size:1.1rem; font-weight:700;">WEBSITE IS NOW LIVE WORLDWIDE!</span><br>Directing to the live website...';
-
-    playTriumphantChime();
-
-    // Mark launched in local storage & BroadcastChannel
-    applyStatusToAdminUI('launched');
-    localStorage.setItem('ahs_launch_status', 'launched');
-
-    if (launchBroadcastChannel) {
-      launchBroadcastChannel.postMessage({
-        action: 'site_launched',
-        status: 'launched',
-        timestamp: Date.now()
-      });
-    }
-
-    const firestoreDb = getFirebaseDb();
-    if (firestoreDb) {
-      try {
-        await Promise.race([
-          firestoreDb.collection('videos').doc('site_launch_status').set({
-            status: 'launched',
-            countdownActive: false,
-            launchedAt: firebase.firestore.FieldValue.serverTimestamp(),
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-            updatedBy: (auth && auth.currentUser) ? auth.currentUser.email : 'admin'
-          }, { merge: true }),
-          new Promise(resolve => setTimeout(resolve, 2000))
-        ]);
-      } catch (err) {
-        console.error("Error setting launched status:", err);
-      }
-    }
-
-    try {
-      await fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status?updateMask.fieldPaths=status&updateMask.fieldPaths=countdownActive', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fields: {
-            status: { stringValue: 'launched' },
-            countdownActive: { booleanValue: false }
-          }
-        })
-      });
-    } catch (e) {}
-
-    // Direct redirect to index.html after short celebration
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1200);
+    window.location.href = 'launch.html';
   }
 
   // ==========================================

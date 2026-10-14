@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Official Digital Inauguration • Abhay Hindu Sena</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans+Telugu:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase App & Firestore SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-bright: #F7D57F;
+    --saffron: #FF6B1A;
+    --saffron-bright: #FFA466;
+    --maroon-deep: #2A0404;
+    --bg-black: #060101;
+    --text-white: #FFFFFF;
+    --text-muted: #D1BFA7;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: radial-gradient(ellipse at 50% 25%, #3A0808 0%, #180303 45%, #050000 100%);
+    color: var(--text-white);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 24px 16px;
+  }
+
+  /* Fullscreen Dynamic Canvas Layers */
+  .canvas-layer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  #sparksCanvas {
+    z-index: 1;
+  }
+  #confettiCanvas {
+    z-index: 100;
+  }
+
+  /* Atmospheric Floating Glowing Orbs */
+  .ambient-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 2;
+    animation: orbPulse 8s ease-in-out infinite alternate;
+  }
+  .ambient-orb.orb-1 {
+    width: 480px;
+    height: 480px;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 107, 26, 0.28) 0%, rgba(212, 175, 55, 0.12) 65%, transparent 80%);
+  }
+  .ambient-orb.orb-2 {
+    width: 360px;
+    height: 360px;
+    bottom: -80px;
+    left: 10%;
+    background: radial-gradient(circle, rgba(255, 60, 0, 0.22) 0%, transparent 70%);
+    animation-delay: -3s;
+  }
+  .ambient-orb.orb-3 {
+    width: 380px;
+    height: 380px;
+    bottom: -80px;
+    right: 10%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.24) 0%, transparent 70%);
+    animation-delay: -5s;
+  }
+  @keyframes orbPulse {
+    0% { transform: translateY(0) scale(0.95); opacity: 0.65; }
+    100% { transform: translateY(35px) scale(1.12); opacity: 0.95; }
+  }
+
+  /* Main Stage Container */
+  .launch-stage-wrapper {
+    max-width: 680px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Sacred Crest with Rotating Sunbeams & Concentric Mandala */
+  .crest-hero-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: crestFloat 4s ease-in-out infinite;
+  }
+  @keyframes crestFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .solar-rays {
+    position: absolute;
+    inset: -38px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      rgba(255,107,26,0.38) 0deg,
+      transparent 20deg,
+      rgba(212,175,55,0.32) 45deg,
+      transparent 65deg,
+      rgba(255,107,26,0.38) 90deg,
+      transparent 110deg,
+      rgba(212,175,55,0.32) 135deg,
+      transparent 155deg,
+      rgba(255,107,26,0.38) 180deg,
+      transparent 200deg,
+      rgba(212,175,55,0.32) 225deg,
+      transparent 245deg,
+      rgba(255,107,26,0.38) 270deg,
+      transparent 290deg,
+      rgba(212,175,55,0.32) 315deg,
+      transparent 335deg,
+      rgba(255,107,26,0.38) 360deg
+    );
+    animation: spinRays 32s linear infinite;
+    filter: blur(3px);
+  }
+  @keyframes spinRays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .mandala-ring {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(247, 213, 127, 0.6);
+    animation: spinMandala 20s linear infinite reverse;
+  }
+  @keyframes spinMandala {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .crest-aura {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,26,0.75) 0%, rgba(212,175,55,0.4) 60%, transparent 85%);
+    animation: auraPulse 2.8s infinite alternate ease-in-out;
+  }
+  @keyframes auraPulse {
+    0% { transform: scale(0.92); opacity: 0.55; }
+    100% { transform: scale(1.15); opacity: 0.95; filter: drop-shadow(0 0 25px rgba(255,107,26,0.9)); }
+  }
+
+  .crest-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FFF;
+    border: 3.5px solid var(--gold);
+    box-shadow: 0 0 35px rgba(212,175,55,0.8), 0 0 70px rgba(255,107,26,0.5);
+    position: relative;
+    z-index: 3;
+  }
+
+  /* Sacred Shloka Badge */
+  .shloka-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Noto Sans Devanagari', 'Noto Sans Telugu', sans-serif;
+    background: linear-gradient(135deg, rgba(255,107,26,0.2) 0%, rgba(212,175,55,0.15) 100%);
+    border: 1px solid rgba(212,175,55,0.45);
+    color: #FFD899;
+    font-size: clamp(0.75rem, 2.5vw, 0.88rem);
+    font-weight: 700;
+    padding: 6px 22px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4), 0 0 15px rgba(255,107,26,0.25);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Brand Typography */
+  .brand-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: clamp(2px, 0.8vw, 4px);
+    margin: 0;
+    line-height: 1.15;
+    background: linear-gradient(90deg, #FFE8A3 0%, #D4AF37 25%, #FFFDF5 50%, #D4AF37 75%, #FFE8A3 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 5s linear infinite;
+    filter: drop-shadow(0 0 25px rgba(212,175,55,0.5));
+  }
+  @keyframes goldShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .brand-telugu {
+    font-family: 'Noto Sans Telugu', serif;
+    font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+    color: #FF7F32;
+    font-weight: 800;
+    margin: 4px 0 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 18px rgba(255,107,26,0.6);
+  }
+
+  .founder-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    margin-bottom: 22px;
+    padding: 3px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .founder-tag strong {
+    color: #FFF;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+  }
+
+  /* Grand Inauguration Glass Card */
+  .inauguration-card {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 0%, rgba(38, 10, 10, 0.75) 0%, rgba(14, 3, 3, 0.92) 100%);
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 26px;
+    padding: 34px 24px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 50px rgba(255,107,26,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+  }
+  .inauguration-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FF6B1A, #D4AF37, #FF6B1A, transparent);
+    box-shadow: 0 0 20px rgba(255,107,26,0.9);
+  }
+
+  /* Status Tag */
+  .ceremony-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 107, 26, 0.15);
+    border: 1px solid rgba(255, 107, 26, 0.5);
+    color: #FFA466;
+    padding: 5px 18px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF6B1A;
+    box-shadow: 0 0 12px #FF6B1A, 0 0 24px #FF6B1A;
+    animation: liveDotPulse 1.2s infinite alternate ease-in-out;
+  }
+  @keyframes liveDotPulse {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.3); opacity: 1; }
+  }
+
+  /* Card Headings */
+  .ceremony-heading {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #FFFDF5;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(212,175,55,0.4);
+  }
+  .ceremony-sub-te {
+    font-family: 'Noto Sans Telugu', serif;
+    font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+    color: var(--gold-bright);
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .ceremony-sub-en {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 26px;
+    letter-spacing: 0.5px;
+  }
+
+  /* STAGE 1: READY STATE (Grand Launch Button) */
+  #readyStage {
+    display: block;
+    transition: all 0.4s ease;
+  }
+
+  .launch-btn-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 16px;
+  }
+
+  /* Grand Pulsing Aura behind Launch Button */
+  .launch-btn-aura {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50px;
+    background: radial-gradient(circle, rgba(255,107,26,0.65) 0%, rgba(212,175,55,0.3) 70%, transparent 100%);
+    animation: launchBtnAura 2.2s infinite alternate ease-in-out;
+    filter: blur(8px);
+    z-index: 1;
+  }
+  @keyframes launchBtnAura {
+    0% { transform: scale(0.95); opacity: 0.6; }
+    100% { transform: scale(1.1); opacity: 1; }
+  }
+
+  .btn-grand-launch {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 36px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #FF6B1A 0%, #FFA826 40%, #D4AF37 80%, #FFE599 100%);
+    color: #170404;
+    border: 2px solid #FFFDF5;
+    font-family: 'Cinzel', 'Noto Sans Telugu', sans-serif;
+    font-size: clamp(1rem, 2.8vw, 1.25rem);
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: 0 10px 35px rgba(255,107,26,0.6), 0 0 35px rgba(212,175,55,0.5), inset 0 2px 0 rgba(255,255,255,0.7);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-grand-launch:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 45px rgba(255,107,26,0.85), 0 0 50px rgba(212,175,55,0.7);
+    color: #000;
+  }
+  .btn-grand-launch:active {
+    transform: translateY(1px) scale(0.98);
+  }
+  .launch-btn-flame {
+    font-size: 1.4rem;
+    animation: flameShake 1.5s infinite alternate ease-in-out;
+  }
+  @keyframes flameShake {
+    0% { transform: rotate(-5deg) scale(0.95); }
+    100% { transform: rotate(5deg) scale(1.15); }
+  }
+
+  .launch-instruction-text {
+    font-size: 0.82rem;
+    color: #D1BFA7;
+    margin-top: 14px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Secondary Nav Buttons */
+  .secondary-nav-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    border-top: 1px solid rgba(212,175,55,0.15);
+    padding-top: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-sec-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #D1BFA7;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-sec-link:hover {
+    background: rgba(212,175,55,0.15);
+    color: #FFF;
+    border-color: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  /* STAGE 2: 10-SECOND COUNTDOWN ARENA */
+  #countdownStage {
+    display: none;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .countdown-arena-wrap {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 10px auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Expanding Shockwave Ripple */
+  .shockwave-ring {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,107,26,0.7);
+    animation: shockwaveExpand 1.5s infinite cubic-bezier(0.2, 0.8, 0.4, 1);
+    pointer-events: none;
+  }
+  .shockwave-ring.ring-2 {
+    animation-delay: 0.5s;
+    border-color: rgba(212,175,55,0.6);
+  }
+  .shockwave-ring.ring-3 {
+    animation-delay: 1s;
+    border-color: rgba(255,107,26,0.4);
+  }
+  @keyframes shockwaveExpand {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  /* SVG Circular Progress Ring */
+  .svg-countdown-circle {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .circle-bg {
+    fill: none;
+    stroke: rgba(255,255,255,0.06);
+    stroke-width: 8;
+  }
+  .circle-progress {
+    fill: none;
+    stroke: url(#goldGradient);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.95s linear;
+    filter: drop-shadow(0 0 8px rgba(255,107,26,0.9));
+  }
+
+  /* Giant Countdown Number */
+  .countdown-center-digit {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(5.5rem, 15vw, 7.8rem);
+    font-weight: 900;
+    color: var(--gold-bright);
+    line-height: 1;
+    z-index: 5;
+    text-shadow: 0 0 35px rgba(247,213,127,0.95), 0 0 70px rgba(255,107,26,0.85);
+    animation: digitPulse 1s infinite ease-out;
+  }
+  @keyframes digitPulse {
+    0% { transform: scale(0.86); opacity: 0.7; }
+    40% { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.95; }
+  }
+
+  .countdown-broadcast-status {
+    font-size: 0.88rem;
+    color: #FFA466;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .countdown-sub-message {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .btn-cancel-countdown {
+    background: rgba(231, 76, 60, 0.15);
+    border: 1px solid rgba(231, 76, 60, 0.45);
+    color: #FF7675;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-cancel-countdown:hover {
+    background: #e74c3c;
+    color: #FFF;
+  }
+
+  /* STAGE 3: CELEBRATION & AUTO-REDIRECT */
+  #celebrationStage {
+    display: none;
+    position: relative;
+    padding: 15px 0 10px;
+    animation: celebrationFadeIn 0.8s ease-out;
+  }
+  @keyframes celebrationFadeIn {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .celebration-emblem-burst {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+    animation: burstZoom 1.2s infinite alternate ease-in-out;
+  }
+  @keyframes burstZoom {
+    0% { transform: scale(0.9) rotate(-4deg); }
+    100% { transform: scale(1.15) rotate(4deg); }
+  }
+
+  .celebration-title-grand {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4.8vw, 2.5rem);
+    font-weight: 900;
+    color: #2ECC71;
+    text-shadow: 0 0 25px rgba(46,204,113,0.7), 0 0 50px rgba(46,204,113,0.4);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+
+  .celebration-telugu-banner {
+    font-family: 'Noto Sans Telugu', serif;
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 800;
+    color: #FFD899;
+    margin-bottom: 12px;
+  }
+
+  .celebration-portal-active-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.6);
+    color: #55EFC4;
+    padding: 6px 22px;
+    border-radius: 30px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+  }
+
+  /* Redirect Progress Card */
+  .redirect-notice-card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 16px;
+    padding: 16px;
+    max-width: 440px;
+    margin: 0 auto 20px;
+  }
+  .redirect-timer-text {
+    font-size: 0.95rem;
+    color: #FFF;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .redirect-progress-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .redirect-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #FF6B1A, #2ECC71);
+    border-radius: 3px;
+    transition: width 3.5s linear;
+  }
+
+  .btn-enter-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-decoration: none;
+    box-shadow: 0 6px 25px rgba(46,204,113,0.5);
+    transition: all 0.25s;
+  }
+  .btn-enter-now:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 35px rgba(46,204,113,0.7);
+  }
+</style>
+</head>
+<body>
+
+<!-- Dynamic Golden Embers Sparks Canvas -->
+<canvas id="sparksCanvas" class="canvas-layer"></canvas>
+
+<!-- Confetti Canvas (Activated at 0s) -->
+<canvas id="confettiCanvas" class="canvas-layer"></canvas>
+
+<!-- Ambient Glowing Orbs -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+
+<!-- SVG Gradient Definition for Circular Countdown -->
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B1A" />
+      <stop offset="50%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#FFFDF5" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="launch-stage-wrapper">
+  
+  <!-- Sacred Crest with Rotating Sunbeams & Mandala -->
+  <div class="crest-hero-wrap">
+    <div class="solar-rays"></div>
+    <div class="mandala-ring"></div>
+    <div class="crest-aura"></div>
+    <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="crest-img">
+  </div>
+
+  <!-- Vedic Invocation Shloka -->
+  <div class="shloka-pill">
+    <span>🚩 ॐ श्री गुरुभ्यो नमః • धर्मो रक्षति रक्षितః 🚩</span>
+  </div>
+
+  <h1 class="brand-title">ABHAY HINDU SENA</h1>
+  <div class="brand-telugu">అభయ్ హిందూ సేన</div>
+  
+  <div class="founder-tag">
+    <span>✦ FOUNDED BY</span>
+    <strong>SHRI RADHA MANOHAR DAS</strong>
+    <span>✦</span>
+  </div>
+
+  <!-- Central Inauguration Card -->
+  <div class="inauguration-card">
+
+    <!-- ========================================================================= -->
+    <!-- STAGE 1: READY STATE (Waiting for user to trigger launch) -->
+    <!-- ========================================================================= -->
+    <div id="readyStage">
+      <div class="ceremony-status-pill">
+        <span class="pulse-dot"></span>
+        <span>READY FOR GLOBAL INAUGURATION</span>
+      </div>
+
+      <h2 class="ceremony-heading">OFFICIAL DIGITAL PORTAL INAUGURATION</h2>
+      <div class="ceremony-sub-te">సనాతన ధర్మ రక్షణార్థం అభయ్ హిందూ సేన అధికారిక వెబ్‌సైట్ లోకార్పణ మహోత్సవం</div>
+      <p class="ceremony-sub-en">Solemn Digital Consecration & Worldwide Synchronized Unveiling Ceremony</p>
+
+      <!-- Grand Launch Button with Pulsing Aura -->
+      <div class="launch-btn-container">
+        <div class="launch-btn-aura"></div>
+        <button type="button" class="btn-grand-launch" id="btnInitiateLaunch" onclick="triggerInaugurationCeremony()">
+          <span class="launch-btn-flame">🚩</span>
+          <span>LAUNCH & UNVEIL WEBSITE NOW</span>
+          <span class="launch-btn-flame">🚩</span>
+        </button>
+      </div>
+
+      <p class="launch-instruction-text">
+        ⚡ <strong>Synchronized Live Launch:</strong> Clicking this button will start an auspicious 10-second live countdown across all visitor screens worldwide, concluding with the grand portal unveiling.
+      </p>
+
+      <div class="secondary-nav-row">
+        <a href="admin.html" class="btn-sec-link">
+          ⚙️ Return to Admin Dashboard
+        </a>
+        <a href="index.html?preview=true" target="_blank" class="btn-sec-link">
+          👁️ Preview Live Site (Bypass Curtain)
+        </a>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- STAGE 2: 10-SECOND LIVE COUNTDOWN ARENA -->
+    <!-- ========================================================================= -->
+    <div id="countdownStage">
+      <div class="ceremony-status-pill" style="border-color:#FF6B1A; background:rgba(255,107,26,0.2);">
+        <span class="pulse-dot"></span>
+        <span>INAUGURATION CEREMONY COMMENCING</span>
+      </div>
+
+      <h2 class="ceremony-heading" style="color:var(--gold-bright);">WORLDWIDE UNVEILING IN PROGRESS</h2>
+      
+      <!-- Circular Countdown Arena -->
+      <div class="countdown-arena-wrap">
+        <div class="shockwave-ring ring-1"></div>
+        <div class="shockwave-ring ring-2"></div>
+        <div class="shockwave-ring ring-3"></div>
+
+        <svg class="svg-countdown-circle" viewBox="0 0 220 220">
+          <circle class="circle-bg" cx="110" cy="110" r="100" />
+          <circle class="circle-progress" id="circleProgress" cx="110" cy="110" r="100" />
+        </svg>
+
+        <div class="countdown-center-digit" id="countdownNumber">10</div>
+      </div>
+
+      <div class="countdown-broadcast-status">
+        <span>📡</span> Broadcasting inauguration countdown to all active visitors...
+      </div>
+      <p class="countdown-sub-message">
+        Unlocking the sacred digital gateway in real-time across the globe.
+      </p>
+
+      <button type="button" class="btn-cancel-countdown" onclick="cancelInaugurationCeremony()">
+        ✕ Cancel Countdown
+      </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- STAGE 3: CELEBRATION & AUTO-REDIRECT -->
+    <!-- ========================================================================= -->
+    <div id="celebrationStage">
+      <div class="celebration-emblem-burst">🚩 🕉️ 🚩</div>
+      <div class="celebration-title-grand">✨ జై శ్రీ రామ్! JAI SHREE RAM! ✨</div>
+      <div class="celebration-telugu-banner">
+        అభయ్ హిందూ సేన అధికారిక వెబ్‌సైట్ విజయవంతంగా లోకార్పణ చేయబడింది!
+      </div>
+      
+      <div class="celebration-portal-active-badge">
+        <span>🟢</span> PORTAL UNLOCKED &amp; LIVE WORLDWIDE
+      </div>
+
+      <div class="redirect-notice-card">
+        <div class="redirect-timer-text" id="redirectTimerText">
+          🚀 Automatically directing to the live portal in <span id="redirectSecs">3</span>s...
+        </div>
+        <div class="redirect-progress-bar">
+          <div class="redirect-progress-fill" id="redirectProgressFill"></div>
+        </div>
+      </div>
+
+      <div>
+        <a href="index.html" class="btn-enter-now">
+          <span>Enter Live Website Now</span>
+          <span>➔</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // =========================================================================
+  // 1. FIREBASE INITIALIZATION & SYNCHRONIZATION
+  // =========================================================================
+  const firebaseConfig = {
+    apiKey: "AIzaSyANW4b8MGvlLn8XT1auTwukxlu08dm-YJQ",
+    authDomain: "abhay-hindu-sena-org.firebaseapp.com",
+    projectId: "abhay-hindu-sena-org",
+    storageBucket: "abhay-hindu-sena-org.firebasestorage.app",
+    messagingSenderId: "694749073728",
+    appId: "1:694749073728:web:5786bfe0c0a832dbba6aa5",
+    measurementId: "G-T2C9DQN7E2"
+  };
+
+  let db = null;
+  try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  } catch(e) {
+    console.warn("Firebase Init Note:", e);
+  }
+
+  const broadcastChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('ahs_launch_control') : null;
+
+  // =========================================================================
+  // 2. WEB AUDIO API SYNTHESIZER (Auspicious Chimes & Ticking)
+  // =========================================================================
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) audioCtx = new AudioContextClass();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playTempleGongSound() {
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(432, ctx.currentTime); // Auspicious 432 Hz frequency
+      osc.frequency.exponentialRampToValueAtTime(216, ctx.currentTime + 1.2);
+      
+      gain.gain.setValueAtTime(0.4, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.8);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 1.8);
+    } catch(e) {}
+  }
+
+  function playTickSound(freq = 880) {
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+    } catch(e) {}
+  }
+
+  function playCelebrationFanfare() {
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C Major Chord
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.1));
+        gain.gain.setValueAtTime(0.25, ctx.currentTime + (idx * 0.1));
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (idx * 0.1) + 1.6);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + (idx * 0.1));
+        osc.stop(ctx.currentTime + (idx * 0.1) + 1.6);
+      });
+    } catch(e) {}
+  }
+
+  // =========================================================================
+  // 3. INAUGURATION CEREMONY COUNTDOWN ENGINE
+  // =========================================================================
+  let countdownTimer = null;
+  let secondsLeft = 10;
+  const CIRCLE_CIRCUMFERENCE = 628; // 2 * PI * 100
+
+  function triggerInaugurationCeremony() {
+    // Switch stages
+    document.getElementById('readyStage').style.display = 'none';
+    document.getElementById('countdownStage').style.display = 'block';
+
+    secondsLeft = 10;
+    updateCountdownUI(secondsLeft);
+    playTempleGongSound();
+
+    // Broadcast countdown start
+    if (broadcastChannel) {
+      broadcastChannel.postMessage({
+        action: 'countdown_start',
+        seconds: 10,
+        startTime: Date.now()
+      });
+    }
+
+    // Sync countdown start to Firestore
+    if (db) {
+      db.collection('videos').doc('site_launch_status').set({
+        countdownActive: true,
+        countdownDuration: 10,
+        countdownStartTime: Date.now(),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true }).catch(err => console.warn(err));
+    }
+
+    // Synchronized interval
+    if (countdownTimer) clearInterval(countdownTimer);
+    countdownTimer = setInterval(() => {
+      secondsLeft--;
+      updateCountdownUI(secondsLeft);
+
+      if (secondsLeft > 0) {
+        playTickSound(700 + (10 - secondsLeft) * 50);
+      } else {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+        executeGrandUnveiling();
+      }
+    }, 1000);
+  }
+
+  function updateCountdownUI(sec) {
+    const numEl = document.getElementById('countdownNumber');
+    const circle = document.getElementById('circleProgress');
+    if (numEl) numEl.textContent = sec;
+
+    if (circle) {
+      const offset = CIRCLE_CIRCUMFERENCE - ((sec / 10) * CIRCLE_CIRCUMFERENCE);
+      circle.style.strokeDashoffset = offset;
+    }
+  }
+
+  function cancelInaugurationCeremony() {
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+    }
+
+    document.getElementById('countdownStage').style.display = 'none';
+    document.getElementById('readyStage').style.display = 'block';
+
+    // Broadcast cancellation
+    if (broadcastChannel) {
+      broadcastChannel.postMessage({ action: 'countdown_cancelled' });
+    }
+
+    if (db) {
+      db.collection('videos').doc('site_launch_status').set({
+        countdownActive: false,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true }).catch(err => console.warn(err));
+    }
+  }
+
+  // =========================================================================
+  // 4. GRAND UNVEILING & CELEBRATION (At 0 Seconds)
+  // =========================================================================
+  async function executeGrandUnveiling() {
+    document.getElementById('countdownStage').style.display = 'none';
+    document.getElementById('celebrationStage').style.display = 'block';
+
+    playCelebrationFanfare();
+    startConfettiCelebration();
+
+    // Set local storage & BroadcastChannel
+    localStorage.setItem('ahs_launch_status', 'launched');
+    if (broadcastChannel) {
+      broadcastChannel.postMessage({
+        action: 'site_launched',
+        status: 'launched',
+        timestamp: Date.now()
+      });
+    }
+
+    // Update Firestore to 'launched'
+    if (db) {
+      try {
+        await db.collection('videos').doc('site_launch_status').set({
+          status: 'launched',
+          countdownActive: false,
+          launchedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+      } catch(e) {
+        console.warn("Firestore update error:", e);
+      }
+    }
+
+    // Direct REST API sync fallback
+    try {
+      fetch('https://firestore.googleapis.com/v1/projects/abhay-hindu-sena-org/databases/(default)/documents/videos/site_launch_status?updateMask.fieldPaths=status&updateMask.fieldPaths=countdownActive', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            status: { stringValue: 'launched' },
+            countdownActive: { booleanValue: false }
+          }
+        })
+      });
+    } catch(e) {}
+
+    // Trigger redirect progress bar
+    const fillEl = document.getElementById('redirectProgressFill');
+    if (fillEl) {
+      setTimeout(() => { fillEl.style.width = '100%'; }, 50);
+    }
+
+    // Auto-redirect countdown
+    let redirectCounter = 3;
+    const redirectSecsEl = document.getElementById('redirectSecs');
+    const redirectTimer = setInterval(() => {
+      redirectCounter--;
+      if (redirectSecsEl) redirectSecsEl.textContent = redirectCounter;
+      if (redirectCounter <= 0) {
+        clearInterval(redirectTimer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  }
+
+  // =========================================================================
+  // 5. SACRED GOLDEN SPARKS CANVAS ANIMATION
+  // =========================================================================
+  (function initSparks() {
+    const canvas = document.getElementById('sparksCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    const count = window.innerWidth < 768 ? 35 : 65;
+    const sparks = [];
+    const colors = ['rgba(255, 107, 26,', 'rgba(212, 175, 55,', 'rgba(255, 215, 0,', 'rgba(255, 140, 0,'];
+
+    for (let i = 0; i < count; i++) {
+      sparks.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2.2 + 0.8,
+        speedY: Math.random() * 0.7 + 0.35,
+        speedX: (Math.random() - 0.5) * 0.45,
+        alpha: Math.random() * 0.65 + 0.25,
+        pulseSpeed: Math.random() * 0.025 + 0.01,
+        pulseVal: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < sparks.length; i++) {
+        const s = sparks[i];
+        s.y -= s.speedY;
+        s.x += s.speedX + Math.sin(s.pulseVal) * 0.4;
+        s.pulseVal += s.pulseSpeed;
+
+        if (s.y < -15) {
+          s.y = height + 15;
+          s.x = Math.random() * width;
+        }
+
+        const currentAlpha = Math.max(0.12, s.alpha * (0.6 + Math.sin(s.pulseVal) * 0.4));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.color + currentAlpha + ')';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgba(255, 107, 26, 0.8)';
+        ctx.fill();
+      }
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+  })();
+
+  // =========================================================================
+  // 6. FESTIVE CELEBRATION CONFETTI ENGINE
+  // =========================================================================
+  function startConfettiCelebration() {
+    const canvas = document.getElementById('confettiCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    const confettiCount = 120;
+    const confetti = [];
+    const colors = ['#D4AF37', '#FF6B1A', '#FFD700', '#2ECC71', '#FF3E3E', '#FFFFFF'];
+
+    for (let i = 0; i < confettiCount; i++) {
+      confetti.push({
+        x: Math.random() * width,
+        y: Math.random() * height * 0.4 - 50,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * confettiCount,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltAngleInc: (Math.random() * 0.07) + 0.05,
+        tiltAngle: 0,
+        speedY: Math.random() * 3 + 2,
+        speedX: Math.random() * 2 - 1
+      });
+    }
+
+    let animationFrame = null;
+    function renderConfetti() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < confetti.length; i++) {
+        const c = confetti[i];
+        c.tiltAngle += c.tiltAngleInc;
+        c.y += c.speedY;
+        c.x += Math.sin(c.d) + c.speedX;
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+        ctx.stroke();
+
+        if (c.y > height + 20) {
+          c.y = -20;
+          c.x = Math.random() * width;
+        }
+      }
+      animationFrame = requestAnimationFrame(renderConfetti);
+    }
+    renderConfetti();
+
+    // Auto-stop after 8 seconds
+    setTimeout(() => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    }, 8000);
+  }
+</script>
+</body>
+</html>
