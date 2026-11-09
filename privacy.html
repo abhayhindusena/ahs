@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="assets/launch-gatekeeper.js"></script>
+<title>Privacy Policy • Abhay Hindu Sena | అధికారిక గోప్యతా విధానం</title>
+<meta name="description" content="Official Privacy Policy of Abhay Hindu Sena & Sri Radha Manohar Das Foundation. How we collect, safeguard, and respect your personal information, donations, volunteer details, and community interactions.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Mandali&family=Noto+Sans+Telugu:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-bright: #F7D57F;
+    --saffron: #FF6B1A;
+    --saffron-deep: #E8540A;
+    --maroon: #7A0C0C;
+    --maroon-deep: #3D0505;
+    --bg-dark: #0D0404;
+    --bg-card: #160707;
+    --bg-card-alt: #1F0A0A;
+    --border-gold: rgba(212,175,55,0.3);
+    --border-gold-glow: rgba(212,175,55,0.6);
+    --text-main: #FFF8EF;
+    --text-muted: #C7B5A0;
+    --font-heading: 'Cinzel', 'Noto Sans Telugu', 'Mandali', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Telugu Mode Font Adaptation */
+  body.telugu-mode {
+    font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
+  }
+  body.telugu-mode h1,
+  body.telugu-mode h2,
+  body.telugu-mode h3,
+  body.telugu-mode h4 {
+    font-family: 'Noto Sans Telugu', serif;
+    letter-spacing: normal;
+  }
+
+  /* TOP HEADER BAR */
+  .site-header {
+    background: linear-gradient(180deg, rgba(30,5,5,0.98) 0%, rgba(13,4,4,0.99) 100%);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    min-width: 0;
+  }
+  .circle-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FFF;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 10px rgba(212,175,55,0.45);
+    flex-shrink: 0;
+  }
+  .header-brand-text h1 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+    font-weight: 800;
+    line-height: 1.35;
+    padding: 1px 0;
+  }
+  .header-brand-text span {
+    font-size: 0.72rem;
+    color: var(--saffron);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-btn {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.25s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn-community-top {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+  }
+  .btn-community-top:hover {
+    background: rgba(212,175,55,0.22);
+    border-color: var(--gold-bright);
+    color: #FFF;
+  }
+  .btn-donate-top {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.35);
+  }
+  .btn-donate-top:hover {
+    box-shadow: 0 6px 20px rgba(212,175,55,0.55);
+    transform: translateY(-1px);
+  }
+  .btn-join-top {
+    background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-deep) 100%);
+    color: #FFF;
+    border: 1px solid var(--saffron);
+    box-shadow: 0 4px 15px rgba(255,107,26,0.35);
+  }
+  .btn-join-top:hover {
+    box-shadow: 0 6px 20px rgba(255,107,26,0.55);
+    transform: translateY(-1px);
+  }
+  .btn-appointment-top {
+    background: linear-gradient(135deg, rgba(37, 211, 102, 0.22), rgba(18, 140, 126, 0.28));
+    border: 1px solid rgba(37, 211, 102, 0.55);
+    color: #2ecc71;
+  }
+  .btn-appointment-top:hover {
+    background: #25D366;
+    color: #000;
+    border-color: #25D366;
+    box-shadow: 0 0 14px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* FLOATING GLASS NAVBAR */
+  .glass-navbar {
+    position: sticky;
+    top: 10px;
+    z-index: 999;
+    margin: 10px auto 0;
+    max-width: calc(100% - 20px);
+    width: fit-content;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(24, 7, 7, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.15);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    white-space: nowrap;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+  .glass-navbar::-webkit-scrollbar { display: none; }
+  .glass-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .glass-nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .glass-nav-links a:hover,
+  .glass-nav-links a.active {
+    color: #FFF;
+    background: rgba(212,175,55,0.22);
+    font-weight: 600;
+  }
+  .glass-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(212,175,55,0.35);
+    flex-shrink: 0;
+  }
+  .glass-lang-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .glass-lang-btn:hover {
+    background: var(--gold);
+    color: #000;
+  }
+
+  /* MAIN CONTENT LAYOUT */
+  .privacy-page-wrap {
+    flex: 1;
+    padding: 45px 5% 80px;
+    background: radial-gradient(circle at 50% 12%, rgba(122,12,12,0.32) 0%, rgba(13,4,4,0.98) 75%);
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* HERO HEADER */
+  .privacy-hero {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .privacy-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    background: rgba(212,175,55,0.12);
+    border: 1px solid var(--border-gold);
+    padding: 6px 18px;
+    border-radius: 25px;
+    margin-bottom: 14px;
+  }
+  .privacy-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    color: var(--gold-bright);
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 25px rgba(212,175,55,0.3);
+  }
+  .privacy-lead {
+    font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+    color: var(--text-muted);
+    max-width: 780px;
+    margin: 0 auto 18px;
+    line-height: 1.65;
+  }
+  .privacy-meta-chips {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .meta-chip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.25);
+    padding: 5px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* QUICK NAV TABLE OF CONTENTS */
+  .toc-box {
+    background: rgba(22, 7, 7, 0.85);
+    border: 1px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
+  .toc-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--gold-bright);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .toc-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .toc-chip {
+    text-decoration: none;
+    color: var(--text-main);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.25);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-chip:hover {
+    background: rgba(212,175,55,0.2);
+    border-color: var(--gold);
+    color: #FFF;
+    transform: translateY(-2px);
+  }
+
+  /* POLICY SECTIONS */
+  .policy-section-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 32px 30px;
+    margin-bottom: 26px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .policy-section-card:hover {
+    border-color: rgba(212,175,55,0.55);
+    box-shadow: 0 16px 45px rgba(0,0,0,0.85), 0 0 20px rgba(212,175,55,0.12);
+  }
+  .policy-section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--saffron) 100%);
+  }
+  .section-num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--saffron) 100%);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.88rem;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .policy-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .policy-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  .policy-card-content p {
+    color: #ded0bf;
+    font-size: 0.96rem;
+    margin-bottom: 14px;
+  }
+  .policy-card-content p:last-child {
+    margin-bottom: 0;
+  }
+  .policy-list {
+    list-style: none;
+    margin: 14px 0 16px;
+    padding: 0;
+  }
+  .policy-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    color: #ded0bf;
+    font-size: 0.94rem;
+  }
+  .policy-list li::before {
+    content: '🚩';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 0.85rem;
+  }
+  .policy-list li strong {
+    color: var(--gold-bright);
+  }
+
+  /* HIGHLIGHT CALLOUT BOXES */
+  .callout-box {
+    background: rgba(255, 107, 26, 0.08);
+    border: 1px solid rgba(255, 107, 26, 0.4);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .callout-box.gold {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+  .callout-box.green {
+    background: rgba(46, 204, 113, 0.08);
+    border-color: rgba(46, 204, 113, 0.4);
+  }
+  .callout-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .callout-text {
+    font-size: 0.9rem;
+    color: #FFF;
+    line-height: 1.6;
+  }
+  .callout-text strong {
+    color: var(--gold-bright);
+  }
+
+  /* CONTACT & INQUIRY CARD */
+  .contact-trust-card {
+    background: linear-gradient(135deg, rgba(38,10,10,0.95) 0%, rgba(18,5,5,0.98) 100%);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 34px 28px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.8);
+  }
+  .contact-trust-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    color: var(--gold-bright);
+    margin-bottom: 8px;
+  }
+  .contact-trust-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 650px;
+    margin: 0 auto 24px;
+  }
+  .contact-actions-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn-contact-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-wa-contact {
+    background: #25D366;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(37,211,102,0.35);
+  }
+  .btn-wa-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37,211,102,0.55);
+  }
+  .btn-email-contact {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+  }
+  .btn-email-contact:hover {
+    background: var(--gold);
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080202;
+    border-top: 1px solid var(--border-gold);
+    padding: 40px 5% 30px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: auto;
+  }
+  .footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    border: 2px solid var(--gold);
+    background: #FFF;
+  }
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--gold-bright);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover,
+  .footer-links a.active {
+    color: var(--gold-bright);
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: #8C7B6B;
+    line-height: 1.6;
+  }
+
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 768px) {
+    .site-header { padding: 10px 14px; }
+    .header-actions .btn-community-top,
+    .header-actions .btn-donate-top { display: none; }
+    .privacy-page-wrap { padding: 30px 14px 60px; }
+    .policy-section-card { padding: 24px 18px; }
+    .policy-card-title { font-size: 1.15rem; }
+    .contact-trust-card { padding: 26px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER BAR -->
+<header class="site-header">
+  <a href="index.html" class="header-brand">
+    <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="circle-logo">
+    <div class="header-brand-text">
+      <h1>ABHAY HINDU SENA</h1>
+      <span data-en="Sanatana Dharma • Rashtra Seva" data-te="సనాతన ధర్మం • రాష్ట్ర సేవ">Sanatana Dharma • Rashtra Seva</span>
+    </div>
+  </a>
+
+  <div class="header-actions">
+    <a href="community.html" class="header-btn btn-community-top" data-en="Community 💬" data-te="కమ్యూనిటీ 💬">
+      Community 💬
+    </a>
+    <a href="donate.html" class="header-btn btn-donate-top" data-en="Donate 💛" data-te="విరాళం 💛">
+      Donate 💛
+    </a>
+    <a href="join.html" class="header-btn btn-join-top" data-en="Join Us 🚩" data-te="చేరండి 🚩">
+      Join Us 🚩
+    </a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="header-btn btn-appointment-top" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">
+      Appointment 📅
+    </a>
+  </div>
+</header>
+
+<!-- FLOATING GLASS NAVBAR WITH LANGUAGE TOGGLE -->
+<nav class="glass-navbar">
+  <div class="glass-nav-links">
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="songs.html" data-en="Songs & Dialogues" data-te="గీతాలు & గర్జనలు">Songs & Dialogues</a>
+    <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="events.html" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="privacy.html" class="active" data-en="Privacy Policy" data-te="గోప్యతా విధానం">Privacy Policy</a>
+  </div>
+
+  <div class="glass-divider"></div>
+
+  <button class="glass-lang-btn" onclick="toggleLanguage()" aria-label="Toggle Language English or Telugu">
+    🌐 <span id="langText">English / తెలుగు</span>
+  </button>
+</nav>
+
+<!-- MAIN CONTENT WRAPPER -->
+<main class="privacy-page-wrap">
+
+  <!-- HERO SECTION -->
+  <header class="privacy-hero">
+    <div class="privacy-eyebrow" data-en="📜 OFFICIAL POLICY & TRANSPARENCY" data-te="📜 అధికారిక విధానం & పారదర్శకత">
+      📜 OFFICIAL POLICY & TRANSPARENCY
+    </div>
+    <h1 class="privacy-title" data-en="Privacy Policy" data-te="గోప్యతా విధానం">
+      Privacy Policy
+    </h1>
+    <p class="privacy-lead" data-en="Your trust is our sacred responsibility. This policy explains how Abhay Hindu Sena and Sri Radha Manohar Das Foundation collect, use, and protect your personal information with absolute integrity."
+       data-te="మీ విశ్వాసం మా పవిత్ర బాధ్యత. అభయ్ హిందూ సేన మరియు శ్రీ రాధా మనోహర్ దాస్ ఫౌండేషన్ మీ వ్యక్తిగత సమాచారాన్ని ఎలా గౌరవిస్తుంది, సేకరిస్తుంది మరియు సంరక్షిస్తుందో ఈ పత్రం వివరిస్తుంది.">
+      Your trust is our sacred responsibility. This policy explains how Abhay Hindu Sena and Sri Radha Manohar Das Foundation collect, use, and protect your personal information with absolute integrity.
+    </p>
+
+    <div class="privacy-meta-chips">
+      <span class="meta-chip">🗓️ <span data-en="Effective Date: January 1, 2026" data-te="అమలు తేదీ: జనవరి 1, 2026">Effective Date: January 1, 2026</span></span>
+      <span class="meta-chip">⚖️ <span data-en="Applicable to: abhayhindusena.org.in" data-te="వర్తింపు: abhayhindusena.org.in">Applicable to: abhayhindusena.org.in</span></span>
+      <span class="meta-chip">🏛️ <span data-en="Trust: Sri Radha Manohar Das Foundation" data-te="ట్రస్ట్: శ్రీ రాధా మనోహర్ దాస్ ఫౌండేషన్">Trust: Sri Radha Manohar Das Foundation</span></span>
+    </div>
+  </header>
+
+  <!-- QUICK TABLE OF CONTENTS -->
+  <section class="toc-box" aria-label="Table of Contents">
+    <div class="toc-heading" data-en="📑 Quick Navigation Index" data-te="📑 వేగవంతమైన విషయ సూచిక">
+      📑 Quick Navigation Index
+    </div>
+    <div class="toc-chips-grid">
+      <a href="#sec-overview" class="toc-chip">1. <span data-en="Overview & Mission" data-te="పరిచయం & ఉద్దేశం">Overview & Mission</span></a>
+      <a href="#sec-data-collected" class="toc-chip">2. <span data-en="Information We Collect" data-te="సేకరించే వివరాలు">Information We Collect</span></a>
+      <a href="#sec-usage" class="toc-chip">3. <span data-en="How We Use Your Data" data-te="సమాచార వినియోగం">How We Use Your Data</span></a>
+      <a href="#sec-donations" class="toc-chip">4. <span data-en="Donations & Banking" data-te="విరాళాలు & బ్యాంకింగ్">Donations & Banking</span></a>
+      <a href="#sec-community" class="toc-chip">5. <span data-en="Community Chat & Forum" data-te="కమ్యూనిటీ నిబంధనలు">Community Chat & Forum</span></a>
+      <a href="#sec-no-sale" class="toc-chip">6. <span data-en="Zero Commercial Sale" data-te="డేటా విక్రయం నిషిద్ధం">Zero Commercial Sale</span></a>
+      <a href="#sec-security" class="toc-chip">7. <span data-en="Security & Storage" data-te="భద్రతా ప్రమాణాలు">Security & Storage</span></a>
+      <a href="#sec-cookies" class="toc-chip">8. <span data-en="Cookies & Storage" data-te="కుకీలు & స్థానిక నిల్వ">Cookies & Storage</span></a>
+      <a href="#sec-rights" class="toc-chip">9. <span data-en="Your Rights & Choices" data-te="మీ హక్కులు & ఎంపికలు">Your Rights & Choices</span></a>
+      <a href="#sec-contact" class="toc-chip">10. <span data-en="Grievance & Contact" data-te="సంప్రదింపుల వివరాలు">Grievance & Contact</span></a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: OVERVIEW & SCOPE -->
+  <article class="policy-section-card" id="sec-overview">
+    <div class="policy-card-header">
+      <span class="section-num-badge">1</span>
+      <h2 class="policy-card-title" data-en="Overview & Organizational Scope" data-te="పరిచయం & సంస్థాగత పరిధి">
+        Overview & Organizational Scope
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="Abhay Hindu Sena (అభయ్ హిందూ సేన) is a dedicated Sanatana Dharma organization and youth movement founded by RADHA MANOHAR DAS Swamiji, with administrative operations managed under Sri Radha Manohar Das Foundation. Our mission is centered upon sacred temple preservation, Gau Samrakshana (cow protection), Nitya Annadanam (food charity), youth self-defense training, and dharmic cultural education."
+         data-te="అభయ్ హిందూ సేన అనేది పూజ్యశ్రీ రాధా మనోహర్ దాస్ స్వామీజీ వారి దివ్య మార్గదర్శకత్వంలో స్థాపించబడిన సనాతన ధర్మ పరిరక్షణ మరియు యువ చైతన్యోద్యమం. దీని ధార్మిక మరియు సేవా కార్యక్రమాలు 'శ్రీ రాధా మనోహర్ దాస్ ఫౌండేషన్' ట్రస్ట్ ఆధ్వర్యంలో నిర్వహించబడుతున్నాయి. మా ప్రధాన లక్ష్యాలు ఆలయ పరిరక్షణ, గో సంరక్షణ, నిత్య అన్నదానం, యువతకు ఆత్మరక్షణ శిక్షణ మరియు ధార్మిక విద్యా వ్యాప్తి.">
+        Abhay Hindu Sena (అభయ్ హిందూ సేన) is a dedicated Sanatana Dharma organization and youth movement founded by RADHA MANOHAR DAS Swamiji, with administrative operations managed under Sri Radha Manohar Das Foundation. Our mission is centered upon sacred temple preservation, Gau Samrakshana (cow protection), Nitya Annadanam (food charity), youth self-defense training, and dharmic cultural education.
+      </p>
+      <p data-en="This Privacy Policy applies to all visitors, volunteers (Sevaks), donors, and devotees accessing our official portal (abhayhindusena.org.in), sub-domains, official WhatsApp notification channels, and digital communication forums."
+         data-te="ఈ గోప్యతా విధానం మా అధికారిక పోర్టల్ (abhayhindusena.org.in), ఉప-పేజీలు, అధికారిక వాట్సాప్ కమ్యూనికేషన్ ఛానెల్‌లు మరియు డిజిటల్ ఫోరమ్‌లను సందర్శించే భక్తులు, సేవకులు, విరాళదాతలు మరియు సాధారణ సందర్శకులందరికీ వర్తిస్తుంది.">
+        This Privacy Policy applies to all visitors, volunteers (Sevaks), donors, and devotees accessing our official portal (abhayhindusena.org.in), sub-domains, official WhatsApp notification channels, and digital communication forums.
+      </p>
+    </div>
+  </article>
+
+  <!-- SECTION 2: INFORMATION WE COLLECT -->
+  <article class="policy-section-card" id="sec-data-collected">
+    <div class="policy-card-header">
+      <span class="section-num-badge">2</span>
+      <h2 class="policy-card-title" data-en="Information We Collect" data-te="మేము సేకరించే సమాచారం">
+        Information We Collect
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="We only collect information that is strictly necessary to coordinate seva activities, process dharmic contributions, provide event RSVPs, or connect you with spiritual counseling. We collect information in the following ways:"
+         data-te="ధర్మ సేవా కార్యక్రమాలను సమన్వయం చేయడానికి, విరాళాల రసీదుల కోసం, కార్యక్రమాల నమోదులకు లేదా ఆధ్యాత్మిక మార్గదర్శనం కోసం అవసరమైన కనీస సమాచారాన్ని మాత్రమే మేము సేకరిస్తాము:">
+        We only collect information that is strictly necessary to coordinate seva activities, process dharmic contributions, provide event RSVPs, or connect you with spiritual counseling. We collect information in the following ways:
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="Volunteer & Sevak Registrations:" data-te="సేవకుల నమోదు వివరాలు:">Volunteer & Sevak Registrations:</strong>
+          <span data-en="When joining as a Sevak via our official state forms, we collect your Full Name, Phone/WhatsApp Number, District/City, State, and areas of Seva interest (Temple Protection, Annadanam, Event Security, Media, etc.)."
+                data-te="మీరు సేవకుడిగా చేరేందుకు అధికారిక ఫారమ్ నింపినప్పుడు మీ పూర్తి పేరు, ఫోన్/వాట్సాప్ నంబర్, జిల్లా/నగరం, రాష్ట్రం మరియు మీరు పాల్గొనదలచిన సేవా రంగాలు సేకరించబడతాయి.">
+            When joining as a Sevak via our official state forms, we collect your Full Name, Phone/WhatsApp Number, District/City, State, and areas of Seva interest (Temple Protection, Annadanam, Event Security, Media, etc.).
+          </span>
+        </li>
+        <li>
+          <strong data-en="Guruji Spiritual Appointments:" data-te="గురూజీ ఆధ్యాత్మిక అపాయింట్‌మెంట్లు:">Guruji Spiritual Appointments:</strong>
+          <span data-en="When booking a counseling or darshan appointment via WhatsApp, you provide your Name, City, and the spiritual query or matter you wish to discuss."
+                data-te="గురూజీతో సంభాషణ లేదా మార్గదర్శనం కొరకు వాట్సాప్ ద్వారా అపాయింట్‌మెంట్ అభ్యర్థించినప్పుడు మీ పేరు, ఊరు మరియు చర్చించవలసిన ధార్మిక అంశం నమోదు అవుతాయి.">
+            When booking a counseling or darshan appointment via WhatsApp, you provide your Name, City, and the spiritual query or matter you wish to discuss.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Live Community Forum (Dharma Charcha):" data-te="లైవ్ కమ్యూనిటీ ఫోరమ్:">Live Community Forum (Dharma Charcha):</strong>
+          <span data-en="Participants choose a Public Display Name and Location (e.g., 'Ramesh - Vijayawada') to post messages. We do NOT require email or password logins for public participation."
+                data-te="కమ్యూనిటీ ఫోరమ్‌లో పాల్గొనేందుకు భక్తులు తాము ఇష్టపడే ప్రదర్శన పేరు మరియు ఊరి పేరును మాత్రమే నమోదు చేస్తారు. దీనికి రహస్య పాస్‌వర్డ్‌లు లేదా ఇమెయిల్ లాగిన్‌లు అవసరం లేదు.">
+            Participants choose a Public Display Name and Location (e.g., 'Ramesh - Vijayawada') to post messages. We do NOT require email or password logins for public participation.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Dharma Daan (Donation Acknowledgments):" data-te="ధర్మ దానం (విరాళాల రసీదు వివరాలు):">Dharma Daan (Donation Acknowledgments):</strong>
+          <span data-en="If you submit donation confirmation details or request an acknowledgment receipt, we record your donor name, transaction reference number (UTR), and chosen seva cause."
+                data-te="మీరు విరాళం సమర్పించి రసీదు కోరినప్పుడు మీ పేరు, లావాదేవీ రిఫరెన్స్ నంబర్ (UTR) మరియు మీరు ఎంచుకున్న సేవా విభాగం మాత్రమే నమోదు చేయబడతాయి.">
+            If you submit donation confirmation details or request an acknowledgment receipt, we record your donor name, transaction reference number (UTR), and chosen seva cause.
+          </span>
+        </li>
+      </ul>
+
+      <div class="callout-box green">
+        <span class="callout-icon">🛡️</span>
+        <div class="callout-text">
+          <strong data-en="Strict Financial Protection:" data-te="కచ్చితమైన ఆర్థిక భద్రత:">Strict Financial Protection:</strong>
+          <span data-en="We DO NOT collect, process, or store your Credit Card numbers, Debit Card CVVs, Net Banking Passwords, or UPI PINs. All payments occur directly inside your bank-authorized app (Google Pay, PhonePe, BHIM, Paytm, or SBI)."
+                data-te="మీ క్రెడిట్/డెబిట్ కార్డు నంబర్లు, సీవీవీ (CVV), నెట్ బ్యాంకింగ్ పాస్‌వర్డ్‌లు లేదా యూపీఐ పిన్‌లను మేము ఎన్నడూ సేకరించము లేదా నిల్వ చేయము. విరాళాలు నేరుగా మీ స్వంత బ్యాంకింగ్ యాప్ ద్వారానే జరుగుతాయి.">
+            We DO NOT collect, process, or store your Credit Card numbers, Debit Card CVVs, Net Banking Passwords, or UPI PINs. All payments occur directly inside your bank-authorized app (Google Pay, PhonePe, BHIM, Paytm, or SBI).
+          </span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- SECTION 3: HOW WE USE YOUR INFORMATION -->
+  <article class="policy-section-card" id="sec-usage">
+    <div class="policy-card-header">
+      <span class="section-num-badge">3</span>
+      <h2 class="policy-card-title" data-en="How We Use Your Information" data-te="సమాచారాన్ని మేము ఎలా వినియోగిస్తాము">
+        How We Use Your Information
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="Information entrusted to us is utilized exclusively for genuine dharmic, charitable, and organizational coordination:"
+         data-te="మాకు అందించిన సమాచారం కేవలం పవిత్రమైన ధార్మిక, సేవా మరియు సమన్వయ అవసరాలకు మాత్రమే ఉపయోగించబడుతుంది:">
+        Information entrusted to us is utilized exclusively for genuine dharmic, charitable, and organizational coordination:
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="Sevak Roster & ID Card Issuance:" data-te="సేవకుల జాబితా & గుర్తింపు కార్డులు:">Sevak Roster & ID Card Issuance:</strong>
+          <span data-en="To enroll active volunteers, assign local chapter responsibilities, and generate verifiable digital Sevak Identity Cards for field coordination."
+                data-te="కార్యకర్తలను నమోదు చేయడం, స్థానిక ప్రాంతీయ సేవా బాధ్యతలను కేటాయించడం మరియు సేవా రంగంలో గుర్తింపు కొరకు డిజిటల్ కార్డులను జారీ చేయడం.">
+            To enroll active volunteers, assign local chapter responsibilities, and generate verifiable digital Sevak Identity Cards for field coordination.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Event Alerts & Emergency Temple Seva:" data-te="కార్యక్రమాల సమాచారం & అత్యవసర సేవా పిలుపులు:">Event Alerts & Emergency Temple Seva:</strong>
+          <span data-en="To notify registered volunteers regarding regional conventions, Gita satsangs, youth camps, and urgent temple preservation rallies."
+                data-te="ధర్మ సభలు, భగవద్గీత సత్సంగాలు, యువ శిబిరాలు మరియు ఆలయ సంరక్షణ అవసరాల సమయాల్లో వాట్సాప్ ద్వారా సమాచారం అందించడం.">
+            To notify registered volunteers regarding regional conventions, Gita satsangs, youth camps, and urgent temple preservation rallies.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Charitable Transparency & Annadanam Reports:" data-te="విరాళాల పారదర్శకత & సేవా నివేదికలు:">Charitable Transparency & Annadanam Reports:</strong>
+          <span data-en="To maintain accounting records for Sri Radha Manohar Das Foundation and provide donor updates on Annadanam and Gau Samrakshana activities."
+                data-te="ఫౌండేషన్ లెక్కల నిర్వహణ మరియు విరాళదాతలకు గో సంరక్షణ, నిత్య అన్నదాన సేవల పురోగతి నివేదికలను తెలియజేయడం.">
+            To maintain accounting records for Sri Radha Manohar Das Foundation and provide donor updates on Annadanam and Gau Samrakshana activities.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Community Health & Moderation:" data-te="కమ్యూనిటీ భద్రత & నియంత్రణ:">Community Health & Moderation:</strong>
+          <span data-en="To monitor forum integrity, filter spam or unlawful abuses, and ensure our community remains a respectful space for spiritual discourse."
+                data-te="ఫోరమ్‌లో అసభ్యత, విద్వేషం లేదా చట్టవిరుద్ధమైన రాతలు రాకుండా పర్యవేక్షించడం మరియు పవిత్రమైన వాతావరణాన్ని కాపాడటం.">
+            To monitor forum integrity, filter spam or unlawful abuses, and ensure our community remains a respectful space for spiritual discourse.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- SECTION 4: DONATIONS & FINANCIAL SECURITY -->
+  <article class="policy-section-card" id="sec-donations">
+    <div class="policy-card-header">
+      <span class="section-num-badge">4</span>
+      <h2 class="policy-card-title" data-en="Donations & Banking Security" data-te="విరాళాలు & బ్యాంకింగ్ భద్రత">
+        Donations & Banking Security
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="All donations (Dharma Daan) made to Abhay Hindu Sena are deposited directly into the officially registered State Bank of India (SBI) Current Account of the Trust:"
+         data-te="అభయ్ హిందూ సేనకు అందించే అన్ని ధర్మ విరాళాలు నేరుగా ట్రస్ట్ యొక్క అధికారిక స్టేట్ బ్యాంక్ ఆఫ్ ఇండియా (SBI) కరెంట్ ఖాతాకు జమ చేయబడతాయి:">
+        All donations (Dharma Daan) made to Abhay Hindu Sena are deposited directly into the officially registered State Bank of India (SBI) Current Account of the Trust:
+      </p>
+
+      <div class="callout-box gold">
+        <span class="callout-icon">🏛️</span>
+        <div class="callout-text">
+          <strong>Official Beneficiary Account:</strong> SRI RADHA MANOHAR DAS FOUNDATION<br>
+          <strong>Account Number:</strong> 44174507242 (State Bank of India)<br>
+          <strong>IFSC Code:</strong> SBIN0001008 (Governorpet Branch, Vijayawada)<br>
+          <strong>UPI ID:</strong> 44174507242@sbi
+        </div>
+      </div>
+
+      <p data-en="Because donations are processed directly through UPI rails and RBI-regulated banks, your banking security is backed by bank-grade TLS/SSL protocols. We maintain strict non-profit financial transparency, and donations are dedicated exclusively to Annadanam, cow fodder, temple renovation, and youth welfare."
+         data-te="ఈ లావాదేవీలు నేరుగా ఆర్‌బీఐ (RBI) గుర్తింపు పొందిన బ్యాంకింగ్ మరియు యూపీఐ విధానాల ద్వారా నిర్వహించబడుతున్నందున అత్యున్నత బ్యాంకింగ్ సెక్యూరిటీ వర్తిస్తుంది. విరాళాలు పూర్తిగా గో సంరక్షణ, నిత్య అన్నదానం మరియు ఆలయ పునరుద్ధరణ పనులకే వినియోగించబడతాయి.">
+        Because donations are processed directly through UPI rails and RBI-regulated banks, your banking security is backed by bank-grade TLS/SSL protocols. We maintain strict non-profit financial transparency, and donations are dedicated exclusively to Annadanam, cow fodder, temple renovation, and youth welfare.
+      </p>
+    </div>
+  </article>
+
+  <!-- SECTION 5: COMMUNITY CHAT & USER RESPONSIBILITY -->
+  <article class="policy-section-card" id="sec-community">
+    <div class="policy-card-header">
+      <span class="section-num-badge">5</span>
+      <h2 class="policy-card-title" data-en="Live Community Forum & User Accountability" data-te="లైవ్ కమ్యూనిటీ ఫోరమ్ & సభ్యుల బాధ్యత">
+        Live Community Forum & User Accountability
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="The Live Community Chat ('Dharma Charcha') is a public discussion space provided for devotees and karyakarthas to exchange spiritual thoughts, seva updates, and constructive ideas."
+         data-te="లైవ్ కమ్యూనిటీ చాట్ ('ధర్మ చర్చ') అనేది భక్తులు, సేవకులు ధార్మిక భావాలను మరియు సేవా విశేషాలను పంచుకోవడానికి ఏర్పాటు చేసిన బహిరంగ వేదిక.">
+        The Live Community Chat ('Dharma Charcha') is a public discussion space provided for devotees and karyakarthas to exchange spiritual thoughts, seva updates, and constructive ideas.
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="Public Visibility:" data-te="బహిరంగ వీక్షణ:">Public Visibility:</strong>
+          <span data-en="Any text message posted in the community chat is immediately visible to other visitors. Please do not post private personal telephone numbers, home addresses, or financial passwords in the open chat."
+                data-te="కమ్యూనిటీ చాట్‌లో పోస్ట్ చేసే సందేశాలు అందరికీ కనిపిస్తాయి. కాబట్టి మీ వ్యక్తిగత చిరునామాలు, రహస్య వివరాలు లేదా బ్యాంకింగ్ సమాచారాన్ని బహిరంగంగా పోస్ట్ చేయకండి.">
+            Any text message posted in the community chat is immediately visible to other visitors. Please do not post private personal telephone numbers, home addresses, or financial passwords in the open chat.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Absolute Non-Liability Disclaimer:" data-te="బాధ్యతా విముక్తి స్పష్టీకరణ:">Absolute Non-Liability Disclaimer:</strong>
+          <span data-en="Opinions expressed in the forum belong solely to their respective individual authors. RADHA MANOHAR DAS Swamiji, the Abhay Hindu Sena organization, trustees, administrators, and developers bear NO civil, criminal, or personal liability for user-generated remarks or hyperlinks."
+                data-te="ఫోరమ్‌లో సభ్యులు వ్యక్తపరిచే అభిప్రాయాలకు ఆయా వ్యక్తులే పూర్తి బాధ్యులు. పూజ్యశ్రీ రాధా మనోహర్ దాస్ స్వామీజీ వారికి గానీ, అభయ్ హిందూ సేన సంస్థకు గానీ, నిర్వాహకులకు గానీ ఎటువంటి చట్టపరమైన బాధ్యత ఉండదు.">
+            Opinions expressed in the forum belong solely to their respective individual authors. RADHA MANOHAR DAS Swamiji, the Abhay Hindu Sena organization, trustees, administrators, and developers bear NO civil, criminal, or personal liability for user-generated remarks or hyperlinks.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Zero Tolerance for Defamation or Obscenity:" data-te="అసభ్యత, దూషణలపై కఠిన నిషేధం:">Zero Tolerance for Defamation or Obscenity:</strong>
+          <span data-en="Any user who posts defamatory, blasphemous, sexually explicit, abusive, or unlawful messages will have their content permanently removed and their device posting privileges revoked without notice."
+                data-te="ఎవరైనా అసభ్యకరమైన, కించపరిచే లేదా చట్టవిరుద్ధమైన రాతలు రాస్తే వారి సందేశాలు వెంటనే తొలగించబడతాయి మరియు వారిని శాశ్వతంగా నిషేధించడం జరుగుతుంది.">
+            Any user who posts defamatory, blasphemous, sexually explicit, abusive, or unlawful messages will have their content permanently removed and their device posting privileges revoked without notice.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- SECTION 6: ZERO COMMERCIAL SALE OF DATA -->
+  <article class="policy-section-card" id="sec-no-sale">
+    <div class="policy-card-header">
+      <span class="section-num-badge">6</span>
+      <h2 class="policy-card-title" data-en="Our Sacred Promise: Zero Sale or Rental of Data" data-te="మా పవిత్ర వాగ్దానం: సమాచార విక్రయం పూర్తిగా నిషిద్ధం">
+        Our Sacred Promise: Zero Sale or Rental of Data
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <div class="callout-box">
+        <span class="callout-icon">🚫</span>
+        <div class="callout-text">
+          <strong data-en="We NEVER Sell Your Data:" data-te="మీ సమాచారం ఎప్పటికీ విక్రయించబడదు:">We NEVER Sell Your Data:</strong>
+          <span data-en="Abhay Hindu Sena operates solely for Rashtra Seva and Dharma Rakshana. We do NOT monetize your data. We have never sold, rented, leased, or traded any volunteer, devotee, or donor details to commercial advertisers, marketing brokers, or corporate data harvesters."
+                data-te="అభయ్ హిందూ సేన కేవలం ధర్మ పరిరక్షణ మరియు నిస్వార్థ రాష్ట్ర సేవ కోసం పనిచేస్తుంది. మీ సమాచారాన్ని వ్యాపార ప్రయోజనాల కోసం అమ్మడం, అద్దెకు ఇవ్వడం లేదా మార్కెటింగ్ ఏజెన్సీలకు బదిలీ చేయడం వంటి పనులను మేము ఎట్టి పరిస్థితుల్లోనూ చేయము.">
+            Abhay Hindu Sena operates solely for Rashtra Seva and Dharma Rakshana. We do NOT monetize your data. We have never sold, rented, leased, or traded any volunteer, devotee, or donor details to commercial advertisers, marketing brokers, or corporate data harvesters.
+          </span>
+        </div>
+      </div>
+      <p data-en="Your contact details are used strictly by our dedicated seva coordinators to reach out to you directly for legitimate organizational activities."
+         data-te="మీ వివరాలు కేవలం మా సంస్థాగత సేవా సమన్వయకర్తల ద్వారా మాత్రమే అధికారిక కార్యక్రమాల సమాచారం కోసం ఉపయోగించబడతాయి.">
+        Your contact details are used strictly by our dedicated seva coordinators to reach out to you directly for legitimate organizational activities.
+      </p>
+    </div>
+  </article>
+
+  <!-- SECTION 7: DATA SECURITY & STORAGE -->
+  <article class="policy-section-card" id="sec-security">
+    <div class="policy-card-header">
+      <span class="section-num-badge">7</span>
+      <h2 class="policy-card-title" data-en="Data Security & Cloud Infrastructure" data-te="భద్రతా ప్రమాణాలు & క్లౌడ్ నిల్వ">
+        Data Security & Cloud Infrastructure
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="We implement robust administrative, technical, and physical security measures to protect your personal details against unauthorized access, loss, or alteration:"
+         data-te="మీ వ్యక్తిగత వివరాలను అనధికార ప్రాప్యత, దుర్వినియోగం లేదా నష్టం నుండి రక్షించడానికి మేము బలమైన భద్రతా పద్ధతులను అమలు చేస్తున్నాము:">
+        We implement robust administrative, technical, and physical security measures to protect your personal details against unauthorized access, loss, or alteration:
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="End-to-End HTTPS Encryption:" data-te="HTTPS ఎన్‌క్రిప్షన్:">End-to-End HTTPS Encryption:</strong>
+          <span data-en="All communication between your web browser and our servers is encrypted using modern Transport Layer Security (TLS 1.3 / SSL)."
+                data-te="మీ బ్రౌజర్ మరియు మా వెబ్‌సైట్ మధ్య జరిగే ప్రతి సమాచార మార్పిడి ఆధునిక ఎస్ఎస్ఎల్ (SSL / TLS) ఎన్‌క్రిప్షన్ ద్వారా భద్రపరచబడుతుంది.">
+            All communication between your web browser and our servers is encrypted using modern Transport Layer Security (TLS 1.3 / SSL).
+          </span>
+        </li>
+        <li>
+          <strong data-en="Google Cloud & Firebase Infrastructure:" data-te="గూగుల్ క్లౌడ్ & ఫైర్‌బేస్ వేదిక:">Google Cloud & Firebase Infrastructure:</strong>
+          <span data-en="Our dynamic database services are hosted on enterprise-grade Google Cloud Platform (Firebase Firestore) with continuous automated backup and strict security rules."
+                data-te="మా డేటాబేస్ సేవలు గూగుల్ క్లౌడ్ (ఫైర్‌బేస్) యొక్క అత్యున్నత భద్రతా ప్రమాణాల ఆధారంగా స్వయంచాలక బ్యాకప్‌లతో నిర్వహించబడుతున్నాయి.">
+            Our dynamic database services are hosted on enterprise-grade Google Cloud Platform (Firebase Firestore) with continuous automated backup and strict security rules.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Role-Based Access Control:" data-te="పరిమిత నిర్వాహక యాక్సెస్:">Role-Based Access Control:</strong>
+          <span data-en="Only authenticated authorized administrators possess access to membership registries, protected by secure credentials."
+                data-te="సభ్యుల వివరాలను కేవలం ధృవీకరించబడిన అధీకృత నిర్వాహకులు మాత్రమే సురక్షిత ఆధారాలతో చూడగలరు.">
+            Only authenticated authorized administrators possess access to membership registries, protected by secure credentials.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- SECTION 8: COOKIES & LOCAL STORAGE -->
+  <article class="policy-section-card" id="sec-cookies">
+    <div class="policy-card-header">
+      <span class="section-num-badge">8</span>
+      <h2 class="policy-card-title" data-en="Cookies & Device LocalStorage" data-te="కుకీలు & స్థానిక బ్రౌజర్ నిల్వ">
+        Cookies & Device LocalStorage
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="We do NOT deploy third-party advertising tracking cookies or behavioral profile beacons. We utilize minimal client-side LocalStorage exclusively to deliver a smooth user experience:"
+         data-te="మేము ఎటువంటి వాణిజ్య ట్రాకింగ్ కుకీలను లేదా ప్రకటన నెట్‌వర్క్‌లను ఉపయోగించము. కేవలం మీ బ్రౌజింగ్ అనుభవాన్ని సులభతరం చేసేందుకు మీ స్వంత ఫోన్/కంప్యూటర్‌లోని స్థానిక లోకల్ స్టోరేజ్‌ను మాత్రమే వినియోగిస్తాము:">
+        We do NOT deploy third-party advertising tracking cookies or behavioral profile beacons. We utilize minimal client-side LocalStorage exclusively to deliver a smooth user experience:
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="Language Preference:" data-te="భాషా ప్రాధాన్యత:">Language Preference:</strong>
+          <span data-en="Remembers whether you selected Telugu or English so the site renders in your chosen language across visits."
+                data-te="మీరు ఎంచుకున్న భాషను (తెలుగు లేదా ఇంగ్లీష్) గుర్తుపెట్టుకుని తదుపరి సారి కూడా అదే భాషలో చూపిస్తుంది.">
+            Remembers whether you selected Telugu or English so the site renders in your chosen language across visits.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Community Display Handle:" data-te="కమ్యూనిటీ పేరు:">Community Display Handle:</strong>
+          <span data-en="Stores your chosen chat handle locally on your device so you do not need to re-type it on every message."
+                data-te="కమ్యూనిటీ చాట్‌లో మీ ప్రదర్శన పేరును మీ పరికరంలో మాత్రమే భద్రపరుస్తుంది.">
+            Stores your chosen chat handle locally on your device so you do not need to re-type it on every message.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- SECTION 9: USER RIGHTS & CHOICES -->
+  <article class="policy-section-card" id="sec-rights">
+    <div class="policy-card-header">
+      <span class="section-num-badge">9</span>
+      <h2 class="policy-card-title" data-en="Your Rights & Data Control" data-te="మీ హక్కులు & నియంత్రణ అధికారాలు">
+        Your Rights & Data Control
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="We believe in honoring your choices. Under applicable data privacy standards and Indian IT laws, you possess the following rights regarding your personal records:"
+         data-te="మీ వ్యక్తిగత వివరాలపై మీకున్న హక్కులను మేము పూర్తిగా గౌరవిస్తాము. భారతీయ ఐటీ చట్టాలు మరియు గోప్యతా నిబంధనల ప్రకారం మీకు ఈ క్రింది హక్కులు ఉన్నాయి:">
+        We believe in honoring your choices. Under applicable data privacy standards and Indian IT laws, you possess the following rights regarding your personal records:
+      </p>
+
+      <ul class="policy-list">
+        <li>
+          <strong data-en="Right to Access & Review:" data-te="వివరాలను పరిశీలించే హక్కు:">Right to Access & Review:</strong>
+          <span data-en="You may request a copy of the personal details you submitted through our volunteer or appointment channels."
+                data-te="మీరు మాకు అందించిన సేవా వివరాలు ఏమిటో తెలుసుకునే హక్కు మీకు ఉంది.">
+            You may request a copy of the personal details you submitted through our volunteer or appointment channels.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Right to Correction / Modification:" data-te="సవరణ చేసుకునే హక్కు:">Right to Correction / Modification:</strong>
+          <span data-en="If your contact number, seva preference, or location has changed, you may notify us to update your records."
+                data-te="మీ ఫోన్ నంబర్, నివాస ప్రాంతం లేదా సేవా రంగం మారినట్లయితే వాటిని సరిదిద్దమని కోరవచ్చు.">
+            If your contact number, seva preference, or location has changed, you may notify us to update your records.
+          </span>
+        </li>
+        <li>
+          <strong data-en="Right to Deletion / Opt-Out:" data-te="తొలగింపు / విరమించుకునే హక్కు:">Right to Deletion / Opt-Out:</strong>
+          <span data-en="You may request the removal of your volunteer registration or leave our official WhatsApp channel at any time without penalty."
+                data-te="మీ వివరాలను రిజిస్ట్రీ నుండి తొలగించమని లేదా వాట్సాప్ ఛానెల్ నుండి వైదొలగాలని ఎప్పుడైనా కోరవచ్చు.">
+            You may request the removal of your volunteer registration or leave our official WhatsApp channel at any time without penalty.
+          </span>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- SECTION 10: POLICY UPDATES & CONTACT -->
+  <article class="policy-section-card" id="sec-contact">
+    <div class="policy-card-header">
+      <span class="section-num-badge">10</span>
+      <h2 class="policy-card-title" data-en="Policy Updates & Grievance Contact" data-te="విధాన నవీకరణలు & సంప్రదింపుల వివరాలు">
+        Policy Updates & Grievance Contact
+      </h2>
+    </div>
+    <div class="policy-card-content">
+      <p data-en="As digital laws evolve and our seva programs expand, we may periodically review and update this Privacy Policy. Any amendments will be published on this page with an updated Effective Date."
+         data-te="సేవా కార్యక్రమాల విస్తరణ మరియు చట్టపరమైన మార్గదర్శకాలకు అనుగుణంగా ఈ గోప్యతా విధానంలో ఎప్పటికప్పుడు మార్పులు చేయవచ్చు. అటువంటి మార్పులు వెంటనే ఈ పేజీలో ప్రచురించబడతాయి.">
+        As digital laws evolve and our seva programs expand, we may periodically review and update this Privacy Policy. Any amendments will be published on this page with an updated Effective Date.
+      </p>
+
+      <div class="contact-trust-card">
+        <h3 data-en="Have Questions or Privacy Requests?" data-te="సందేహాలు లేదా గోప్యతా అభ్యర్థనలు ఉన్నాయా?">
+          Have Questions or Privacy Requests?
+        </h3>
+        <p data-en="If you have any inquiries regarding this Privacy Policy, wish to update your volunteer details, or need assistance, reach out directly to our official secretariat:"
+           data-te="ఈ గోప్యతా విధానంపై ఏవైనా సందేహాలు ఉన్నా లేదా మీ సేవా వివరాలను సవరించుకోవాలన్నా నేరుగా మా అధికారిక కార్యాలయాన్ని సంప్రదించండి:">
+          If you have any inquiries regarding this Privacy Policy, wish to update your volunteer details, or need assistance, reach out directly to our official secretariat:
+        </p>
+
+        <div class="contact-actions-row">
+          <a href="https://wa.me/919866957796?text=Namaste%20Guruji!%20I%20have%20a%20query%20regarding%20Abhay%20Hindu%20Sena." target="_blank" rel="noopener" class="btn-contact-action btn-wa-contact">
+            <span>💬 Official WhatsApp: +91 98669 57796</span>
+          </a>
+          <a href="mailto:ahsrmdas@gmail.com" class="btn-contact-action btn-email-contact">
+            <span>✉️ Email: ahsrmdas@gmail.com</span>
+          </a>
+        </div>
+
+        <div style="margin-top:22px; font-size:0.82rem; color:var(--text-muted); line-height:1.6;">
+          <strong style="color:var(--gold-bright);">Sri Radha Manohar Das Foundation (Abhay Hindu Sena)</strong><br>
+          Founded by RADHA MANOHAR DAS Swamiji<br>
+          Serving Andhra Pradesh, Telangana & All Bharat • Vijayawada / Tirupati, AP, India.
+        </div>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="footer-logo">
+  <div class="footer-brand">🚩 ABHAY HINDU SENA</div>
+  <div class="footer-links">
+    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
+    <a href="index.html#founder" data-en="Founder" data-te="వ్యవస్థాపకులు">Founder</a>
+    <a href="index.html#missions" data-en="Missions" data-te="లక్ష్యాలు">Missions</a>
+    <a href="videos.html" data-en="Videos" data-te="వీడియోలు">Videos</a>
+    <a href="songs.html" data-en="Songs & Dialogues" data-te="గీతాలు & గర్జనలు">Songs & Dialogues</a>
+    <a href="gallery.html" data-en="Gallery" data-te="గ్యాలరీ">Gallery</a>
+    <a href="events.html" data-en="Events" data-te="కార్యక్రమాలు">Events</a>
+    <a href="community.html" data-en="Community" data-te="కమ్యూనిటీ">Community</a>
+    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
+    <a href="donate.html" data-en="Donate" data-te="విరాళం">Donate</a>
+    <a href="privacy.html" class="active" data-en="Privacy Policy" data-te="గోప్యతా విధానం">Privacy Policy</a>
+    <a href="javascript:void(0)" onclick="openGurujiAppointment()" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
+    <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Abhay Hindu Sena. Founded by RADHA MANOHAR DAS Swamiji. Official Trust: Sri Radha Manohar Das Foundation. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+  // Open WhatsApp to book an appointment with Guruji
+  function openGurujiAppointment() {
+    const phone = "919866957796";
+    const msg = 
+      "🚩 *హరే కృష్ణ గురూజీ! మీ పాదపద్మములకు సాష్టాంగ ప్రణామాలు.* 🙏\n" +
+      "(Hare Krishna Guruji! My humble dandavat pranams at your lotus feet.)\n\n" +
+      "గురూజీ, మీతో మాట్లాడి మార్గదర్శనం మరియు ఆశీస్సులు పొందేందుకు అపాయింట్‌మెంట్ సమయాన్ని అనుగ్రహించవలసిందిగా ప్రార్థిస్తున్నాను.\n" +
+      "(Guruji, I humbly seek your blessings and guidance, and request an appointment to speak with you.)\n\n" +
+      "👤 *నా పేరు (My Name):* \n" +
+      "📍 *ఊరు / నగరం (Location):* \n" +
+      "📝 *మాట్లాడవలసిన విషయం (Purpose / Query):* \n\n" +
+      "దయతో అనువైన సమయాన్ని తెలియజేయగలరు గురూజీ. జై శ్రీరామ్! 🙏🚩";
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    const win = window.open(waUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = waUrl;
+    }
+  }
+
+  // Language Toggle Engine
+  let isTelugu = false;
+  function toggleLanguage(forcedState) {
+    if (typeof forcedState === 'boolean') {
+      isTelugu = forcedState;
+    } else {
+      isTelugu = !isTelugu;
+    }
+    try { localStorage.setItem('ahs_preferred_lang', isTelugu ? 'te' : 'en'); } catch(e) {}
+    document.body.classList.toggle('telugu-mode', isTelugu);
+    document.documentElement.classList.toggle('telugu-mode', isTelugu);
+    const langLabel = document.getElementById('langText');
+    if (langLabel) {
+      langLabel.textContent = isTelugu ? 'తెలుగు (Active)' : 'English / తెలుగు';
+    }
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = isTelugu ? el.getAttribute('data-te') : el.getAttribute('data-en');
+      if (val) {
+        if (el.innerHTML.includes('<') && (val.includes('<') || val.includes('&'))) {
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
+      }
+    });
+  }
+
+  // Auto-detect preferred language on load
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      if (localStorage.getItem('ahs_preferred_lang') === 'te') {
+        toggleLanguage(true);
+      }
+    } catch(e) {}
+  });
+</script>
+</body>
+</html>
