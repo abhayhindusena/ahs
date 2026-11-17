@@ -44,9 +44,9 @@
   .site-header {
     background: linear-gradient(180deg, rgba(30,5,5,0.98) 0%, rgba(13,4,4,0.99) 100%);
     border-bottom: 1px solid var(--border-gold);
-    padding: 10px 5%;
+    padding: 12px 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1000;
@@ -751,14 +751,11 @@
   }
 
   @media (max-width: 768px) {
-    .site-header { padding: 9px 12px; width: 100%; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; }
-    .header-brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; overflow: visible; }
+    .site-header { padding: 9px 12px; width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; }
+    .header-brand { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; overflow: visible; }
     .circle-logo { width: 36px !important; height: 36px !important; flex-shrink: 0; }
     .header-brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; overflow: visible; }
-    .header-brand-text h1 { font-size: 0.92rem; line-height: 1.2; white-space: nowrap; margin: 0; letter-spacing: 0.3px; }
-    .header-brand-text span { font-size: 0.62rem; line-height: 1.2; white-space: nowrap; display: block; letter-spacing: 0.2px; }
-    .header-actions { display: flex !important; gap: 6px; }
-    .header-btn { padding: 6px 10px !important; font-size: 0.72rem !important; }
+    .header-brand-text h1 { font-size: 0.95rem; line-height: 1.2; white-space: nowrap; margin: 0; letter-spacing: 0.3px; }
     .glass-navbar {
       width: calc(100% - 16px) !important;
       max-width: calc(100% - 16px) !important;
@@ -791,13 +788,8 @@
     <img src="assets/logo.png" alt="Abhay Hindu Sena Logo" class="circle-logo">
     <div class="header-brand-text">
       <h1>ABHAY HINDU SENA</h1>
-      <span data-en="Sanatana Dharma • Rashtra Seva" data-te="సనాతన ధర్మం • రాష్ట్ర సేవ">Sanatana Dharma • Rashtra Seva</span>
     </div>
   </a>
-  <div class="header-actions">
-    <a href="index.html" class="header-btn btn-back-top" data-en="Home 🏠" data-te="హోమ్ 🏠">Home 🏠</a>
-    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="header-btn btn-appointment-top" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
-  </div>
 </header>
 
 <!-- Main Volunteer Form Section -->
@@ -880,12 +872,6 @@
 <footer>
   <img src="assets/logo.png" alt="Abhay Hindu Sena Crest" class="footer-logo">
   <div class="footer-brand">🚩 ABHAY HINDU SENA</div>
-  <div class="footer-links">
-    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
-    <a href="join.html" data-en="Join Us" data-te="చేరండి">Join Us</a>
-    <a href="javascript:void(0)" onclick="openGurujiAppointment()" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
-    <a href="mailto:ahsrmdas@gmail.com">ahsrmdas@gmail.com</a>
-  </div>
   <div class="footer-copy">
     © 2026 Abhay Hindu Sena. Founded by RADHA MANOHAR DAS Swamiji. All Rights Reserved.
   </div>
