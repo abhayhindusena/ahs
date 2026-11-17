@@ -340,6 +340,8 @@
     }
   }
   .state-card {
+    text-decoration: none;
+    color: inherit;
     background: linear-gradient(180deg, #1d0707 0%, #0d0303 100%);
     border: 1.5px solid var(--border-gold);
     border-radius: 16px;
@@ -428,6 +430,10 @@
     flex: 1;
   }
   .state-btn {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
     width: 100%;
     background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
     color: #000;
@@ -818,59 +824,41 @@
 
     <div class="state-cards-grid">
       <!-- 1. ANDHRA PRADESH -->
-      <div class="state-card" onclick="selectState('ap')">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQOSnJpdEqFBF_ak_WyyWtmYsTB37iEf94O4F_nFddNuDIvw/viewform" target="_blank" rel="noopener" class="state-card">
         <div class="state-badge">🚩 AP SEVAKS</div>
         <div class="state-icon">🏛️</div>
         <h3 class="state-name">ఆంధ్రప్రదేశ్</h3>
         <span class="state-name-en">Andhra Pradesh</span>
-        <button type="button" class="state-btn">
-          నమోదు చేసుకోండి (Register AP) ➔
-        </button>
-      </div>
+        <span class="state-btn">
+          నమోదు చేసుకోండి (Open Form) ➔
+        </span>
+      </a>
 
       <!-- 2. TELANGANA -->
-      <div class="state-card featured" onclick="selectState('ts')">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScUf9l_Jcw8m_vC99RhHt-p7n63p_oIozVdyTlwuFj0PCa9TA/viewform" target="_blank" rel="noopener" class="state-card featured">
         <div class="state-badge" style="background:#FF6B1A;">🚩 TG SEVAKS</div>
         <div class="state-icon">⚔️</div>
         <h3 class="state-name">తెలంగాణ</h3>
         <span class="state-name-en">Telangana</span>
-        <button type="button" class="state-btn">
-          నమోదు చేసుకోండి (Register TG) ➔
-        </button>
-      </div>
+        <span class="state-btn">
+          నమోదు చేసుకోండి (Open Form) ➔
+        </span>
+      </a>
 
       <!-- 3. OTHER STATES / ALL BHARAT -->
-      <div class="state-card" onclick="selectState('other')">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScDN2eCwTKdjGQT4UPtdKMWNisBkZbFPRsqMENLWVO2yEZ4rQ/viewform" target="_blank" rel="noopener" class="state-card">
         <div class="state-badge">🇮🇳 ALL INDIA</div>
         <div class="state-icon">🚩</div>
         <h3 class="state-name">ఇతర రాష్ట్రాలు</h3>
         <span class="state-name-en">All India / Other States</span>
-        <button type="button" class="state-btn">
-          నమోదు చేసుకోండి (All India) ➔
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 2: GOOGLE FORM EMBED VIEW -->
-  <div id="formEmbedSection" class="form-embed-wrap" style="display:none;">
-    <!-- Form Controls Bar -->
-    <div class="form-embed-topbar">
-      <button type="button" class="btn-back-state" onclick="showStateSelection()">
-        ⬅️ వేరే రాష్ట్రం ఎంచుకోండి (Change State)
-      </button>
-
-      <div class="active-state-indicator">
-        <span id="activeStateBadge" class="state-indicator-badge">📍 ఆంధ్రప్రదేశ్ (AP)</span>
-      </div>
-
-      <a id="btnOpenDirect" href="#" target="_blank" class="btn-open-direct" title="Open Google Form in full screen">
-        📱 Open in Full Screen ↗
+        <span class="state-btn">
+          నమోదు చేసుకోండి (Open Form) ➔
+        </span>
       </a>
     </div>
 
     <!-- Official WhatsApp Channel Callout Banner -->
-    <div class="whatsapp-channel-reminder">
+    <div class="whatsapp-channel-reminder" style="margin-top:28px;">
       <div class="wa-reminder-content">
         <div class="wa-reminder-icon">💬</div>
         <div>
@@ -878,26 +866,8 @@
           <p>తాజా సమావేశాలు, సమాచారం మరియు గురూజీ మార్గదర్శకాల కోసం మా అధికారిక వాట్సాప్ ఛానెల్‌లో సభ్యులుగా చేరండి.</p>
         </div>
       </div>
-      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" class="wa-reminder-btn">
+      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" rel="noopener" class="wa-reminder-btn">
         వాట్సాప్ ఛానెల్ లో చేరండి ➔
-      </a>
-    </div>
-
-    <!-- Google Form Iframe -->
-    <div class="google-form-frame-wrap">
-      <div id="formLoadingSpinner" class="form-spinner">
-        ⏳ ఫారమ్ లోడ్ అవుతోంది... (Loading Official Form...)
-      </div>
-      <iframe id="googleFormIframe" src="" width="100%" height="960" frameborder="0" marginheight="0" marginwidth="0" onload="hideSpinner()">
-        Loading official registration form…
-      </iframe>
-    </div>
-
-    <!-- Bottom WhatsApp Channel Reminder -->
-    <div style="text-align:center; margin-top:24px;">
-      <a href="https://whatsapp.com/channel/0029VbE1mAWHltYHjqZYd623" target="_blank" class="btn-whatsapp-channel-join" style="display:inline-flex; width:auto; padding:12px 28px; text-decoration:none;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.075-2.029-.475-1.706-.702-2.79-2.457-2.875-2.571-.085-.114-.689-.916-.689-1.747 0-.831.436-1.239.591-1.397.155-.158.339-.197.452-.197.113 0 .226 0 .324.005.105.006.246-.04.385.293.144.344.492 1.2.535 1.288.043.088.072.19.014.305-.058.115-.088.187-.174.288-.088.102-.185.228-.264.306-.089.088-.182.185-.078.363.104.178.462.763.992 1.235.682.608 1.258.796 1.436.885.178.089.282.075.387-.046.105-.121.452-.527.573-.708.121-.181.242-.151.405-.09.163.06 1.034.488 1.212.577.178.089.297.133.34.207.043.074.043.431-.101.836z"/></svg>
-        ఫారమ్ నింపారా? వెంటనే మా అధికారిక వాట్సాప్ ఛానెల్‌లో చేరండి ➔
       </a>
     </div>
   </div>
@@ -1015,55 +985,10 @@
 
   function selectState(stateKey) {
     const config = GOOGLE_FORMS[stateKey] || GOOGLE_FORMS.ap;
-    
-    const selectSec = document.getElementById('stateSelectSection');
-    const embedSec = document.getElementById('formEmbedSection');
-    if (selectSec) selectSec.style.display = 'none';
-    if (embedSec) embedSec.style.display = 'block';
-
-    const badge = document.getElementById('activeStateBadge');
-    if (badge) badge.textContent = `📍 ${config.short}`;
-
-    const openDirect = document.getElementById('btnOpenDirect');
-    if (openDirect) openDirect.href = config.directUrl;
-
-    const iframe = document.getElementById('googleFormIframe');
-    const spinner = document.getElementById('formLoadingSpinner');
-    if (spinner) spinner.style.display = 'block';
-    if (iframe) {
-      iframe.src = config.embedUrl;
-    }
-
-    // Scroll smoothly to form
-    if (embedSec) embedSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    // Update URL query parameter without page reload
-    const url = new URL(window.location);
-    url.searchParams.set('state', stateKey);
-    window.history.replaceState({}, '', url);
+    window.open(config.directUrl, '_blank', 'noopener');
   }
 
-  function showStateSelection() {
-    const selectSec = document.getElementById('stateSelectSection');
-    const embedSec = document.getElementById('formEmbedSection');
-    if (selectSec) selectSec.style.display = 'block';
-    if (embedSec) embedSec.style.display = 'none';
-    const iframe = document.getElementById('googleFormIframe');
-    if (iframe) iframe.src = '';
-
-    const url = new URL(window.location);
-    url.searchParams.delete('state');
-    window.history.replaceState({}, '', url);
-
-    if (selectSec) selectSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function hideSpinner() {
-    const spinner = document.getElementById('formLoadingSpinner');
-    if (spinner) spinner.style.display = 'none';
-  }
-
-  // Auto-detect ?state= in URL on page load
+  // Auto-detect ?state= in URL on page load and redirect directly to official Google Form
   window.addEventListener('DOMContentLoaded', () => {
     try {
       if (localStorage.getItem('ahs_preferred_lang') === 'te') {
@@ -1073,12 +998,15 @@
 
     const params = new URLSearchParams(window.location.search);
     const st = params.get('state');
-    if (st && GOOGLE_FORMS[st.toLowerCase()]) {
-      selectState(st.toLowerCase());
-    } else if (st && (st.toLowerCase() === 'tg' || st.toLowerCase() === 'telangana')) {
-      selectState('ts');
-    } else if (st && (st.toLowerCase() === 'ap' || st.toLowerCase() === 'andhra' || st.toLowerCase() === 'andhrapradesh')) {
-      selectState('ap');
+    if (st) {
+      const s = st.toLowerCase();
+      if (GOOGLE_FORMS[s]) {
+        window.location.replace(GOOGLE_FORMS[s].directUrl);
+      } else if (s === 'tg' || s === 'telangana') {
+        window.location.replace(GOOGLE_FORMS.ts.directUrl);
+      } else if (s === 'ap' || s === 'andhra' || s === 'andhrapradesh') {
+        window.location.replace(GOOGLE_FORMS.ap.directUrl);
+      }
     }
   });
 
