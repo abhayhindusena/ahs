@@ -177,45 +177,13 @@
     color: var(--saffron);
   }
 
-  /* Cinematic Card */
-  .card-box {
+  /* Join Action Wrapper */
+  .action-wrap {
     width: 100%;
-    max-width: 540px;
-    background: linear-gradient(180deg, rgba(38, 10, 10, 0.85) 0%, rgba(18, 4, 4, 0.95) 100%);
-    border: 1.5px solid rgba(212, 175, 55, 0.4);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 107, 26, 0.15);
-    border-radius: 20px;
-    padding: clamp(20px, 4vw, 32px) clamp(16px, 4vw, 28px);
-    backdrop-filter: blur(16px);
+    max-width: 440px;
+    margin-top: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Mission Taglines */
-  .tagline-telugu {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
-    font-weight: 700;
-    color: #FFA45A;
-    line-height: 1.4;
-    margin-bottom: 6px;
-  }
-  .tagline-english {
-    font-size: clamp(0.75rem, 2.2vw, 0.85rem);
-    color: #CFC2B2;
-    letter-spacing: 0.5px;
-    margin-bottom: 22px;
-  }
-
-  /* Decorative Glow Bar */
-  .glow-divider {
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold-bright), var(--saffron), transparent);
-    border-radius: 3px;
-    margin-bottom: 24px;
-    box-shadow: 0 0 10px var(--gold-bright);
+    justify-content: center;
   }
 
   /* The Single Join Button */
@@ -286,9 +254,6 @@
     .portal-title { margin-bottom: 2px; }
     .portal-telugu { margin-bottom: 8px; }
     .founder-tag { margin-bottom: 12px; }
-    .card-box { padding: 16px 14px; }
-    .tagline-english { margin-bottom: 14px; }
-    .glow-divider { margin-bottom: 14px; }
     .btn-join { padding: 12px 20px; }
   }
 </style>
@@ -317,14 +282,8 @@
       <span class="founder-wing">✦</span>
     </div>
 
-    <!-- Card Box with Missions and Join Button -->
-    <div class="card-box">
-      <div class="tagline-telugu">ధర్మ రక్షణ • ఆలయ పరిరక్షణ • యువజన జాగృతి</div>
-      <div class="tagline-english">Awakening Dharma • Preserving Sacred Heritage • Serving Society</div>
-
-      <div class="glow-divider"></div>
-
-      <!-- The Single Join Button: Directly Navigates to abhayhindusena.org.in/join -->
+    <!-- Join Button -->
+    <div class="action-wrap">
       <a href="https://abhayhindusena.org.in/join" class="btn-join" id="btnJoin">
         <span class="btn-join-main">🚩 Join as Sevak / చేరండి ➔</span>
         <span class="btn-join-sub">నమోదు చేసుకోండి • Official Member Registration</span>
