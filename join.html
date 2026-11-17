@@ -418,7 +418,7 @@
     color: var(--saffron);
     font-weight: 600;
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 22px;
   }
   .state-desc {
     color: var(--text-muted);
@@ -745,13 +745,14 @@
   }
 
   @media (max-width: 768px) {
-    .site-header { padding: 9px 14px; width: 100%; box-sizing: border-box; display: flex; justify-content: flex-start; align-items: center; }
-    .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; width: 100%; flex: 1; overflow: visible; }
-    .circle-logo { width: 38px !important; height: 38px !important; flex-shrink: 0; }
-    .header-brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; flex: 1; overflow: visible; }
-    .header-brand-text h1 { font-size: 1.05rem; line-height: 1.2; white-space: nowrap; overflow: visible; margin: 0; letter-spacing: 0.4px; }
-    .header-brand-text span { font-size: 0.68rem; line-height: 1.2; white-space: nowrap; overflow: visible; display: block; letter-spacing: 0.2px; }
-    .header-actions { display: none !important; }
+    .site-header { padding: 9px 12px; width: 100%; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; }
+    .header-brand { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; overflow: visible; }
+    .circle-logo { width: 36px !important; height: 36px !important; flex-shrink: 0; }
+    .header-brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; overflow: visible; }
+    .header-brand-text h1 { font-size: 0.92rem; line-height: 1.2; white-space: nowrap; margin: 0; letter-spacing: 0.3px; }
+    .header-brand-text span { font-size: 0.62rem; line-height: 1.2; white-space: nowrap; display: block; letter-spacing: 0.2px; }
+    .header-actions { display: flex !important; gap: 6px; }
+    .header-btn { padding: 6px 10px !important; font-size: 0.72rem !important; }
     .glass-navbar {
       width: calc(100% - 16px) !important;
       max-width: calc(100% - 16px) !important;
@@ -793,19 +794,6 @@
   </div>
 </header>
 
-<!-- Floating Glass Navbar -->
-<nav class="glass-navbar">
-  <div class="glass-nav-links">
-    <a href="index.html" data-en="Home" data-te="ప్రారంభం">Home</a>
-    <a href="join.html" class="active" data-en="Join Us" data-te="చేరండి">Join Us</a>
-    <a href="javascript:void(0)" onclick="openGurujiAppointment()" class="nav-appointment-link" data-en="Appointment 📅" data-te="అపాయింట్‌మెంట్ 📅">Appointment 📅</a>
-  </div>
-  <span class="glass-divider"></span>
-  <button class="glass-lang-btn" onclick="toggleLanguage()" id="glassLangBtn">
-    🌐 <span id="langText">English / తెలుగు</span>
-  </button>
-</nav>
-
 <!-- Main Volunteer Form Section -->
 <main class="volunteer-page-wrap">
   <div class="section-header">
@@ -835,9 +823,6 @@
         <div class="state-icon">🏛️</div>
         <h3 class="state-name">ఆంధ్రప్రదేశ్</h3>
         <span class="state-name-en">Andhra Pradesh</span>
-        <p class="state-desc">
-          తిరుపతి, చిత్తూరు, కడప, కర్నూలు, నెల్లూరు, ప్రకాశం, గుంటూరు, కృష్ణా, ఏలూరు, ఉభయ గోదావరి, విశాఖపట్నం తదితర ఏపీ జిల్లాల సేవకులు.
-        </p>
         <button type="button" class="state-btn">
           నమోదు చేసుకోండి (Register AP) ➔
         </button>
@@ -849,9 +834,6 @@
         <div class="state-icon">⚔️</div>
         <h3 class="state-name">తెలంగాణ</h3>
         <span class="state-name-en">Telangana</span>
-        <p class="state-desc">
-          హైదరాబాద్, సికింద్రాబాద్, రంగారెడ్డి, మేడ్చల్, వరంగల్, కరీంనగర్, ఖమ్మం, నిజామాబాద్, నల్గొండ మరియు తెలంగాణ జిల్లాల సేవకులు.
-        </p>
         <button type="button" class="state-btn">
           నమోదు చేసుకోండి (Register TG) ➔
         </button>
@@ -863,9 +845,6 @@
         <div class="state-icon">🚩</div>
         <h3 class="state-name">ఇతర రాష్ట్రాలు</h3>
         <span class="state-name-en">All India / Other States</span>
-        <p class="state-desc">
-          కర్ణాటక, తమిళనాడు, మహారాష్ట్ర, ఒడిశా, ఢిల్లీ మరియు భారతదేశంలోని ఇతర అన్ని రాష్ట్రాల్లో నివసిస్తున్న హిందూ ధర్మ సేవకులు.
-        </p>
         <button type="button" class="state-btn">
           నమోదు చేసుకోండి (All India) ➔
         </button>
